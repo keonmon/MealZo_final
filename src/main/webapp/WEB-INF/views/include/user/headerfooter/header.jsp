@@ -8,12 +8,12 @@
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>header</title>
-<link href="css/meal.css" rel="stylesheet">
+<link href="user/css/meal.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script src="script/jquery-3.6.0.js"></script>
-<script src="member/member.js"></script>
-<script src="product/product.js"></script>
-<script src="mypage/mypage.js"></script>
+<script src="user/script/jquery-3.6.0.js"></script>
+<script src="user/member.js"></script>
+<script src="user/product.js"></script>
+<script src="user/mypage.js"></script>
 <script>
 /* result 값에 따른 처리 결과 메시지 ( String true/false 파라미터로 구분 ) */
 <%
@@ -42,31 +42,31 @@
 						<li>
 							<c:choose>
 								<c:when test="${empty loginUser }">
-									<a href="meal.do?command=userLogin">로그인</a>
+									<a href="userLogin">로그인</a>
 								</c:when>
 								<c:otherwise>
-									<span style="font-size:1.1em"><strong>${loginUser.name }</strong> 님 반갑습니다&nbsp;&nbsp;</span>
+									<span style="font-size:1.1em"><strong>${loginUser.NAME }</strong> 님 반갑습니다&nbsp;&nbsp;</span>
 								</c:otherwise>
 							</c:choose>
 						|</li>
 						<li>
 							<c:choose>
 								<c:when test="${empty loginUser }">
-									<a href="meal.do?command=contract">회원가입 </a>|
+									<a href="contract">회원가입 </a>|
 								</c:when>
 								<c:otherwise>
-								<a href="meal.do?command=logout" onclick="return confirm('정말 로그아웃 하시겠습니까?')">로그아웃 </a>|
+								<a href="logout" onclick="return confirm('정말 로그아웃 하시겠습니까?')">로그아웃 </a>|
 								</c:otherwise>
 							</c:choose>
 						</li>
 						<li>
-							<a href="meal.do?command=mypageForm">마이페이지 </a>|
+							<a href="mypageForm">마이페이지 </a>|
 						</li>
 						<li>
-							<a href="meal.do?command=orderListForm">주문조회 </a>|
+							<a href="orderListForm">주문조회 </a>|
 						</li>
 						<li>
-							<a href="meal.do?command=cartList">장바구니</a>
+							<a href="cartList">장바구니</a>
 						</li>
 					</ul>
 			<div class="clear"></div>	
@@ -74,7 +74,7 @@
 			</div>
 			<!-- 로고 -->
 			<div id="logo">
-				<a href="meal.do?command=index&sub=y"><img src="images/MealZologo.png"></a>
+				<a href="index?sub=y"><img src="images/MealZologo.png"></a>
 			</div>
 	
 			<!-- menu -->
@@ -82,13 +82,13 @@
 				<!-- 카테고리 -->
 				<div id="categori">
 					<ul>
-		                  <li class="menu"><a href="meal.do?command=productAllForm&sort=recently&sub=y&idx=0">전체보기</a></li>
-		                  <li class="menu"><a href="meal.do?command=productForm&kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0">베스트</a></li>
-		                  <li class="menu"><a href="meal.do?command=productForm&kind=&bestyn=&newyn=y&sort=recently&sub=y&idx=0">신제품</a></li>
-		                  <li class="menu"><a href="meal.do?command=productForm&kind=한식&bestyn=&newyn=&sort=recently&sub=y&idx=0">한식</a></li>
-		                  <li class="menu"><a href="meal.do?command=productForm&kind=중식&bestyn=&newyn=&sort=recently&sub=y&idx=0">중식</a></li>
-		                  <li class="menu"><a href="meal.do?command=productForm&kind=양식&bestyn=&newyn=&sort=recently&sub=y&idx=0">양식</a></li>
-		                  <li class="menu" Style="display:none;"><a href="meal.do?command=subscribeForm">VIP전용관</a></li>
+		                  <li class="menu"><a href="productAllForm?sort=recently&sub=y&idx=0">전체보기</a></li>
+		                  <li class="menu"><a href="productForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0">베스트</a></li>
+		                  <li class="menu"><a href="productForm?kind=&bestyn=&newyn=y&sort=recently&sub=y&idx=0">신제품</a></li>
+		                  <li class="menu"><a href="productForm?kind=한식&bestyn=&newyn=&sort=recently&sub=y&idx=0">한식</a></li>
+		                  <li class="menu"><a href="productForm?kind=중식&bestyn=&newyn=&sort=recently&sub=y&idx=0">중식</a></li>
+		                  <li class="menu"><a href="productForm?kind=양식&bestyn=&newyn=&sort=recently&sub=y&idx=0">양식</a></li>
+		                  <li class="menu" Style="display:none;"><a href="subscribeForm">VIP전용관</a></li>
                		</ul>
 				</div>
 				
