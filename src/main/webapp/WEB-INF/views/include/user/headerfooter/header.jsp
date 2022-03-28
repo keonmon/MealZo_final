@@ -18,16 +18,16 @@
 /* result 값에 따른 처리 결과 메시지 ( String true/false 파라미터로 구분 ) */
 <%
 	// System.out.println("result : " + request.getAttribute("result"));
-	String result = (String)request.getAttribute("result");
-	if("true".equals(result)) {
+	//String result = (String)request.getAttribute("result");
+	//if("true".equals(result)) {
 %>
-	alert("정상적으로 처리되었습니다.");
+	//alert("정상적으로 처리되었습니다.");
 <%
-	}else if("false".equals(result)){
+	//}else if("false".equals(result)){
 %>
-	alert("처리에 실패했습니다.\n관리자에게 문의하세요.");
+	//alert("처리에 실패했습니다.\n관리자에게 문의하세요.");
 <%	
-	}else{ }
+	//}else{ }
 %>
 </script>
 </head>
