@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ include file="header.jsp"%>
+<%@ include file="include/user/headerfooter/header.jsp"%>
 
 <div class="clear"></div>
 
@@ -134,4 +134,4 @@
 	-->
 </div>
 
-<%@ include file="footer.jsp"%>
+<%@ include file="include/user/headerfooter/footer.jsp"%>
