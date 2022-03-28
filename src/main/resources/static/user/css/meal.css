@@ -1,0 +1,320 @@
+@charset "UTF-8";
+
+body{ background:#FFFFFF; margin:0; padding:0; font-size:13px;  }
+.clear {clear: both; }
+#wrap{  width:1200px; margin:0 auto; font-family:'Pretendard-Regular';}
+a{text-decoration:none; color:black;}
+
+/* 헤더 */
+header{margin:0 0 0 0;}
+.header_1st{  width:1200px;} 
+#header ul{float:right; list-style:none; padding:0; margin:15px 0px 0px 0px;}
+.header_1st ul li{display:inline-block; font-size:90%; margin: 0 0 10px 0; }
+.header_1st a { text-decoration: none; display:inline-block; width:65px; text-align: center; color:#A5AAAE; font-weight: bold; }
+.header_1st a:hover {color: green; font-weight: bold;}
+
+#logo{display:block;  text-align:center; border-top:1px solid lightgrey; border-bottom:1px solid lightgrey;}
+#logo img{  width:150px;}
+
+#categori{float:left}
+.header_3rd{margin:10px 0;}
+.header_3rd ul li{ display:inline-block; width:85px; height:30px; font-size:1.2em; }
+.header_3rd a {position:relative; text-decoration :none; display:inline-block; width:85px; height:30px; text-align:center; color:black; font-weight:bold; }
+.header_3rd a:hover{ color:green; top:1px;}
+
+#search {position:relative; right:-380px; display:flex; margin:0;
+	border: 1px solid lightgrey;
+	height: 40px;
+	padding: 0 20px;
+	width:250px; 
+	}
+#serch form{ height:40px;}
+#search input{height:40px; width:150px; line-height:40px; flex: 1;  outline:none; width:150px; border:none; padding:0; font-family:'Pretendard-Regular';}
+#productSearchIcon { position:absolute; top:8px; right:25px; cursor: pointer; float:right; }
+
+/*풋터*/
+footer{text-align:left; width:1200px; }
+div#footer_b ul li{display:block;  float:left; font-size:13px;}
+div#footer_b a{text-decoration:none; display:inline-block; width:115px;
+ text-align:center; color:#76797D; font-weight:bold; }
+div#footer_img{position:absolute; margin-top:1px; margin-left:880px; float:right; }
+div#footer_c {margin-top:10px; font-size:12px; font-weight:bold;  text-decoration :none; 
+background: no-repeat; 
+background-size:80px 80px;
+background-position:right top;
+height:100px;
+background-image:url("../images/footer.png"); }
+/*background-postion:right;*/
+
+span.f_title{color:#76797D;}
+span.f_title2{color:#4C4E50;}
+
+div#hr{border-bottom:1.5px solid black;}
+
+	/* footer 서비스소개*/
+#e2{position:relative; width:1200px; margin-top:50px;}
+#company{ float:left; margin:0 auto; }
+
+
+/* index */
+#index{margin:0 auto;}
+	/* 이벤트슬라이더*/
+.slide_event{position:relative; /* width:2000px; */ /* height:370px; */ overflow:hidden; display: block;
+    width: 100%;
+    height: 370px;
+    padding:0;
+    display: flex;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: auto auto;}
+#images{position:absolute; width:16000px; height:370px; left:-400px; transition:3s;}
+#images a{margin:0;width:2000px;}
+#images img{margin:0;width:2000px;float:left;}
+	/* 제품슬라이더*/
+#slide_product{position:relative; width:1220px; height:423px; margin:40px 0 0 0; /* overflow:hidden; */}
+#index_catalog_topper{margin:0 0 0 10px; width:1210px; height:50px;}
+#index_catalog_topper span{float:left; font-size:1.4em; font-weight:bold; line-height:50px;}
+#index_catalog_topper a{float:right; line-height:50px; text-decoration:none; color:black;}
+
+#overflow {position:relative; width:1220px; height:380px;  overflow:hidden; }
+.wrap_box{position:absolute; width:1836px; left:0px; top:0px; transition:.3s;}
+#product_wrap1:nth-child(1){ width:295px; height:373px; background:white; border:1px solid lightgrey; margin:0; float:left; }
+#product_wrap1{width:295px; height:373px; background:white; border:1px solid lightgrey; margin:0 0 0 10px; float:left; }
+
+#product_thum1{width:295px;height:293px;}
+#product_thum1 img{width:295px;height:293px;}
+#product_cont1{width:295px; height:85px; padding:12px 10px 12px 10px; box-sizing:border-box;}
+#product_cont1 #name{font-size:1em; font-weight:bold; text-decoration:none; color:black}
+#product_cont1 #price{font-size:1.2em; font-weight:bold; text-decoration:none; color:black}
+	/* 화살표 */
+.arw{position:absolute; color:grey;}
+.arw #arw_l{position:absolute; right:-2px; top:150px; cursor:pointer;}
+.arw #arw_r{position:absolute; left:1223px; top:150px; cursor:pointer;}
+
+
+
+/* 로그인 --*/
+article {position: relative; width:55%; margin:0 auto; height:500px; }
+#mypageArticle2 {display:table-cell; width:100%; margin:0 auto; height:500px; padding-top:25px;}
+
+div#side_buttons{list-style:none;  margin:35px 0; }
+div#side_buttons ul li{display:block;  font-size:11px; float:left; }
+div#side_buttons a{text-decoration :none; display:inline-block; width:80px; text-align:center; color:gray; font-weight:light;  }
+div#side_buttons .join{font-weight:bold;}
+
+form fieldset {border:none; margin:0 auto; margin-top:80px; width:80px; height:300px;}
+.text{ outline: none; margin:15px 0;  height:30px; 	width:300px; font-size:16px;}
+div #input1{border-bottom:1px solid #76797D;width:300px; }
+form .submit{margin-top:30px;width:300px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+
+
+/*한식 중식 양식*/
+#e{position:relative;  margin-left:2px; width:1100px; margin:0 auto;  margin-top:30px; height:1360px;  }
+#item{ float:left; margin-top:40px; margin-left:10px; margin-right:15px; text-align:left; }
+#item a{font-size:15px;  text-decoration :none; color:black; font-weight:bold;  font-family: 'Pretendard-Regular';}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+#item p{font-family: 'Pretendard-Regular'; font-size:18px; margin-top:8px;}
+
+/* width:200px; float:left; margin: 0 auto; text-align:center; border:1px solid black;}*/
+
+/*width:295px; height:373px; background:white; border:1px solid lightgrey; margin:0; float:left; */
+div#menu1{border:1px solid black;  display: flex; margin:0 auto;  width:1200px; height:600px; }
+.kind{ font-size:300%; font-family: 'Pretendard-Regular';}
+
+/* 정렬 메뉴 */
+
+#top_menu{height:40px; border-bottom:1px solid lightgray; border-top:1px solid lightgray; margin-top:20px;}
+#top_menu ul {
+	list-style: none;
+	padding: 0;
+	margin-top: 20px;
+	display: inline-block;
+	margin:0;
+	line-height:40px;
+	margin-left:20px;
+}
+
+#top_menu ul li {
+	float: left;
+	border-radius: 5px 5px 0 0;
+	padding: 0 10px 0 0;
+	text-align: center;
+	font-size: 100%;
+	cursor: pointer;
+}
+
+#top_menu ul li{
+	color: gray;
+}
+#top_menu .active{color:green; font-weight:bold; }
+
+/* 아이디/비번찾기 탭 색상 */
+.table3 .active{background-color:green; color:white; font-weight:bold; }
+
+#tabs .active {background-color:#1AB137; color:white; font-weight:bold; }
+#tabs li{color:gray;}
+
+/* mypage 사이드메뉴 */
+#sideMenu {float:left; display:inline-block; margin:50px 20px 0 0; width:200px; padding:0 0 40px;}
+#sideMenu ul{list-style:none; font-family:'Pretendard-Regular'; text-decoration: none; padding:10px;}
+#sideMenu ul a{text-decoration: none; color:black; }
+#sideMenu h3{border-bottom:1px solid lightgrey; margin:10px 0 10px 0;  padding-bottom:10px;}
+#sideMenu #mypage{font-weight:bold; font-size:1.5em; margin:0;}
+#sideMenu #menu a{font-size:1.2em;}
+#sideMenu #menu a:hover{position:relative; color:black; left:5px; font-weight:bold; transition-duration:0.4;}
+
+/* MYPAGE */
+#subpageContainer{position:relative; display:inline-block; width:980px; padding:0 0 40px;}
+	/* greeting */
+#my_greeting{position:relative; width:980px; display:inline-block; background-color:green; height:100px;}
+#my_greeting #my_greeting_text{color:white; font-size:2em; line-height:100px; font-family:'Pretendard-Regular'; margin-left:50px; font-weight:bold;}
+#userSettingIcon{text-decoration:none; color:white; float:right; line-height: 100px; font-size:2.5em; margin-right:50px; cursor: pointer;}
+	/* mypage_주문내역 */
+#orderTotalView{position:relative; display:inline-block; width:980px; padding:15px; box-sizing:border-box; margin:25px 0 0 0;}
+#orderTotalView div{font-size:1.5em; font-family:'Pretendard-Regular'; font-weight:bold;}
+#orderTotalView ul{position:relative; display:inline-block;  font-family:'Pretendard-Regular'; padding:0; width:100%; border-radius:30px; border:.5px solid lightgrey;}
+#orderTotalView ul>li{list-style:none; float:left; display: block; width:33%; padding:20px 0; margin:0;  letter-spacing:-0.5px; cursor:pointer; text-align: center; font-size:1.2em; border-right:.5px solid lightgrey;}
+#orderTotalView ul>li:last-child{border:none;}
+#orderTotalView ul>li>a{padding: 10px 0;  text-decoration:none; color:black;}
+	/* mypage_하단메뉴 */
+#mypageView{position:relative; display:inline-block; width:980px; padding:15px; box-sizing:border-box; margin:0;}
+#mypageView ul{position:relative; display:inline-block;  font-family:'Pretendard-Regular'; padding:0; width:100%; border-bottom:.5px solid lightgrey; margin:0 ;}
+#mypageView ul>li{list-style:none; float:left; display: block; width:50%; padding:20px 20px; margin:0;  letter-spacing:-0.5px; cursor:pointer; text-align:left; font-size:1.2em; border-right:.5px solid lightgrey; box-sizing:border-box; margin:0 auto;}
+#mypageView ul>li:last-child{border:none;}
+#mypageView ul:last-child{border:none;}
+#mypageView ul>li>a{padding: 10px 0;  text-decoration:none; color:black;}
+#mypageView #mypage_nextIcon{float:right; color:lightgrey;}
+
+
+
+
+/*상품 디텡일 */
+#e1{position:relative; width:1200px; margin-top:50px;}
+.pdtable{margin:0 auto;}
+#item1{float:right; margin-top:0px; width:1200px; text-align:left; }
+#item1 img{position:relative; left:200px; margin-top:0;}
+
+#tabs{position:relative; margin:0 auto;  text-align:center;
+        margin-bottom:0px; margin:50px 0 20px;}
+#tabs ul{list-style : none; padding:0; margin-bottom:0px; display:inline-block;}
+#tabs ul li{width:180px; height:40px; float:left; line-height:40px; 
+text-align:center; font-size:120%; cursor:pointer; border:1px solid lightgray;  }
+
+#content2{position:relative;  display:none; width:1200px; height:500px;float:right; margin-top:0px;}
+#review{margin: 0 auto;}
+.submit2{margin-top:15px; margin-left:50px; width:480px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:15px; height:60px; border:none; border-radius:2%; cursor: pointer;}
+
+#reviewb{  color:#FFFFFF;  font-wight:bold; margin-left:900px; margin-top:50px; background-color:#1AB100; width:130px; height:30px; border:none;  cursor:pointer;}
+
+#content3{position:relative; display:none; width:1200px; height:300px;float:right; margin-top:0px;}
+#review{margin: 0 auto;}
+.submit2{margin-top:15px; margin-left:50px; width:480px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:15px; height:60px; border:none; border-radius:2%; cursor: pointer;}
+
+/*상품 디테일  문의하기 */
+.ask{postion:relative;  margin-left:340px;  width:520px; background-color:#1AB140; color:#FFFFFF; 
+font-weight: bold; font-size:15px; height:60px; border:none; border-radius:2%; cursor: pointer;}
+
+#aks2{width:1200px; hight:500px; margin-top:80px;}
+
+
+
+
+
+/* 한성희 해보는중  2.11 여기부터 수정함 */
+#article2 h1, div h1 {font-family: Verdana; font-size: 45px; color: #6F0C78;   margin: 20px 0;   font-weight: normal; }
+#article2 { width: 830px; padding-right: 10px; font-family: Verdana; font-size: 1em; line-height: 1.5em; height:600px; margin : 0 auto; margin-right:80px;}
+
+#form2 {width: 640px; border:none; }
+#form2 #fieldset2 { padding: 10px 0 10px 5px; width:666px; border:none; margin:0 auto; margin-top:80px; align:center;}
+.text2{ outline: none; margin:15px 0;  height:30px; width:300px; font-size:14px; }
+
+#table2 {margin:0 auto;}
+
+/* 회원정보입력쪽 */
+
+#form2 #fieldset2 #legend2 { font-size: 20px;   border-bottom: 1px dotted #666;   width: 640px;    padding: 5px 0; align:center;}
+
+tr{width:640px; height:49px;}
+
+#form2 #label {width: 140px; text-align:left; margin: 5px 0; border-left:1px #eee solid; vertical-align:middle; }
+#form2 #th1{color:#666; background:#f8f8f8; width:140px;}
+#form2 #selectBox{ cursor:pointer;}
+#form2 input { float:left; margin: 0px 0; border: 1px solid #C4C7C8;    background-color: #white; }
+
+#form2 #buttons {position:relative; margin: 20px 0 0 0; }
+#form2 .submit, #form2 .cancel {position:relative; height: 40px;   width: 640px;    border: 1px solid #666;
+font-size: 17px; background-repeat: repeat-x; background-position:center; color: #FFFFFF; margin: 0 0 0 20px; background-color:#1AB137;}
+
+#form2 #label2 {width:640px;}
+#form2 #th3{background:white; width:640px; text-align: center; align:center;}
+#form2 #th4{background:white; width:320px; text-align: center; align:center;}
+
+#article3 { width: 700px; border:none;
+font-family: Verdana; font-size: 1em; line-height: 1.5em; height:600px; margin : 0 auto; }
+
+#sunghee { height:700px; margin : 0 auto; width:700px; }
+#sunghee2 {width:700px;}
+
+.table3 { margin: 0 auto; width:700px; align:center;}
+.table3 ul {list-style:none; margin:0 auto; padding:0;}
+.table3 ul li{list-style:none; width:50%; float:left;  height:50px; text-align:center; line-height: 50px; font-weight:bold; font-size: 1.2em;}
+.table4 {margin:0 auto; margin-left:150px;}
+   
+form .cancel{margin-top:30px;width:300px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+
+.text3{ outline: none; height:30px; width:100px; font-size:14px; margin-left:0;}
+#form2 #th5{background:white; width:200px; text-align: center; align:center;}
+
+form .submit3, form .cancel3{margin-top:30px; width:350px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+
+form .submit4, form .cancel4{margin-top:30px; width:300px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+
+form .submit5 {margin-top:30px; margin-left:30px; width:150px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:30px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+.byeform {margin-top:100px;}
+
+form cancel5 {margin-top:30px;width:150px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:30px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+.byeform {margin-top:100px;}
+/* 한성희 여기까지 수정함 */
+
+
+
+/* qna 작성부분 */
+#e3{position:relative;  margin-left:2px; width:1200px; margin:0 auto;  margin-top:30px; height:7330px;}
+#agreement{ font-size:14px; line-height:23px;}
+
+#company2{ font-size:50px; 
+background: no-repeat;  position:relative;
+background-image:url("../images/agreement.jpg"); height:300px; }
+/*background-postion:right;*/
+
+#e4{position:relative;  margin-left:2px; width:1200px; margin:0 auto;  margin-top:30px; height:1800px;}
+.privacy{ line-height:24px;  font-size:14px;}
+
+
+
+tr{width:640px; height:49px;}
+th{color:#666; background:#f8f8f8; width:140px;}
+#th2{background:white; width:500px;}
+
+
+
+
+
+
+
+
+
+
