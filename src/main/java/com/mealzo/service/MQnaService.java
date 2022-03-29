@@ -18,5 +18,20 @@ public class MQnaService {
 		
 		
 	}
+
+	public void getQna(HashMap<String, Object> paramMap) {
+		qdao.getQna(paramMap);
+		
+	}
+
+	public void insertQna(HashMap<String, Object> paramMap) {
+		qdao.insertQna(paramMap);
+		
+	}
+
+	public void getAllCountQna(HashMap<String, Object> paramMap) {
+		qdao.getAllCount(paramMap);
+		
+	}
 	
 }

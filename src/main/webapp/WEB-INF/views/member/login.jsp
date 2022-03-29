@@ -34,4 +34,4 @@ $(function(){
 </article>
 
 
-<%@ include file="../include/user/headerfooter/header.jsp" %>
+<%@ include file="../include/user/headerfooter/footer.jsp" %>
