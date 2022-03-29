@@ -1,5 +1,6 @@
 -- MealZo Procedure
 
+
 -------------- >> 프로시저문 하나에 경계선 하나 << -------------------
 
 create or replace procedure getNewBestProduct_m(
@@ -18,6 +19,7 @@ begin
 				from mproduct where bestyn='y' order by indate desc )
 				where rownum <= 6;
 end;
+
 
 ------------------------------------------------------------------
 -- 전체보기 상품 개수 카운트
@@ -94,7 +96,67 @@ begin
 end;
 
 
+-----------------------------------------------------------------------------------
+
+--QnaList
+create or replace procedure listQna_m(
+p_id in mqna.id%type ,
+c_cur out sys_refcursor 
+)
+
+is 
+begin
+open c_cur for 
+  select * from qna where id=p_id ;
+end;    
 
 
+--------------------------------------------------------------------------------
+
+create or replace procedure insertCart_m(
+    p_id IN mcart.id%TYPE,
+    p_pseq  IN mcart.pseq%TYPE,
+    p_quantity  IN mcart.quantity%TYPE )
+IS
+BEGIN
+    insert into mcart( cseq, id, pseq, quantity ) 
+    values( mcart_seq.nextVal, p_id, p_pseq, p_quantity );
+    commit;    
+END;
+
+--------------------------------------------------------------------------------
+
+create or replace procedure listCart_m(
+    p_id IN mcart.id%TYPE, 
+    p_cur OUT SYS_REFCURSOR   )
+IS
+BEGIN
+    OPEN p_cur FOR SELECT * FROM mcart_view where id=p_id;
+END;
+
+
+--------------------------------------------------------------------------------
+
+CREATE OR REPLACE PROCEDURE deleteCart_m(
+    p_cseq  IN mcart.cseq%TYPE   )
+IS
+BEGIN
+    delete from mcart where cseq = p_cseq;
+    commit;    
+END;
+
+
+-------------->> 멤버 <<-------------------
+
+CREATE OR REPLACE PROCEDURE getMember_m(
+    p_id IN mmember.id%TYPE, 
+    p_curvar OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_curvar FOR SELECT * FROM mmember WHERE id=p_id;
+END;
+
+-------------------------------------------------------------------
 
 
