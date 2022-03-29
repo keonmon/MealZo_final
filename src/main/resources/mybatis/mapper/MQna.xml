@@ -5,6 +5,10 @@
 
 	<resultMap type="java.util.HashMap" id="qnaMap"/>
 	
-	
+	<select id="listQna"  statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL  listQna_m(#{id},
+	#{ref_curssor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap}
+	)}
+	</select>
 	
 </mapper>
