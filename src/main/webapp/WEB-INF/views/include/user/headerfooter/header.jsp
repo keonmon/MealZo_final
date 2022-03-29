@@ -74,13 +74,13 @@
 			</div>
 			<!-- 로고 -->
 			<div id="logo">
-				<a href="index?sub=y"><img src="images/MealZologo.png"></a>
+				<a href="/?sub=y"><img src="images/MealZologo.png"></a>
 			</div>
 	
 			<!-- menu -->
 			<div class="header_3rd">
 				<!-- 카테고리 -->
-				<div id="categori">
+				<div id="category">
 					<ul>
 		                  <li class="menu"><a href="productAllForm?sort=recently&sub=y&idx=0">전체보기</a></li>
 		                  <li class="menu"><a href="productForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0">베스트</a></li>
