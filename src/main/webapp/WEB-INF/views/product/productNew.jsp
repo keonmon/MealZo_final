@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-    <%@ include file="../header.jsp" %>
+    <%@ include file="../include/user/headerfooter/header.jsp" %>
  <article id="e">
 <div class="kind">신제품</div>
 <div id="top_menu" >
@@ -48,4 +48,4 @@
 </div>
   </article>
   
-<%@ include file="../footer.jsp" %>
+<%@ include file="../include/user/headerfooter/footer.jsp" %>
