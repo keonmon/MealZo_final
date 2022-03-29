@@ -4,7 +4,12 @@
 <mapper namespace="com.mealzo.dao.IMMemberDao"> 
 	<resultMap type="java.util.HashMap" id="memberMap"/>
 	
-	
+	<select id="getMember" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL getMember_m( 
+			#{id},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
+		)  }
+	</select>
 	
 </mapper>
 
