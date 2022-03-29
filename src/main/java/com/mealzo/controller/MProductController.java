@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mealzo.dto.Paging;
-import com.mealzo.dto.mproductVO;
 import com.mealzo.service.MProductService;
 
 @Controller
@@ -163,15 +162,14 @@ public class MProductController {
 		String url="product/productkind";
 	    
 		HttpSession session = request.getSession();
-		
 		String sub=request.getParameter("sub");
-		  if(sub!=null&& sub.equals("y")) {
-			  session.removeAttribute("page");
-			  session.removeAttribute("key");
-		  }
+		if(sub!=null&& sub.equals("y")) {
+			session.removeAttribute("page");
+			session.removeAttribute("key");
+		}
 		  
-			
 		String key="";
+		int page = 1;
 		if( request.getParameter("key") != null ) {
 			key = request.getParameter("key");
 			session.setAttribute("key", key);
@@ -181,9 +179,6 @@ public class MProductController {
 			session.removeAttribute("key");
 			key = "";
 		}
-		
-
-		int page = 1;
 		if( request.getParameter("page") != null ) {
 			page = Integer.parseInt(request.getParameter("page"));
 			session.setAttribute("page", page);
@@ -193,43 +188,64 @@ public class MProductController {
 			page = 1;
 			session.removeAttribute("page");
 		}
-
+		
 		String kind= request.getParameter("kind");
 		String bestyn= request.getParameter("bestyn");
 		String useyn = request.getParameter("useyn");
 		String newyn = request.getParameter("newyn");
 		
-		
 		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
+		// 베스트
+		HashMap<String,Object> paramMap = new HashMap<String,Object>();
 		if(bestyn.equals("y")){
+			
+			/* paramMap.put("key", key); */
+			paramMap.put("bestyn", bestyn);
+			paramMap.put("cnt", 0);
+			ps.getAllCountByBest(paramMap);
+			
 			//session.removeAttribute("submenu");
-			int count = pdao.getAllCount_by_Best( bestyn, key);
 			Paging paging = new Paging();
 			paging.setPage(page);		
-			paging.setTotalCount(count);
+			paging.setTotalCount((int)paramMap.get("cnt"));
 			request.setAttribute("paging" , paging );
 			//request.setAttribute("key", key);
+			
 			System.out.println(kind);
 			System.out.println(sort);
 			System.out.println(bestyn);
 			System.out.println("~~best끝~~");
+			
+			paramMap.put("startNum", paging.getStartNum());
+			paramMap.put("endNum", paging.getEndNum());
+			paramMap.put("ref_cursor", null);
+			
 			if(sort.equals("recently")){
-				//베스트상품
-				ArrayList<mproductVO> best = pdao.getbest("y", paging, key);
+				//베스트
+				ps.getBest(paramMap);
+				ArrayList<HashMap<String,Object>> best 
+					= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
 				request.setAttribute("mproductVoList", best);
 			}else if(sort.equals("low_price")){
-				//베스트상품 중 낮은 가격순
-				ArrayList<mproductVO> blow = pdao.getblow("y", paging, key);
+				//베스트-낮은순
+				ps.getBLow(paramMap);
+				ArrayList<HashMap<String,Object>> blow 
+					= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
 				request.setAttribute("mproductVoList", blow);
 			}else{
-				//베스트상품 중 낮은 높은순
-				System.out.println(sort);
-				ArrayList<mproductVO> bhight = pdao.getbhignt("y", paging, key);
+				//베스트-높은순
+				ps.getBHight(paramMap);
+				ArrayList<HashMap<String,Object>> bhight 
+					= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
 				request.setAttribute("mproductVoList", bhight);
 			}
 			
+		// 신상	
 		}else if(newyn.equals("y")){
+			/* paramMap.put("key", key); */
+			paramMap.put("newyn", newyn);
+			paramMap.put("cnt", 0);
+			
 			session.removeAttribute("submenu");
 			int count = 20;	//신상품 보여질 개수 정의
 			Paging paging = new Paging();
@@ -237,112 +253,171 @@ public class MProductController {
 			paging.setTotalCount(count);
 			request.setAttribute("paging" , paging );
 			request.setAttribute("key", key);
+			
 			System.out.println(kind);
 			System.out.println(sort);
 			System.out.println(bestyn);
 			System.out.println(newyn);
 			System.out.println("~~new끝~~");
+			
+			paramMap.put("startNum", paging.getStartNum());
+			paramMap.put("endNum", paging.getEndNum());
+			paramMap.put("ref_cursor", null);
+			
 			if(sort.equals("recently")){
-				//베스트상품
-				ArrayList<mproductVO> newList = pdao.getnewList(count, paging, key);
+				//신상품
+				ps.getNewList(paramMap);
+				ArrayList<HashMap<String,Object>> newList 
+					= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
 				request.setAttribute("mproductVoList", newList);
 			}else if(sort.equals("low_price")){
-				//베스트상품 중 낮은 가격순
-				ArrayList<mproductVO> newlow = pdao.getnewlow(count, paging, key);
+				//신상품-낮은순
+				ps.getNewLow(paramMap);
+				ArrayList<HashMap<String,Object>> newlow 
+					= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
 				request.setAttribute("mproductVoList", newlow);
 			}else{
-				//베스트상품 중 낮은 높은순
-				System.out.println(sort);
-				ArrayList<mproductVO> newhight = pdao.getnewhight(count, paging, key);
+				//신상품-높은순
+				ps.getNewHight(paramMap);
+				ArrayList<HashMap<String,Object>> newhight 
+					= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
 				request.setAttribute("mproductVoList", newhight);
 			}
 			
-			
+		// 한식
 		}else if(kind.equals("한식")) {
+			
+			/* paramMap.put("key", key); */
+			paramMap.put("kind", kind);
+			paramMap.put("cnt", 0);
+			ps.getAllCountByKind(paramMap);
+			
 			session.removeAttribute("submenu");
-			int count = pdao.getAllCount(kind, key );
 			Paging paging = new Paging();
 			paging.setPage(page);		
-			paging.setTotalCount(count);
+			paging.setTotalCount((int)paramMap.get("cnt"));
 			request.setAttribute("paging" , paging );
 			//request.setAttribute("key", key);
+			
 			System.out.println(kind);
 			System.out.println(sort);
 			System.out.println(bestyn);
 			System.out.println("~~한끝~~");
 			
+			paramMap.put("startNum", paging.getStartNum());
+			paramMap.put("endNum", paging.getEndNum());
+			paramMap.put("ref_cursor", null);
+			
 			if(sort.equals("recently")){
 				//최신
-				ArrayList<mproductVO> list = pdao.selectKindmproductList(kind, paging, key);
+				ps.getKind(paramMap);
+				ArrayList<HashMap<String,Object>> list 
+					= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
 				request.setAttribute("mproductVoList", list);
 				
 			}else if(sort.equals("low_price")){
 				//가격낮은순
-				ArrayList<mproductVO> low = pdao.getlow(kind, paging, key);
+				ps.getLow(paramMap);
+				ArrayList<HashMap<String,Object>> low 
+					= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
 				request.setAttribute("mproductVoList", low);
 				
 			}else{
 				//가격높은순
-				ArrayList<mproductVO> hight = pdao.gethight(kind, paging, key);
+				ps.getHight(paramMap);
+				ArrayList<HashMap<String,Object>> hight 
+					= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
 				request.setAttribute("mproductVoList", hight);
 			}
 			
 			
-			
+		// 중식	
 		}else if(kind.equals("중식")){
+			
+			/* paramMap.put("key", key); */
+			paramMap.put("kind", kind);
+			paramMap.put("cnt", 0);
+			ps.getAllCountByKind(paramMap);
+			
 			session.removeAttribute("submenu");
-			int count = pdao.getAllCount(kind, key );
 			Paging paging = new Paging();
 			paging.setPage(page);		
-			paging.setTotalCount(count);
+			paging.setTotalCount((int)paramMap.get("cnt"));
 			request.setAttribute("paging" , paging );
 			//request.setAttribute("key", key);
+			
 			System.out.println(kind);
 			System.out.println(sort);
 			System.out.println(bestyn);
 			System.out.println("~~중끝~~");
+			
+			paramMap.put("startNum", paging.getStartNum());
+			paramMap.put("endNum", paging.getEndNum());
+			paramMap.put("ref_cursor", null);
+			
 			if(sort.equals("recently")){
 				//최신
-				ArrayList<mproductVO> list = pdao.selectKindmproductList(kind, paging, key);
+				ps.getKind(paramMap);
+				ArrayList<HashMap<String,Object>> list 
+				= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
 				request.setAttribute("mproductVoList", list);
 			}else if(sort.equals("low_price")){
 				//가격낮은순
-				ArrayList<mproductVO> low = pdao.getlow(kind, paging, key);
+				ps.getLow(paramMap);
+				ArrayList<HashMap<String,Object>> low 
+				= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
 				request.setAttribute("mproductVoList", low);
 			}else{
 				//가격높은순
-				ArrayList<mproductVO> hight = pdao.gethight(kind, paging, key);
+				ps.getHight(paramMap);
+				ArrayList<HashMap<String,Object>> hight 
+				= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
 				request.setAttribute("mproductVoList", hight);
 			}
 			
-			
+		// 양식		
 		}else if(kind.equals("양식")){
-			// kind==양식
+			
+			/* paramMap.put("key", key); */
+			paramMap.put("kind", kind);
+			paramMap.put("cnt", 0);
+			ps.getAllCountByKind(paramMap);
+			
 			session.removeAttribute("submenu");
-			int count = pdao.getAllCount(kind, key );
 			Paging paging = new Paging();
 			paging.setPage(page);		
-			paging.setTotalCount(count);
+			paging.setTotalCount((int)paramMap.get("cnt"));
 			request.setAttribute("paging" , paging );
 			//request.setAttribute("key", key);
+			
 			System.out.println(kind);
 			System.out.println(sort);
 			System.out.println(bestyn);
 			System.out.println("~~양끝~~");
+			
+			paramMap.put("startNum", paging.getStartNum());
+			paramMap.put("endNum", paging.getEndNum());
+			paramMap.put("ref_cursor", null);
+			
 			if(sort.equals("recently")){
 				//최신
-				ArrayList<mproductVO> list = pdao.selectKindmproductList(kind, paging, key);
+				ps.getKind(paramMap);
+				ArrayList<HashMap<String,Object>> list 
+				= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
 				request.setAttribute("mproductVoList", list);
 			}else if(sort.equals("low_price")){
 				//가격낮은순
-				ArrayList<mproductVO> low = pdao.getlow(kind, paging, key);
+				ps.getLow(paramMap);
+				ArrayList<HashMap<String,Object>> low 
+				= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
 				request.setAttribute("mproductVoList", low);
 			}else{
 				//가격높은순
-				ArrayList<mproductVO> hight = pdao.gethight(kind, paging, key);
+				ps.getHight(paramMap);
+				ArrayList<HashMap<String,Object>> hight 
+				= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
 				request.setAttribute("mproductVoList", hight);
 			}
-			
 		}
 		request.setAttribute("kind", kind);
 		request.setAttribute("bestyn", bestyn); // 2,3,4,5page 볼때 값을 넘겨주는걸로 셋팅
@@ -350,13 +425,7 @@ public class MProductController {
 		request.setAttribute("sort", sort);
 		request.setAttribute("idx", idx);
 		
-		
-		
-	    request.getRequestDispatcher(url).forward(request, response);
-	}
-		
-		
-		return "";
+		return url;
 	}
 	
 }
