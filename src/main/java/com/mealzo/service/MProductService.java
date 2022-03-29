@@ -17,4 +17,21 @@ public class MProductService {
 		pdao.getNewBestProduct(paramMap);
 		
 	}
+
+	public void getAllCount(HashMap<String, Object> paramMap) {
+		pdao.getAllCount(paramMap);
+	}
+
+	public void listProduct(HashMap<String, Object> paramMap) {
+		pdao.listProduct(paramMap);
+	}
+
+	public void getalow(HashMap<String, Object> paramMap) {
+		pdao.getalow(paramMap);
+	}
+
+	public void getahight(HashMap<String, Object> paramMap) {
+		pdao.getahight(paramMap);
+		
+	}
 }
