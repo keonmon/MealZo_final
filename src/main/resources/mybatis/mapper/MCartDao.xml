@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.mealzo.dao.IMCartDao"> 
+
+	<resultMap type="java.util.HashMap" id="cartMap"/>
+	
+	<insert id="insertCart" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{ CALL insertCart_m( #{id}, #{pseq}, #{quantity} )}
+	</insert>
+	
+	
+	<select id="listCart" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{ CALL listCart_m(
+			<!-- #{id}, -->
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
+		) }
+	</select>
+	
+	<delete id="deleteCart" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{ CALL deleteCart_m(  #{cseq}	) }
+	</delete>
+</mapper>
+
