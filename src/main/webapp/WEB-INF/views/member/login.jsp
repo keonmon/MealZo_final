@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/user/headerfooter/header.jsp" %>
 
 <!-- 로그인폼 불러올 시 아이디 입력란 focus() -->
@@ -25,8 +24,8 @@ $(function(){
 </div>
 <div id="side_buttons" style="margin:0;">
  <ul style="margin-top:0;">
-   <li ><a style="width:120px; font-size:1.2em" href="meal.do?command=findIdForm">아이디/비밀번호 찾기 </a></li>
-   <li ><a style="width:120px; font-size:1.2em" href="meal.do?command=contract" >회원가입</a></li>
+   <li ><a style="width:120px; font-size:1.2em" href="findIdForm">아이디/비밀번호 찾기 </a></li>
+   <li ><a style="width:120px; font-size:1.2em" href="contract" >회원가입</a></li>
  </ul>
 </div><br><br>
 <div> &nbsp; &nbsp; ${message}</div>
