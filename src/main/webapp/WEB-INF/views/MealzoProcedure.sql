@@ -18,3 +18,17 @@ begin
 				from mproduct where bestyn='y' order by indate desc )
 				where rownum <= 6;
 end;
+
+-----------------------------------------------------------------------------------
+--QnaList
+create or replace procedure listQna_m(
+p_id in mqna.id%type ,
+c_cur out sys_refcursor 
+)
+
+is 
+begin
+open c_cur for 
+  select * from qna where id=p_id ;
+  
+  end;
