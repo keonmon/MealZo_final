@@ -13,7 +13,7 @@
 	
 	<select id="listCart" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{ CALL listCart_m(
-			<!-- #{id}, -->
+			#{id},
 			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
 		) }
 	</select>
