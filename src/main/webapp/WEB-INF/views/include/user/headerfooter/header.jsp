@@ -74,7 +74,7 @@
 			</div>
 			<!-- 로고 -->
 			<div id="logo">
-				<a href="index?sub=y"><img src="images/MealZologo.png"></a>
+				<a href="/"><img src="images/MealZologo.png"></a>
 			</div>
 	
 			<!-- menu -->

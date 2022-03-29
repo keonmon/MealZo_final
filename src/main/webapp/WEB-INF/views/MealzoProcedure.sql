@@ -31,7 +31,7 @@ c_cur out sys_refcursor
 is 
 begin
 open c_cur for 
-  select * from qna where id=p_id ;
+  select * from mqna where id=p_id ;
 end;    
 
 
@@ -82,4 +82,61 @@ BEGIN
 END;
 
 -------------------------------------------------------------------
+select * from mqna;
+--QNA 디테일
+CREATE OR REPLACE PROCEDURE getQna_m(
+p_qseq in mqna.qseq%type,
+c_cur out sys_refcursor
+)
+is
+begin
+ open c_cur for select * from mqna where qseq=p_qseq;
+ end;
+ 
+ --------------------------------------------------------------------
+ --qna 추가
+ create or replace procedure insertQna_m(
+ p_id in mqna.id%type,
+ p_subject in mqna.subject%type,
+ p_content in mqna.content%type
+ )
+ is
+ begin
+ insert into mqna(qseq, id, subject, content)
+ values(mqna_seq.nextVal, p_id, p_subject, p_content);
+ end;
+ 
+ ---------------------------------------------------------------------
+ --페이징 추가 !
+ create or replace procedure listQna_m(
+p_startNum number,
+p_endNum  number,
+p_id  mqna.id%type ,
+p_cur out sys_refcursor 
+)
+
+is 
+--p_cur sys_refcursor ;
+begin
+open p_cur for 
+select * from (
+Select * from(
+  select rownum as rn, p.* from (select * from mqna where id=p_id order by qseq desc) p
+  ) where rn>=p_startNum
+  ) where rn<=p_endNum ;
+  
+
+end;    
+     -- c_cur :=p_cur;
+-------------------------------------------------------------------------------
+ create or replace procedure getAllCountQna_m(
+   p_cnt OUT NUMBER
+  )
+ is 
+  v_cnt number;
+ begin
+  select count(*) into v_cnt from mqna;
+  p_cnt := v_cnt;
+  end;
+  
 

@@ -4,7 +4,7 @@
 <%@ include file="../include/user/mypage_sidemenu.jsp" %>
 <div id=subpageContainer>
 <div id="my_greeting">
-<span id="my_greeting_text">${loginUser.name} 님의 MYPAGE입니다.</span>
+<span id="my_greeting_text">${loginUser.NAME} 님의 MYPAGE입니다.</span>
 <span class="material-icons" id="userSettingIcon" onclick="location.href='meal.do?command=editForm'">manage_accounts</span>
 </div>
 <div id="orderTotalView">
