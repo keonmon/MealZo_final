@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class Paging {
-	
 	private int page=1; //현재 화면에 표시될 페이지번호
 	private int totalCount;  //게시물의 총갯수
 	private int beginPage; //prev 와 next 버튼 사이에 표시될 시작 페이지 
@@ -35,3 +34,4 @@ public class Paging {
     }
     
 }
+
