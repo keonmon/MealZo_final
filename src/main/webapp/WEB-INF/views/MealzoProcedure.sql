@@ -1,6 +1,6 @@
 -- MealZo Procedure
 
--------------- >> М■└К║°Л▀°Л═─К╛╦ М∙≤К┌≤Л≈░ Й╡╫ЙЁ└Л└═ М∙≤К┌≤ << -------------------
+-------------- >> га╥н╫цюЗ╧╝ гоЁ╙©║ ╟Ф╟Х╪╠ гоЁ╙ << -------------------
 
 create or replace procedure getNewBestProduct_m(
     p_cur1 out sys_refcursor,
@@ -18,3 +18,34 @@ begin
 				from mproduct where bestyn='y' order by indate desc )
 				where rownum <= 6;
 end;
+
+-------------->> ╦Б╧Ж <<-------------------
+
+CREATE OR REPLACE PROCEDURE getMember_m(
+    p_id IN mmember.id%TYPE, 
+    p_curvar OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_curvar FOR SELECT * FROM mmember WHERE id=p_id;
+END;
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
