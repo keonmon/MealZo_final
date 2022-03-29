@@ -14,7 +14,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.ezen.spg16.dto.MemberVO;
 import com.mealzo.dto.MMemberVO;
 import com.mealzo.service.MMemberService;
 
@@ -78,10 +81,80 @@ public class MMemberController {
 	}
 	
 	
+	
 	@RequestMapping(value="/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("loginUser");
 		return "redirect:/";
 	}
+	
+	
+	
+	@RequestMapping("/memberJoinForm")
+	public String join_form( ) {
+		return "member/memberJoinForm";
+	}
+	
+	
+	
+	@RequestMapping("/idcheck")
+	public ModelAndView idcheck( @RequestParam("userid") String userid ) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HashMap<String , Object> paramMap = new HashMap<String , Object>();
+		paramMap.put("userid", userid);
+		paramMap.put("ref_cursor", null);
+		ms.getMember( paramMap );
+		ArrayList< HashMap<String , Object> > list 
+			= ( ArrayList< HashMap<String , Object> > )paramMap.get("ref_cursor");
+		
+		if( list.size() == 0 ) mav.addObject("result" , -1);
+		else mav.addObject("result", 1);
+		
+		mav.addObject("userid", userid);
+		mav.setViewName("member/idcheck");
+		
+		return mav;
+	}
+	
+	
+	
+	@RequestMapping(value="/memberJoin", method=RequestMethod.POST)
+	public ModelAndView memberJoin( 
+			@ModelAttribute("dto") @Valid MemberVO membervo,
+			BindingResult result, 
+			@RequestParam("re_id") String reid, 
+			@RequestParam("pwd_check") String pwchk, 
+			Model model ) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/memberJoinForm");  
+		if( reid != null && reid.equals("") ) mav.addObject("re_id", reid);
+		if( result.getFieldError("userid")!=null) 
+			mav.addObject("message", "아이디 입력하세요");
+		else if( result.getFieldError("pwd") != null ) 
+			mav.addObject("message", "비밀번호 입력하세요");
+		else if( result.getFieldError("name") != null ) 
+			mav.addObject("message", result.getFieldError("name").getDefaultMessage() );
+		else if( !membervo.getUserid().equals(reid)) 
+			mav.addObject("message","아이디 중복체크가 되지 않았습니다");
+		else if( !membervo.getPwd().equals(pwchk)) 
+			mav.addObject("message","비밀번호 확인이 일치하시 않습니다.");
+		else {  
+			//ms.insertMember( membervo );
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("userid", membervo.getUserid());
+			paramMap.put("pwd", membervo.getPwd());
+			paramMap.put("name", membervo.getName());
+			paramMap.put("email", membervo.getEmail());
+			paramMap.put("phone", membervo.getPhone());
+			ms.insertMember( paramMap );
+			mav.addObject("message", "회원가입이 완료되었습니다. 로그인 하세요");
+			mav.setViewName("member/loginForm"); // 정상 회원가입이 이루어졌을때 로그인폼으로 이동 목적지를 바꿉니다
+		}
+		return mav;
+	}
+	
+	
 }
