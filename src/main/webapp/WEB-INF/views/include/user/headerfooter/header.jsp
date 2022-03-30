@@ -11,9 +11,9 @@
 <link href="user/css/meal.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="user/script/jquery-3.6.0.js"></script>
-<script src="user/member.js"></script>
-<script src="user/product.js"></script>
-<script src="user/mypage.js"></script>
+<script src="user/script/member.js"></script>
+<script src="user/script/product.js"></script>
+<script src="user/script/mypage.js"></script>
 <script>
 /* result 값에 따른 처리 결과 메시지 ( String true/false 파라미터로 구분 ) */
 <%

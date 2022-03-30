@@ -32,6 +32,7 @@ public class Paging {
     	//잘 작동 되는 지 확인 하는 방법 
         System.out.println(beginPage + " " + endPage + " " + startNum + " " + endNum);
     }
+	
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 		paging();  // 멤버메서드 호출 -> 각 멤버변수 구성요소를 계산해주는 메서드

@@ -144,4 +144,19 @@
 		)}
 	</select>
 	
+	<!-- productDetail -->
+	<select id="getProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getProduct_m(
+			#{pseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
+		)}
+	</select>
+	<select id="getImages" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getImages_m(
+			#{pseq},
+			#{ref_cursor_Image1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap},
+			#{ref_cursor_Image2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
+		)}
+	</select>
+	
 </mapper>

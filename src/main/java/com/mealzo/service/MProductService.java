@@ -77,4 +77,13 @@ public class MProductService {
 	public void getHight(HashMap<String, Object> paramMap) {
 		pdao.getHight(paramMap);
 	}
+	
+	public void getProduct(HashMap<String, Object> paramMap) {
+		pdao.getProduct(paramMap);
+	}
+
+	public void getImages(HashMap<String, Object> paramMap) {
+		pdao.getImages(paramMap);
+		
+	}
 }
