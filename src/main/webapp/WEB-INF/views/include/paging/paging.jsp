@@ -26,13 +26,13 @@
 					<span style="color:green">${index}&nbsp;</span>
 				</c:when>
 				<c:otherwise>
-					<a href="${action}&page=${index}&key=${key}">${index}</a>&nbsp;
+					<a href="${action}?page=${index}">${index}</a>&nbsp;
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
 		<c:if test="${paging.next}">
-			<a href="${action}&page=${paging.endPage+1}">▶</a>&nbsp;
+			<a href="${action}?page=${paging.endPage+1}">▶</a>&nbsp;
 		</c:if>
 </div>
 

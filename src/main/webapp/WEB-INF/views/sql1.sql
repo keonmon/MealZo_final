@@ -227,9 +227,9 @@ values(subscribeInfo_seq.nextVal, 'kim', 'y');
 
 -- 상품 문의 데이터 
 insert into ask(aseq, title, content, id, pseq) 
-	values(ask_seq.nextVal, '제품 문의 드립니다', '오늘 구매하면 언제오나여', 'somi', 1);
+	values(ask_seq.nextVal, '제품 문의 드립니다', '오늘 구매하면 언제오나여', 'somi', 5);
 insert into ask(aseq, title, content, id, pseq) 
-	values(ask_seq.nextVal, '제품 문의 드립니다2', '오늘 구매하면 언제오나여2', 'somi', 2);
+	values(ask_seq.nextVal, '제품 문의 드립니다2', '오늘 구매하면 언제오나여2', 'somi', 5);
 	
 
 -- 문의 답변 데이터 

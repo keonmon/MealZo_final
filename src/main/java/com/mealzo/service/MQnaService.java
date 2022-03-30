@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mealzo.dao.IMQnaDao;
 
@@ -23,7 +24,7 @@ public class MQnaService {
 		qdao.getQna(paramMap);
 		
 	}
-
+	@Transactional(rollbackFor = Exception.class)
 	public void insertQna(HashMap<String, Object> paramMap) {
 		qdao.insertQna(paramMap);
 		

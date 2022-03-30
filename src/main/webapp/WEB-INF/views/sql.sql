@@ -348,3 +348,8 @@ select rownum as rn, p.* from
  
  select * from mproduct
 
+ 
+ select * from ask;
+ select * from mqna;
+ delete from mqna where rep='1'
+  delete from ask where pseq=5
