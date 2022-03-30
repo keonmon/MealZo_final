@@ -340,10 +340,10 @@ begin
         and rn<=p_endNum ;
 end;
 
-
+--QNA 디테일------------------------------
 
 select * from mqna;
---QNA 디테일
+
 CREATE OR REPLACE PROCEDURE getQna_m(
 p_qseq in mqna.qseq%type,
 c_cur out sys_refcursor
