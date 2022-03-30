@@ -32,7 +32,11 @@
 
 <insert id="insertAsk" statementType="CALLABLE" parameterType="java.util.HashMap">
 {CALL insertAsk_m(
-#{id}, #{title}, #{content_a}
+#{id},
+ #{title}, 
+#{content_a},
+#{pseq}
+
  )}
 </insert>
 

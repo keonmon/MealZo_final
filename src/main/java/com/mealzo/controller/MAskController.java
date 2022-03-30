@@ -112,21 +112,30 @@ public class MAskController {
   }
 		  
   @RequestMapping("/askWriteForm")
-  public String qnaWriteForm(HttpServletRequest request) {
+  public String askWriteForm(HttpServletRequest request,
+		  @RequestParam("pseq") int pseq) {
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser
 			= (HashMap<String, Object>)session.getAttribute("loginUser");
 		
+		
 		if( loginUser == null) {
 		 return "member/login";
-		}else
-			
+		}else {
+			request.setAttribute("pseq",pseq);
+			System.out.println("pseq" + pseq);
+		}
 		return "mypage/myAskWrite";
+		
 	}
+  
   @RequestMapping(value="/askWrite", method=RequestMethod.POST)
   public ModelAndView askWrite(@ModelAttribute("dto") @Valid MAskVO askvo, BindingResult result,
 		  @RequestParam("title") String title, @RequestParam("content_a") String content_a,
-		  HttpServletRequest request) {
+		  HttpServletRequest request ,  @RequestParam("pseq") String pseq
+		  ) {
+	  
+	  //int pseq = Integer.parseInt(request.getParameter("pseq"));
 	  
 	  ModelAndView mav = new ModelAndView();
 	  HttpSession session = request.getSession();
@@ -147,12 +156,15 @@ public class MAskController {
 				mav.setViewName("mypage/myAskWrite");
 				return mav;
 			}
+			
 				HashMap<String, Object> paramMap = new HashMap<String , Object>();
+				paramMap.put("id", loginUser.get("ID"));
 				paramMap.put("title", title);
 				paramMap.put("content_a", content_a);
-				paramMap.put("id", loginUser.get("ID"));
+				paramMap.put("pseq", pseq);
+			
 				mas.insertAsk(paramMap);
-				mav.setViewName("redirect:/myAsk");
+				mav.setViewName("redirect:/askForm");
 		}
 	  
 	  return mav;
