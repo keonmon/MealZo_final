@@ -340,6 +340,10 @@ begin
         and rn<=p_endNum ;
 end;
 
+
+
+----------------------------------------------------------------------------
+
 --QNA 디테일------------------------------
 
 select * from mqna;
@@ -399,6 +403,19 @@ end;
   p_cnt := v_cnt;
   end;
   
+
+------------------------------------------------------------------------------
+--ask 리스트
+
+create or replace procedure listMask_m(
+p_id in ask.id%type,
+p_cur out sys_refcursor
+)
+is
+begin
+open p_cur for select * from ask_view  where id=p_id order by aseq desc;
+end;
+
 --------------------------------------------------------------------------------
 -- ProductDetail - 상품정보 가져오기 getProduct_m
 
@@ -451,12 +468,56 @@ begin
 
 
 
+-----------------------------------------------------------------------------
+--ask 디테일
+create or replace procedure getAsk_m(
+p_aseq in ask.aseq%type,
+p_cur out sys_refcursor
+)
+is
+begin
+open p_cur for select * from ask_view where aseq=p_aseq;
+end;
+-------------------------------------------------------------------------------
 
+--ask 올카운트
+create or replace procedure getAllCountAsk_m(
+ p_cnt OUT NUMBER
+  )
+ is 
+  v_cnt number;
+ begin
+  select count(*) into v_cnt from ask_view;
+  p_cnt := v_cnt;
+  end;
+-----------------------------------------------------------------------------
+--ask 리스트 페이징 추가 !
 
+create or replace procedure listMask_m(
+startNum in number,
+endNum in number,
+p_id in ask.id%type,
+p_cur out sys_refcursor
+)
+is
+begin
+open p_cur for 
+select * from (
+select * from (
+select rownum rn, p.* from ( select * from ask_view  where id=p_id order by aseq desc ) p
+)where rn>=startNum
+)where rn<=endNum ;
 
-
-
-
-
-
-
+end;
+--------------------------------------------------------------------------------------------
+--ask 작성
+create or replace procedure insertAsk_m(
+p_id ask.id%type,
+p_title ask.title%type,
+p_content_a ask.content%type
+)
+is
+begin
+insert into ask(aseq,id, title, content)
+values(ask_seq.nextVal, p_id, p_title, p_content_a);
+end;
