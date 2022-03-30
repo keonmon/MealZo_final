@@ -35,7 +35,7 @@ $(document).ready(function (){
 	</div>
 
 	<div class="clear"></div>
-<jsp:include page="../include/paging/paging.jsp">
+<jsp:include page="../include/paging/productPaging.jsp">
 	<jsp:param name="command" value="productAllForm?sort=${sort}&idx=${idx}" />	
 </jsp:include>
 

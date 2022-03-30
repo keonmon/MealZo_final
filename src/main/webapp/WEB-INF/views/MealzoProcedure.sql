@@ -514,10 +514,11 @@ end;
 create or replace procedure insertAsk_m(
 p_id ask.id%type,
 p_title ask.title%type,
-p_content_a ask.content%type
+p_content_a ask.content%type,
+p_pseq ask.pseq%type
 )
 is
 begin
-insert into ask(aseq,id, title, content)
-values(ask_seq.nextVal, p_id, p_title, p_content_a);
+insert into ask(aseq,id, title, content,pseq)
+values(ask_seq.nextVal, p_id, p_title, p_content_a, p_pseq);
 end;

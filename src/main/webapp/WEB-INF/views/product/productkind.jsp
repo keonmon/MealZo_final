@@ -49,7 +49,7 @@
 </div>
 
 <div class="clear"></div>
-<jsp:include page="../include/paging/paging.jsp">
+<jsp:include page="../include/paging/productPaging.jsp">
 	<jsp:param name="command" value="productForm?kind=${kind}&bestyn=${bestyn}&newyn=${newyn}&sort=${sort}&idx=${idx}" />	
 </jsp:include>  
   

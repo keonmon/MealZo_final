@@ -9,9 +9,8 @@
 <h3>고객님의 질문에 대해서 운영자가 답변을 드립니다</h3>
 <form name="formm" method="post" action="askWrite">
 	 
-	 
 	 <input type="hidden" name="pseq" value="${pseq}">
-		<fieldset style="margin:0; margin:0 auto; padd0ing:0;">
+		<fieldset style="margin:0; margin:0 auto; padding:0;">
 		<div style="width:100%">
 			<div style="max-width:100%; margin:10px 0;">	
 				<label style="font-size:1.4em;">제목</label><br>
