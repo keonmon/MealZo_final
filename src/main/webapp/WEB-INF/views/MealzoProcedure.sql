@@ -341,9 +341,13 @@ begin
 end;
 
 
+
 ----------------------------------------------------------------------------
+
+--QNA 디테일------------------------------
+
 select * from mqna;
---QNA 디테일
+
 CREATE OR REPLACE PROCEDURE getQna_m(
 p_qseq in mqna.qseq%type,
 c_cur out sys_refcursor
@@ -399,6 +403,7 @@ end;
   p_cnt := v_cnt;
   end;
   
+
 ------------------------------------------------------------------------------
 --ask 리스트
 
@@ -410,6 +415,57 @@ is
 begin
 open p_cur for select * from ask_view  where id=p_id order by aseq desc;
 end;
+
+--------------------------------------------------------------------------------
+-- ProductDetail - 상품정보 가져오기 getProduct_m
+
+CREATE OR REPLACE PROCEDURE getProduct_m(
+    p_pseq in mproduct.pseq%type,
+    p_cur out sys_refcursor )
+is
+    vs_cnt mproduct.replycnt%type;
+begin
+    open p_cur for 
+        select * from mproduct 
+            where pseq = p_pseq;
+            
+    -- 상품리뷰 카운트 후 저장         
+    select count(*) into vs_cnt
+        from mreview where pseq = p_pseq;
+    update mproduct 
+        set replycnt = vs_cnt 
+        where pseq = p_pseq;
+    commit;
+ end;
+
+--------------------------------------------------------------------------------
+-- ProductDetail - 상품이미지 가져오기 getImages_m
+
+CREATE OR REPLACE PROCEDURE getImages_m(
+    p_pseq in mproduct.pseq%type,
+    p_cur1 out sys_refcursor, 
+    p_cur2 out sys_refcursor )
+is
+begin
+    open p_cur1 for 
+        select * from mpdimg where pseq=p_pseq;
+        
+    open p_cur2 for 
+        select * from mpdimg2 where pseq=p_pseq;
+ end;
+
+--------------------------------------------------------------------------------
+-- ProductDetail - 상품리뷰 가져오기 getReviewListByPseq
+CREATE OR REPLACE PROCEDURE getReviewListByPseq_m(
+    p_pseq in mproduct.pseq%type,
+    p_cur out sys_refcursor )
+is
+begin
+    open p_cur for 
+        select * from mreview where pseq=p_pseq;
+
+ end;
+
 
 
 -----------------------------------------------------------------------------

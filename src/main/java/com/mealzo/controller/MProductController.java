@@ -15,12 +15,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mealzo.dto.Paging;
 import com.mealzo.service.MProductService;
+import com.mealzo.service.MReviewService;
 
 @Controller
 public class MProductController {
 
 	@Autowired
 	MProductService ps;
+	
+	@Autowired
+	MReviewService rs;
 	
 	@RequestMapping("/")
 	public ModelAndView index(Model model, HttpServletRequest request) {
@@ -427,5 +431,56 @@ public class MProductController {
 		
 		return url;
 	}
+	
+	// 전체보기
+	@RequestMapping("productDetail")
+	public ModelAndView productDetail(HttpServletRequest request, Model model,
+				@RequestParam("pseq")int pseq) {
+		ModelAndView mav = new ModelAndView();
+		
+		// 상품정보 가져오기 (프로시저에서 replyCnt 추가)
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("pseq", pseq);
+		paramMap.put("ref_cursor", null);
+		
+	    ps.getProduct(paramMap);
+		
+	    ArrayList<HashMap<String,Object>> mproductVOList 
+	    	= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
+	    HashMap<String,Object> resultMap = mproductVOList.get(0);
+	    mav.addObject("mproductVO", resultMap);
+	    
+		// 이미지 가져오기
+	    paramMap.put("ref_cursor_Image1", null);
+	    paramMap.put("ref_cursor_Image2", null);
+	    ps.getImages(paramMap);
+	    
+		ArrayList<HashMap<String,Object>> image1List 
+			=(ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor_Image1");
+		ArrayList<HashMap<String,Object>> image2List 
+			=(ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor_Image2");
+		mav.addObject("mpdimg", image1List );
+		mav.addObject("mpdimg2", image2List );
+		
+		// 리뷰 가져오기
+		paramMap.put("ref_cursor_getReview", null);
+		rs.getReviewListByPseq(paramMap);		
+		ArrayList<HashMap<String,Object>> reViewList 
+			= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor_getReview");
+		mav.addObject("mreview", reViewList );
+		
+		// 후기 카운트
+		//paramMap.put("replyCnt", 0);
+		//rs.getReplycnt(paramMap);
+		//int cnt = Integer.parseInt(paramMap.get("replyCnt").toString());
+		//resultMap.put("REPLYCNT", cnt);
+		
+		request.setAttribute("pseq", pseq );
+		//request.setAttribute("pvo1", pvo1 );
+		mav.setViewName("product/productDetail");
+		
+		return mav;
+	}
+	
 	
 }

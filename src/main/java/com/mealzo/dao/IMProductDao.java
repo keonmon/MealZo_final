@@ -38,5 +38,9 @@ public interface IMProductDao {
 	void getLow(HashMap<String, Object> paramMap);
 
 	void getHight(HashMap<String, Object> paramMap);
+
+	void getProduct(HashMap<String, Object> paramMap);
+
+	void getImages(HashMap<String, Object> paramMap);
 	
 }
