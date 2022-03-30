@@ -140,7 +140,7 @@ public class MAskController {
 	  ModelAndView mav = new ModelAndView();
 	  HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser =
-   	(HashMap<String, Object>)session.getAttribute("loginUser");
+				(HashMap<String, Object>)session.getAttribute("loginUser");
 
 		if(loginUser==null) {
 			mav.setViewName("member/login");
