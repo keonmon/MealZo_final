@@ -8,8 +8,8 @@ public class Paging {
 	private int totalCount;  //게시물의 총갯수
 	private int beginPage; //prev 와 next 버튼 사이에 표시될 시작 페이지 
 	private int endPage; //prev 와 next 버튼 사이에 표시될 끝 페이지
-	private int displayRow=10; //한 화면에 표시 될 게시물의 갯수
-	private int displayPage=10; //prev 와 next 버튼 사이의 한화면에 표시될 패이지의 갯수
+	private int displayRow=12; //한 화면에 표시 될 게시물의 갯수
+	private int displayPage=5; //prev 와 next 버튼 사이의 한화면에 표시될 패이지의 갯수
 	boolean prev ; // 화면에 안보이는 이전 페이지로 이동하는 버튼
 	boolean next; // 화면에 안보이는 다음 페이지로 이동하는 버튼
 	private int startNum; //화면에 표시되는 게시물의 시작번호 (num. pseq 같은 번호가 아닌rownum)
@@ -32,6 +32,10 @@ public class Paging {
     	//잘 작동 되는 지 확인 하는 방법 
         System.out.println(beginPage + " " + endPage + " " + startNum + " " + endNum);
     }
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+		paging();  // 멤버메서드 호출 -> 각 멤버변수 구성요소를 계산해주는 메서드
+	}
     
 }
 
