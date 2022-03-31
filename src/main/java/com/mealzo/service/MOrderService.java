@@ -13,6 +13,11 @@ public class MOrderService {
 	@Autowired
 	IMOrderDao odao;
 
+
+	public void listOrder(HashMap<String, Object> paramMap) {
+		odao.listOrder(paramMap);
+	}
+
 	public void insertOrder(HashMap<String, Object> paramMap) {
 		odao.insertOrder( paramMap );
 	}

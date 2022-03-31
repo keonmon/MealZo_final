@@ -620,6 +620,23 @@ end;
 exec getAllcountAdmin_m('스테이크', 'mproduct', 'name');
 select * from mproduct;
 
+--------------------------------------------------------------------------------------------
+-- 전체 주문 조회
+create or replace procedure listOrder_m(
+    p_startNum number,
+    p_endNum number,
+    p_key VARCHAR2,
+    p_cur out sys_refcursor )
+is
+begin
+    open p_cur for 
+        select * from ( 
+        select * from (
+        select rownum as rn, p.* from 
+        ((select * from morder_view where oseq like '%'||p_key||'%' order by result, odseq desc) p) 
+        ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+end;
 
 -------------->> 멤버-로그인 <<-------------------
 

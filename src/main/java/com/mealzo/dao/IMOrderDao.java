@@ -7,8 +7,14 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface IMOrderDao {
 
+
+	void listOrder(HashMap<String, Object> paramMap);
+
 	void insertOrder(HashMap<String, Object> paramMap);
+  
 	void listOrderByIdAll(HashMap<String, Object> paramMap1);
+  
 	void listOrderByOseq(HashMap<String, Object> paramMap2);
+
 	
 }

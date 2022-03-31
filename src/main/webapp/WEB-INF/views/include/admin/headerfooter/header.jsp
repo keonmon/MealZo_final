@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>admin_header</title>
 	<link rel="stylesheet" href="admin/css/admin.css">
-	<script src="script/user/jquery-3.6.0.js"></script>
+	<script src="user/script/jquery-3.6.0.js"></script>
 	<script src="admin/script/adminProduct.js"></script>
 </head>
 <body>
