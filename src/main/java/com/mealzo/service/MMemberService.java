@@ -26,6 +26,6 @@ public class MMemberService {
 	}
 
 	public void updateMember(HashMap<String, Object> mvo) {
-		mdao.updateMember(paramMap);
+	//	mdao.updateMember(paramMap);
 	}
 }
