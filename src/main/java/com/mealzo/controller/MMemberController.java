@@ -64,7 +64,7 @@ public class MMemberController {
 		}else if( !mvo.get("PWD").equals(membervo.getPwd())) {
 			model.addAttribute("message", "밀조) 비밀번호가 맞지않습니다");
 			return "member/login";
-		}else if( mvo.get("USEYN").equals("y")) {
+		}else if( mvo.get("USEYN").equals("n")) {
 			model.addAttribute("message", "밀조) 탈퇴하거나 휴먼중인 계정입니다. 밀조왕에게 문의하세요");
 			return "member/login";
 		}else if( mvo.get("PWD").equals(membervo.getPwd())) {
