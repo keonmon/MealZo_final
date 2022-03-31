@@ -608,8 +608,35 @@ end;
 exec getAllcountAdmin_m('스테이크', 'mproduct', 'name');
 select * from mproduct;
 
- --------------------------------------------------------------------------------------------
 
+-------------->> 멤버-로그인 <<-------------------
 
+CREATE OR REPLACE PROCEDURE selectAddressByDong_m(
+    p_dong IN mmember.address%TYPE, 
+    p_curvar OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_curvar FOR SELECT * FROM address WHERE dong LIKE '%'||p_dong||'%';
+END;
+
+-------------->> 멤버-로그인 <<-------------------
+
+CREATE OR REPLACE PROCEDURE insertMember_m(
+    p_id IN mmember.id%TYPE,
+    p_pwd  IN mmember.pwd%TYPE,
+    p_name  IN mmember.name%TYPE,
+    p_email  IN mmember.email%TYPE,
+    p_phone  IN mmember.phone%TYPE,
+    p_zip_num IN mmember.zip_num%TYPE,
+    p_address IN mmember.address%TYPE  )
+IS
+BEGIN
+    insert into mmember(id, pwd, name, email, phone, zip_num, address) 
+    values( p_id, p_pwd, p_name, p_email, p_phone, p_zip_num, p_address);
+    commit;    
+END;
+
+-------------------------------------------------------------------
 
 
