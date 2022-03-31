@@ -5,7 +5,7 @@
 <div id=subpageContainer>
 <div id="my_greeting">
 <span id="my_greeting_text">${loginUser.NAME} 님의 MYPAGE입니다.</span>
-<span class="material-icons" id="userSettingIcon" onclick="location.href='meal.do?command=editForm'">manage_accounts</span>
+<span class="material-icons" id="userSettingIcon" onclick="location.href='updateForm'">manage_accounts</span>
 </div>
 <div id="orderTotalView">
 	<div>주문내역</div>
@@ -32,7 +32,7 @@
 		</li>
 	</ul>
 	<ul id="mypageView_Buttons">
-		<li><a href="editForm">
+		<li><a href="updateForm">
 				<div>회원정보 수정
 					<span id="mypage_nextIcon" class="material-icons" >arrow_forward_ios</span>
 				</div>

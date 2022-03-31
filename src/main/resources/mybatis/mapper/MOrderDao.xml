@@ -12,4 +12,27 @@
 			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
 		)}
 	</select>
+	
+	<insert id="insertOrder" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{ CALL insertOrder( 
+			#{id},
+			#{oseq, mode=OUT, jdbcType=INTEGER}
+		) }
+	</insert>
+	
+	<select id="listOrderByOseq" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL listOrderByOseq_m( 
+			#{oseq},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
+		)  }
+	</select>
+	
+	<select id="listOrderByIdAll" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{ CALL listOrderByIdAll_m( 
+			#{id},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
+		) }
+	</select>
+
+
 </mapper>

@@ -16,4 +16,16 @@ public class MMemberService {
 	public void getMember(HashMap<String, Object> paramMap) {
 		mdao.getMember(paramMap);
 	}
+
+	public void insertMember(HashMap<String, Object> paramMap) {
+		mdao.insertMember(paramMap);
+	}
+
+	public void selectAddressByDong(HashMap<String, Object> paramMap) {
+		mdao.selectAddressByDong(paramMap);
+	}
+
+	public void updateMember(HashMap<String, Object> mvo) {
+		mdao.updateMember(paramMap);
+	}
 }

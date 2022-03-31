@@ -84,12 +84,16 @@ $(function (){
 	  <td>${mreviewVO.ID}</td></tr>
 	    </c:forEach>
 	         </table>
-	        <div>
-	    <input type="button" value="리뷰쓰기" id="reviewb"onclick="location.href='reviewWriteForm?pseq=${pseq}'">
-	</div>
 
-	  
-		</form>
+				<c:if test="${ result==1 }">
+					<div>
+						<input type="button" value="리뷰쓰기" id="reviewb"	onclick="location.href='reviewWriteForm?pseq=${pseq}'">
+					</div>
+				</c:if>
+				<c:if test="${ result==-1}">
+				</c:if>
+
+			</form>
 	</div>
 	
 	 <!-- 문의 등록 -->

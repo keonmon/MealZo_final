@@ -63,7 +63,7 @@
 							<a href="mypageForm">마이페이지 </a>|
 						</li>
 						<li>
-							<a href="orderListForm">주문조회 </a>|
+							<a href="orderList">주문조회 </a>|
 						</li>
 						<li>
 							<a href="cartList">장바구니</a>

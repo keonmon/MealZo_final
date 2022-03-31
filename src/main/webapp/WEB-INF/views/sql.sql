@@ -348,6 +348,16 @@ select rownum as rn, p.* from
  select * from mproduct
 
  
+ -----------------------------------------
+ create or replace view mreview_view
+ as 
+ select r.rseq, r.pseq as r_pseq, r.id, r.content, r.indate, p.pseq as p_pseq, p.name 
+ from mreview r, mproduct p
+ where p.pseq=r.pseq ;
+				
+ select * from mreview_view
+ + " select rownum as rn, m.* from "
+  select * from mreview;
  select * from ask;
  select * from mqna;
  delete from mqna where rep='1'

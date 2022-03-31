@@ -11,5 +11,19 @@
 		)  }
 	</select>
 	
+	<select id="selectAddressByDong" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL selectAddressByDong_m( 
+			#{dong},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
+		)  }
+	</select>
+	
+	
+	<insert id="insertMember" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{ CALL insertMember_m( 
+		#{id}, #{pwd}, #{name}, #{email}, #{phone}, #{zip_num} , #{address} 
+		) }
+	</insert>
+	
 </mapper>
 

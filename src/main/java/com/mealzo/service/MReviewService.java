@@ -17,4 +17,9 @@ public class MReviewService {
 		rdao.getReviewListByPseq(paramMap);
 		
 	}
+
+	public void listReview(HashMap<String, Object> paramMap) {
+		rdao.listReview(paramMap);
+		
+	}
 }

@@ -8,4 +8,6 @@ public interface IMReviewDao {
 
 	void getReviewListByPseq(HashMap<String, Object> paramMap);
 
+	void listReview(HashMap<String, Object> paramMap);
+
 }
