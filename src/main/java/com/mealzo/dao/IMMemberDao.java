@@ -8,4 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 public interface IMMemberDao {
 
 	void getMember(HashMap<String, Object> paramMap);
+
+	void insertMember(HashMap<String, Object> paramMap);
+
+	void selectAddressByDong(HashMap<String, Object> paramMap);
 }

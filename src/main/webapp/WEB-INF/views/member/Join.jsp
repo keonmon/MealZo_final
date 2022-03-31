@@ -2,7 +2,6 @@
 <%@ include file="../include/user/headerfooter/header.jsp"%>
 <article id="article2">
 <form method="post" name="joinForm" id="form2">
-	<input type="hidden" name="command" value="join">
 	<fieldset id="fieldset2"><h2 align="center">회원정보 입력</h2>
 	
 	

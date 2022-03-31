@@ -17,7 +17,7 @@ function go_next(){
 if( document.contractFrm.okon[1].checked == true ){ 
 	alert("회원약관에 동의하셔야 회원으로 가입이 가능합니다");
 	} else {
-		document.contractFrm.action = "meal.do?command=joinForm";
+		document.contractFrm.action = "joinForm";
 		document.contractFrm.submit();
 	}
 }
@@ -31,19 +31,19 @@ if( document.joinForm.id.value=="" ){
 		documnet.joinForm.id.focus();
 		return;
 	}
-	var url = "meal.do?command=idCheckForm&id=" + document.joinForm.id.value;
+	var url = "idcheck?id=" + document.joinForm.id.value;
 	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
 	window.open(url, "IdCheck", opt);	
 }
 
-function idok( userid ){
-	opener.joinForm.id.value = userid;
-	opener.joinForm.reid.value = userid;
+function idok( id ){
+	opener.joinForm.id.value = id;
+	opener.joinForm.reid.value = id;
 	self.close();
 }
 
 function post_zip(){
-	var url = "meal.do?command=findZipNum";
+	var url = "findZipNum";
 	var opt = "toolbar=no, menubar=no, scrollbars=no, resizable=no, width=550,";
 	opt = opt + " height=300, top=300, left=300";
 	window.open( url, "우편번호 찾기", opt );
@@ -75,7 +75,7 @@ function go_save(){
 	    alert("이메일을 입력해 주세요.");	   
 	    document.joinForm.email.focus();
 	} else{
-		document.joinForm.action = "meal.do";
+		document.joinForm.action = "join";
 	    document.joinForm.submit();
 	}
 }
