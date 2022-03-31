@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <div class="clear"></div>
 <footer >
@@ -7,11 +6,11 @@
 <div id="copy"> 
    <div id="footer_b">
       <ul class="menu2">
-         <li><a href ="meal.do?command=index">홈</a></li>
-         <li><a href="meal.do?command=company">서비스 소개 </a></li>
-         <li><a href="meal.do?command=noticeList">고객센터</a></li>
-         <li><a href="meal.do?command=agreement"> 이용약관 </a></li>
-         <li><a href="meal.do?command=privacy"> 개인정보취급방침 </a></li>
+         <li><a href ="/">홈</a></li>
+         <li><a href="company">서비스 소개 </a></li>
+         <li><a href="noticeList">고객센터</a></li>
+         <li><a href="agreement"> 이용약관 </a></li>
+         <li><a href="privacy"> 개인정보취급방침 </a></li>
       </ul>
    </div>
 </div>
@@ -21,7 +20,7 @@
 <div id="footer_c">
 <span class="f_title">회사명&nbsp;</span>:&nbsp;<span class="f_title2">밀조</span>&nbsp;&nbsp;
 <span class="f_title">대표자&nbsp;</span>:&nbsp;<span class="f_title2">
-	<a href="meal.do?command=admin" style="text-decoration:none; color:#4C4E50;;">
+	<a href="admin" style="text-decoration:none; color:#4C4E50;;">
 		밀조왕
 	</a>
 </span>&nbsp;&nbsp;

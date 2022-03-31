@@ -16,7 +16,7 @@ header{margin:0 0 0 0;}
 #logo{display:block;  text-align:center; border-top:1px solid lightgrey; border-bottom:1px solid lightgrey;}
 #logo img{  width:150px;}
 
-#categori{float:left}
+#category{float:left}
 .header_3rd{margin:10px 0;}
 .header_3rd ul li{ display:inline-block; width:85px; height:30px; font-size:1.2em; }
 .header_3rd a {position:relative; text-decoration :none; display:inline-block; width:85px; height:30px; text-align:center; color:black; font-weight:bold; }
@@ -309,6 +309,8 @@ tr{width:640px; height:49px;}
 th{color:#666; background:#f8f8f8; width:140px;}
 #th2{background:white; width:500px;}
 
+
+#message{position:relative;  margin-left:400px;  margin-bottom:50px;  margin-top:20px; font-weight:bold;}
 
 
 

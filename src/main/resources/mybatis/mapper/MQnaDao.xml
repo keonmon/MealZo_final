@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.mealzo.dao.IMQnaDao"> 
+
+	<resultMap type="java.util.HashMap" id="qnaMap"/>
+	
+	<select id="listQna"  statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL  listQna_m(
+	#{startNum},
+	#{endNum},
+	#{id},
+	#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap}
+	)}
+	</select>
+	
+	
+	<select id="getQna"  statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL getQna_m(#{qseq},
+	#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap}
+	)}
+	</select>
+	
+	<insert id="insertQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL insertQna_m(#{id}, #{subject}, #{content})}
+	</insert>
+	
+	<select id="getAllCount" statementType="CALLABLE" parameterType="java.util.HashMap">
+   {CALL  getAllCountQna_m(
+   #{cnt, mode=OUT, jdbcType=INTEGER}
+   )}
+	</select>
+</mapper>

@@ -11,4 +11,152 @@
 		)}
 	</select>
 	
+	<select id="getAllCount" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getAllCount_m(
+			#{key},
+			#{cnt, mode=OUT, jdbcType=INTEGER}
+		)}
+	</select>
+	
+	<select id="listProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL listProduct_m(
+			#{startNum},
+			#{endNum},
+			#{key},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
+		)}
+	</select>
+	
+	<select id="getalow" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getalow_m(
+			#{startNum},
+			#{endNum},
+			#{key},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
+		)}
+	</select>
+	
+	<select id="getahight" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getahight_m(
+			#{startNum},
+			#{endNum},
+			#{key},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
+		)}
+	</select>
+	
+	<!-- productKind -->
+		<!-- 베스트상품 -->
+	<select id="getAllCountByBest" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getAllCountByBest_m(
+			<!-- #{key}, -->
+			#{bestyn},
+			#{cnt, mode=OUT, jdbcType=INTEGER}
+		)}
+	</select>
+	<select id="getBest" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getBest_m(
+			<!-- #{key}, -->
+			#{startNum},
+			#{endNum},
+			#{bestyn},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
+		)}
+	</select>
+	<select id="getBLow" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getBLow_m(
+			<!-- #{key}, -->
+			#{startNum},
+			#{endNum},
+			#{bestyn},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
+		)}
+	</select>
+	<select id="getBHight" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getBHight_m(
+			<!-- #{key}, -->
+			#{startNum},
+			#{endNum},
+			#{bestyn},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
+		)}
+	</select>
+	
+		<!-- 신상품 -->
+	<select id="getNewList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getNewList_m(
+			<!-- #{key}, -->
+			#{startNum},
+			#{endNum},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
+		)}
+	</select>
+	<select id="getNewLow" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getNewLow_m(
+			<!-- #{key}, -->
+			#{startNum},
+			#{endNum},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
+		)}
+	</select>
+	<select id="getNewHight" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getNewHight_m(
+			<!-- #{key}, -->
+			#{startNum},
+			#{endNum},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
+		)}
+	</select>
+	
+		<!-- 한중양식 -->
+	<select id="getAllCountByKind" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL getAllCountByKind_m(
+		<!-- #{key}, -->
+		#{kind},
+		#{cnt, mode=OUT, jdbcType=INTEGER}
+	)}
+	</select>
+	<select id="getKind" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getKind_m(
+			<!-- #{key}, -->
+			#{startNum},
+			#{endNum},
+			#{kind},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
+		)}
+	</select>
+	<select id="getLow" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getLow_m(
+			<!-- #{key}, -->
+			#{startNum},
+			#{endNum},
+			#{kind},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
+		)}
+	</select>
+	<select id="getHight" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getHight_m(
+			<!-- #{key}, -->
+			#{startNum},
+			#{endNum},
+			#{kind},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
+		)}
+	</select>
+	
+	<!-- productDetail -->
+	<select id="getProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getProduct_m(
+			#{pseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
+		)}
+	</select>
+	<select id="getImages" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getImages_m(
+			#{pseq},
+			#{ref_cursor_Image1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap},
+			#{ref_cursor_Image2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
+		)}
+	</select>
+	
 </mapper>

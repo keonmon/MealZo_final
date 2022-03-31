@@ -10,7 +10,7 @@
  	<tr><th width="50px">번호</th><th>제목</th><th>등록일</th><th>답변 여부</th></tr>
  	<c:forEach items="${mqnaList}" var="mqnaVO">
 	 	<tr><td>${mqnaVO.QSEQ}</td>
-	 		<td style="width:500px; word-break:break-all"><a href="meal.do?command=qnaView&qseq=${mqnaVO.qseq}">${mqnaVO.subject}</a></td>
+	 		<td style="width:500px; word-break:break-all"><a href="qnaView?qseq=${mqnaVO.QSEQ}">${mqnaVO.SUBJECT}</a></td>
 	 		<td><fmt:formatDate value="${mqnaVO.INDATE}" type="both"/></td>
 	 		<td><c:choose>
 	 			<c:when test="${mqnaVO.REP==1}"> 미답변 </c:when>
@@ -20,16 +20,20 @@
  	</c:forEach>
  </table>
  
- <!-- <div class="clear"></div>
-	<jsp:include page="../paging/paging.jsp">
-		<jsp:param name="command" value="meal.do?command=qnaList" />	
-	</jsp:include>
-  --> 
+ <div class="clear"></div>
+<jsp:include page="../include/paging/paging.jsp">
+    <jsp:param value="${paging.page}" name="page"/>
+    <jsp:param value="${paging.beginPage}" name="beginPage"/>
+    <jsp:param value="${paging.endPage}" name="endPage"/>
+    <jsp:param value="${paging.prev}" name="prev"/>
+    <jsp:param value="${paging.next}" name="next"/>
+    <jsp:param value="qnaForm" name="command"/>
+</jsp:include>
  <div class="clear"></div>
  <div id="buttons" style="float:right">
  
- 	<input type="button" value="질문하기" class="submit" onClick="location.href='meal.do?command=qnaWriteForm'">
- 	<input type="button" value="쇼핑 계속하기" class="cancel" onClick="location.href='meal.do?command=index'">
+ 	<input type="button" value="질문하기" class="submit" onClick="location.href='qnaWriteForm'">
+ 	<input type="button" value="쇼핑 계속하기" class="cancel" onClick="location.href='/'">
  </div>
  </form>
 </article>

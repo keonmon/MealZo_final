@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.mealzo.dao.IMAskDao"> 
+
+	<resultMap type="java.util.HashMap" id="askMap"/>
+	
+	<select id="listMask" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL listMask_m(
+	#{startNum},
+	#{endNum},
+	#{id},
+	#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=askMap}
+	)}
+	
+	</select>
+	
+	
+	<select id="getAsk" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL getAsk_m(
+ #{aseq}, 
+ #{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=askMap}
+	)}
+</select>
+
+<select id="getAllCountAsk" statementType="CALLABLE" parameterType="java.util.HashMap">
+{CALL getAllCountAsk_m(
+#{cnt, mode=OUT,jdbcType=INTEGER}
+)}
+</select>
+
+<insert id="insertAsk" statementType="CALLABLE" parameterType="java.util.HashMap">
+{CALL insertAsk_m(
+#{id},
+ #{title}, 
+#{content_a},
+#{pseq}
+
+ )}
+</insert>
+
+</mapper>

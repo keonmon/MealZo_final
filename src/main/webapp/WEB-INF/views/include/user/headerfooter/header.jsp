@@ -11,9 +11,9 @@
 <link href="user/css/meal.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="user/script/jquery-3.6.0.js"></script>
-<script src="user/member.js"></script>
-<script src="user/product.js"></script>
-<script src="user/mypage.js"></script>
+<script src="user/script/member.js"></script>
+<script src="user/script/product.js"></script>
+<script src="user/script/mypage.js"></script>
 <script>
 /* result 값에 따른 처리 결과 메시지 ( String true/false 파라미터로 구분 ) */
 <%
@@ -74,13 +74,13 @@
 			</div>
 			<!-- 로고 -->
 			<div id="logo">
-				<a href="index?sub=y"><img src="images/MealZologo.png"></a>
+				<a href="/?sub=y"><img src="images/MealZologo.png"></a>
 			</div>
 	
 			<!-- menu -->
 			<div class="header_3rd">
 				<!-- 카테고리 -->
-				<div id="categori">
+				<div id="category">
 					<ul>
 		                  <li class="menu"><a href="productAllForm?sort=recently&sub=y&idx=0">전체보기</a></li>
 		                  <li class="menu"><a href="productForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0">베스트</a></li>

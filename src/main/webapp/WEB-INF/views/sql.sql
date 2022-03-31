@@ -154,14 +154,13 @@ create sequence subscribeInfo_seq start with 1;
 --ask(문의)테이블 작성
 create table ask(
 	aseq number(5) primary key,
-	title varchar2(50) not null,
+	title varchar2(300) not null,
 	content varchar2(1000) not null,
 	id varchar2(20) references mmember(id),
 	pseq number(5) references mproduct(pseq),
 	indate date default sysdate	--문의 등록일
 );
 create sequence ask_seq start with 1;
-
 
 --ask_reply(문의_답변)테이블 작성
 create table ask_reply(
@@ -348,3 +347,8 @@ select rownum as rn, p.* from
  
  select * from mproduct
 
+ 
+ select * from ask;
+ select * from mqna;
+ delete from mqna where rep='1'
+  delete from ask where aseq between 37 and 38;
