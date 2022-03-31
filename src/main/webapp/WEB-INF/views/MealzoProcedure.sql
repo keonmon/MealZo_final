@@ -580,7 +580,7 @@ p_cur out sys_refcursor)
 is
 begin
 open p_cur for
-select * from whrer id=p_id;
+select * from mreview_view where id=p_id;
 end;
 =======
 
