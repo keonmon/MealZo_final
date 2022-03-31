@@ -9,6 +9,10 @@
 	<link rel="stylesheet" href="admin/css/admin.css">
 	<script src="user/script/jquery-3.6.0.js"></script>
 	<script src="admin/script/adminProduct.js"></script>
+	
+	<!-- Ajax -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
 </head>
 <body>
 <div id="wrap">

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ include file="../header.jsp"%>
-<%@ include file="../sideMenu.jsp"%>
+<%@ include file="../../include/admin/headerfooter/header.jsp"%>
+<%@ include file="../../include/admin/sideMenu.jsp"%>
 
 <article id="mypageArticle2" style="width:950px; max-width:950px;">
 
@@ -85,5 +85,4 @@
 
 </article>
 
-
-<%@ include file="../footer.jsp"%>
+<%@ include file="../../include/admin/headerfooter/footer.jsp"%>
