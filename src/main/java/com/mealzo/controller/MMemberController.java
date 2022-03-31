@@ -28,7 +28,7 @@ public class MMemberController {
 	
 	@RequestMapping("/userLogin")
 	public String loginForm() {
-		return "member/Login";
+		return "member/login";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
@@ -38,10 +38,10 @@ public class MMemberController {
 		// 아이디, 비번 빈칸확인
 		if( result.getFieldError("id") != null ) {
 			model.addAttribute("message", result.getFieldError("id").getDefaultMessage() );
-			return "member/Login";
+			return "member/login";
 		}else if( result.getFieldError("pwd")!=null) {
 			model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage() );
-			return "member/Login";
+			return "member/login";
 		}
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
@@ -55,27 +55,27 @@ public class MMemberController {
 			= (ArrayList< HashMap<String, Object> >)paramMap.get("ref_cursor");
 		if( list.size() == 0 ) {
 			model.addAttribute("message", "밀조) 아이디가 없습니다");
-			return "member/Login";
+			return "member/login";
 		}
 		
 		HashMap<String, Object> mvo = list.get(0);
 		
 		if( mvo.get("PWD") == null ) {
 			model.addAttribute("message", "밀조) 비밀번호 오류. 밀조왕에게 문의하세요");
-			return "member/Login";
+			return "member/login";
 		}else if( !mvo.get("PWD").equals(membervo.getPwd())) {
 			model.addAttribute("message", "밀조) 비밀번호가 맞지않습니다");
-			return "member/Login";
+			return "member/login";
 		}else if( mvo.get("USEYN").equals("n")) {
 			model.addAttribute("message", "밀조) 탈퇴하거나 휴먼중인 계정입니다. 밀조왕에게 문의하세요");
-			return "member/Login";
+			return "member/login";
 		}else if( mvo.get("PWD").equals(membervo.getPwd())) {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", mvo);
 			return "redirect:/";
 		}else {
 			model.addAttribute("message", "밀조) 무슨이유인지 모르겠지만 로그인 안돼요");
-			return "member/Login";
+			return "member/login";
 		}
 	}
 	
@@ -91,13 +91,13 @@ public class MMemberController {
 	
 	@RequestMapping(value="/contract")
 	public String contract() {
-		return "member/Contract";
+		return "member/contract";
 	}
 	
 	
 	@RequestMapping("/joinForm")
 	public String join_form( ) {
-		return "member/Join";
+		return "member/join";
 	}
 	
 	
@@ -119,7 +119,7 @@ public class MMemberController {
 		else mav.addObject("result", 1);
 		
 		mav.addObject("id", id);
-		mav.setViewName("member/Idcheck");
+		mav.setViewName("member/idcheck");
 		
 		return mav;
 	}
@@ -143,7 +143,7 @@ public class MMemberController {
 			
 			model.addAttribute("addressList" , list);
 		}
-		return "member/FindZipNum";
+		return "member/findZipNum";
 	}
 	
 	
@@ -157,7 +157,7 @@ public class MMemberController {
 			@RequestParam("addr2") String address2, 
 			Model model ) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/Join");  
+		mav.setViewName("member/join");  
 		
 		
 		if( reid != null && reid.equals("") ) mav.addObject("reid", reid);
@@ -189,10 +189,81 @@ public class MMemberController {
 			ms.insertMember( paramMap );
 			
 			mav.addObject("message", "회원가입이 완료되었습니다. 로그인 하세요");
-			mav.setViewName("member/Login"); 
+			mav.setViewName("member/login"); 
 		}
 		return mav;
 	}
 	
+	
+	@RequestMapping(value = "/updateForm")
+	public ModelAndView updateForm( 
+			@ModelAttribute("dto") @Valid MMemberVO membervo,
+			BindingResult result, 
+			HttpServletRequest request,
+			Model model ) {
+		ModelAndView mav = new ModelAndView(); 
+		
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser 
+		= (HashMap<String, Object>)session.getAttribute("loginUser");
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("id", (String)loginUser.get("ID"));
+		paramMap.put("name", (String)loginUser.get("NAME"));
+		paramMap.put("email", (String)loginUser.get("EMAIL"));
+		paramMap.put("phone", (String)loginUser.get("PHONE"));
+		paramMap.put("zip_num", (String)loginUser.get("ZIP_NUM"));
+		paramMap.put("address", (String)loginUser.get("ADDRESS"));
+		
+		mav.addObject("dto", paramMap); // ???
+		mav.setViewName("member/update");
+		return mav;
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "/memberUpdate", method=RequestMethod.POST)
+	public String memberUpdate( @ModelAttribute("dto") @Valid MMemberVO membervo,
+			BindingResult result,
+			@RequestParam(value="pwdCheck", required=false) String pwdCheck,
+			@RequestParam("addr1") String address1, 
+			@RequestParam("addr2") String address2,
+			HttpServletRequest request,
+			Model model ) {
+		
+		if( result.getFieldError("pwd") != null ) {
+			model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage() );
+			return "member/update";
+		} else if( result.getFieldError("name") != null ) {
+			model.addAttribute("message", result.getFieldError("name").getDefaultMessage() );
+			return "member/update";
+		} else if( result.getFieldError("email") != null ) {
+			model.addAttribute("message", result.getFieldError("email").getDefaultMessage() );
+			return "member/update";
+		} else if( result.getFieldError("phone") != null ) {
+			model.addAttribute("message", result.getFieldError("phone").getDefaultMessage() );
+			return "member/update";
+		} else if( pwdCheck == null || (  pwdCheck != null && !pwdCheck.equals(membervo.getPwd() ) ) ) {
+			model.addAttribute("message", "비밀번호 확인 일치하지 않습니다");
+			return "member/update";
+		}
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("ID", membervo.getId() );
+		paramMap.put("PWD", membervo.getPwd() );
+		paramMap.put("NAME", membervo.getName() );
+		paramMap.put("EMAIL", membervo.getEmail() );
+		paramMap.put("PHONE", membervo.getPhone() );
+		paramMap.put("ZIP_NUM", membervo.getZip_num() );
+		paramMap.put("ADDRESS", address1 + " " + address2 );
+
+		ms.updateMember( paramMap );
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("loginUser", paramMap);
+
+		return "redirect:/";
+	}
 	
 }
