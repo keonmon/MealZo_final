@@ -66,10 +66,10 @@ function go_cart(){
    } else {
    		var goCart = confirm("해당 상품이 장바구니에 추가되었습니다\n장바구니로 이동하시겠습니까?");
    		if(goCart){
-			document.form1.action = "meal.do?command=cartInsert";
+			document.form1.action = "cartInsert";
 			document.form1.submit();
 		}else{
-			document.form1.action = "meal.do?command=cartInsertReturn";
+			document.form1.action = "cartInsertReturn";
 			document.form1.submit();
 		}
    }

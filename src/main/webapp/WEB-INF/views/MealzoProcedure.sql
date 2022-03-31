@@ -582,7 +582,6 @@ begin
 open p_cur for
 select * from mreview_view where id=p_id;
 end;
-=======
 
 --------------------------------------------------------------------------------------------
 -- 관리자 조회 getAdmin_m
