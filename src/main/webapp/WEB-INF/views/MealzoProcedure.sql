@@ -522,3 +522,14 @@ begin
 insert into ask(aseq,id, title, content,pseq)
 values(ask_seq.nextVal, p_id, p_title, p_content_a, p_pseq);
 end;
+-------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+--3/31 review 후기  리스트 조회
+create or replace procedure listReview_m(
+p_id in mreview.id%type,
+p_cur out sys_refcursor)
+is
+begin
+open p_cur for
+select * from whrer id=p_id;
+end;
