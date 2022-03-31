@@ -10,5 +10,12 @@
 			#{ref_cursor_getReview, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=reviewMap}
 		)}
 	</select>
+	<select id="listReview" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL listReview_m(
+	#{id},
+	#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=reviewMap}
+	)}
+	
+	</select>
 	
 </mapper>
