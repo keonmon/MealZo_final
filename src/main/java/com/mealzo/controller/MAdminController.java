@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mealzo.dto.AdminPaging;
 import com.mealzo.dto.MAdminVO;
 import com.mealzo.service.MAdminService;
+import com.mealzo.service.MOrderService;
 import com.mealzo.service.MProductService;
 
 @Controller
@@ -31,12 +32,24 @@ public class MAdminController {
 	MAdminService as;
 	
 	@Autowired
+	MOrderService os;
+	
+	@Autowired
 	ServletContext context;
 	
+	
 	@RequestMapping("admin")
-	public String adminLoginForm() {
-		return "admin/adminLogin";
+	public ModelAndView adminLoginForm(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("admin/adminLogin");
+		}else {
+			mav.setViewName("redirect:/adminProductList");
+		}
+		return mav;
 	}
+	
 	
 	@RequestMapping("adminLogin")
 	public ModelAndView adminLogin(HttpServletRequest request,
@@ -73,6 +86,14 @@ public class MAdminController {
 			}
 		}
 		return mav;
+	}
+	
+	
+	@RequestMapping("adminLogout")
+	public String adminLogout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "redirect:/admin";
 	}
 	
 	
@@ -139,8 +160,75 @@ public class MAdminController {
 			
 			mav.setViewName("admin/product/productList");
 		}
-		
 		return mav;
 	}
+	
+	
+	@RequestMapping("adminOrderList")
+	public ModelAndView adminOrderList(HttpServletRequest request,
+			@RequestParam(value="sub",required=false)String sub, 
+			@RequestParam(value="page",required=false)Integer page,
+			@RequestParam(value="key",required=false)String key) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if( session.getAttribute("loginAdmin") == null ) {
+			mav.setViewName("redirect:/admin");
+		}else {
+		
+			//String sub = request.getParameter("sub");
+			if(sub != null && sub.equals("y") ) {
+				session.removeAttribute("key");
+				session.removeAttribute("page");
+			}
+			
+			page = 1;
+			key = "";
+			if( request.getParameter("page") != null ) {
+				page = Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			} else if( session.getAttribute("page") != null ) {
+				page = (int) session.getAttribute("page");
+			} else{
+				page = 1;
+				session.removeAttribute("page");
+			}
+			if( request.getParameter("key") != null ) {
+				key = request.getParameter("key");
+				session.setAttribute("key", key);
+			} else if( session.getAttribute("key") != null ) {
+				key = (String)session.getAttribute("key");
+			} else {
+				session.removeAttribute("key");
+				key = "";
+			}
+			
+			AdminPaging paging = new AdminPaging();
+			paging.setPage(page);
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("key", key);
+			paramMap.put("tableName","morder_view");
+			paramMap.put("culumnName", "oseq");
+			paramMap.put("cnt", 0);
+			as.getAllcountAdmin(paramMap);
+			
+			paging.setTotalCount((int)paramMap.get("cnt"));
+			request.setAttribute("paging",  paging);
+			
+			paramMap.put("startNum", paging.getStartNum());
+			paramMap.put("endNum", paging.getEndNum());
+			paramMap.put("ref_cursor", null);
+			os.listOrder(paramMap);
+			
+			ArrayList<HashMap<String, Object>> orderList 
+				= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+			System.out.println(orderList);
+			request.setAttribute("morderList", orderList);
+			request.setAttribute("key", key);
+			
+			mav.setViewName("admin/order/morderList");
+		}
+		return mav;
+	}
+	
 	
 }
