@@ -153,7 +153,58 @@ BEGIN
     OPEN p_curvar FOR SELECT * FROM mmember WHERE id=p_id;
 END;
 
--------------------------------------------------------------------
+--------------------------------오더인서트---------------------------------
+
+CREATE OR REPLACE PROCEDURE insertOrder_m(
+    p_id  IN  MORDERS.ID%TYPE,
+    p_oseq  OUT  MORDERS.OSEQ%TYPE  )
+IS
+    v_oseq MORDERS.OSEQ%TYPE;
+    temp_cur SYS_REFCURSOR;
+    v_cseq MCART.CSEQ%TYPE;
+    v_pseq MCART.PSEQ%TYPE;
+    v_quantity MCART.QUANTITY%TYPE;
+BEGIN
+    INSERT INTO MORDERS(oseq, id) VALUES( morders_seq.nextVal, p_id);
+    SELECT MAX(oseq) INTO v_oseq FROM MORDERS;
+    OPEN temp_cur FOR SELECT cseq, pseq, quantity FROM CART WHERE id=p_id and result='1';
+    LOOP
+        FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;
+        EXIT WHEN temp_cur%NOTFOUND; 
+        INSERT INTO morder_detail( odseq, oseq, pseq, quantity )
+        VALUES( morder_detail_seq.nextVal, v_oseq, v_pseq,  v_quantity ); 
+        DELETE FROM MCART WHERE cseq = v_cseq;
+    END LOOP;
+    COMMIT;
+    p_oseq := v_oseq;
+END;
+
+-------------------------------오더리스트---------------------------------------------------
+
+CREATE OR REPLACE PROCEDURE listOrderByOseq_m(
+    p_oseq IN morders.oseq%TYPE, 
+    p_cur OUT SYS_REFCURSOR   )
+IS
+BEGIN
+    OPEN p_cur FOR SELECT * FROM morder_view where oseq=p_oseq;
+END;
+
+------------------------------------오더리스트------------------------------------------
+
+CREATE OR REPLACE PROCEDURE listOrderByIdAll_m (
+    p_id IN   MORDERS.id%TYPE,
+    p_rc   OUT     SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN p_rc FOR
+        SELECT DISTINCT oseq FROM (SELECT oseq, id FROM MORDER_VIEW ORDER BY result, oseq desc) WHERE id=p_id;
+END;
+
+
+
+
+
+
 
 --베스트-카운트
 create or replace procedure getAllCountByBest_m(
@@ -455,7 +506,7 @@ begin
  end;
 
 --------------------------------------------------------------------------------
--- ProductDetail - 상품리뷰 가져오기 getReviewListByPseq
+-- ProductDetail - 상품리뷰 가져오기 getReviewListByPseq_m
 CREATE OR REPLACE PROCEDURE getReviewListByPseq_m(
     p_pseq in mproduct.pseq%type,
     p_cur out sys_refcursor )
@@ -463,10 +514,7 @@ is
 begin
     open p_cur for 
         select * from mreview where pseq=p_pseq;
-
- end;
-
-
+end;
 
 -----------------------------------------------------------------------------
 --ask 디테일
@@ -522,7 +570,8 @@ begin
 insert into ask(aseq,id, title, content,pseq)
 values(ask_seq.nextVal, p_id, p_title, p_content_a, p_pseq);
 end;
--------------------------------------------------------------------------------------------
+
+
 -----------------------------------------------------------------------------------
 --3/31 review 후기  리스트 조회
 create or replace procedure listReview_m(
@@ -533,3 +582,73 @@ begin
 open p_cur for
 select * from whrer id=p_id;
 end;
+=======
+
+--------------------------------------------------------------------------------------------
+-- 관리자 조회 getAdmin_m
+
+CREATE OR REPLACE PROCEDURE getAdmin_m(
+    p_id in madmin.id%type,
+    p_cur out sys_refcursor )
+is
+begin
+    open p_cur for 
+        select * from madmin where id=p_id;
+end;
+ 
+--------------------------------------------------------------------------------------------
+-- Admin - 범용 카운트
+
+create or replace procedure getAllcountAdmin_m(
+    p_key VARCHAR2,
+    p_tableName VARCHAR2,   -- 테이블명 변수
+    p_culumnName VARCHAR2,
+    p_cnt out NUMBER 
+    )
+is
+    v_cnt int;
+    v_sql varchar2(1000);   -- sql문을 저장할 변수
+begin
+    v_sql := 'select count(*) 
+        from '||p_tableName||' 
+        where '||p_culumnName||' like ''%'|| p_key ||'%'' order by indate desc';
+    --DBMS_OUTPUT.PUT_LINE(v_sql);
+    EXECUTE IMMEDIATE v_sql into v_cnt;
+    --DBMS_OUTPUT.PUT_LINE(v_cnt);   
+    p_cnt := v_cnt;
+end;
+
+exec getAllcountAdmin_m('스테이크', 'mproduct', 'name');
+select * from mproduct;
+
+
+-------------->> 멤버-로그인 <<-------------------
+
+CREATE OR REPLACE PROCEDURE selectAddressByDong_m(
+    p_dong IN mmember.address%TYPE, 
+    p_curvar OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_curvar FOR SELECT * FROM address WHERE dong LIKE '%'||p_dong||'%';
+END;
+
+-------------->> 멤버-로그인 <<-------------------
+
+CREATE OR REPLACE PROCEDURE insertMember_m(
+    p_id IN mmember.id%TYPE,
+    p_pwd  IN mmember.pwd%TYPE,
+    p_name  IN mmember.name%TYPE,
+    p_email  IN mmember.email%TYPE,
+    p_phone  IN mmember.phone%TYPE,
+    p_zip_num IN mmember.zip_num%TYPE,
+    p_address IN mmember.address%TYPE  )
+IS
+BEGIN
+    insert into mmember(id, pwd, name, email, phone, zip_num, address) 
+    values( p_id, p_pwd, p_name, p_email, p_phone, p_zip_num, p_address);
+    commit;    
+END;
+
+-------------------------------------------------------------------
+
