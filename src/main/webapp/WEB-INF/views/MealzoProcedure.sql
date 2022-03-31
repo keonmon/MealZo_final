@@ -667,4 +667,23 @@ BEGIN
 END;
 
 -------------------------------------------------------------------
-
+CREATE OR REPLACE PROCEDURE  productorderList_m(
+p_pseq morder_detail.pseq%type,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from morder_view where pseq=p_pseq;
+end;
+-----------------------------------------------------------------------
+create or replace procedure insertReview_m(
+p_id mreview.id%type,
+p_content mreview.content%type,
+p_pseq mreview.pseq%type
+)
+is
+begin
+insert into mreview(rseq, id, content, pseq)
+values(mreview_seq.nextVal, p_id, p_content, p_pseq);
+end;
