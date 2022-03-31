@@ -10,6 +10,13 @@
 			#{ref_cursor_getReview, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=reviewMap}
 		)}
 	</select>
+	<select id="productorderList" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL productorderList_m(
+	#{pseq},
+	#{ref_cursor_productorderList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=reviewMap})
+	}
+	</select>
+	
 	<select id="listReview" statementType="CALLABLE" parameterType="java.util.HashMap">
 	{CALL listReview_m(
 	#{id},
@@ -17,5 +24,13 @@
 	)}
 	
 	</select>
+	
+	<insert  id="insertReview"  statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL insertReview_m(#{id},
+	#{content},
+	#{pseq}
+	)}
+	</insert>
+	
 	
 </mapper>

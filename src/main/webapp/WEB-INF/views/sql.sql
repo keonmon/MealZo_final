@@ -84,7 +84,7 @@ create table morders(
 select * from morders;
 create sequence morders_seq start with 1;
 
-
+insert into morders(oseq, id) values(morders_seq.nextVal, 'somi');
  --주문상세 테이블
 create table morder_detail( 
 	  odseq       number(10)   primary key,        -- 주문상세번호
@@ -96,6 +96,8 @@ create table morder_detail(
 create sequence morder_detail_seq start with 1;
 select * from morder_detail;
 
+insert into morder_detail(odseq, oseq, pseq)
+values(morder_detail_seq.nextVal, 22, 120);
 
 -- 이벤트 테이블
 create table mevent(
@@ -348,7 +350,8 @@ select rownum as rn, p.* from
  select * from mproduct
 
  
- -----------------------------------------
+ --------------------------------------------------------------------------------
+ --리뷰 뷰 
  create or replace view mreview_view
  as 
  select r.rseq, r.pseq as r_pseq, r.id, r.content, r.indate, p.pseq as p_pseq, p.name 
@@ -356,7 +359,8 @@ select rownum as rn, p.* from
  where p.pseq=r.pseq ;
 				
  select * from mreview_view
- + " select rownum as rn, m.* from "
+
+ 
   select * from mreview;
  select * from ask;
  select * from mqna;

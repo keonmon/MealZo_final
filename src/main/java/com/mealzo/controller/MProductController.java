@@ -469,11 +469,18 @@ public class MProductController {
 			= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor_getReview");
 		mav.addObject("mreview", reViewList );
 		
-		if(reViewList.size() ==0)model.addAttribute("result",-1);
+	/*	if(reViewList.size() ==0)model.addAttribute("result",-1);
 		else model.addAttribute("result",1);
         model.addAttribute("pseq",pseq);
-		
-		
+	*/	
+		paramMap.put("ref_cursor_productorderList", null);
+		rs.getproductorderList(paramMap);
+		ArrayList<HashMap<String,Object>> productorderList
+		  		= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor_productorderList");
+		if(productorderList.size() ==0)model.addAttribute("result",-1);
+		else model.addAttribute("result",1);
+        model.addAttribute("pseq",pseq);
+        mav.addObject("productorderList", productorderList);
 		
 		// 후기 카운트
 		//paramMap.put("replyCnt", 0);
