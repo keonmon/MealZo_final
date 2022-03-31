@@ -455,7 +455,7 @@ begin
  end;
 
 --------------------------------------------------------------------------------
--- ProductDetail - 상품리뷰 가져오기 getReviewListByPseq
+-- ProductDetail - 상품리뷰 가져오기 getReviewListByPseq_m
 CREATE OR REPLACE PROCEDURE getReviewListByPseq_m(
     p_pseq in mproduct.pseq%type,
     p_cur out sys_refcursor )
@@ -463,10 +463,7 @@ is
 begin
     open p_cur for 
         select * from mreview where pseq=p_pseq;
-
- end;
-
-
+end;
 
 -----------------------------------------------------------------------------
 --ask 디테일
@@ -522,3 +519,46 @@ begin
 insert into ask(aseq,id, title, content,pseq)
 values(ask_seq.nextVal, p_id, p_title, p_content_a, p_pseq);
 end;
+
+--------------------------------------------------------------------------------------------
+-- 관리자 조회 getAdmin_m
+
+CREATE OR REPLACE PROCEDURE getAdmin_m(
+    p_id in madmin.id%type,
+    p_cur out sys_refcursor )
+is
+begin
+    open p_cur for 
+        select * from madmin where id=p_id;
+end;
+ 
+--------------------------------------------------------------------------------------------
+-- Admin - 범용 카운트
+
+create or replace procedure getAllcountAdmin_m(
+    p_key VARCHAR2,
+    p_tableName VARCHAR2,   -- 테이블명 변수
+    p_culumnName VARCHAR2,
+    p_cnt out NUMBER 
+    )
+is
+    v_cnt int;
+    v_sql varchar2(1000);   -- sql문을 저장할 변수
+begin
+    v_sql := 'select count(*) 
+        from '||p_tableName||' 
+        where '||p_culumnName||' like ''%'|| p_key ||'%'' order by indate desc';
+    --DBMS_OUTPUT.PUT_LINE(v_sql);
+    EXECUTE IMMEDIATE v_sql into v_cnt;
+    --DBMS_OUTPUT.PUT_LINE(v_cnt);   
+    p_cnt := v_cnt;
+end;
+
+exec getAllcountAdmin_m('스테이크', 'mproduct', 'name');
+select * from mproduct;
+
+ --------------------------------------------------------------------------------------------
+
+
+
+

@@ -6,7 +6,7 @@
 <div id="copy"> 
    <div id="footer_b">
       <ul class="menu2">
-         <li><a href ="meal.do?command=index">홈</a></li>
+         <li><a href ="/">공식홈</a></li>
          </ul>
    </div>
 </div>
