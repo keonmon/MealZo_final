@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp"%>
-<%@ include file="../sideMenu.jsp"%>
+<%@ include file="../../include/admin/headerfooter/header.jsp"%>
+<%@ include file="../../include/admin/sideMenu.jsp"%>"%>
 
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="now" />
 <jsp:useBean id="now" class="java.util.Date" />
@@ -51,4 +51,4 @@
 	</form>
 </article>
 
-<%@ include file="../footer.jsp" %>
+<%@ include file="../../include/admin/headerfooter/footer.jsp"%>

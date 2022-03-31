@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@ include file="../header.jsp"%>
-<%@ include file="../sideMenu.jsp"%>
+<%@ include file="../../include/admin/headerfooter/header.jsp"%>
+<%@ include file="../../include/admin/sideMenu.jsp"%>
 
 <article id="mypageArticle2" style="width:950px; max-width:950px;">
 <h1>상품 문의 </h1>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp"%>
-<%@ include file="../sideMenu.jsp"%>
+<%@ include file="../../include/admin/headerfooter/header.jsp"%>
+<%@ include file="../../include/admin/sideMenu.jsp"%>
 
 <fmt:formatDate value="${eventVO.startdate}" pattern="yyyy-MM-dd" var="startDate" />
 <fmt:formatDate value="${eventVO.enddate}" pattern="yyyy-MM-dd" var="endDate" />
@@ -59,4 +59,4 @@
 	</form>
 </article>
 
-<%@ include file="../footer.jsp" %>
+<%@ include file="../../include/admin/headerfooter/footer.jsp"%>
