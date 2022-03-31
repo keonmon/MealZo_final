@@ -15,7 +15,8 @@
 .mtj.tmp/
 
 # 업로드할 때 저장되는 이미지 ignore
-**/images/
+**/images/*
+!**/images/.gitkeep
 
 # Package Files #
 *.jar
