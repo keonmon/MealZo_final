@@ -15,6 +15,17 @@ public interface IMAdminDao {
 
 	void deletReview(HashMap<String, Object> paramMap);
 
+	void adminlistAsk(HashMap<String, Object> paramMap);
+
+	void getAllcountAdminAsk(HashMap<String, Object> paramMap);
+
+	void getAdminAsk(HashMap<String, Object> paramMap);
+
+
+	void adminAskReply(HashMap<String, Object> paramMap);
+
+	void adminAskUpdate(HashMap<String, Object> paramMap);
+
 
 
 

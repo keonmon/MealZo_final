@@ -24,7 +24,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mealzo.dto.AdminPaging;
 import com.mealzo.dto.MAdminVO;
+
+import com.mealzo.dto.MAskVO;
+
 import com.mealzo.dto.MProductVO;
+
 import com.mealzo.service.MAdminService;
 import com.mealzo.service.MOrderService;
 import com.mealzo.service.MProductService;
@@ -319,13 +323,10 @@ public class MAdminController {
          for(String rseq:rseqArr) {
         	 paramMap.put("rseq", rseq);
           as.deleteReview(paramMap);
-          
-          
          }
-
-		}
-		         return "redirect:/adminReviewForm";
-	}
+      }
+    return "redirect:/adminReviewForm";
+  }
 
 	
 	@RequestMapping("adminProductWriteForm")
@@ -366,6 +367,104 @@ public class MAdminController {
 		return resultMap;
 	}
 	
+	@RequestMapping("/adminAskForm")
+	public ModelAndView adminAskForm(HttpServletRequest request ,
+			@RequestParam(value = "sub", required = false) String sub,
+			@RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "key", required = false) String key
+		/*	@RequestParam("arseq") String arseq*/) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginAdmin = (HashMap<String, Object>) session.getAttribute("loginAdmin");
+
+
+		if (loginAdmin == null) {
+			mav.setViewName("admin/adminLogin");
+			return mav;
+		} else {
+			if (request.getParameter("sub") != null) {
+				session.removeAttribute("page");
+				session.removeAttribute("key");
+			}
+			page = 1;
+			key = "";
+			if (request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			} else if (session.getAttribute("page") != null) {
+				page = (Integer) session.getAttribute("page");
+			} else {
+				page = 1;
+				session.removeAttribute("page");
+
+			}
+			if (request.getParameter("key") != null) {
+				key = request.getParameter("key");
+				session.setAttribute("key", key);
+			} else if (session.getAttribute("key") != null) {
+				key = (String) session.getAttribute("key");
+			} else {
+				session.removeAttribute("key");
+				key = "";
+			}
+			
+			AdminPaging paging = new AdminPaging();
+			paging.setPage(page);;
+			HashMap<String, Object> paramMap = new HashMap<String,Object>();
+			paramMap.put("key", key);
+			paramMap.put("tableName", "ask_view");
+			paramMap.put("culumnName", "pname");
+			paramMap.put("culumnName", "content_a");
+			paramMap.put("cnt", 0);
+			as.getAllcountAdminAsk(paramMap);
+			
+			
+			System.out.println(paramMap.get("cnt"));
+
+			int cnt = Integer.parseInt(paramMap.get("cnt").toString());
+			paging.setTotalCount(cnt);
+			paging.paging(); // 이거 확인 하기 위에랑 다르게 ㅈ거어서 여기서 빨간줄 나와서 바꾼거거든요 건희님껏두 함 봐주세요 페이징저렁 ㄸㅎ깥은
+			paramMap.put("startNum", paging.getStartNum());
+			paramMap.put("endNum", paging.getEndNum());
+
+			paramMap.put("ref_cursor_ask", null);
+			as.adminlistAsk(paramMap);
+			System.out.println(cnt);
+			ArrayList<HashMap<String, Object>> askList 
+			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor_ask");
+			mav.addObject("paging", paging);
+			mav.addObject("askList", askList);
+			mav.setViewName("admin/qna/askList");
+
+		}
+			return mav;
+	}
+  
+  
+	@RequestMapping("/adminAskDetail")
+  public ModelAndView adminAskDetail( HttpServletRequest request,
+		  @RequestParam("aseq") int aseq){
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginAdmin = (HashMap<String, Object>) session.getAttribute("loginAdmin");
+		if (loginAdmin == null) {
+			mav.setViewName("admin/adminLogin");
+			return mav;
+		} else {
+			HashMap<String, Object> paramMap =new HashMap<String, Object>();
+			paramMap.put("aseq",aseq);
+			paramMap.put("ref_cusor", null);
+			as.getAdminAsk(paramMap);
+			
+			ArrayList<HashMap<String, Object>> getAdminAsk 
+				=(ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+			mav.addObject("dto", getAdminAsk.get(0));
+			
+			mav.setViewName("admin/qna/askDetil");
+      
+      }
+    return mav;
+  }
 
 	
 	@RequestMapping(value="adminProductWrite", method=RequestMethod.POST)
@@ -412,6 +511,7 @@ public class MAdminController {
 			
 			
 			mav.setViewName("redirect:/adminProductList");
+
 		}
 		return mav;
 	}
@@ -521,5 +621,55 @@ public class MAdminController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/adminAskRepSave"  /*, method = RequestMethod.POST */)
+	public String adminAskForm(HttpServletRequest request,
+			 @ModelAttribute("dto") @Valid MAskVO maskvo, BindingResult result,
+			 @RequestParam(value="aseq", required = false) int aseq,
+			 @RequestParam("content_r") String content_r, Model model
+			 ){
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginAdmin = (HashMap<String, Object>) session.getAttribute("loginAdmin");
+		if (loginAdmin == null) {
+			return "admin/adminLogin";
+		}else if (result.getFieldError("content_r") != null) {
+			model.addAttribute("message", "답글을 작성해주세요 ");
+			   return "admin/qna/askDetil";
+			}
+	HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("aseq", aseq);
+		paramMap.put("content_r", content_r);
+		as.adminAskReply(paramMap);
+		
+		return "redirect:/adminAskDetail?aseq=" + aseq;
+		
+	}
 	
+	@RequestMapping("/adminAskUpdate")
+	public ModelAndView adminAskUpdate(HttpServletRequest request,
+		 @RequestParam("aseq") int aseq,
+		 @RequestParam("content_r") String content_r,
+		 @ModelAttribute("dto") @Valid MAskVO maskvo, BindingResult result) {
+		
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginAdmin = (HashMap<String, Object>) session.getAttribute("loginAdmin");
+		if (loginAdmin == null) {
+		mav.setViewName( "admin/adminLogin");
+		return mav;
+		}else if (result.getFieldError("content_r") != null) {
+			mav.addObject("message", "답글을 작성해주세요 ");
+			mav.setViewName("admin/qna/askDetil");
+			return mav;
+		}
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("aseq", aseq);
+		paramMap.put("content_r", content_r);
+		as.adminAskUpdate(paramMap);
+		
+		mav.addObject("aseq", aseq);
+		mav.setViewName("redirect:/adminAskDetail");
+		return mav;
+		
+	}
+
 }

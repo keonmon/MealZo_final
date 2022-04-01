@@ -18,32 +18,34 @@
 	
 	<form>
 	<table id="tableContainer" style="text-align:center; width:85%;">
-	<tr><th width="130px">번호(답변여부)</th>
-		<th style="width:380px;max-width:380px;  ">제목</th>
-		<th width="70px">작성자</th>
-		<th width="110px">작성일</th>
+	<tr><th width="150px">번호(답변여부)</th>
+	<th width="180px"> ★상품이름★</th>
+		<th style="width:480px ; text-align:center; ">제목</th>
+		<th width="145px">작성자</th>
+		<th width="145px">작성일</th>
+	
 	<c:forEach items="${askList}" var="mAskVO">
-	<tr><td height="23" align="center">${mAskVO.aseq}
+	<tr><td height="23" align="center">${mAskVO.ASEQ}
 	     <c:choose>
-	      <c:when test='${mAskVO.arseq==""}'>(미처리)</c:when>
+	      <c:when test='${mAskVO.ARSEQ==null ||  mAskVO.ARSEQ==""}'>(미처리)</c:when>
      <c:otherwise >(답변처리완료)</c:otherwise>
      </c:choose>
 	</td>
+	<td>${mAskVO.PNAME}</td>
 		<td style="text-align:left; width:500px; word-break:break-all">
-			<a href="#" onclick="go_askview('${mAskVO.aseq}')">&nbsp;&nbsp;${mAskVO.title }</a></td>
-		<td>${mAskVO.id}</td>
-		<td><fmt:formatDate value="${mAskVO.indate_a}"/></td></tr>
+			<a href="#" onclick="go_askview('${mAskVO.ASEQ}')">&nbsp;&nbsp;${mAskVO.TITLE }</a></td>
+		<td>${mAskVO.ID}</td>
+		<td><fmt:formatDate value="${mAskVO.INDATE_A}"/></td></tr>
+	
 	
 	</c:forEach>
 </table>
-<input type="hidden" name="pseq" value="${mAskVO.pseq}">
+<input type="hidden" name="pseq" value="${mAskVO.PSEQ}">
 
 </form>
-
-<div class="clear"></div>
+<div class="clear" style="text-align:center;"></div>
 <jsp:include page="../paging/paging.jsp">
-	<jsp:param name="command" value="meal.do?command=adminAskForm" />	
+	<jsp:param name="command" value="adminAskForm" />	
 </jsp:include>
-
 </article>
 <%@ include file="../../include/admin/headerfooter/footer.jsp"%>

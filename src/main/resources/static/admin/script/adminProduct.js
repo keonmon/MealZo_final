@@ -10,11 +10,12 @@ function go_askview(aseq) {
 }
 
 
-function go_askrep(aseq){
+function go_askrep(){
+if(confirm('등록하시겠습니까?')){
    document.form5.action="adminAskRepSave";
    document.form5.submit();
 }
-
+}
 
 
 function go_review_delete(){

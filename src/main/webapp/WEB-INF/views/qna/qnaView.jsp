@@ -7,8 +7,8 @@
 	<h2>나의 Q&amp;A</h2>
 	<h3>고객님의 질문에 대해서 운영자가 답변을 드립니다.</h3>
 	<form>
-		<table>
-			<tr>
+		<table >
+			<tr >
 				<th>제목</th>
 				<td width="500" style="text-align: left;">${mqnaVO.SUBJECT}</td>
 			</tr>
