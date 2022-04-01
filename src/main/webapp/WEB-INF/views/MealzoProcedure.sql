@@ -10,12 +10,12 @@ begin
     open p_cur1 for 
         select * from 
 	           ( select rownum, pseq, name, price2, image, content 
-	            from mproduct where useyn='y' order by indate desc) 
+	            from mproduct where useyn='y' and useyn='y' order by indate desc) 
 	            where rownum <= 6;
     open p_cur2 for 
         select * from 
 				(select rownum, pseq, name, price2, image, content
-				from mproduct where bestyn='y' order by indate desc )
+				from mproduct where bestyn='y' and useyn='y' order by indate desc )
 				where rownum <= 6;
 end;
 
@@ -597,7 +597,6 @@ end;
  
 --------------------------------------------------------------------------------------------
 -- Admin - 범용 카운트
-
 create or replace procedure getAllcountAdmin_m(
     p_key VARCHAR2,
     p_tableName VARCHAR2,   -- 테이블명 변수
@@ -678,12 +677,59 @@ select * from morder_view where pseq=p_pseq;
 end;
 -----------------------------------------------------------------------
 create or replace procedure insertReview_m(
-p_id mreview.id%type,
-p_content mreview.content%type,
-p_pseq mreview.pseq%type
-)
+    p_id mreview.id%type,
+    p_content mreview.content%type,
+    p_pseq mreview.pseq%type )
 is
 begin
-insert into mreview(rseq, id, content, pseq)
-values(mreview_seq.nextVal, p_id, p_content, p_pseq);
+    insert into mreview(rseq, id, content, pseq)
+        values(mreview_seq.nextVal, p_id, p_content, p_pseq);
+    commit;
 end;
+
+-----------------------------------------------------------------------
+-- Admin - 상품등록 
+create or replace procedure insertProduct_m(
+    p_kind in  mproduct.kind%type,
+    p_name in  mproduct.name%type,
+    p_bestyn in  mproduct.bestyn%type,
+    p_useyn in  mproduct.useyn%type,
+    p_content in  mproduct.content%type,
+    p_price1 in  mproduct.price1%type,
+    p_price2 in  mproduct.price2%type,
+    p_image in  mproduct.image%type,
+    p_image1 in  mproduct.image%type,
+    p_image2 in mproduct.image%type )
+is
+    v_sql varchar2(500);
+    v_lastPseq mproduct.pseq%type := 0;
+begin
+    insert into mproduct(pseq, name, kind, bestyn, useyn, content, price1, price2, image)
+        values(MPRODUCT_SEQ.nextval, p_name, p_kind, p_bestyn, p_useyn, p_content, p_price1, p_price2, p_image);
+    
+    -- 마지막 pseq가져오기
+    select max(pseq) into v_lastPseq from mproduct;
+    
+    -- DBMS_OUTPUT.PUT_LINE(v_lastPseq);
+    
+    
+    -- 상세이미지 추가
+    insert into mpdimg(pseq, image) values(v_lastPseq, p_image1);
+    insert into mpdimg2(pseq, image) values(v_lastPseq, p_image2);
+    commit;
+end;
+select * from mproduct
+
+
+
+
+
+
+
+
+
+
+
+
+
+
