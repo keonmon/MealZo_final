@@ -33,6 +33,27 @@
 			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
 		) }
 	</select>
+	
+	<select id="selectOseqOrderAll" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL selectOseqOrderAll_m( 
+			#{id},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
+		)  }
+	</select>
+	
+	<delete id="deleteOrders" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL deleteOrders_m( 
+			#{oseq},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
+		)  }
+	</delete>
+	
+	<delete id="deleteOrder_detail" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL deleteOrder_detail_m( 
+			#{oseq},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
+		)  }
+	</delete>
 
 
 </mapper>
