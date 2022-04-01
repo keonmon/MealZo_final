@@ -158,7 +158,7 @@
 			#{ref_cursor_Image2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap}
 		)}
 	</select>
-	<select id="insertProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
+	<insert id="insertProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{CALL insertProduct_m(
 			#{kind}, #{name}, 
 			#{bestyn, jdbcType=VARCHAR}, 
@@ -169,6 +169,22 @@
 			#{image1, jdbcType=VARCHAR}, 
 			#{image2, jdbcType=VARCHAR}
 		)}
-	</select>
+	</insert>
+	
+	<update id="updateProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL updateProduct_m(
+			#{pseq, jdbcType=INTEGER}, 
+			#{kind}, 
+			#{name}, 
+			#{bestyn, jdbcType=VARCHAR}, 
+			#{useyn, jdbcType=VARCHAR}, 
+			#{content}, 
+			#{price1, jdbcType=INTEGER}, 
+			#{price2, jdbcType=INTEGER}, 
+			#{image}, 
+			#{image1, jdbcType=VARCHAR}, 
+			#{image2, jdbcType=VARCHAR}
+		)}
+	</update>
 	
 </mapper>

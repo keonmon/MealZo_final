@@ -826,6 +826,33 @@ delete from mreview where rseq=p_rseq;
 commit;
 end;
 
+-----------------------------------------------------------------------
+-- Admin - 상품수정 updateProduct_m 
+create or replace procedure updateProduct_m(
+    p_pseq in  mproduct.pseq%type,
+    p_kind in  mproduct.kind%type,
+    p_name in  mproduct.name%type,
+    p_bestyn in  mproduct.bestyn%type,
+    p_useyn in  mproduct.useyn%type,
+    p_content in  mproduct.content%type,
+    p_price1 in  mproduct.price1%type,
+    p_price2 in  mproduct.price2%type,
+    p_image in  mproduct.image%type,
+    p_image1 in  mproduct.image%type,
+    p_image2 in mproduct.image%type )
+is
+begin
+    update mproduct set name=p_name, kind=p_kind, bestyn=p_useyn, useyn=p_bestyn, content=p_content, price1=p_price1, price2=p_price2, image=p_image
+        where pseq = p_pseq;
+
+    -- 상세이미지 추가
+    update mpdimg set image=p_image1 where pseq=p_pseq;
+    update mpdimg2 Set image=p_image2 where pseq=p_pseq;
+    commit;
+end;
+
+select * from mproduct;
+
 --------------------------------------------------------------------------------------
 --4/1
 ----admin ask 리스트 조회

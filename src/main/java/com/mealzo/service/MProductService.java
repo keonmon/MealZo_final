@@ -90,4 +90,9 @@ public class MProductService {
 	public void insertProduct(HashMap<String, Object> paramMap) {
 		pdao.insertProduct(paramMap);
 	}
+
+	public void updateProduct(HashMap<String, Object> paramMap) {
+		pdao.updateProduct(paramMap);
+		
+	}
 }

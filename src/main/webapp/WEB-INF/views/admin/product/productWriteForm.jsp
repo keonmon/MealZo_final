@@ -2,8 +2,14 @@
 <%@ include file="../../include/admin/headerfooter/header.jsp"%>
 <%@ include file="../../include/admin/sideMenu.jsp"%>
 
-<!-- 파일 업로드용 ajax -->
 <script type="text/javascript">
+	$(document).ready(function(){  cal(); });
+	
+	$(function(){ 
+		$("#selectKind").val('${pvo.kind}').attr("selected","selected"); 
+	});
+	
+	// 파일 업로드용 ajax
 	$(function(){
 		$('#SandImageButton').click(function(){
 			var formselect = $("#fileupForm")[0];	//지목된 폼을 변수에 저장
@@ -25,23 +31,26 @@
 					// Controller에서 넘어온 data의 'STATUS 데이터가 1이면'
 					if(data.STATUS == 1){
 						//동적으로 div 태그 달아주기.
-						$("#filename").empty();
-						$("#filename").append("<div id>"+data.FILENAME+"</div>");
-						$("#image").val(data.FILENAME);
-						$("#filename").append(
-								"<img src='images/"+data.FILENAME+"' style='height:150px;max-width:120px; '/>");
-						
-						$("#filename1").empty();
-						$("#filename1").append("<div id>"+data.FILENAME1+"</div>");
-						$("#image1").val(data.FILENAME1);
-						$("#filename1").append(
-								"<img src='images/"+data.FILENAME1+"' style='height:150px;max-width:120px; '/>");
-						
-						$("#filename2").empty();
-						$("#filename2").append("<div id>"+data.FILENAME2+"</div>");
-						$("#image2").val(data.FILENAME2);
-						$("#filename2").append(
-								"<img src='images/"+data.FILENAME2+"' style='height:150px;max-width:120px; '/>");
+						if(data.FILENAME!=null){
+							$("#filename").empty();
+							$("#filename").append("<div style='max-height:150px;max-width:120px;' id>"+data.FILENAME+"</div>");
+							$("#image").val(data.FILENAME);
+							$("#filename").append(
+									"<img src='images/"+data.FILENAME+"' style='max-height:150px;max-width:120px; '/>");
+						}
+						if(data.FILENAME1!=null){
+							$("#filename1").empty();
+							$("#filename1").append("<div style='max-height:150px;max-width:120px;' id>"+data.FILENAME1+"</div>");
+							$("#image1").val(data.FILENAME1);
+							$("#filename1").append(
+									"<img src='images/"+data.FILENAME1+"' style='max-height:150px;max-width:120px; '/>");
+						}
+						if(data.FILENAME2!=null){
+							$("#filename2").empty();
+							$("#filename2").append("<div style='max-height:150px;max-width:120px;' id>"+data.FILENAME2+"</div>");
+							$("#image2").val(data.FILENAME2);
+							$("#filename2").append(
+									"<img src='images/"+data.FILENAME2+"' style='max-height:150px;max-width:120px; '/>");
 					}
 				},
 				
@@ -60,10 +69,11 @@
 	<table id="tableContainer" width="100%">
 		<tr><th width="75px">상품 분류</th>
             <td style="text-align:left; padding:5px 10px;" >
-            <select name="kind">
-            	<c:forEach items="${kindList }" var="kind">
-	            	<option value="${kind}">${kind}</option>
-            	</c:forEach>
+            <select name="kind" id="selectKind">
+            	<option value=""></option>
+            	<option value="한식">한식</option>
+	  			<option value="양식">양식</option>
+	  			<option value="중식">중식</option>
             </select>
             </td>
             <th>베스트 상품</th>
@@ -81,7 +91,8 @@
 			<th>판매가[B]</th><td width="70" style="text-align:left; padding:5px 10px;"><input type="text" name="price2" size="11" value="${pvo.price2 }" onkeyup="cal();"></td>
 			<th>마진금액[B-A]</th><td width="72" style="text-align:left; padding:5px 10px;"><input type="text" name="price3" size="11"></td></tr>
 		<tr><th>상세설명</th><td colspan="5" style="text-align:left; padding:5px 10px;">
-			<textarea name="content" rows="8" cols="70" style="width:750px; max-width:600px; min-width:600px;">${pvo.content }</textarea></td></tr>
+			<textarea name="content" rows="8" cols="70" style="max-height:120px; min-height:120px; max-width:600px; min-width:600px;">${pvo.content }</textarea></td></tr>
+			
 		<tr><td rowspan="3"><td/><td rowspan="3"></td><td rowspan="3"></td>
 		<th>썸네일 이미지</th><td style="vertical-align:top; max-width:120px" >
 			<input type="hidden" name="image" id="image" >
