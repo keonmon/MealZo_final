@@ -16,7 +16,7 @@ public class AdminPaging {
     private int startNum;     // 화면에 표시되는 게시물의 시작 번호(num , pseq  같은 번호가 아닌 rownum)
     private int endNum;
     
-    private void paging() {
+    public void paging() {
     	endPage = ( (int)Math.ceil( page/(double)displayPage ) ) * displayPage;
     	beginPage = endPage - (displayPage - 1);
     	int totalPage = (int)Math.ceil( totalCount/(double)displayRow );

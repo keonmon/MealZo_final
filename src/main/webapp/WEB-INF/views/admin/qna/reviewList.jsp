@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ include file="../../include/admin/headerfooter/header.jsp"%>
-<%@ include file="../../include/admin/sideMenu.jsp"%>>
+<%@ include file="../../include/admin/sideMenu.jsp"%>
+
 
 <article id="mypageArticle2" style="width:950px; max-width:950px;">
 <h1>상품 리뷰 List </h1>
@@ -25,14 +26,14 @@
 		<th width="110px">작성일</th>
 		<th width="110px">상품 이름</th>
 			<th width="70px">삭제</th>
-	<c:forEach items="${list }" var="mreviewVO">
-	<tr><td height="23" align="center">${mreviewVO.rseq}</td>
+	<c:forEach items="${reviewList}" var="mreviewVO">
+	<tr><td height="23" align="center">${mreviewVO.RSEQ}</td>
 		<td  style="text-align:left; width:500px; word-break:break-all">
-			${mreviewVO.content }</td>
-		<td>${mreviewVO.id}</td>
-		<td><fmt:formatDate value="${mreviewVO.indate }"/></td>
-		<td>${mreviewVO.pname}</td>
-		<td><input type="checkbox" name="rseq" value="${mreviewVO.rseq}"></td></tr>
+			${mreviewVO.CONTENT}</td>
+		<td>${mreviewVO.ID}</td>
+		<td><fmt:formatDate value="${mreviewVO.INDATE }"/></td>
+		<td>${mreviewVO.NAME}</td>
+		<td><input type="checkbox" name="rseq" value="${mreviewVO.RSEQ}"></td></tr>
 	
 
 	</c:forEach>
@@ -40,12 +41,10 @@
 	<th ></th><th> <a href="#" onClick="go_review_delete();"><h3>삭제하기</h3></a></th></tr> 
 </table>
 </form>
-
 <div class="clear"></div>
 <jsp:include page="../paging/paging.jsp">
-	<jsp:param name="command" value="meal.do?command=adminReviewForm" />	
+	<jsp:param name="command" value="adminProductList" />	
 </jsp:include>
-
 </article>
 
 <%@ include file="../../include/admin/headerfooter/footer.jsp"%>

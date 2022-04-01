@@ -366,3 +366,4 @@ select rownum as rn, p.* from
  select * from mqna;
  delete from mqna where rep='1'
   delete from ask where aseq between 37 and 38;
+delete from mreview where rseq=27;

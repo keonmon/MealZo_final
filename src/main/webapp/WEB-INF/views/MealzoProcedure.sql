@@ -665,6 +665,66 @@ BEGIN
     commit;    
 END;
 
+
+-------------->> 멤버-회원정보수정 <<-------------------
+
+CREATE OR REPLACE PROCEDURE updateMember_m(
+    p_id IN mmember.id%TYPE,
+    p_pwd  IN mmember.pwd%TYPE,
+    p_name  IN mmember.name%TYPE,
+    p_email  IN mmember.email%TYPE,
+    p_phone  IN mmember.phone%TYPE,
+    p_zip_num IN mmember.zip_num%TYPE,
+    p_address IN mmember.address%TYPE  )
+IS
+BEGIN
+    update mmember set pwd=p_pwd, name=p_name, email=p_email, phone=p_phone, 
+    zip_num=p_zip_num, address=p_address where id=p_id;
+    commit;    
+END;
+
+-------------->> 멤버-회원탈퇴 <<-------------------
+
+CREATE OR REPLACE PROCEDURE updateUseyn_m(
+    p_id IN mmember.id%TYPE )
+IS
+BEGIN
+    update mmember set useyn='x' where id=p_id;
+    commit;    
+END;
+
+-------------->> 주문-회원탈퇴 <<-------------------
+
+CREATE OR REPLACE PROCEDURE selectOseqOrderAll_m (
+    p_id IN MORDERS.id%TYPE,
+    p_cur OUT  SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN p_cur FOR
+        SELECT DISTINCT oseq FROM MORDER_VIEW where id=p_id and result='1' order by oseq desc;
+END;
+
+-------------->> 주문-회원탈퇴 <<-------------------
+
+CREATE OR REPLACE PROCEDURE deleteOrders_m(
+    p_oseq IN MORDERS.oseq%TYPE   )
+IS
+BEGIN
+    delete from morders where oseq = p_oseq;
+    commit;    
+END;
+
+-------------->> 주문-회원탈퇴 <<-------------------
+
+CREATE OR REPLACE PROCEDURE deleteOrder_detail_m(
+    p_oseq IN MORDERS.oseq%TYPE   )
+IS
+BEGIN
+    delete from morder_detail where oseq = p_oseq;
+    commit;    
+END;
+
+
 -------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE  productorderList_m(
 p_pseq morder_detail.pseq%type,
@@ -676,6 +736,7 @@ open c_cur for
 select * from morder_view where pseq=p_pseq;
 end;
 -----------------------------------------------------------------------
+--리뷰 추가 
 create or replace procedure insertReview_m(
     p_id mreview.id%type,
     p_content mreview.content%type,
@@ -704,6 +765,7 @@ is
     v_sql varchar2(500);
     v_lastPseq mproduct.pseq%type := 0;
 begin
+
     insert into mproduct(pseq, name, kind, bestyn, useyn, content, price1, price2, image)
         values(MPRODUCT_SEQ.nextval, p_name, p_kind, p_bestyn, p_useyn, p_content, p_price1, p_price2, p_image);
     
@@ -718,7 +780,49 @@ begin
     insert into mpdimg2(pseq, image) values(v_lastPseq, p_image2);
     commit;
 end;
-select * from mproduct
+
+
+----------------------------------------------------------------
+--어드민 리뷰리스트 조회
+create or replace procedure adminlistReview_m(
+
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from mreview_view ;
+end;
+-------
+--어드민 리뷰리스트 조회 페이징 추가!
+create or replace procedure adminlistReview_m(
+p_key in varchar2,
+p_startNum number,
+p_endNum number,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from(
+select * from(
+select rownum rn, p.* from (select * from mreview_view where name like '%'||p_key||'%') p  
+)where rn >= p_startNum 
+)where rn <=p_endNum;
+end;
+
+--------------------------------------------------------------------------------------
+--리뷰 삭제
+create or replace procedure admindeleteReview_m(
+p_rseq in mreview.rseq%type
+)
+is
+begin
+delete from mreview where rseq=p_rseq;
+commit;
+
+
+
 
 
 

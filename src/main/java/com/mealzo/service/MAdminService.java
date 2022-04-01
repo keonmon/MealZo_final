@@ -21,6 +21,17 @@ public class MAdminService {
 		adao.getAllcountAdmin(paramMap);
 	}
 
+	public void adminlistReview(HashMap<String, Object> paramMap) {
+	adao.adminlistReview(paramMap);
+		
+		
+	}
+
+	public void deleteReview(HashMap<String, Object> paramMap) {
+	  adao.deletReview(paramMap);
+	  
+	}
+
 
 
 }

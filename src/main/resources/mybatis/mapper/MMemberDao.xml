@@ -25,5 +25,17 @@
 		) }
 	</insert>
 	
+	<insert id="updateMember" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{ CALL updateMember_m( 
+		#{ID}, #{PWD}, #{NAME}, #{EMAIL}, #{PHONE}, #{ZIP_NUM} , #{ADDRESS}
+		) }
+	</insert>
+	
+	<insert id="updateUseyn" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{ CALL updateUseyn_m( 
+		#{ID}
+		) }
+	</insert>
+	
 </mapper>
 
