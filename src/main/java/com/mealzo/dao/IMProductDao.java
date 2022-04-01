@@ -42,5 +42,7 @@ public interface IMProductDao {
 	void getProduct(HashMap<String, Object> paramMap);
 
 	void getImages(HashMap<String, Object> paramMap);
+
+	void insertProduct(HashMap<String, Object> paramMap);
 	
 }

@@ -86,4 +86,8 @@ public class MProductService {
 		pdao.getImages(paramMap);
 		
 	}
+
+	public void insertProduct(HashMap<String, Object> paramMap) {
+		pdao.insertProduct(paramMap);
+	}
 }
