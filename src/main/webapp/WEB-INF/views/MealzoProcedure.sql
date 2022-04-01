@@ -620,6 +620,10 @@ end;
 exec getAllcountAdmin_m('스테이크', 'mproduct', 'name');
 select * from mproduct;
 
+
+exec getAllcountAdmin_m('토마호', 'aks_view', 'p_name');
+select * from ask_view;
+
 --------------------------------------------------------------------------------------------
 -- Admin - 전체 주문 조회
 create or replace procedure listOrder_m(
@@ -728,5 +732,77 @@ p_rseq in mreview.rseq%type
 is
 begin
 delete from mreview where rseq=p_rseq;
+commit;
+end;
+--------------------------------------------------------------------------------------
+--4/1
+----admin ask 리스트 조회
+create or replace procedure adminlistAsk_m(
+key in varchar2,
+startNum in number,
+endNum in number,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from (
+select *from (
+select rownum rn, p.* from (select * from ask_view where pname || content_a like '%'||key||'%' order by  indate_a,arseq desc) p
+) where rn>=startNum
+) where rn<=endNum ;
+end;
+
+---------------------------------------------------------------------------------
+--ask 올카운트
+create or replace procedure getAllcountAdminAsk_m(
+    p_key VARCHAR2,
+    p_tableName VARCHAR2,   -- 테이블명 변수
+    p_culumnName VARCHAR2,
+    p_cnt out NUMBER 
+    )
+is
+    v_cnt int;
+    v_sql varchar2(1000);   -- sql문을 저장할 변수
+begin
+    v_sql := 'select count(*) 
+        from '||p_tableName||' 
+        where '||p_culumnName||' like ''%'|| p_key ||'%'' order by indate_a desc';
+    --DBMS_OUTPUT.PUT_LINE(v_sql);
+    EXECUTE IMMEDIATE v_sql into v_cnt;
+    --DBMS_OUTPUT.PUT_LINE(v_cnt);   
+    p_cnt := v_cnt;
+end;
+------------------------------------------------------------------------------
+--adminAskDetail
+create or replace procedure getAdminAsk_m(
+p_aseq in ask.aseq%type,
+c_cur out sys_refcursor)
+is
+begin
+open c_cur for
+select * from ask_view where aseq=p_aseq;
+end;
+----------------------------------------------------------------------------
+--어드민 ask 문의 답글
+create or replace procedure adminAskReply_m(
+p_aseq in ask_reply.aseq%type,
+p_content in ask_reply.content%type
+)
+is
+begin
+insert into ask_reply(arseq, aseq, content)
+values (ask_reply_seq.nextVal, p_aseq, p_content);
+end;
+
+------------------------------------------------------------------------
+--어드민 문의 답글 수정
+create or replace procedure adminAskUpdate_m(
+p_aseq in ask_reply.aseq%type,
+p_content in ask_reply.content%type
+)
+is
+begin
+update ask_reply set content=p_content where aseq=p_aseq;
 commit;
 end;

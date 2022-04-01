@@ -359,11 +359,14 @@ select rownum as rn, p.* from
  where p.pseq=r.pseq ;
 				
  select * from mreview_view
-
- 
+ select * from ask_view;
+ select *from ask_reply
   select * from mreview;
+  
  select * from ask;
  select * from mqna;
  delete from mqna where rep='1'
   delete from ask where aseq between 37 and 38;
 delete from mreview where rseq=27;
+
+

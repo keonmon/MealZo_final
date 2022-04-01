@@ -43,7 +43,7 @@
 </form>
 <div class="clear"></div>
 <jsp:include page="../paging/paging.jsp">
-	<jsp:param name="command" value="adminProductList" />	
+	<jsp:param name="command" value="adminReviewForm" />	
 </jsp:include>
 </article>
 
