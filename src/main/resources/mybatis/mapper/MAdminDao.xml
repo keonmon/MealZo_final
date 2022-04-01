@@ -20,6 +20,20 @@
 		)}
 	</select>
 	
+	<select id="adminlistReview" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL adminlistReview_m(
+	#{key},
+	#{startNum},
+			#{endNum},
+	#{ref_cursor_review, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+	)}
+	</select>
 	
-	
+	<delete id="deletReview" statementType="CALLABLE" parameterType="java.util.HashMap">
+      {CALL admindeleteReview_m(
+      #{rseq}
+      )}	
+	</delete>
+    
+
 </mapper>

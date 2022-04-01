@@ -677,6 +677,7 @@ open c_cur for
 select * from morder_view where pseq=p_pseq;
 end;
 -----------------------------------------------------------------------
+--리뷰 추가 
 create or replace procedure insertReview_m(
 p_id mreview.id%type,
 p_content mreview.content%type,
@@ -686,4 +687,46 @@ is
 begin
 insert into mreview(rseq, id, content, pseq)
 values(mreview_seq.nextVal, p_id, p_content, p_pseq);
+commit;
+end;
+
+
+----------------------------------------------------------------
+--어드민 리뷰리스트 조회
+create or replace procedure adminlistReview_m(
+
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from mreview_view ;
+end;
+-------
+--어드민 리뷰리스트 조회 페이징 추가!
+create or replace procedure adminlistReview_m(
+p_key in varchar2,
+p_startNum number,
+p_endNum number,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from(
+select * from(
+select rownum rn, p.* from (select * from mreview_view where name like '%'||p_key||'%') p  
+)where rn >= p_startNum 
+)where rn <=p_endNum;
+end;
+
+--------------------------------------------------------------------------------------
+--리뷰 삭제
+create or replace procedure admindeleteReview_m(
+p_rseq in mreview.rseq%type
+)
+is
+begin
+delete from mreview where rseq=p_rseq;
+commit;
 end;
