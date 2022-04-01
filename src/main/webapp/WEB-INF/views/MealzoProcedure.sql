@@ -202,7 +202,7 @@ END;
 
 
 
-
+----------------------------------------------------------------
 
 
 
@@ -621,7 +621,7 @@ exec getAllcountAdmin_m('스테이크', 'mproduct', 'name');
 select * from mproduct;
 
 --------------------------------------------------------------------------------------------
--- 전체 주문 조회
+-- Admin - 전체 주문 조회
 create or replace procedure listOrder_m(
     p_startNum number,
     p_endNum number,

@@ -1,7 +1,9 @@
 package com.mealzo.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mealzo.dto.AdminPaging;
@@ -22,6 +25,8 @@ import com.mealzo.dto.MAdminVO;
 import com.mealzo.service.MAdminService;
 import com.mealzo.service.MOrderService;
 import com.mealzo.service.MProductService;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Controller
 public class MAdminController {
@@ -226,6 +231,7 @@ public class MAdminController {
 		return mav;
 	}
 
+
 	@RequestMapping(value = "adminReviewForm"/* , method=RequestMethod.POST */)
 	public ModelAndView adminReviewForm(Model model, HttpServletRequest request,
 			@RequestParam(value = "sub", required = false) String sub,
@@ -317,4 +323,43 @@ public class MAdminController {
 		}
 		         return "redirect:/adminReviewForm";
 	}
+
+	
+	@RequestMapping("adminProductWriteForm")
+	public ModelAndView adminProductWriteForm(HttpServletRequest request) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		if( session.getAttribute("loginAdmin") == null ) {
+			mav.setViewName("redirect:/admin");
+		}else {
+			
+			String [] kindList = { "한식", "중식", "양식" };
+			mav.addObject("kindList", kindList);
+			mav.setViewName("admin/product/productWriteForm");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="fileup")
+	@ResponseBody
+	public Map<String, Object> fileup(Model model, HttpServletRequest request){
+		String savePath = context.getRealPath("/images");
+		HashMap<String,Object> resultMap = new HashMap<String, Object>();
+		try {
+			MultipartRequest multi = new MultipartRequest(
+				request, savePath, 5*1024*1024, "UTF-8", new DefaultFileRenamePolicy()
+			);
+			
+			resultMap.put("STATUS", 1);
+			resultMap.put("FILENAME", multi.getFilesystemName("image"));
+			resultMap.put("FILENAME1", multi.getFilesystemName("image1"));
+			resultMap.put("FILENAME2", multi.getFilesystemName("image2"));
+		}catch(IOException e) { e.printStackTrace();}
+		
+		return resultMap;
+	}
+	
+
 }

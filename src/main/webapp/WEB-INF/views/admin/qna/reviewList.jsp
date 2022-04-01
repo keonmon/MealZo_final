@@ -4,6 +4,7 @@
 <%@ include file="../../include/admin/headerfooter/header.jsp"%>
 <%@ include file="../../include/admin/sideMenu.jsp"%>
 
+
 <article id="mypageArticle2" style="width:950px; max-width:950px;">
 <h1>상품 리뷰 List </h1>
 <form name="frm" method="post" >
@@ -45,7 +46,5 @@
 	<jsp:param name="command" value="adminProductList" />	
 </jsp:include>
 </article>
-
-
 
 <%@ include file="../../include/admin/headerfooter/footer.jsp"%>
