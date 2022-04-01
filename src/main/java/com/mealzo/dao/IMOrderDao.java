@@ -10,5 +10,8 @@ public interface IMOrderDao {
 	void insertOrder(HashMap<String, Object> paramMap);
 	void listOrderByIdAll(HashMap<String, Object> paramMap1);
 	void listOrderByOseq(HashMap<String, Object> paramMap2);
+	void selectOseqOrderAll(HashMap<String, Object> paramMap);
+	void deleteOrders(HashMap<String, Object> paramMap);
+	void deleteOrder_detail(HashMap<String, Object> paramMap);
 	
 }

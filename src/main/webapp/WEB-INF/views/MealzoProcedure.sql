@@ -649,5 +649,65 @@ BEGIN
     commit;    
 END;
 
--------------------------------------------------------------------
+-------------->> 멤버-회원정보수정 <<-------------------
+
+CREATE OR REPLACE PROCEDURE updateMember_m(
+    p_id IN mmember.id%TYPE,
+    p_pwd  IN mmember.pwd%TYPE,
+    p_name  IN mmember.name%TYPE,
+    p_email  IN mmember.email%TYPE,
+    p_phone  IN mmember.phone%TYPE,
+    p_zip_num IN mmember.zip_num%TYPE,
+    p_address IN mmember.address%TYPE  )
+IS
+BEGIN
+    update mmember set pwd=p_pwd, name=p_name, email=p_email, phone=p_phone, 
+    zip_num=p_zip_num, address=p_address where id=p_id;
+    commit;    
+END;
+
+-------------->> 멤버-회원탈퇴 <<-------------------
+
+CREATE OR REPLACE PROCEDURE updateUseyn_m(
+    p_id IN mmember.id%TYPE )
+IS
+BEGIN
+    update mmember set useyn='x' where id=p_id;
+    commit;    
+END;
+
+-------------->> 주문-회원탈퇴 <<-------------------
+
+CREATE OR REPLACE PROCEDURE selectOseqOrderAll_m (
+    p_id IN MORDERS.id%TYPE,
+    p_cur OUT  SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN p_cur FOR
+        SELECT DISTINCT oseq FROM MORDER_VIEW where id=p_id and result='1' order by oseq desc;
+END;
+
+-------------->> 주문-회원탈퇴 <<-------------------
+
+CREATE OR REPLACE PROCEDURE deleteOrders_m(
+    p_oseq IN MORDERS.oseq%TYPE   )
+IS
+BEGIN
+    delete from morders where oseq = p_oseq;
+    commit;    
+END;
+
+-------------->> 주문-회원탈퇴 <<-------------------
+
+CREATE OR REPLACE PROCEDURE deleteOrder_detail_m(
+    p_oseq IN MORDERS.oseq%TYPE   )
+IS
+BEGIN
+    delete from morder_detail where oseq = p_oseq;
+    commit;    
+END;
+
+
+
+
 

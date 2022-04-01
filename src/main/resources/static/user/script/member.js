@@ -204,7 +204,7 @@ function go_update(){
 	    alert("이메일을 입력해 주세요.");
 	    document.joinForm.email.focus();
 	}else {
-	    document.joinForm.action = "meal.do";
+	    document.joinForm.action = "memberUpdate";
 	    document.joinForm.submit();
 		
 		
@@ -212,19 +212,19 @@ function go_update(){
 }
 
 function go_mypage(){
-	document.joinForm.action = "meal.do?command=mypageForm";
+	document.joinForm.action = "mypageForm";
 	document.joinForm.submit();
 }
 
 function withdrawalConfirm(){
 	var answer = confirm("회원탈퇴를하면 장바구니 및 이용내역이 모두 없어집니다. 탈퇴하시겠습니까?");
 	if( answer ){
-	location.href="meal.do?command=Withdrawal";
+	location.href="Withdrawal";
 	}
 }
 
 function checknum() {
-		document.IdForm.action = "meal.do?command=findIdStep2";
+		document.IdForm.action = "findIdStep2";
 		document.IdForm.submit();
 	}
 

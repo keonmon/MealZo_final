@@ -2,7 +2,7 @@
  	
 <nav id="sideMenu">
 	<ul>
-		<li><p id="mypage"><a href="meal.do?command=mypage">MY PAGE</a></li>
+		<li><p id="mypage"><a href="mypage">MY PAGE</a></li>
 		<br>
 		<li><h3><a href="orderList">나의 쇼핑</a></h3></li>
 		<li id=menu><a href="orderList">주문/배송</a></li>

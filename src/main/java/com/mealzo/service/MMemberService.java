@@ -25,7 +25,13 @@ public class MMemberService {
 		mdao.selectAddressByDong(paramMap);
 	}
 
-	public void updateMember(HashMap<String, Object> mvo) {
+	public void updateMember(HashMap<String, Object> paramMap) {
 		mdao.updateMember(paramMap);
 	}
+
+	public void updateUseyn(HashMap<String, Object> paramMap) {
+		mdao.updateUseyn(paramMap);
+	}
+	
+	
 }
