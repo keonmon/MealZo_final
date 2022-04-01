@@ -10,4 +10,8 @@ public interface IMReviewDao {
 
 	void listReview(HashMap<String, Object> paramMap);
 
+	void productorderList(HashMap<String, Object> paramMap);
+
+	void insertReview(HashMap<String, Object> paramMap);
+
 }

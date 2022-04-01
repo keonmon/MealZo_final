@@ -202,7 +202,7 @@ END;
 
 
 
-
+----------------------------------------------------------------
 
 
 
@@ -620,6 +620,23 @@ end;
 exec getAllcountAdmin_m('스테이크', 'mproduct', 'name');
 select * from mproduct;
 
+--------------------------------------------------------------------------------------------
+-- Admin - 전체 주문 조회
+create or replace procedure listOrder_m(
+    p_startNum number,
+    p_endNum number,
+    p_key VARCHAR2,
+    p_cur out sys_refcursor )
+is
+begin
+    open p_cur for 
+        select * from ( 
+        select * from (
+        select rownum as rn, p.* from 
+        ((select * from morder_view where oseq like '%'||p_key||'%' order by result, odseq desc) p) 
+        ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+end;
 
 -------------->> 멤버-로그인 <<-------------------
 
@@ -648,6 +665,7 @@ BEGIN
     values( p_id, p_pwd, p_name, p_email, p_phone, p_zip_num, p_address);
     commit;    
 END;
+
 
 -------------->> 멤버-회원정보수정 <<-------------------
 
@@ -708,6 +726,68 @@ BEGIN
 END;
 
 
+-------------------------------------------------------------------
+CREATE OR REPLACE PROCEDURE  productorderList_m(
+p_pseq morder_detail.pseq%type,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from morder_view where pseq=p_pseq;
+end;
+-----------------------------------------------------------------------
+--리뷰 추가 
+create or replace procedure insertReview_m(
+p_id mreview.id%type,
+p_content mreview.content%type,
+p_pseq mreview.pseq%type
+)
+is
+begin
+insert into mreview(rseq, id, content, pseq)
+values(mreview_seq.nextVal, p_id, p_content, p_pseq);
+commit;
+end;
 
 
 
+----------------------------------------------------------------
+--어드민 리뷰리스트 조회
+create or replace procedure adminlistReview_m(
+
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from mreview_view ;
+end;
+-------
+--어드민 리뷰리스트 조회 페이징 추가!
+create or replace procedure adminlistReview_m(
+p_key in varchar2,
+p_startNum number,
+p_endNum number,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from(
+select * from(
+select rownum rn, p.* from (select * from mreview_view where name like '%'||p_key||'%') p  
+)where rn >= p_startNum 
+)where rn <=p_endNum;
+end;
+
+--------------------------------------------------------------------------------------
+--리뷰 삭제
+create or replace procedure admindeleteReview_m(
+p_rseq in mreview.rseq%type
+)
+is
+begin
+delete from mreview where rseq=p_rseq;
+commit;
+end;

@@ -1,10 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 
 <mapper namespace="com.mealzo.dao.IMOrderDao"> 
-
 	<resultMap type="java.util.HashMap" id="orderMap"/>
+	
+	<select id="listOrder" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL listOrder_m(
+			#{startNum},
+			#{endNum},
+			#{key},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
+		)}
+	</select>
 	
 	<insert id="insertOrder" statementType="CALLABLE" parameterType="java.util.HashMap" >
 		{ CALL insertOrder( 
@@ -12,7 +19,6 @@
 			#{oseq, mode=OUT, jdbcType=INTEGER}
 		) }
 	</insert>
-	
 	
 	<select id="listOrderByOseq" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{  CALL listOrderByOseq_m( 
@@ -48,5 +54,6 @@
 			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
 		)  }
 	</delete>
+
 
 </mapper>

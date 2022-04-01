@@ -74,7 +74,7 @@ public class MQnaController {
 		    
 		    int cnt = Integer.parseInt(paramMap.get("cnt").toString());
 		    paging.setTotalCount(cnt);
-		    paging.paging();
+		 paging.paging();
 		    paramMap.put("startNum", paging.getStartNum());
 		    paramMap.put("endNum", paging.getEndNum());
 			paramMap.put("id", loginUser.get("ID"));
