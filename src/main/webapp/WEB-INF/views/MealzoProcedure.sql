@@ -820,7 +820,7 @@ is
 begin
 delete from mreview where rseq=p_rseq;
 commit;
-
+end;
 
 
 
