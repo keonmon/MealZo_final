@@ -145,28 +145,12 @@ function cal(){
 }
 
 function go_Product_Save(){
-	var theForm = document.frm;
-	if(theForm.name.value==""){
-		alert("상품명을 입력하세요");
-		theForm.name.focus();
-	}else if(theForm.price1.value==""){
-		alert("원가를 입력하세요");
-		theForm.price1.focus();
-	} else if(theForm.price2.value==""){
-		alert("판매가를 입력하세요");
-		theForm.price2.focus();
-	}else if(document.frm.image.value==""){
-		alert('썸네일 이미지를 입력하세요');
-		document.frm.image.focus();
-	}else if(document.frm.image1.value==""){
-		alert('상세 이미지를 입력하세요');
-		document.frm.image1.focus();
-	} else{
-		if(confirm('상품을 등록하시겠습니까?')){
-			theForm.action = "adminProductWrite";
-			theForm.submit();
-		}
+	var theForm = document.frm1;
+	if(confirm('상품을 등록하시겠습니까?')){
+		theForm.action = "adminProductWrite";
+		theForm.submit();
 	}
+	
 }
 
 function go_order_save(){
@@ -364,8 +348,15 @@ document.form4.action="adminQnaUpdate";
 
 
 function go_askupdate(){
-if(confirm('수정하시겠습니까?')){
-document.form5.action="adminAskUpdate";
-   document.form5.submit();
+	if(confirm('수정하시겠습니까?')){
+	document.form5.action="adminAskUpdate";
+	   document.form5.submit();
+	}
 }
+
+function go_Mov(){
+	var theForm = document.frm1;
+	if(confirm('상품등록을 취소하시겠습니까?')){
+		location.href="adminProductList";
+	}
 }

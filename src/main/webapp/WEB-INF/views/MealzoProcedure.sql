@@ -10,12 +10,12 @@ begin
     open p_cur1 for 
         select * from 
 	           ( select rownum, pseq, name, price2, image, content 
-	            from mproduct where useyn='y' order by indate desc) 
+	            from mproduct where useyn='y' and useyn='y' order by indate desc) 
 	            where rownum <= 6;
     open p_cur2 for 
         select * from 
 				(select rownum, pseq, name, price2, image, content
-				from mproduct where bestyn='y' order by indate desc )
+				from mproduct where bestyn='y' and useyn='y' order by indate desc )
 				where rownum <= 6;
 end;
 
@@ -597,7 +597,6 @@ end;
  
 --------------------------------------------------------------------------------------------
 -- Admin - 범용 카운트
-
 create or replace procedure getAllcountAdmin_m(
     p_key VARCHAR2,
     p_tableName VARCHAR2,   -- 테이블명 변수
@@ -670,6 +669,66 @@ BEGIN
     commit;    
 END;
 
+
+-------------->> 멤버-회원정보수정 <<-------------------
+
+CREATE OR REPLACE PROCEDURE updateMember_m(
+    p_id IN mmember.id%TYPE,
+    p_pwd  IN mmember.pwd%TYPE,
+    p_name  IN mmember.name%TYPE,
+    p_email  IN mmember.email%TYPE,
+    p_phone  IN mmember.phone%TYPE,
+    p_zip_num IN mmember.zip_num%TYPE,
+    p_address IN mmember.address%TYPE  )
+IS
+BEGIN
+    update mmember set pwd=p_pwd, name=p_name, email=p_email, phone=p_phone, 
+    zip_num=p_zip_num, address=p_address where id=p_id;
+    commit;    
+END;
+
+-------------->> 멤버-회원탈퇴 <<-------------------
+
+CREATE OR REPLACE PROCEDURE updateUseyn_m(
+    p_id IN mmember.id%TYPE )
+IS
+BEGIN
+    update mmember set useyn='x' where id=p_id;
+    commit;    
+END;
+
+-------------->> 주문-회원탈퇴 <<-------------------
+
+CREATE OR REPLACE PROCEDURE selectOseqOrderAll_m (
+    p_id IN MORDERS.id%TYPE,
+    p_cur OUT  SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN p_cur FOR
+        SELECT DISTINCT oseq FROM MORDER_VIEW where id=p_id and result='1' order by oseq desc;
+END;
+
+-------------->> 주문-회원탈퇴 <<-------------------
+
+CREATE OR REPLACE PROCEDURE deleteOrders_m(
+    p_oseq IN MORDERS.oseq%TYPE   )
+IS
+BEGIN
+    delete from morders where oseq = p_oseq;
+    commit;    
+END;
+
+-------------->> 주문-회원탈퇴 <<-------------------
+
+CREATE OR REPLACE PROCEDURE deleteOrder_detail_m(
+    p_oseq IN MORDERS.oseq%TYPE   )
+IS
+BEGIN
+    delete from morder_detail where oseq = p_oseq;
+    commit;    
+END;
+
+
 -------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE  productorderList_m(
 p_pseq morder_detail.pseq%type,
@@ -683,15 +742,47 @@ end;
 -----------------------------------------------------------------------
 --리뷰 추가 
 create or replace procedure insertReview_m(
-p_id mreview.id%type,
-p_content mreview.content%type,
-p_pseq mreview.pseq%type
-)
+    p_id mreview.id%type,
+    p_content mreview.content%type,
+    p_pseq mreview.pseq%type )
 is
 begin
-insert into mreview(rseq, id, content, pseq)
-values(mreview_seq.nextVal, p_id, p_content, p_pseq);
-commit;
+    insert into mreview(rseq, id, content, pseq)
+        values(mreview_seq.nextVal, p_id, p_content, p_pseq);
+    commit;
+end;
+
+-----------------------------------------------------------------------
+-- Admin - 상품등록 
+create or replace procedure insertProduct_m(
+    p_kind in  mproduct.kind%type,
+    p_name in  mproduct.name%type,
+    p_bestyn in  mproduct.bestyn%type,
+    p_useyn in  mproduct.useyn%type,
+    p_content in  mproduct.content%type,
+    p_price1 in  mproduct.price1%type,
+    p_price2 in  mproduct.price2%type,
+    p_image in  mproduct.image%type,
+    p_image1 in  mproduct.image%type,
+    p_image2 in mproduct.image%type )
+is
+    v_sql varchar2(500);
+    v_lastPseq mproduct.pseq%type := 0;
+begin
+
+    insert into mproduct(pseq, name, kind, bestyn, useyn, content, price1, price2, image)
+        values(MPRODUCT_SEQ.nextval, p_name, p_kind, p_bestyn, p_useyn, p_content, p_price1, p_price2, p_image);
+    
+    -- 마지막 pseq가져오기
+    select max(pseq) into v_lastPseq from mproduct;
+    
+    -- DBMS_OUTPUT.PUT_LINE(v_lastPseq);
+    
+    
+    -- 상세이미지 추가
+    insert into mpdimg(pseq, image) values(v_lastPseq, p_image1);
+    insert into mpdimg2(pseq, image) values(v_lastPseq, p_image2);
+    commit;
 end;
 
 
@@ -734,6 +825,7 @@ begin
 delete from mreview where rseq=p_rseq;
 commit;
 end;
+
 --------------------------------------------------------------------------------------
 --4/1
 ----admin ask 리스트 조회

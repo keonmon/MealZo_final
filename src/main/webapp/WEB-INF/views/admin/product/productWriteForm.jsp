@@ -76,21 +76,21 @@
             </td>
 		</tr>
 		<tr><th>상품명</th><td width="343" colspan="5" style="text-align:left; padding:5px 10px;">
-			<input type="text" name="name" size="47" maxlength="100" style="width:600px;"></td></tr>
-		<tr><th>원가[A]</th><td width="70" style="text-align:left; padding:5px 10px;"><input type="text" name="price1" size="11" onkeyup="cal();"></td>
-			<th>판매가[B]</th><td width="70" style="text-align:left; padding:5px 10px;"><input type="text" name="price2" size="11" onkeyup="cal();"></td>
-			<th>마진금액[B-A]</th><td width="72" style="text-align:left; padding:5px 10px;"><input type="text" name="price3" size="11"></td>
-		<tr><th>상세설명</th><td colspan="5"  style="text-align:left; padding:5px 10px;">
-			<textarea name="content" rows="8" cols="70" style="width:750px; max-width:600px; min-width:600px;"></textarea></td>
+			<input type="text" name="name" size="47" maxlength="100" value="${pvo.name }" style="width:600px;"></td></tr>
+		<tr><th>원가[A]</th><td width="70" style="text-align:left; padding:5px 10px;"><input type="text" name="price1" size="11" value="${pvo.price1 }"  onkeyup="cal();"></td>
+			<th>판매가[B]</th><td width="70" style="text-align:left; padding:5px 10px;"><input type="text" name="price2" size="11" value="${pvo.price2 }" onkeyup="cal();"></td>
+			<th>마진금액[B-A]</th><td width="72" style="text-align:left; padding:5px 10px;"><input type="text" name="price3" size="11"></td></tr>
+		<tr><th>상세설명</th><td colspan="5" style="text-align:left; padding:5px 10px;">
+			<textarea name="content" rows="8" cols="70" style="width:750px; max-width:600px; min-width:600px;">${pvo.content }</textarea></td></tr>
 		<tr><td rowspan="3"><td/><td rowspan="3"></td><td rowspan="3"></td>
 		<th>썸네일 이미지</th><td style="vertical-align:top; max-width:120px" >
-			<input type="hidden" name="image" id="image">
+			<input type="hidden" name="image" id="image" >
 			<div id="filename"></div></td></tr>
 		<tr><td rowspan="3"></td><th>상세 이미지1</th><td style="vertical-align:top; max-width:120px" >
 			<input type="hidden" name="image1" id="image1">
 			<div id="filename1"></div></td></tr>
 		<tr><th>상세 이미지2</th><td style="vertical-align:top; max-width:120px" >
-			<input type="hidden" name="image2" id="image2">
+			<input type="hidden" name="image2" id="image2" >
 			<div id="filename2"></div></td></tr>
 	</table>
 	<div style="text-align:center;">
@@ -106,10 +106,12 @@
 			<tr><th>상세 이미지1</th><td style="text-align:left; padding:5px 10px;" >
 				<input type="file" name="image1" accept="image/gif,image/jpeg,image/png"></td></tr>
 			<tr><th>상세 이미지2</th><td style="text-align:left; padding:5px 10px;" >
-				<input type="file" name="image2" accept="image/gif,image/jpeg,image/png"><input type="button" id="SandImageButton" value="이미지전송"></td></tr>
+				<input type="file" name="image2" accept="image/gif,image/jpeg,image/png">
+				<input type="button" id="SandImageButton" value="이미지전송"></td></tr>
 		</table>
 	</form>
 	</div>
+	<h3><strong>${message}</strong></h3>
 </article>
 
 <%@ include file="../../include/admin/headerfooter/footer.jsp"%>

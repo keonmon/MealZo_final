@@ -23,7 +23,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mealzo.dto.AdminPaging;
 import com.mealzo.dto.MAdminVO;
+
 import com.mealzo.dto.MAskVO;
+
+import com.mealzo.dto.MProductVO;
+
 import com.mealzo.service.MAdminService;
 import com.mealzo.service.MOrderService;
 import com.mealzo.service.MProductService;
@@ -337,7 +341,7 @@ public class MAdminController {
 			mav.setViewName("redirect:/admin");
 		}else {
 			
-			String [] kindList = { "한식", "중식", "양식" };
+			String [] kindList = { "","한식", "중식", "양식" };
 			mav.addObject("kindList", kindList);
 			mav.setViewName("admin/product/productWriteForm");
 		}
@@ -372,6 +376,7 @@ public class MAdminController {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginAdmin = (HashMap<String, Object>) session.getAttribute("loginAdmin");
+
 
 		if (loginAdmin == null) {
 			mav.setViewName("admin/adminLogin");
@@ -434,6 +439,8 @@ public class MAdminController {
 		}
 			return mav;
 	}
+  
+  
 	@RequestMapping("/adminAskDetail")
   public ModelAndView adminAskDetail( HttpServletRequest request,
 		  @RequestParam("aseq") int aseq){
@@ -454,10 +461,76 @@ public class MAdminController {
 			mav.addObject("dto", getAdminAsk.get(0));
 			
 			mav.setViewName("admin/qna/askDetil");
+      
+      }
+    return mav;
+  }
+
+	
+	@RequestMapping(value="adminProductWrite", method=RequestMethod.POST)
+	public ModelAndView adminProductWrite(HttpServletRequest request,
+				@ModelAttribute("pvo") @Valid MProductVO mvo, BindingResult result ) {
+		ModelAndView mav = new ModelAndView();
+		
+		String [] kindList = { "","한식", "중식", "양식" };
+		mav.addObject("kindList", kindList);
+		
+		mav.setViewName("admin/product/productWriteForm");
+		if(result.getFieldError("name")!=null) {
+			mav.addObject("message", result.getFieldError("name").getDefaultMessage());
+			return mav;
+		}else if(result.getFieldError("kind")!=null) {
+			mav.addObject("message", result.getFieldError("kind").getDefaultMessage());
+			return mav;
+		}else if(result.getFieldError("price1")!=null) {
+			mav.addObject("message", "원가를 입력하세요");
+			return mav;
+		}else if(result.getFieldError("price2")!=null) {
+			mav.addObject("message", "판매가를 입력하세요");
+			return mav;
+		}else if(result.getFieldError("image")!=null) {
+			mav.addObject("message", result.getFieldError("image").getDefaultMessage());
+			return mav;
+		}
+		
+		HttpSession session = request.getSession();
+		if( session.getAttribute("loginAdmin") == null ) {
+			mav.setViewName("redirect:/admin");
+		}else {
+			
+			HashMap<String,Object> paramMap = new HashMap<String,Object>();
+			paramMap.put("kind", mvo.getKind());
+			paramMap.put("name", mvo.getName());
+			paramMap.put("bestyn", mvo.getBestyn());
+			paramMap.put("useyn", mvo.getUseyn());
+			paramMap.put("content", mvo.getContent());
+			
+			paramMap.put("price1", mvo.getPrice1());
+			paramMap.put("price2", mvo.getPrice2());
+			paramMap.put("image", mvo.getImage());
+			paramMap.put("image1", mvo.getImage1());
+			paramMap.put("image2", mvo.getImage2());
+			
+			ps.insertProduct(paramMap);
+			
+			/*
+			int pseq = adao.getNewestProduct();
+			
+			String image1 = multi.getFilesystemName("image1");
+			String image2 = multi.getFilesystemName("image2");
+			if(image2==null) {
+				adao.insertImgs(pseq, image1);
+			}else {
+				adao.insertImgs(pseq, image1, image2);
+			}*/
+			
+			mav.setViewName("redirect:/adminProductList");
+
 		}
 		return mav;
 	}
 	
+
 	@RequestMapping(value="/adminAskRepSave"  /*, method = RequestMethod.POST */)
 	public String adminAskForm(HttpServletRequest request,
 			 @ModelAttribute("dto") @Valid MAskVO maskvo, BindingResult result,
@@ -509,4 +582,5 @@ public class MAdminController {
 		return mav;
 		
 	}
+
 }
