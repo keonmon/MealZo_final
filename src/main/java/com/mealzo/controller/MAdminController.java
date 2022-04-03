@@ -78,7 +78,8 @@ public class MAdminController {
 			paramMap.put("ref_cursor", null);
 			as.getAdmin(paramMap);
 
-			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			ArrayList<HashMap<String, Object>> list 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			if (list.size() == 0) {
 				mav.addObject("msg", "존재하지 않는 밀조왕입니다.🤷‍♂️");
 				return mav;
@@ -161,8 +162,8 @@ public class MAdminController {
 			paramMap.put("ref_cursor", null);
 			ps.listProduct(paramMap);
 
-			ArrayList<HashMap<String, Object>> mproductList = (ArrayList<HashMap<String, Object>>) paramMap
-					.get("ref_cursor");
+			ArrayList<HashMap<String, Object>> mproductList 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			System.out.println(mproductList);
 			request.setAttribute("mproductList", mproductList);
 			request.setAttribute("key", key);
@@ -227,8 +228,8 @@ public class MAdminController {
 			paramMap.put("ref_cursor", null);
 			os.listOrder(paramMap);
 
-			ArrayList<HashMap<String, Object>> orderList = (ArrayList<HashMap<String, Object>>) paramMap
-					.get("ref_cursor");
+			ArrayList<HashMap<String, Object>> orderList 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			System.out.println(orderList);
 			request.setAttribute("morderList", orderList);
 			request.setAttribute("key", key);
@@ -247,7 +248,8 @@ public class MAdminController {
 
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		HashMap<String, Object> loginAdmin = (HashMap<String, Object>) session.getAttribute("loginAdmin");
+		HashMap<String, Object> loginAdmin 
+			= (HashMap<String, Object>) session.getAttribute("loginAdmin");
 
 		if (loginAdmin == null) {
 			mav.setViewName("admin/adminLogin");
@@ -300,8 +302,8 @@ public class MAdminController {
 			paramMap.put("ref_cursor_review", null);
 			as.adminlistReview(paramMap);
 			System.out.println(cnt);
-			ArrayList<HashMap<String, Object>> reviewList = (ArrayList<HashMap<String, Object>>) paramMap
-					.get("ref_cursor_review");
+			ArrayList<HashMap<String, Object>> reviewList 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor_review");
 			mav.addObject("paging", paging);
 			mav.addObject("reviewList", reviewList);
 			mav.setViewName("admin/qna/reviewList");
@@ -442,29 +444,29 @@ public class MAdminController {
   
   
 	@RequestMapping("/adminAskDetail")
-  public ModelAndView adminAskDetail( HttpServletRequest request,
-		  @RequestParam("aseq") int aseq){
+	public ModelAndView adminAskDetail(HttpServletRequest request, @RequestParam("aseq") int aseq) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		HashMap<String, Object> loginAdmin = (HashMap<String, Object>) session.getAttribute("loginAdmin");
+		HashMap<String, Object> loginAdmin 
+			= (HashMap<String, Object>) session.getAttribute("loginAdmin");
 		if (loginAdmin == null) {
 			mav.setViewName("admin/adminLogin");
 			return mav;
 		} else {
-			HashMap<String, Object> paramMap =new HashMap<String, Object>();
-			paramMap.put("aseq",aseq);
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("aseq", aseq);
 			paramMap.put("ref_cusor", null);
 			as.getAdminAsk(paramMap);
-			
+
 			ArrayList<HashMap<String, Object>> getAdminAsk 
-				=(ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			mav.addObject("dto", getAdminAsk.get(0));
-			
+
 			mav.setViewName("admin/qna/askDetil");
-      
-      }
-    return mav;
-  }
+
+		}
+		return mav;
+	}
 
 	
 	@RequestMapping(value="adminProductWrite", method=RequestMethod.POST)
@@ -509,7 +511,6 @@ public class MAdminController {
 			
 			ps.insertProduct(paramMap);
 			
-			
 			mav.setViewName("redirect:/adminProductList");
 
 		}
@@ -535,8 +536,8 @@ public class MAdminController {
 
 			ps.getProduct(paramMap);
 
-			ArrayList<HashMap<String, Object>> mproductVOList = (ArrayList<HashMap<String, Object>>) paramMap
-					.get("ref_cursor");
+			ArrayList<HashMap<String, Object>> mproductVOList 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			HashMap<String, Object> resultMap = mproductVOList.get(0);
 			MProductVO pvo = new MProductVO();
 			pvo.setPseq(Integer.parseInt(resultMap.get("PSEQ").toString()));
@@ -554,10 +555,10 @@ public class MAdminController {
 			paramMap.put("ref_cursor_Image2", null);
 			ps.getImages(paramMap);
 
-			ArrayList<HashMap<String, Object>> image1List = (ArrayList<HashMap<String, Object>>) paramMap
-					.get("ref_cursor_Image1");
-			ArrayList<HashMap<String, Object>> image2List = (ArrayList<HashMap<String, Object>>) paramMap
-					.get("ref_cursor_Image2");
+			ArrayList<HashMap<String, Object>> image1List 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor_Image1");
+			ArrayList<HashMap<String, Object>> image2List 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor_Image2");
 			HashMap<String, Object> mpdimg1 = image1List.get(0);
 			HashMap<String, Object> mpdimg2 = image2List.get(0);
 			pvo.setImage1((String) mpdimg1.get("IMAGE"));
@@ -575,7 +576,7 @@ public class MAdminController {
 			@ModelAttribute("pvo") @Valid MProductVO pvo,
 			BindingResult result) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(pvo.getImage() + " " + pvo.getImage1() + " " + pvo.getImage2());
+		// System.out.println(pvo.getImage() + " " + pvo.getImage1() + " " + pvo.getImage2());
 		mav.setViewName("admin/product/productUpdateForm");
 		if (result.getFieldError("name") != null) {
 			mav.addObject("message", result.getFieldError("name").getDefaultMessage());
@@ -628,7 +629,8 @@ public class MAdminController {
 			 @RequestParam("content_r") String content_r, Model model
 			 ){
 		HttpSession session = request.getSession();
-		HashMap<String, Object> loginAdmin = (HashMap<String, Object>) session.getAttribute("loginAdmin");
+		HashMap<String, Object> loginAdmin 
+			= (HashMap<String, Object>) session.getAttribute("loginAdmin");
 		if (loginAdmin == null) {
 			return "admin/adminLogin";
 		}else if (result.getFieldError("content_r") != null) {
@@ -652,7 +654,8 @@ public class MAdminController {
 		
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		HashMap<String, Object> loginAdmin = (HashMap<String, Object>) session.getAttribute("loginAdmin");
+		HashMap<String, Object> loginAdmin 
+			= (HashMap<String, Object>) session.getAttribute("loginAdmin");
 		if (loginAdmin == null) {
 		mav.setViewName( "admin/adminLogin");
 		return mav;
@@ -669,7 +672,26 @@ public class MAdminController {
 		mav.addObject("aseq", aseq);
 		mav.setViewName("redirect:/adminAskDetail");
 		return mav;
-		
+	}
+	
+	
+	@RequestMapping("adminProductDelete")
+	public ModelAndView adminProductDelete(HttpServletRequest request,
+			@RequestParam("pseq")int pseq) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("redirect:/admin");
+		} else {
+			// mpdimg mpdimg2 mproduct 순서로 해당 pseq 레코드를 삭제해야함
+			
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("pseq", pseq);
+			ps.deleteProduct(paramMap);
+			
+			mav.setViewName("redirect:/adminProductList");
+		}
+		return mav;
 	}
 
 }

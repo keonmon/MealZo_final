@@ -95,4 +95,9 @@ public class MProductService {
 		pdao.updateProduct(paramMap);
 		
 	}
+
+	public void deleteProduct(HashMap<String, Object> paramMap) {
+		pdao.deleteProduct(paramMap);
+		
+	}
 }

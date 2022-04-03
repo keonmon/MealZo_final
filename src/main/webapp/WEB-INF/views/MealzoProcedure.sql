@@ -797,7 +797,7 @@ begin
 open c_cur for
 select * from mreview_view ;
 end;
--------
+----------------------------------------------------------------------------------
 --어드민 리뷰리스트 조회 페이징 추가!
 create or replace procedure adminlistReview_m(
 p_key in varchar2,
@@ -925,3 +925,20 @@ begin
 update ask_reply set content=p_content where aseq=p_aseq;
 commit;
 end;
+
+------------------------------------------------------------------------
+--admin 상품 삭제   deleteProduct_m
+create or replace procedure deleteProduct_m(
+    p_pseq in mproduct.pseq%type  )
+is
+begin
+    
+    delete from mpdimg where pseq = p_pseq;
+    delete from mpdimg2 where pseq = p_pseq;
+    delete from mproduct where pseq = p_pseq;
+    commit;
+end;
+
+
+
+
