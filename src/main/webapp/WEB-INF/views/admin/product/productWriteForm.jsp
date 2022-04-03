@@ -51,6 +51,8 @@
 							$("#image2").val(data.FILENAME2);
 							$("#filename2").append(
 									"<img src='images/"+data.FILENAME2+"' style='max-height:150px;max-width:120px; '/>");
+						
+						}
 					}
 				},
 				
