@@ -22,5 +22,7 @@ public interface IMOrderDao {
   
 	void deleteOrder_detail(HashMap<String, Object> paramMap);
 
+	void updateOrderResult(HashMap<String, Object> paramMap);
+
 	
 }

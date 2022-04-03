@@ -938,7 +938,16 @@ begin
     delete from mproduct where pseq = p_pseq;
     commit;
 end;
-
+------------------------------------------------------------------------
+--admin 주문/배송정보 변경   updateOrderResult_m
+create or replace procedure updateOrderResult_m(
+    p_odseq in morder_detail.odseq%type,
+    p_selectedIndex in morder_detail.odseq%type )
+is
+begin
+    update morder_detail set result=p_selectedIndex where odseq=p_odseq;
+    commit;
+end;
 
 
 

@@ -54,6 +54,13 @@
 			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
 		)  }
 	</delete>
+	
+	<update id="updateOrderResult" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL updateOrderResult_m( 
+			#{odseq},
+			#{selectedIndex}
+		)  }
+	</update>
 
 
 </mapper>

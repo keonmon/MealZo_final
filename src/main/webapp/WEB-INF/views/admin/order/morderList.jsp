@@ -7,13 +7,19 @@
 <h1>주문/배송 관리</h1>
 <form name="frm" method="post" >
 	<table>
-		<tr><td width="642">주문번호<input type="text" name="key" value="${key }">
+		<tr><td width="715">주문번호<input type="text" name="key" value="${key }">
 			<input class="btn" type="button" name="btn_search" value="검색" onclick="go_search('adminOrderList');">
 			<input class="btn" type="button" name="btn_total" value="전체보기" onclick="go_total('adminOrderList');">
+		</td><td>
+		<select name="change_Result" size="1" id="orderListSelect">
+			<option value="1" selected>결제완료</option>
+			<option value="2">배송중</option>
+			<option value="3">배송완료</option>
+			<option value="4">주문취소</option>
+		</select>
+		<input type="button" class="btn" style="width:100px;" value="체크항목 변경" onclick="go_order_save()">
 		</td></tr>
 	</table>
-
-
 <table id="tableContainer" style="text-align:center;" width="85%">
 	<tr><th width="100px">주문번호</th>
 		<th width="65px">주문자</th>
@@ -58,13 +64,6 @@
 </jsp:include>
 
 <br><br>
-	<select name="change_Result" size="1" id="orderListSelect">
-		<option value="1" selected>결제완료</option>
-		<option value="2">배송중</option>
-		<option value="3">배송완료</option>
-		<option value="4">주문취소</option>
-	</select>
-<input type="button" class="btn" style="width:200px;" value="체크항목 변경" onclick="go_order_save()">
 <br><br>
 
 </article>

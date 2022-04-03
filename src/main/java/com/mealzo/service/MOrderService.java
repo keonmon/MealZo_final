@@ -42,4 +42,9 @@ public class MOrderService {
 		odao.deleteOrder_detail( paramMap );
 	}
 
+	public void updateOrderResult(HashMap<String, Object> paramMap) {
+		odao.updateOrderResult( paramMap );
+		
+	}
+
 }

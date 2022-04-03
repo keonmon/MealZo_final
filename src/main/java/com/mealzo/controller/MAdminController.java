@@ -693,5 +693,25 @@ public class MAdminController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping("adminOrderSave")
+	public ModelAndView adminOrderSave(HttpServletRequest request,
+			@RequestParam("selectedIndex")int selectedIndex,
+			@RequestParam("result")String[] odseqArr) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("redirect:/admin");
+		} else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			for(String odseq : odseqArr) {
+				paramMap.put("odseq", Integer.parseInt( odseq ));
+				paramMap.put("selectedIndex", selectedIndex);
+				os.updateOrderResult(paramMap);
+			}
+			mav.setViewName("redirect:/adminOrderList");
+		}
+		return mav;
+	}
 
 }
