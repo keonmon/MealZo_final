@@ -163,9 +163,9 @@ function findCheck(){
    	
    	var selected2 = $("#selected2").val();
 	if(selected2 == "pwd"){
-		if(document.IdForm.userId.value==""){
+		if(document.IdForm.id.value==""){
      	 alert("아이디는 필수 입력사항입니다");
-     	 document.IdForm.userId.focus();
+     	 document.IdForm.id.focus();
      	 return false;
 		}
 	}
@@ -184,9 +184,7 @@ function findCheck(){
 	      return false;
 	    }
 	}
-   
-	 alert("인증번호가 전송되었습니다");
-   	document.IdForm.action = "meal.do";
+   	document.IdForm.action = "findIdStep1";
    	document.IdForm.submit();
 }
 

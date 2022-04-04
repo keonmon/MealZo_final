@@ -728,6 +728,29 @@ BEGIN
     commit;    
 END;
 
+-------------->> 멤버-아이디/비밀번호찾기 <<-------------------
+
+CREATE OR REPLACE PROCEDURE getMemberByemail_m (
+    p_name IN mmember.name%TYPE,
+    p_email IN mmember.email%TYPE,
+    p_cur OUT  SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN p_cur FOR 
+    SELECT * FROM mmember WHERE name=p_name and email=p_email;
+END;
+
+-------------->> 멤버-아이디/비밀번호찾기 <<-------------------
+
+CREATE OR REPLACE PROCEDURE getMemberByphone_m (
+    p_name IN mmember.name%TYPE,
+    p_phone IN mmember.phone%TYPE,
+    p_cur OUT  SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN p_cur FOR 
+    SELECT * FROM mmember WHERE name=p_name and phone=p_phone;
+END;
 
 -------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE  productorderList_m(
@@ -949,6 +972,24 @@ begin
     commit;
 end;
 
+------------------------------------------------------------------------
+--admin 이벤트리스트조회   geteventList_m
+create or replace procedure geteventList_m(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+        select * from ( 
+        select rownum as rn, p.* from 
+        (select * from mevent where title like '%'||p_key||'%' order by enddate desc, startdate desc) p 
+        ) where rn>=p_startNum 
+        and rn<=p_endNum ;
+        
+end;
+select * from mevent;
 
 ---------------------------------------------------------------
 --admin qna list

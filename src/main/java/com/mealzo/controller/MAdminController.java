@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,12 +23,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mealzo.dto.AdminPaging;
 import com.mealzo.dto.MAdminVO;
-
 import com.mealzo.dto.MAskVO;
-
 import com.mealzo.dto.MProductVO;
+
 import com.mealzo.dto.MQnaVO;
+
 import com.mealzo.service.MAdminService;
+import com.mealzo.service.MEventService;
 import com.mealzo.service.MOrderService;
 import com.mealzo.service.MProductService;
 import com.mealzo.service.MQnaService;
@@ -51,9 +51,14 @@ public class MAdminController {
 	@Autowired
 	MQnaService qs;
 
+	@Autowired
+	MEventService es;
+
 
 	@Autowired
 	ServletContext context;
+	
+	
 
 	@RequestMapping("admin")
 	public ModelAndView adminLoginForm(HttpServletRequest request) {
@@ -159,9 +164,10 @@ public class MAdminController {
 			paramMap.put("cnt", 0);
 			as.getAllcountAdmin(paramMap);
 
+			
 			paging.setTotalCount((int) paramMap.get("cnt"));
-			request.setAttribute("paging", paging);
-
+			mav.addObject("paging", paging);
+			
 			paramMap.put("startNum", paging.getStartNum());
 			paramMap.put("endNum", paging.getEndNum());
 			paramMap.put("ref_cursor", null);
@@ -170,9 +176,9 @@ public class MAdminController {
 			ArrayList<HashMap<String, Object>> mproductList 
 				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			System.out.println(mproductList);
-			request.setAttribute("mproductList", mproductList);
-			request.setAttribute("key", key);
-
+			mav.addObject("mproductList", mproductList);
+			mav.addObject("key", key);
+			
 			mav.setViewName("admin/product/productList");
 		}
 		return mav;
@@ -416,7 +422,7 @@ public class MAdminController {
 			}
 			
 			AdminPaging paging = new AdminPaging();
-			paging.setPage(page);;
+			paging.setPage(page);
 			HashMap<String, Object> paramMap = new HashMap<String,Object>();
 			paramMap.put("key", key);
 			paramMap.put("tableName", "ask_view");
@@ -722,17 +728,19 @@ public class MAdminController {
 		return mav;
 	}
 	
+
 	@RequestMapping("adminQnaList")
 	public ModelAndView adminQnaList(HttpServletRequest request,
-			@RequestParam(value = "page", required = false) Integer page,
+  @RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "key", required = false) String key) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		HashMap<String, Object> loginAdmin = (HashMap<String, Object>) session.getAttribute("loginAdmin");
-		if (loginAdmin == null) {
-			mav.setViewName("admin/adminLogin");
-			return mav;
-		} else {
+    HashMap<String, Object> loginAdmin 
+        = (HashMap<String, Object>) session.getAttribute("loginAdmin");
+    if (loginAdmin == null) {
+    mav.setViewName("admin/adminLogin");
+    return mav;
+    } else {
 			if (request.getParameter("sub") != null) {
 				session.removeAttribute("page");
 				session.removeAttribute("key");
@@ -747,7 +755,6 @@ public class MAdminController {
 			} else {
 				page = 1;
 				session.removeAttribute("page");
-
 			}
 			if (request.getParameter("key") != null) {
 				key = request.getParameter("key");
@@ -791,7 +798,81 @@ public class MAdminController {
 
 		}
 			return mav;
+	}      
+      
+      
+
+                                   
+	@RequestMapping("adminEventList")
+	public ModelAndView adminEventList(HttpServletRequest request,
+			@RequestParam(value = "sub", required = false) String sub,
+			@RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "key", required = false) String key) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+    
+
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("redirect:/admin");
+
+		} else {
+			if (request.getParameter("sub") != null) {
+				session.removeAttribute("page");
+				session.removeAttribute("key");
+			}
+			page = 1;
+			key = "";
+			if (request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			} else if (session.getAttribute("page") != null) {
+				page = (Integer) session.getAttribute("page");
+			} else {
+				page = 1;
+				session.removeAttribute("page");
+
+			}
+			if (request.getParameter("key") != null) {
+				key = request.getParameter("key");
+				session.setAttribute("key", key);
+			} else if (session.getAttribute("key") != null) {
+				key = (String) session.getAttribute("key");
+			} else {
+				session.removeAttribute("key");
+				key = "";
+			}
+			AdminPaging paging = new AdminPaging();
+			paging.setPage(page);
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("key", key);
+			paramMap.put("tableName", "mevent");
+			paramMap.put("culumnName", "title");
+			paramMap.put("cnt", 0);
+			as.getAllcountAdmin(paramMap);
+
+			System.out.println("cnt: " + paramMap.get("cnt"));
+			
+			paging.setTotalCount((int) paramMap.get("cnt"));
+			mav.addObject("paging", paging);
+			
+			paramMap.put("startNum",paging.getStartNum());
+			paramMap.put("endNum",paging.getEndNum());
+			paramMap.put("ref_cursor", null);
+			es.geteventList(paramMap);
+			
+			ArrayList<HashMap<String, Object>> eventList 
+				= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+			mav.addObject("eventListVO", eventList);
+			mav.addObject("key", key);
+			System.out.println(eventList);
+			
+			mav.setViewName("admin/customerCenter/adminEventList");
+		}
+		return mav;
 	}
+
+
+
 	
 	// VO에 담아서 소문자로 뿌려지도록 한다.
   @RequestMapping("adminQnaDetail")
