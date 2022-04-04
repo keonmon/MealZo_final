@@ -333,8 +333,114 @@ public class MMemberController {
 
 	}
 	
+	@RequestMapping(value = "/findIdForm", method=RequestMethod.GET)
+	public String findIdForm() {
+	return "member/findIdForm";
+	}
 	
 	
+	@RequestMapping(value = "/findIdStep1", method=RequestMethod.POST)
+	public ModelAndView findIdStep1( 
+			@ModelAttribute("dto") @Valid MMemberVO membervo,
+			BindingResult result, 
+			@RequestParam("selected2") String selected2,
+			HttpServletRequest request,
+			Model model ) {
+		ModelAndView mav = new ModelAndView(); 
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		mav.setViewName("member/findIdForm");
+		
+		if(membervo.getEmail() != null && !"".equals(membervo.getEmail())) {
+			//mmemberVO mvo = mdao.getMemberByemail(name, email);
+			paramMap.put("email", membervo.getEmail());
+			paramMap.put("name", membervo.getName());
+			paramMap.put("ref_cursor", null);
+			
+			ms.getMemberByemail(paramMap);
+			
+			ArrayList< HashMap<String, Object> >list 
+			= (ArrayList< HashMap<String, Object>>)paramMap.get("ref_cursor");
+		
+			if( list.size() == 0 ) {
+				model.addAttribute("msg", "해당회원이 없습니다");
+				//mav.setViewName("member/findIdForm");
+			} else {
+				HashMap<String , Object > mvo = list.get(0);
+				String id = (String)mvo.get("ID");
+				String pwd = (String)mvo.get("PWD");
+				
+				model.addAttribute("id", id);
+				model.addAttribute("pwd", pwd);
+				model.addAttribute("email", membervo.getEmail());
+				mav.setViewName("member/findIdconfirmNumber");		
+				
+				System.out.println(id);
+				System.out.println(pwd);
+				
+			}	
+		}else if(membervo.getPhone() != null && !"".equals(membervo.getPhone())){
+			//mmemberVO mvo = mdao.getMemberByphone(name, phone);
+			paramMap.put("phone", membervo.getPhone());
+			paramMap.put("name", membervo.getName());
+			paramMap.put("ref_cursor", null);
+			
+			ms.getMemberByphone(paramMap);
+			
+			ArrayList< HashMap<String, Object> > list 
+			= (ArrayList< HashMap<String, Object>>)paramMap.get("ref_cursor");
+			
+			if( list.size() == 0 ) {
+				model.addAttribute("msg", "해당회원이 없습니다");
+				//mav.setViewName("member/findIdForm");
+			} else {
+				HashMap<String , Object > mvo = list.get(0);
+				String id = (String)mvo.get("ID");
+				String pwd = (String)mvo.get("PWD");
+				
+				model.addAttribute("id", id);
+				model.addAttribute("pwd", pwd);
+				model.addAttribute("phone", membervo.getPhone());
+				mav.setViewName("member/findIdconfirmNumber");
+			}	
+		}
+		model.addAttribute("name", membervo.getName());
+		model.addAttribute("selected2", selected2);
+		return mav;
+	}
 	
+	
+	@RequestMapping(value = "/findIdStep2", method=RequestMethod.POST)
+	public ModelAndView findIdStep2( 
+			@ModelAttribute("dto") @Valid MMemberVO membervo,
+			BindingResult result, 
+			@RequestParam("confirmNum") String confirmNum,
+			@RequestParam("selected2") String selected2,
+			HttpServletRequest request,
+			Model model ) {
+		
+		
+		ModelAndView mav = new ModelAndView(); 
+		model.addAttribute("selected2", selected2);
+		model.addAttribute("name", membervo.getName());
+		model.addAttribute("pwd", membervo.getPwd());
+		model.addAttribute("email", membervo.getEmail());
+		model.addAttribute("phone", membervo.getPhone());
+		model.addAttribute("id", membervo.getId());
+		
+		System.out.println(membervo.getName());
+		System.out.println(membervo.getPwd());
+		System.out.println(membervo.getEmail());
+		System.out.println(membervo.getPhone());
+		System.out.println(membervo.getId());
+		
+		if(!confirmNum.equals("0000")) {
+			model.addAttribute("msg", "인증번호가 맞지  않습니다");	
+			mav.setViewName("member/findIdconfirmNumber");	
+		}else {
+			mav.setViewName("member/viewId");
+		}
+		
+		return mav;
+	}
 
 }

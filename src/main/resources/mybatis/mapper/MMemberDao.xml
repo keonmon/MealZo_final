@@ -37,5 +37,19 @@
 		) }
 	</insert>
 	
+	<select id="getMemberByemail" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL getMemberByemail_m( 
+			#{name}, #{email}, 
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
+		)  }
+	</select>
+	
+	<select id="getMemberByphone" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL getMemberByphone_m( 
+			#{name}, #{phone}, 
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
+		)  }
+	</select>
+	
 </mapper>
 

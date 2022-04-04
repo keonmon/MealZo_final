@@ -707,7 +707,31 @@ BEGIN
     commit;    
 END;
 
+-------------->> 멤버-아이디/비밀번호찾기 <<-------------------
 
+CREATE OR REPLACE PROCEDURE getMemberByemail_m (
+    p_name IN mmember.name%TYPE,
+    p_email IN mmember.email%TYPE,
+    p_cur OUT  SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN p_cur FOR 
+    SELECT * FROM mmember WHERE name=p_name and email=p_email;
+END;
+
+-------------->> 멤버-아이디/비밀번호찾기 <<-------------------
+
+CREATE OR REPLACE PROCEDURE getMemberByphone_m (
+    p_name IN mmember.name%TYPE,
+    p_phone IN mmember.phone%TYPE,
+    p_cur OUT  SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN p_cur FOR 
+    SELECT * FROM mmember WHERE name=p_name and phone=p_phone;
+END;
+
+select * from mmember
 
 
 
