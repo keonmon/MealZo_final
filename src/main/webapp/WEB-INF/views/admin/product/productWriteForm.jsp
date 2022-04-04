@@ -111,6 +111,7 @@
 		<input type="button" class="btn" value="목록으로" onclick="go_Mov()">
 	</div>
 	</form>
+	
 	<div style="position:absolute; top:486px;">
 	<form name="frm2" id="fileupForm" method="post" enctype="multipart/form-data" >
 		<table id="tableContainer" width="100%">
