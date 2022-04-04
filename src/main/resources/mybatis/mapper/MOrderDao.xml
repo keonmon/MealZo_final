@@ -43,14 +43,14 @@
 	
 	<delete id="deleteOrders" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{  CALL deleteOrders_m( 
-			#{oseq},
+			#{oseq, jdbcType=VARCHAR},
 			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
 		)  }
 	</delete>
 	
 	<delete id="deleteOrder_detail" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{  CALL deleteOrder_detail_m( 
-			#{oseq},
+			#{oseq, jdbcType=VARCHAR},
 			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
 		)  }
 	</delete>
