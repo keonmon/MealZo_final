@@ -865,7 +865,7 @@ create or replace procedure updateProduct_m(
     p_image2 in mproduct.image%type )
 is
 begin
-    update mproduct set name=p_name, kind=p_kind, bestyn=p_useyn, useyn=p_bestyn, content=p_content, price1=p_price1, price2=p_price2, image=p_image
+    update mproduct set name=p_name, kind=p_kind, bestyn=p_bestyn, useyn=p_useyn, content=p_content, price1=p_price1, price2=p_price2, image=p_image
         where pseq = p_pseq;
 
     -- 상세이미지 추가
@@ -1029,4 +1029,22 @@ p_reply in mqna.reply%type
 is
 begin
 update mqna set reply=p_reply, rep=2 where qseq=p_qseq ;
+end;
+
+-----------------------------------------------------------------------------
+--admin 공지리스트 조회 getNoticeList_m
+create or replace procedure getNoticeList_m(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+        select * from (
+        select * from (
+        select rownum as rn, p.* from 
+        ((select * from notice where subject like '%'||p_key||'%') p) 
+        ) where rn>=p_startNum
+        ) where rn<=p_endNum;
 end;
