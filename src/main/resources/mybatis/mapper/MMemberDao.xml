@@ -33,7 +33,7 @@
 	
 	<insert id="updateUseyn" statementType="CALLABLE" parameterType="java.util.HashMap" >
 		{ CALL updateUseyn_m( 
-		#{ID}
+		#{id}
 		) }
 	</insert>
 	

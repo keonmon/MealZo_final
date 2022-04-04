@@ -991,6 +991,17 @@ begin
 end;
 select * from mevent;
 
+
+-------------->> 카트-회원탈퇴 <<-------------------
+
+CREATE OR REPLACE PROCEDURE deleteCart_m2(
+     p_id IN mcart.id%TYPE   )
+IS
+BEGIN
+    delete from mcart where id=p_id;
+    commit;    
+END;
+
 ---------------------------------------------------------------
 --admin qna list
 create or replace procedure adminlistQna_m(

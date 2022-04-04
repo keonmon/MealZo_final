@@ -24,4 +24,7 @@ public class MCartService {
 	public void deleteCart(HashMap<String, Object> paramMap) {
 		cdao.deleteCart( paramMap );
 	}
+	public void deleteCart2(HashMap<String, Object> paramMap) {
+		cdao.deleteCart2( paramMap );
+	}
 }

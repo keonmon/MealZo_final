@@ -19,7 +19,15 @@
 	</select>
 	
 	<delete id="deleteCart" statementType="CALLABLE" parameterType="java.util.HashMap" >
-		{ CALL deleteCart_m(  #{cseq}	) }
+		{ CALL deleteCart_m(  
+		#{cseq}	
+		)}
+	</delete>
+	
+	<delete id="deleteCart2" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{ CALL deleteCart_m2(  
+		#{id}	
+		)}
 	</delete>
 </mapper>
 

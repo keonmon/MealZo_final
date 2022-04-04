@@ -66,6 +66,7 @@ public class MMemberController {
 			return "member/login";
 		}
 		
+		
 		HashMap<String, Object> mvo = list.get(0);
 		
 		if( mvo.get("PWD") == null ) {
@@ -74,7 +75,7 @@ public class MMemberController {
 		}else if( !mvo.get("PWD").equals(membervo.getPwd())) {
 			model.addAttribute("message", "밀조) 비밀번호가 맞지않습니다");
 			return "member/login";
-		}else if( mvo.get("USEYN").equals("n")) {
+		}else if( mvo.get("USEYN").equals("x")) {
 			model.addAttribute("message", "밀조) 탈퇴하거나 휴먼중인 계정입니다. 밀조왕에게 문의하세요");
 			return "member/login";
 		}else if( mvo.get("PWD").equals(membervo.getPwd())) {
@@ -288,27 +289,32 @@ public class MMemberController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/withDrawal", method=RequestMethod.GET)
-	public String withDrawal( @ModelAttribute("dto") HttpServletRequest request,
-			Model model, BindingResult result ) {
+	@RequestMapping(value = "/withDrawal")
+	public ModelAndView withDrawal( 
+			@ModelAttribute("dto") @Valid MMemberVO membervo,
+			BindingResult result, 
+			HttpServletRequest request,
+			Model model ) {
+		ModelAndView mav = new ModelAndView(); 
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		mav.setViewName("member/completeWithdrawal");
 		
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser 
 		= (HashMap<String, Object>)session.getAttribute("loginUser");
 		
-		HashMap<String, Object> paramMap = new HashMap<String, Object>();
-		
 		if( loginUser == null ) {
-			return "admin/adminLogin";
+			mav.setViewName("member/login");
 		} else {
-			paramMap.put("id", loginUser.get("id"));
+			//System.out.println((String)loginUser.get("ID"));
+			paramMap.put("id", (String)loginUser.get("ID"));
 			paramMap.put("ref_cursor", null);
 			
 			//mdao.updateUseyn( mvo.getId() );
 			ms.updateUseyn( paramMap );
 			
 			//cdao.deleteCart( mvo.getId() );
-			cs.deleteCart( paramMap );
+			cs.deleteCart2( paramMap );
 			
 			//ArrayList<Integer> oseqList	= odao.selectOseqOrderAll( mvo.getId() );
 			os.selectOseqOrderAll( paramMap );
@@ -328,9 +334,8 @@ public class MMemberController {
 				System.out.println(oseq);
 			}			
 			session.removeAttribute("loginUser");
-		}	
-		return "member/completeWithdrawal";
-
+		}
+		return mav;
 	}
 	
 	@RequestMapping(value = "/findIdForm", method=RequestMethod.GET)
@@ -374,8 +379,8 @@ public class MMemberController {
 				model.addAttribute("email", membervo.getEmail());
 				mav.setViewName("member/findIdconfirmNumber");		
 				
-				System.out.println(id);
-				System.out.println(pwd);
+				//System.out.println(id);
+				//System.out.println(pwd);
 				
 			}	
 		}else if(membervo.getPhone() != null && !"".equals(membervo.getPhone())){
@@ -427,11 +432,11 @@ public class MMemberController {
 		model.addAttribute("phone", membervo.getPhone());
 		model.addAttribute("id", membervo.getId());
 		
-		System.out.println(membervo.getName());
-		System.out.println(membervo.getPwd());
-		System.out.println(membervo.getEmail());
-		System.out.println(membervo.getPhone());
-		System.out.println(membervo.getId());
+		//System.out.println(membervo.getName());
+		//System.out.println(membervo.getPwd());
+		//System.out.println(membervo.getEmail());
+		//System.out.println(membervo.getPhone());
+		//System.out.println(membervo.getId());
 		
 		if(!confirmNum.equals("0000")) {
 			model.addAttribute("msg", "인증번호가 맞지  않습니다");	

@@ -15,6 +15,7 @@
 		<br>
 		<li><h3><a href="updateForm">나의 정보</a></h3></li>
 		<li id=menu><a href="updateForm">회원정보 수정</a></li>
-		<li id=menu><a href="withDrawal">회원 탈퇴</a></li>
+		<li id=menu><a href="withDrawal" 
+		onclick="return confirm('<확인>을 누를시 일정기간 후 사용기록이 모두 삭제됩니다, 정말 회원탈퇴 하시겠습니까?')">회원 탈퇴</a></li>
 	</ul>
 </nav>
