@@ -890,7 +890,7 @@ begin
 open c_cur for
 select * from (
 select *from (
-select rownum rn, p.* from (select * from ask_view where pname || content_a like '%'||key||'%' order by  indate_a,arseq desc) p
+select rownum rn, p.* from (select * from ask_view where pname || content_a like '%'||key||'%' order by  arseq desc) p
 ) where rn>=startNum
 ) where rn<=endNum ;
 end;
@@ -987,7 +987,7 @@ begin
         (select * from mevent where title like '%'||p_key||'%' order by enddate desc, startdate desc) p 
         ) where rn>=p_startNum 
         and rn<=p_endNum ;
-
+        
 end;
 select * from mevent;
 
@@ -1002,3 +1002,31 @@ BEGIN
     commit;    
 END;
 
+---------------------------------------------------------------
+--admin qna list
+create or replace procedure adminlistQna_m(
+p_startNum number,
+p_endNum number,
+key VARCHAR2,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from (
+select * from (
+select rownum rn, p.* from (select * from mqna where subject || id like '%'||key||'%' order by rep desc ) p
+) where rn >= p_startNum
+)where rn<= p_endNum;
+
+end;
+------------------------------------------------------------------
+--damin qna 닶글
+create or replace procedure admininsertQna_m(
+p_qseq in mqna.qseq%type,
+p_reply in mqna.reply%type
+)
+is
+begin
+update mqna set reply=p_reply, rep=2 where qseq=p_qseq ;
+end;

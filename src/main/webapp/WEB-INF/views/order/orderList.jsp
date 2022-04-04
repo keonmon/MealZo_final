@@ -11,7 +11,7 @@
 		<td>${morderVO.OSEQ}</td>
 		
 		<td>
-			<a href="orderListDetail?oseq=${morderVO.OSEQ}">
+			<a href="orderDetail?oseq=${morderVO.OSEQ}">
 			${morderVO.PNAME}</a></td>
 			<td> ${morderVO.QUANTITY}</td>
        		<td><fmt:formatNumber value="${morderVO.PRICE2*morderVO.QUANTITY}" type="currency"/></td>      

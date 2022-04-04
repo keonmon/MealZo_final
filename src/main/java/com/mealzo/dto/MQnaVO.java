@@ -23,6 +23,7 @@ public class MQnaVO {
 	@NotBlank(message="빈칸으로 하면 속을줄 알았냐 ? 내용 입력해 !!!!!!!!!!!!!")
 	private String content;
 	
+	@NotBlank(message="빈칸으로 하면 속을줄 알았냐 ? 내용 입력해 !!!!!!!!!!!!!")
 	private String reply;
 	private String id;
 	private String rep;

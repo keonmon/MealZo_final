@@ -94,6 +94,37 @@ public class MOrderController {
 		return mav;
 	}
 	
+	
+	@RequestMapping(value="/orderDetail")  
+	public ModelAndView orderDetai( HttpServletRequest request, Model model,
+			@RequestParam("oseq") int oseq ) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser 
+			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		if( loginUser == null ) {
+			mav.setViewName("member/login");
+		}else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("oseq", oseq);
+			paramMap.put("ref_cursor", null);
+			os.listOrderByOseq(paramMap);
+			
+			ArrayList<HashMap<String, Object>> orderListByOseq 
+				= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+			
+			int totalPrice = 0;
+			for( HashMap<String, Object> order : orderListByOseq ) 
+				totalPrice += Integer.parseInt( order.get("QUANTITY").toString() )
+									* Integer.parseInt( order.get("PRICE2").toString() ); 
+			mav.addObject("totalPrice", totalPrice);
+			mav.addObject("orderList", orderListByOseq);
+			mav.addObject("orderDetail", orderListByOseq.get(0));
+			mav.setViewName("order/orderDetail");
+		}
+		return mav;
+	}
+	
 }
 
 
