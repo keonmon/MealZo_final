@@ -25,41 +25,41 @@
 		<th width="130px">게시일</th>
 		<th width="130px">진행</th>
 	<c:forEach items="${eventListVO }" var="eventList">
-	<fmt:formatDate value="${eventList.startdate}" pattern="yyyy-MM-dd HH:mm:ss" var="start" />
-	<fmt:formatDate value="${eventList.enddate}" pattern="yyyy-MM-dd HH:mm:ss" var="end" />
+	<fmt:formatDate value="${eventList.STARTDATE}" pattern="yyyy-MM-dd HH:mm:ss" var="start" />
+	<fmt:formatDate value="${eventList.ENDDATE}" pattern="yyyy-MM-dd HH:mm:ss" var="end" />
 		<tr>
 			<td>
-			<a href="meal.do?command=adminEventDetail&eseq=${eventList.eseq }" style="text-decoration:none;">
+			<a href="meal.do?command=adminEventDetail&eseq=${eventList.ESEQ }" style="text-decoration:none;">
 				<c:choose>
 					<c:when test="${end < now }">
-						<span style="font-weight:bold; color:red">${eventList.eseq }</span>
+						<span style="font-weight:bold; color:red">${eventList.ESEQ }</span>
 					</c:when>
 					<c:when test="${start < now && end > now }">
-					 	<span style="font-weight:bold; color:black">${eventList.eseq }</span>
+					 	<span style="font-weight:bold; color:black">${eventList.ESEQ }</span>
 					 </c:when>
 					<c:otherwise>
-						<span style="font-weight:bold; color:blue">${eventList.eseq }</span>
+						<span style="font-weight:bold; color:blue">${eventList.ESEQ }</span>
 					</c:otherwise>
 				</c:choose>
 			</a>
 			</td>
 			<td style="text-align:left">
-				<a href="meal.do?command=adminEventDetail&eseq=${eventList.eseq }" style="text-decoration:none;">
-					${eventList.title }
+				<a href="meal.do?command=adminEventDetail&eseq=${eventList.ESEQ }" style="text-decoration:none;">
+					${eventList.TITLE }
 				</a>
 			</td>
 			<td>
-			<a href="meal.do?command=adminEventDetail&eseq=${eventList.eseq }" style="text-decoration:none;">
-				<fmt:formatDate value="${eventList.startdate}" type="date"/> ~ <fmt:formatDate value="${eventList.enddate}" type="date"/>
+			<a href="meal.do?command=adminEventDetail&eseq=${eventList.ESEQ }" style="text-decoration:none;">
+				<fmt:formatDate value="${eventList.STARTDATE}" type="date"/> ~ <fmt:formatDate value="${eventList.ENDDATE}" type="date"/>
 			</a>
 			</td>
 			<td>
 			<a href="meal.do?command=adminEventDetail&eseq=${eventList.eseq }" style="text-decoration:none;">
-				<fmt:formatDate value="${eventList.writedate }" type="date"/>
+				<fmt:formatDate value="${eventList.WRITEDATE }" type="date"/>
 			</a>
 			</td>
 			<td>
-			<a href="meal.do?command=adminEventDetail&eseq=${eventList.eseq }" style="text-decoration:none;">
+			<a href="meal.do?command=adminEventDetail&eseq=${eventList.ESEQ }" style="text-decoration:none;">
 				<c:choose>
 					<c:when test="${end < now }">
 						<span style="font-weight:bold; color:red">종료된 이벤트</span>
@@ -80,7 +80,7 @@
 
 <div class="clear"></div>
 <jsp:include page="../paging/paging.jsp">
-	<jsp:param name="command" value="meal.do?command=adminEventList" />	
+	<jsp:param name="command" value="adminEventList" />	
 </jsp:include>
 
 </article>

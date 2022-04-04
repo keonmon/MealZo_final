@@ -609,7 +609,7 @@ is
 begin
     v_sql := 'select count(*) 
         from '||p_tableName||' 
-        where '||p_culumnName||' like ''%'|| p_key ||'%'' order by indate desc';
+        where '||p_culumnName||' like ''%'|| p_key ||'%'' order by rownum desc';
     --DBMS_OUTPUT.PUT_LINE(v_sql);
     EXECUTE IMMEDIATE v_sql into v_cnt;
     --DBMS_OUTPUT.PUT_LINE(v_cnt);   
@@ -948,6 +948,25 @@ begin
     update morder_detail set result=p_selectedIndex where odseq=p_odseq;
     commit;
 end;
+
+------------------------------------------------------------------------
+--admin 이벤트리스트조회   geteventList_m
+create or replace procedure geteventList_m(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+        select * from ( 
+        select rownum as rn, p.* from 
+        (select * from mevent where title like '%'||p_key||'%' order by enddate desc, startdate desc) p 
+        ) where rn>=p_startNum 
+        and rn<=p_endNum ;
+
+end;
+select * from mevent;
 
 
 
