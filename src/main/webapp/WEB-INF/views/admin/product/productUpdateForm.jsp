@@ -89,7 +89,7 @@
             			<input type="checkbox" name="bestyn" value="y" checked="checked">
             		</c:when>
             		<c:otherwise>
-            			<input type="checkbox" name="bestyn" value="n" >
+            			<input type="checkbox" name="bestyn" value="y" >
             		</c:otherwise>
             	</c:choose>
             </td>
@@ -100,7 +100,7 @@
             			<input type="checkbox" name="useyn" value="y" checked="checked">
             		</c:when>
             		<c:otherwise>
-            			<input type="checkbox" name="useyn" value="n" >
+            			<input type="checkbox" name="useyn" value="y" >
             		</c:otherwise>
             	</c:choose>
             </td>
