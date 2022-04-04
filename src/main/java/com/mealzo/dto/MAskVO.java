@@ -22,6 +22,7 @@ public class MAskVO {
 	private int pseq;
 	private Timestamp indate_a;
 	private int arseq;
+	
 	@NotNull(message="제목을 입력하세요")
 	@NotEmpty(message="제목을 입력하세요")
 	@NotBlank(message="댓글입력해쥬세여 !!!!!!!!!!!!!")

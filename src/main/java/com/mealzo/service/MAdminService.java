@@ -57,6 +57,15 @@ public class MAdminService {
 		
 	}
 
+	public void adminlistQna(HashMap<String, Object> paramMap) {
+	adao.adminlistQna(paramMap);
+		
+	}
+
+	public void admininsertQna(HashMap<String, Object> paramMap) {
+     adao.admininsertQna(paramMap);
+	}
+
 
 
 }
