@@ -26,6 +26,10 @@ public interface IMAdminDao {
 
 	void adminAskUpdate(HashMap<String, Object> paramMap);
 
+	void adminlistQna(HashMap<String, Object> paramMap);
+
+	void admininsertQna(HashMap<String, Object> paramMap);
+
 
 
 

@@ -11,6 +11,11 @@ function go_askview(aseq) {
 
 
 function go_askrep(){
+if(document.form5.content_r.value==""){
+alert("내용을 입력해주세요");
+document.form5.content_r.focus();
+return false;
+}
 if(confirm('등록하시겠습니까?')){
    document.form5.action="adminAskRepSave";
    document.form5.submit();
@@ -295,10 +300,16 @@ function go_view(qseq) {
 }
 
 function go_rep(qseq){
+if(document.form4.reply.value==""){
+alert("내용을 입력해주세요");
+document.form4.reply.focus();
+return false;
+}
+if(confirm('등록하시겠습니까?')){	
 document.form4.action="adminQnaRepSave";
    document.form4.submit();
    }
-   
+   }
 
 function go_Update(pseq){
 	var url = 'adminProductUpdateForm?pseq='+ pseq;
@@ -331,6 +342,11 @@ document.form4.action="adminQnaUpdate";
 
 
 function go_askupdate(){
+if(document.form5.content_r.value==""){
+alert("내용을 입력해주세요");
+document.form5.content_r.focus();
+return false;
+}
 	if(confirm('수정하시겠습니까?')){
 	document.form5.action="adminAskUpdate";
 	   document.form5.submit();

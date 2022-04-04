@@ -609,7 +609,7 @@ is
 begin
     v_sql := 'select count(*) 
         from '||p_tableName||' 
-        where '||p_culumnName||' like ''%'|| p_key ||'%'' order by indate desc';
+        where '||p_culumnName||' like ''%'|| p_key ||'%'' order by rownum desc';
     --DBMS_OUTPUT.PUT_LINE(v_sql);
     EXECUTE IMMEDIATE v_sql into v_cnt;
     --DBMS_OUTPUT.PUT_LINE(v_cnt);   
@@ -867,7 +867,7 @@ begin
 open c_cur for
 select * from (
 select *from (
-select rownum rn, p.* from (select * from ask_view where pname || content_a like '%'||key||'%' order by  indate_a,arseq desc) p
+select rownum rn, p.* from (select * from ask_view where pname || content_a like '%'||key||'%' order by  arseq desc) p
 ) where rn>=startNum
 ) where rn<=endNum ;
 end;
@@ -950,4 +950,31 @@ begin
 end;
 
 
+---------------------------------------------------------------
+--admin qna list
+create or replace procedure adminlistQna_m(
+p_startNum number,
+p_endNum number,
+key VARCHAR2,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from (
+select * from (
+select rownum rn, p.* from (select * from mqna where subject || id like '%'||key||'%' order by rep desc ) p
+) where rn >= p_startNum
+)where rn<= p_endNum;
 
+end;
+------------------------------------------------------------------
+--damin qna 닶글
+create or replace procedure admininsertQna_m(
+p_qseq in mqna.qseq%type,
+p_reply in mqna.reply%type
+)
+is
+begin
+update mqna set reply=p_reply, rep=2 where qseq=p_qseq ;
+end;

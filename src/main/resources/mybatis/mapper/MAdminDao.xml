@@ -75,4 +75,19 @@
 	#{content_r})}
 	</update>
 	
+	<select id="adminlistQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL adminlistQna_m(
+   #{startNum},
+    #{endNum},
+    #{key},
+	#{ref_cursor_qna, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+	)}
+	</select>
+	
+	<insert id="admininsertQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL admininsertQna_m(
+	#{qseq},
+	#{reply}
+	)}
+	</insert>
 </mapper>
