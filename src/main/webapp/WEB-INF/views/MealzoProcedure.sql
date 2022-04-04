@@ -964,9 +964,31 @@ begin
         (select * from mevent where title like '%'||p_key||'%' order by enddate desc, startdate desc) p 
         ) where rn>=p_startNum 
         and rn<=p_endNum ;
-
 end;
-select * from mevent;
+
+-----------------------------------------------------------------------------
+--admin 공지리스트 조회 getNoticeList_m
+create or replace procedure getNoticeList_m(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+        select * from (
+        select * from (
+        select rownum as rn, p.* from 
+        ((select * from notice where subject like '%'||p_key||'%') p) 
+        ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+end;
+
+
+
+
+
+
 
 
 
