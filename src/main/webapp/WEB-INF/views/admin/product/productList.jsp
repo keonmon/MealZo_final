@@ -15,7 +15,7 @@
 	</table>
 </form>
 
-<form>
+<form name="frm">
 <table id="tableContainer" style="text-align:center;" width="85%">
 	<tr><th width="50px">번호</th>
 		<th width="200px">상품명</th>
@@ -30,10 +30,30 @@
 		<td><fmt:formatNumber value="${mproductVO.PRICE1 }"/>원</td>
 		<td><fmt:formatNumber value="${mproductVO.PRICE2 }"/>원</td>
 		<td><fmt:formatDate value="${mproductVO.INDATE }"/></td>
-		<td><c:choose>
+		<td>
+			<%-- <c:choose>
 			<c:when test='${mproductVO.USEYN == "y" }'>공개</c:when>
 			<c:otherwise>비공개</c:otherwise>
-			</c:choose></td>
+			</c:choose> --%>
+			<c:choose>
+					<c:when test='${mproductVO.USEYN == "y" }'>
+						공개
+					</c:when>
+					<c:otherwise>
+						<del>비공개</del>
+					</c:otherwise>
+				</c:choose>
+			</td>
+			<td>
+				<c:choose>
+					<c:when test='${mproductVO.USEYN == "y" }'>
+						<input type="checkbox" name="useyn" value="${mproductVO.NAME}" >
+					</c:when>
+					<c:otherwise>
+						<input type="checkbox" name="useyn" value="${mproductVO.NAME}" >
+					</c:otherwise>
+				</c:choose>
+		</td>
 	</tr>
 	</c:forEach>
 </table>
@@ -43,6 +63,14 @@
 <jsp:include page="../paging/paging.jsp">
 	<jsp:param name="command" value="adminProductList" />	
 </jsp:include>
+
+<br><br>
+	<select name="change_Useyn" size="1" id="productSelect">
+		<option value="y" selected>공개</option>
+		<option value="n">비공개</option>
+	</select>
+	<input type="button" class="btn" style="width:200px;" value="체크항목 변경" onclick="go_product_save()">
+<br><br>
 
 </article>
 

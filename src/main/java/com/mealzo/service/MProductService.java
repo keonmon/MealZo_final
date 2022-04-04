@@ -100,4 +100,8 @@ public class MProductService {
 		pdao.deleteProduct(paramMap);
 		
 	}
+
+	public void updateProductResult(HashMap<String, Object> paramMap) {
+		pdao.updateProductResult(paramMap);
+	}
 }

@@ -1,6 +1,6 @@
 package com.mealzo.controller;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -979,7 +979,7 @@ public class MAdminController {
           paramMap.put("cnt", 0);
           as.getAllcountAdmin(paramMap);
 
-          System.out.println("cnt: " + paramMap.get("cnt"));    // <<< 게시물 개수 카운트된 수 확인
+          //System.out.println("cnt: " + paramMap.get("cnt"));    // <<< 게시물 개수 카운트된 수 확인
           
           paging.setTotalCount((int) paramMap.get("cnt"));
           mav.addObject("paging", paging);
@@ -994,7 +994,7 @@ public class MAdminController {
           mav.addObject("noticeList", noticeList);
           mav.addObject("key", key);
           
-          System.out.println(noticeList);            // <<< 조회된 게시물리스트
+          //System.out.println(noticeList);            // <<< 조회된 게시물리스트
           
           mav.setViewName("admin/customerCenter/adminNoticeList");
       }
@@ -1011,6 +1011,36 @@ public class MAdminController {
 
           
           mav.setViewName("admin/customerCenter/adminNoticeInsert");
+      }
+      return mav;
+  }
+  
+  
+  @RequestMapping("adminProductSave")
+  public ModelAndView adminProductSave(HttpServletRequest request
+		  /*,@RequestParam("name") String name */
+		  /*,@RequestParam("selectedIndex") String selectedIndex*/) {
+      ModelAndView mav = new ModelAndView();
+      HttpSession session = request.getSession();
+      mav.setViewName("admin/product/productList");
+      
+      if (session.getAttribute("loginAdmin") == null) {
+          mav.setViewName("redirect:/admin");
+      } else {
+    	  String selectedIndex = request.getParameter("selectedIndex");
+    	  String[] nameArr = request.getParameterValues("useyn");
+    	  
+    	  HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			for(String name : nameArr) {
+				//mdao.updateMemberResult(name, selectedIndex);
+				paramMap.put("name", name);
+				paramMap.put("selectedIndex", selectedIndex);
+				ps.updateProductResult(paramMap);
+				
+				 System.out.println("selectedIndex");
+		    	 System.out.println("useyn");
+			
+			}
       }
       return mav;
   }
