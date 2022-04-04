@@ -21,5 +21,42 @@ public class MAdminService {
 		adao.getAllcountAdmin(paramMap);
 	}
 
+	public void adminlistReview(HashMap<String, Object> paramMap) {
+	adao.adminlistReview(paramMap);
+		
+		
+	}
+
+	public void deleteReview(HashMap<String, Object> paramMap) {
+	  adao.deletReview(paramMap);
+	  
+	}
+
+	public void adminlistAsk(HashMap<String, Object> paramMap) {
+	adao.adminlistAsk(paramMap);
+		
+	}
+
+	public void getAllcountAdminAsk(HashMap<String, Object> paramMap) {
+		adao.getAllcountAdminAsk(paramMap);
+		
+	}
+
+	public void getAdminAsk(HashMap<String, Object> paramMap) {
+		adao.getAdminAsk(paramMap);
+		
+	}
+
+	public void adminAskReply(HashMap<String, Object> paramMap) {
+	 adao.adminAskReply(paramMap);
+		
+	}
+
+	public void adminAskUpdate(HashMap<String, Object> paramMap) {
+		adao.adminAskUpdate(paramMap);
+		
+	}
+
+
 
 }

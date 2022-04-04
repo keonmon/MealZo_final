@@ -13,6 +13,11 @@ public class MOrderService {
 	@Autowired
 	IMOrderDao odao;
 
+
+	public void listOrder(HashMap<String, Object> paramMap) {
+		odao.listOrder(paramMap);
+	}
+
 	public void insertOrder(HashMap<String, Object> paramMap) {
 		odao.insertOrder( paramMap );
 	}
@@ -35,6 +40,11 @@ public class MOrderService {
 
 	public void deleteOrder_detail(HashMap<String, Object> paramMap) {
 		odao.deleteOrder_detail( paramMap );
+	}
+
+	public void updateOrderResult(HashMap<String, Object> paramMap) {
+		odao.updateOrderResult( paramMap );
+		
 	}
 
 }

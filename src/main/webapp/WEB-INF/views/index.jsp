@@ -48,7 +48,7 @@
 								</a>
 							</div>
 							<div id="product_cont1">
-								<a id="name" href="productDetail?pseq=${mproductVO.PSEQ}">닭고기${mproductVO.NAME }</a><br>
+								<a id="name" href="productDetail?pseq=${mproductVO.PSEQ}">${mproductVO.NAME }</a><br>
 								<a id="price"> <fmt:formatNumber value="${mproductVO.PRICE2}" pattern="###,###,###"/>원</a> <br>
 								${mproductVO.CONTENT}
 							</div>

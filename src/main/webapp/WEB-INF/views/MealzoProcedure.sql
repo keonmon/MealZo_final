@@ -10,12 +10,12 @@ begin
     open p_cur1 for 
         select * from 
 	           ( select rownum, pseq, name, price2, image, content 
-	            from mproduct where useyn='y' order by indate desc) 
+	            from mproduct where useyn='y' and useyn='y' order by indate desc) 
 	            where rownum <= 6;
     open p_cur2 for 
         select * from 
 				(select rownum, pseq, name, price2, image, content
-				from mproduct where bestyn='y' order by indate desc )
+				from mproduct where bestyn='y' and useyn='y' order by indate desc )
 				where rownum <= 6;
 end;
 
@@ -202,7 +202,7 @@ END;
 
 
 
-
+----------------------------------------------------------------
 
 
 
@@ -597,7 +597,6 @@ end;
  
 --------------------------------------------------------------------------------------------
 -- Admin - 범용 카운트
-
 create or replace procedure getAllcountAdmin_m(
     p_key VARCHAR2,
     p_tableName VARCHAR2,   -- 테이블명 변수
@@ -610,7 +609,7 @@ is
 begin
     v_sql := 'select count(*) 
         from '||p_tableName||' 
-        where '||p_culumnName||' like ''%'|| p_key ||'%'' order by indate desc';
+        where '||p_culumnName||' like ''%'|| p_key ||'%'' order by rownum desc';
     --DBMS_OUTPUT.PUT_LINE(v_sql);
     EXECUTE IMMEDIATE v_sql into v_cnt;
     --DBMS_OUTPUT.PUT_LINE(v_cnt);   
@@ -620,6 +619,27 @@ end;
 exec getAllcountAdmin_m('스테이크', 'mproduct', 'name');
 select * from mproduct;
 
+
+exec getAllcountAdmin_m('토마호', 'aks_view', 'p_name');
+select * from ask_view;
+
+--------------------------------------------------------------------------------------------
+-- Admin - 전체 주문 조회
+create or replace procedure listOrder_m(
+    p_startNum number,
+    p_endNum number,
+    p_key VARCHAR2,
+    p_cur out sys_refcursor )
+is
+begin
+    open p_cur for 
+        select * from ( 
+        select * from (
+        select rownum as rn, p.* from 
+        ((select * from morder_view where oseq like '%'||p_key||'%' order by result, odseq desc) p) 
+        ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+end;
 
 -------------->> 멤버-로그인 <<-------------------
 
@@ -648,6 +668,7 @@ BEGIN
     values( p_id, p_pwd, p_name, p_email, p_phone, p_zip_num, p_address);
     commit;    
 END;
+
 
 -------------->> 멤버-회원정보수정 <<-------------------
 
@@ -731,7 +752,242 @@ BEGIN
     SELECT * FROM mmember WHERE name=p_name and phone=p_phone;
 END;
 
-select * from mmember
+-------------------------------------------------------------------
+CREATE OR REPLACE PROCEDURE  productorderList_m(
+p_pseq morder_detail.pseq%type,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from morder_view where pseq=p_pseq;
+end;
+-----------------------------------------------------------------------
+--리뷰 추가 
+create or replace procedure insertReview_m(
+    p_id mreview.id%type,
+    p_content mreview.content%type,
+    p_pseq mreview.pseq%type )
+is
+begin
+    insert into mreview(rseq, id, content, pseq)
+        values(mreview_seq.nextVal, p_id, p_content, p_pseq);
+    commit;
+end;
+
+-----------------------------------------------------------------------
+-- Admin - 상품등록 
+create or replace procedure insertProduct_m(
+    p_kind in  mproduct.kind%type,
+    p_name in  mproduct.name%type,
+    p_bestyn in  mproduct.bestyn%type,
+    p_useyn in  mproduct.useyn%type,
+    p_content in  mproduct.content%type,
+    p_price1 in  mproduct.price1%type,
+    p_price2 in  mproduct.price2%type,
+    p_image in  mproduct.image%type,
+    p_image1 in  mproduct.image%type,
+    p_image2 in mproduct.image%type )
+is
+    v_sql varchar2(500);
+    v_lastPseq mproduct.pseq%type := 0;
+begin
+
+    insert into mproduct(pseq, name, kind, bestyn, useyn, content, price1, price2, image)
+        values(MPRODUCT_SEQ.nextval, p_name, p_kind, p_bestyn, p_useyn, p_content, p_price1, p_price2, p_image);
+    
+    -- 마지막 pseq가져오기
+    select max(pseq) into v_lastPseq from mproduct;
+    
+    -- DBMS_OUTPUT.PUT_LINE(v_lastPseq);
+    
+    
+    -- 상세이미지 추가
+    insert into mpdimg(pseq, image) values(v_lastPseq, p_image1);
+    insert into mpdimg2(pseq, image) values(v_lastPseq, p_image2);
+    commit;
+end;
 
 
+----------------------------------------------------------------
+--어드민 리뷰리스트 조회
+create or replace procedure adminlistReview_m(
+
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from mreview_view ;
+end;
+----------------------------------------------------------------------------------
+--어드민 리뷰리스트 조회 페이징 추가!
+create or replace procedure adminlistReview_m(
+p_key in varchar2,
+p_startNum number,
+p_endNum number,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from(
+select * from(
+select rownum rn, p.* from (select * from mreview_view where name like '%'||p_key||'%') p  
+)where rn >= p_startNum 
+)where rn <=p_endNum;
+end;
+
+--------------------------------------------------------------------------------------
+--리뷰 삭제
+create or replace procedure admindeleteReview_m(
+p_rseq in mreview.rseq%type
+)
+is
+begin
+delete from mreview where rseq=p_rseq;
+commit;
+end;
+
+-----------------------------------------------------------------------
+-- Admin - 상품수정 updateProduct_m 
+create or replace procedure updateProduct_m(
+    p_pseq in  mproduct.pseq%type,
+    p_kind in  mproduct.kind%type,
+    p_name in  mproduct.name%type,
+    p_bestyn in  mproduct.bestyn%type,
+    p_useyn in  mproduct.useyn%type,
+    p_content in  mproduct.content%type,
+    p_price1 in  mproduct.price1%type,
+    p_price2 in  mproduct.price2%type,
+    p_image in  mproduct.image%type,
+    p_image1 in  mproduct.image%type,
+    p_image2 in mproduct.image%type )
+is
+begin
+    update mproduct set name=p_name, kind=p_kind, bestyn=p_useyn, useyn=p_bestyn, content=p_content, price1=p_price1, price2=p_price2, image=p_image
+        where pseq = p_pseq;
+
+    -- 상세이미지 추가
+    update mpdimg set image=p_image1 where pseq=p_pseq;
+    update mpdimg2 Set image=p_image2 where pseq=p_pseq;
+    commit;
+end;
+
+select * from mproduct;
+
+--------------------------------------------------------------------------------------
+--4/1
+----admin ask 리스트 조회
+create or replace procedure adminlistAsk_m(
+key in varchar2,
+startNum in number,
+endNum in number,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from (
+select *from (
+select rownum rn, p.* from (select * from ask_view where pname || content_a like '%'||key||'%' order by  indate_a,arseq desc) p
+) where rn>=startNum
+) where rn<=endNum ;
+end;
+
+---------------------------------------------------------------------------------
+--ask 올카운트
+create or replace procedure getAllcountAdminAsk_m(
+    p_key VARCHAR2,
+    p_tableName VARCHAR2,   -- 테이블명 변수
+    p_culumnName VARCHAR2,
+    p_cnt out NUMBER 
+    )
+is
+    v_cnt int;
+    v_sql varchar2(1000);   -- sql문을 저장할 변수
+begin
+    v_sql := 'select count(*) 
+        from '||p_tableName||' 
+        where '||p_culumnName||' like ''%'|| p_key ||'%'' order by indate_a desc';
+    --DBMS_OUTPUT.PUT_LINE(v_sql);
+    EXECUTE IMMEDIATE v_sql into v_cnt;
+    --DBMS_OUTPUT.PUT_LINE(v_cnt);   
+    p_cnt := v_cnt;
+end;
+------------------------------------------------------------------------------
+--adminAskDetail
+create or replace procedure getAdminAsk_m(
+p_aseq in ask.aseq%type,
+c_cur out sys_refcursor)
+is
+begin
+open c_cur for
+select * from ask_view where aseq=p_aseq;
+end;
+----------------------------------------------------------------------------
+--어드민 ask 문의 답글
+create or replace procedure adminAskReply_m(
+p_aseq in ask_reply.aseq%type,
+p_content in ask_reply.content%type
+)
+is
+begin
+insert into ask_reply(arseq, aseq, content)
+values (ask_reply_seq.nextVal, p_aseq, p_content);
+end;
+
+------------------------------------------------------------------------
+--어드민 문의 답글 수정
+create or replace procedure adminAskUpdate_m(
+p_aseq in ask_reply.aseq%type,
+p_content in ask_reply.content%type
+)
+is
+begin
+update ask_reply set content=p_content where aseq=p_aseq;
+commit;
+end;
+
+------------------------------------------------------------------------
+--admin 상품 삭제   deleteProduct_m
+create or replace procedure deleteProduct_m(
+    p_pseq in mproduct.pseq%type  )
+is
+begin
+    
+    delete from mpdimg where pseq = p_pseq;
+    delete from mpdimg2 where pseq = p_pseq;
+    delete from mproduct where pseq = p_pseq;
+    commit;
+end;
+------------------------------------------------------------------------
+--admin 주문/배송정보 변경   updateOrderResult_m
+create or replace procedure updateOrderResult_m(
+    p_odseq in morder_detail.odseq%type,
+    p_selectedIndex in morder_detail.odseq%type )
+is
+begin
+    update morder_detail set result=p_selectedIndex where odseq=p_odseq;
+    commit;
+end;
+
+------------------------------------------------------------------------
+--admin 이벤트리스트조회   geteventList_m
+create or replace procedure geteventList_m(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+        select * from ( 
+        select rownum as rn, p.* from 
+        (select * from mevent where title like '%'||p_key||'%' order by enddate desc, startdate desc) p 
+        ) where rn>=p_startNum 
+        and rn<=p_endNum ;
+
+end;
+select * from mevent;
 
