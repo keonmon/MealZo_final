@@ -62,17 +62,19 @@
 			</tr>
 		</table>
 			
-		<div width="343" style="position:absolute; right:300px; vertical-align:top; max-width:300px;">
+		<div width="343" style="position:relative; left:410px; vertical-align:top; max-width:300px;">
 		내용이미지
 		 (이미지는 게시물 최상단에 위치합니다)<br>
 			<input type="hidden" name="image">
 			<div id="filename"></div></div>
-			<br><br><br><br>
- 	<input class="btn" type="button" value="등록"  onclick="go_Notice()">
-	<input type="button" class="btn" value="취소" onclick="location.href='adminNoticeList'">
+			<br><br><br><br><br><br><br><br>
+	<div id="buttons"style="position:relative">
+	 	<input class="btn" type="button" value="등록"  onclick="go_Notice()">
+		<input type="button" class="btn" value="취소" onclick="location.href='adminNoticeList'">
+	</div>
 	</form>
 	
-	<div style="position:absolute; top:4530px;">
+	<div style="position:absolute; top:485px;">
 	<form name="frm2" id="fileupForm" method="post" enctype="multipart/form-data" >
 		<table id="tableContainer" width="100%">
 			<tr><th>내용이미지</th><td style="text-align:left; padding:5px 10px;" >
