@@ -13,4 +13,12 @@
 		)}
 	
 	</select>
+	
+	<select id="getNoticeOne" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getNoticeOne_m(
+			#{nseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=eventMap}
+		)}
+	
+	</select>
 </mapper>

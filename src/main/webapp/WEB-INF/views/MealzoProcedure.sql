@@ -1048,3 +1048,15 @@ begin
         ) where rn>=p_startNum
         ) where rn<=p_endNum;
 end;
+
+-----------------------------------------------------------------------------
+--user 공지리스트 디테일조회 getNoticeOne_m
+create or replace procedure getNoticeOne_m(
+    p_nseq IN notice.nseq%TYPE,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+       select * from notice where nseq=p_nseq;
+end;
+
