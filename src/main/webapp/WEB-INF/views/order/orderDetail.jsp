@@ -8,7 +8,7 @@
 	<tr><th>상품명</th><th>수 량</th><th>가 격</th><th>주문일</th><th>진행상태</th><th>주문취소</th></tr>
 	<c:forEach items="${orderList}" var="morderVO">
 		<tr><td>
-			<a href=productDetail?pseq=${morderVO.PSEQ}">
+			<a href="productDetail?pseq=${morderVO.PSEQ}">
 			<h3>${morderVO.PNAME}</h3></a></td>
 			<td> ${morderVO.QUANTITY}</td>
        		<td><fmt:formatNumber value="${morderVO.PRICE2*morderVO.QUANTITY}" type="currency"/></td>      

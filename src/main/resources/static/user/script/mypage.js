@@ -27,7 +27,7 @@ if(document.frm.orderCancel == null){
 		return; 
 	}else{ 
 	//count 값이 1 이상이면, 현재 폼의 체크박스 value값을 갖고, command = adminOrderSave로 이동 
-		document.frm.action = "meal.do?command=orderCancelUpdate"; 
+		document.frm.action = "orderCancelUpdate"; 
 		document.frm.submit(); 
 	} 
 	// 처리하고(주문의 result값을 '1'->'2'로 변경) orderList.jsp로 되돌아온다. 
@@ -37,7 +37,7 @@ function unsubscribe(siseq){
 	var delete_confirm = confirm("정말로 구독 서비스를 해제하시겠습니까?");
 	if(delete_confirm){
 		alert("구독 서비스가 해제되었습니다.");
-		location.href="meal.do?command=myUnsubscribe&siseq=" + siseq;
+		location.href="myUnsubscribe?siseq=" + siseq;
 	}else{
 		alert("구독 서비스 해제가 취소되었습니다");
 	}	
@@ -47,7 +47,7 @@ function deleteReview(rseq){
 	var delete_confirm = confirm("삭제된 후기는 복구할 수 없습니다.\n정말로 삭제하시겠습니까?");
 	if(delete_confirm){
 		alert("해당 상품의 후기가 삭제되었습니다.");
-		location.href="meal.do?command=myReviewDelete&rseq=" + rseq;
+		location.href="myReviewDelete?rseq=" + rseq;
 	}else{
 		alert("삭제가 취소되었습니다");
 	}	
@@ -86,12 +86,12 @@ function go_cart_delete(){
    if( count == 0 ){
       alert("삭제할 항목을 선택해주세요");
    } else{
-      document.form4.action = "meal.do?command=cartDelete";
+      document.form4.action = "cartDelete";
        document.form4.submit();
    }
 }
 
 function go_order_insert(){
-	document.form4.action="meal.do?command=orderInsert";
+	document.form4.action="orderInsert";
 	document.form4.submit();
 }
