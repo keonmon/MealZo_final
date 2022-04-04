@@ -16,4 +16,8 @@ public interface IMMemberDao {
 	void updateMember(HashMap<String, Object> paramMap);
 
 	void updateUseyn(HashMap<String, Object> paramMap);
+
+	void getMemberByemail(HashMap<String, Object> paramMap);
+
+	void getMemberByphone(HashMap<String, Object> paramMap);
 }
