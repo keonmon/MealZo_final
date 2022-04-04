@@ -16,8 +16,8 @@
 	    <tr><th id="th1"><label>이메일</label></th><th id="th2"><input type="text" name="email" value="${loginUser.EMAIL}"></th></tr>
 	    <tr><th id="th1"><label>우편번호</label></th><th id="th2"><input type="text" name="zip_num" size="10" value="${loginUser.ZIP_NUM}">    
 	    <input type="button" value="주소 찾기" class="dup" onclick="post_zip()"></th></tr>
-		<tr><th id="th1"><label>주소</label></th><th id="th2"><input type="text" name="addr1"   size="50" value="${ADDR1}"></th></tr>
-		<tr><th id="th1"><label>&nbsp;</label></th><th id="th2"><input type="text" name="addr2"   size="25" value="${ADDR2}"></th></tr>
+		<tr><th id="th1"><label>주소</label></th><th id="th2"><input type="text" name="addr1"   size="50" value="${addr1}"></th></tr>
+		<tr><th id="th1"><label>&nbsp;</label></th><th id="th2"><input type="text" name="addr2"   size="25" value="${addr2}"></th></tr>
 		<tr><th id="th1"><label>휴대폰 번호</label></th><th id="th2"><input  type="text" name="phone"  value="${loginUser.PHONE}"></th></tr>
 	</table>
 	<div class="clear"></div>

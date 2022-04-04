@@ -22,4 +22,13 @@ public class MReviewService {
 		rdao.listReview(paramMap);
 		
 	}
+
+	public void getproductorderList(HashMap<String, Object> paramMap) {
+		rdao.productorderList(paramMap);
+	}
+
+	public void insertReview(HashMap<String, Object> paramMap) {
+	  rdao.insertReview(paramMap);
+		
+	}
 }

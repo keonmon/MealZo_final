@@ -13,6 +13,11 @@ public class MOrderService {
 	@Autowired
 	IMOrderDao odao;
 
+
+	public void listOrder(HashMap<String, Object> paramMap) {
+		odao.listOrder(paramMap);
+	}
+
 	public void insertOrder(HashMap<String, Object> paramMap) {
 		odao.insertOrder( paramMap );
 	}
@@ -23,6 +28,23 @@ public class MOrderService {
 
 	public void listOrderByOseq(HashMap<String, Object> paramMap2) {
 		odao.listOrderByOseq( paramMap2 );
+	}
+
+	public void selectOseqOrderAll(HashMap<String, Object> paramMap) {
+		odao.selectOseqOrderAll( paramMap );
+	}
+
+	public void deleteOrders(HashMap<String, Object> paramMap) {
+		odao.deleteOrders( paramMap );
+	}
+
+	public void deleteOrder_detail(HashMap<String, Object> paramMap) {
+		odao.deleteOrder_detail( paramMap );
+	}
+
+	public void updateOrderResult(HashMap<String, Object> paramMap) {
+		odao.updateOrderResult( paramMap );
+		
 	}
 
 }

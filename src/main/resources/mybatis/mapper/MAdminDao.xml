@@ -20,4 +20,59 @@
 		)}
 	</select>
 	
+	<select id="adminlistReview" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL adminlistReview_m(
+	#{key},
+	#{startNum},
+			#{endNum},
+	#{ref_cursor_review, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+	)}
+	</select>
+	
+	<delete id="deletReview" statementType="CALLABLE" parameterType="java.util.HashMap">
+      {CALL admindeleteReview_m(
+      #{rseq}
+      )}	
+	</delete>
+    
+    <select id="adminlistAsk" statementType="CALLABLE" parameterType="java.util.HashMap">
+    {CALL adminlistAsk_m(
+    #{key},
+    #{startNum},
+    #{endNum},
+    #{ref_cursor_ask,  mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+    )}
+</select>
+
+
+
+<select id="getAllcountAdminAsk" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getAllcountAdminAsk_m(
+			#{key},
+			#{tableName},
+			#{culumnName},
+			#{cnt, mode=OUT, jdbcType=INTEGER}
+		)}
+	</select>
+	
+	<select id="getAdminAsk" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL getAdminAsk_m(
+	#{aseq},
+	#{ref_cursor,mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+	)}
+	</select>
+	
+	<insert id="adminAskReply" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL adminAskReply_m(
+	#{aseq},
+	#{content_r}
+	)}
+	</insert>
+	
+	<update id="adminAskUpdate"  statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL adminAskUpdate_m(
+	#{aseq},
+	#{content_r})}
+	</update>
+	
 </mapper>

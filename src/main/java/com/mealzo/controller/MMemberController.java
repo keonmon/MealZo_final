@@ -18,13 +18,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mealzo.dto.MMemberVO;
+import com.mealzo.service.MCartService;
 import com.mealzo.service.MMemberService;
+import com.mealzo.service.MOrderService;
 
 @Controller
 public class MMemberController {
 
 	@Autowired
 	MMemberService ms;
+	
+	@Autowired
+	MOrderService os;
+	
+	@Autowired
+	MCartService cs;
 	
 	@RequestMapping("/userLogin")
 	public String loginForm() {
@@ -207,19 +215,33 @@ public class MMemberController {
 		HashMap<String, Object> loginUser 
 		= (HashMap<String, Object>)session.getAttribute("loginUser");
 		
+		String address = (String)loginUser.get("ADDRESS");
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("id", (String)loginUser.get("ID"));
 		paramMap.put("name", (String)loginUser.get("NAME"));
 		paramMap.put("email", (String)loginUser.get("EMAIL"));
 		paramMap.put("phone", (String)loginUser.get("PHONE"));
 		paramMap.put("zip_num", (String)loginUser.get("ZIP_NUM"));
-		paramMap.put("address", (String)loginUser.get("ADDRESS"));
+		paramMap.put("address", address);
 		
-		mav.addObject("dto", paramMap); // ???
+		if( address != null) {
+			int k1 = address.indexOf(" ");
+			int k2 = address.indexOf(" ", k1+1); 
+			int k3 = address.indexOf(" ", k2+1); 
+			
+			
+			String addr1 = address.substring(0, k3);
+			
+			String addr2 = address.substring(k3+1);
+			
+			mav.addObject("addr1", addr1);
+			mav.addObject("addr2", addr2);
+			
+		}
 		mav.setViewName("member/update");
 		return mav;
 	}
-	
+
 	
 	
 	
@@ -266,4 +288,159 @@ public class MMemberController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value = "/withDrawal", method=RequestMethod.GET)
+	public String withDrawal( @ModelAttribute("dto") HttpServletRequest request,
+			Model model, BindingResult result ) {
+		
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser 
+		= (HashMap<String, Object>)session.getAttribute("loginUser");
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		if( loginUser == null ) {
+			return "admin/adminLogin";
+		} else {
+			paramMap.put("id", loginUser.get("id"));
+			paramMap.put("ref_cursor", null);
+			
+			//mdao.updateUseyn( mvo.getId() );
+			ms.updateUseyn( paramMap );
+			
+			//cdao.deleteCart( mvo.getId() );
+			cs.deleteCart( paramMap );
+			
+			//ArrayList<Integer> oseqList	= odao.selectOseqOrderAll( mvo.getId() );
+			os.selectOseqOrderAll( paramMap );
+			
+			ArrayList< HashMap<String, Object> >oseqList 
+			= (ArrayList< HashMap<String, Object> >)paramMap.get("ref_cursor");
+			
+			for(HashMap<String, Object> oseq : oseqList) {
+				paramMap.put("oseq", oseqList);
+				//odao.deleteOrders(oseq);
+				os.deleteOrders( paramMap );
+				//odao.deleteOrder_detail(oseq);
+				os.deleteOrder_detail( paramMap );
+				
+				System.out.println(paramMap);
+				System.out.println(oseqList);
+				System.out.println(oseq);
+			}			
+			session.removeAttribute("loginUser");
+		}	
+		return "member/completeWithdrawal";
+
+	}
+	
+	@RequestMapping(value = "/findIdForm", method=RequestMethod.GET)
+	public String findIdForm() {
+	return "member/findIdForm";
+	}
+	
+	
+	@RequestMapping(value = "/findIdStep1", method=RequestMethod.POST)
+	public ModelAndView findIdStep1( 
+			@ModelAttribute("dto") @Valid MMemberVO membervo,
+			BindingResult result, 
+			@RequestParam("selected2") String selected2,
+			HttpServletRequest request,
+			Model model ) {
+		ModelAndView mav = new ModelAndView(); 
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		mav.setViewName("member/findIdForm");
+		
+		if(membervo.getEmail() != null && !"".equals(membervo.getEmail())) {
+			//mmemberVO mvo = mdao.getMemberByemail(name, email);
+			paramMap.put("email", membervo.getEmail());
+			paramMap.put("name", membervo.getName());
+			paramMap.put("ref_cursor", null);
+			
+			ms.getMemberByemail(paramMap);
+			
+			ArrayList< HashMap<String, Object> >list 
+			= (ArrayList< HashMap<String, Object>>)paramMap.get("ref_cursor");
+		
+			if( list.size() == 0 ) {
+				model.addAttribute("msg", "해당회원이 없습니다");
+				//mav.setViewName("member/findIdForm");
+			} else {
+				HashMap<String , Object > mvo = list.get(0);
+				String id = (String)mvo.get("ID");
+				String pwd = (String)mvo.get("PWD");
+				
+				model.addAttribute("id", id);
+				model.addAttribute("pwd", pwd);
+				model.addAttribute("email", membervo.getEmail());
+				mav.setViewName("member/findIdconfirmNumber");		
+				
+				System.out.println(id);
+				System.out.println(pwd);
+				
+			}	
+		}else if(membervo.getPhone() != null && !"".equals(membervo.getPhone())){
+			//mmemberVO mvo = mdao.getMemberByphone(name, phone);
+			paramMap.put("phone", membervo.getPhone());
+			paramMap.put("name", membervo.getName());
+			paramMap.put("ref_cursor", null);
+			
+			ms.getMemberByphone(paramMap);
+			
+			ArrayList< HashMap<String, Object> > list 
+			= (ArrayList< HashMap<String, Object>>)paramMap.get("ref_cursor");
+			
+			if( list.size() == 0 ) {
+				model.addAttribute("msg", "해당회원이 없습니다");
+				//mav.setViewName("member/findIdForm");
+			} else {
+				HashMap<String , Object > mvo = list.get(0);
+				String id = (String)mvo.get("ID");
+				String pwd = (String)mvo.get("PWD");
+				
+				model.addAttribute("id", id);
+				model.addAttribute("pwd", pwd);
+				model.addAttribute("phone", membervo.getPhone());
+				mav.setViewName("member/findIdconfirmNumber");
+			}	
+		}
+		model.addAttribute("name", membervo.getName());
+		model.addAttribute("selected2", selected2);
+		return mav;
+	}
+	
+	
+	@RequestMapping(value = "/findIdStep2", method=RequestMethod.POST)
+	public ModelAndView findIdStep2( 
+			@ModelAttribute("dto") @Valid MMemberVO membervo,
+			BindingResult result, 
+			@RequestParam("confirmNum") String confirmNum,
+			@RequestParam("selected2") String selected2,
+			HttpServletRequest request,
+			Model model ) {
+		
+		
+		ModelAndView mav = new ModelAndView(); 
+		model.addAttribute("selected2", selected2);
+		model.addAttribute("name", membervo.getName());
+		model.addAttribute("pwd", membervo.getPwd());
+		model.addAttribute("email", membervo.getEmail());
+		model.addAttribute("phone", membervo.getPhone());
+		model.addAttribute("id", membervo.getId());
+		
+		System.out.println(membervo.getName());
+		System.out.println(membervo.getPwd());
+		System.out.println(membervo.getEmail());
+		System.out.println(membervo.getPhone());
+		System.out.println(membervo.getId());
+		
+		if(!confirmNum.equals("0000")) {
+			model.addAttribute("msg", "인증번호가 맞지  않습니다");	
+			mav.setViewName("member/findIdconfirmNumber");	
+		}else {
+			mav.setViewName("member/viewId");
+		}
+		
+		return mav;
+	}
+
 }
