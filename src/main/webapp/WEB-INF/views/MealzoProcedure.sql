@@ -1071,4 +1071,17 @@ BEGIN
     commit;    
 END;
 
-select * from mproduct
+---------------------------------------------------------
+-- admin - 새 공지 등록
+create or replace procedure insertNotice_m(
+    p_subject in notice.subject%type,
+    p_useyn in notice.useyn%type,
+    p_content in notice.content%type,
+    p_image1 in notice.image1%type )
+is
+begin
+    insert into notice(nseq, subject,useyn, content, image1 ) 
+        values(NOTICE_SEQ.nextval,p_subject,p_useyn,p_content,p_image1 );
+    commit;
+end;
+
