@@ -100,11 +100,6 @@ public class MProductService {
 	public void deleteProduct(HashMap<String, Object> paramMap) {
 		pdao.deleteProduct(paramMap);
 	}
-
-	@Transactional(rollbackFor = Exception.class)
-	public void updateProductResult(HashMap<String, Object> paramMap) {
-		pdao.updateProductResult(paramMap);
-  }
   
 	@Transactional(rollbackFor = Exception.class)
 	public void updateProductUseyn(HashMap<String, Object> paramMap) {

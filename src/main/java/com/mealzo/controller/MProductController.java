@@ -108,8 +108,7 @@ public class MProductController {
 		HashMap<String,Object> paramMap = new HashMap<String,Object>();
 		paramMap.put("key", key);
 		paramMap.put("cnt", 0);
-		ps.getAllCount(paramMap);
-		
+		ps.getAllCount(paramMap);		
 		Paging paging = new Paging();
 		paging.setPage(page);		
 		paging.setTotalCount((int)paramMap.get("cnt"));
