@@ -1049,7 +1049,8 @@ begin
         ) where rn<=p_endNum;
 end;
 
-------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
 --리뷰 delete 
  create or replace procedure reviewDelete_m(
  p_rseq in mreview.rseq%type
@@ -1058,7 +1059,7 @@ end;
  begin
  delete from mreview where rseq =p_rseq;
  end;
- 
+
  -----------------------------------------------------------------------
  --오더캔슬 리스트
  create or replace procedure orderCancelForm_m(
@@ -1083,15 +1084,15 @@ select * from mevent where eseq=p_eseq;
 end;
 
 -----------------------------------------------------------------------
-CREATE OR REPLACE PROCEDURE getImages_m(
-    p_pseq in mproduct.pseq%type,
-    p_cur1 out sys_refcursor, 
-    p_cur2 out sys_refcursor )
+create or replace PROCEDURE getImgesEvent_m(
+    p_eseq in mevent.eseq%type,
+    p_cur1 out sys_refcursor
+    )
 is
 begin
     open p_cur1 for 
-        select image and image2 from mevent where pseq=p_pseq;
-        
+        select image1, image2 from mevent where eseq=p_eseq;
+end;
 
 
 -------------->> user 공지리스트 디테일조회 getNoticeOne_m <<-------------------
