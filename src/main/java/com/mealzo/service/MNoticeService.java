@@ -17,4 +17,9 @@ public class MNoticeService {
 		ndao.getNoticeList(paramMap);
 		
 	}
+
+	public void getNoticeOne(HashMap<String, Object> paramMap) {
+		ndao.getNoticeOne(paramMap);
+	}
+
 }

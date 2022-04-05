@@ -186,10 +186,20 @@
 			#{image2, jdbcType=VARCHAR}
 		)}
 	</update>
+	
+	
 	<delete id="deleteProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{CALL deleteProduct_m(
 			#{pseq, jdbcType=INTEGER}
 		)}
 	</delete>
+	
+	
+	<update id="updateProductResult" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL updateProductResult_m(
+			#{name},
+			#{selectedIndex}
+		)}
+	</update>
 	
 </mapper>

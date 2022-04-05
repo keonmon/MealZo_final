@@ -1048,3 +1048,27 @@ begin
         ) where rn>=p_startNum
         ) where rn<=p_endNum;
 end;
+
+-------------->> user 공지리스트 디테일조회 getNoticeOne_m <<-------------------
+
+create or replace procedure getNoticeOne_m(
+    p_nseq IN notice.nseq%TYPE,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+       select * from notice where nseq=p_nseq;
+end;
+
+-------------->> 어드민 - product 공개유/무 <<-------------------
+
+CREATE OR REPLACE PROCEDURE updateProductResult_m(
+    p_name IN mproduct.name%TYPE,
+    selectedIndex in String  )
+IS
+BEGIN
+    update mproduct set useyn=selectedIndex where name=p_name;
+    commit;    
+END;
+
+select * from mproduct
