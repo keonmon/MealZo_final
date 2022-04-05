@@ -1064,12 +1064,25 @@ end;
 
 CREATE OR REPLACE PROCEDURE updateProductResult_m(
     p_name IN mproduct.name%TYPE,
-    selectedIndex in String  )
+    p_selectedIndex in mproduct.useyn%type )
 IS
 BEGIN
-    update mproduct set useyn=selectedIndex where name=p_name;
+    update mproduct set useyn=p_selectedIndex where name=p_name;
     commit;    
 END;
+
+
+-------------->> user 공지리스트 디테일조회 geteventOne_m <<-------------------
+
+create or replace procedure geteventOne_m(
+    p_eseq IN mevent.eseq%TYPE,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+       select * from mevent where eseq=p_eseq;
+end;
+
 
 ---------------------------------------------------------
 -- admin - 새 공지 등록
@@ -1084,4 +1097,5 @@ begin
         values(NOTICE_SEQ.nextval,p_subject,p_useyn,p_content,p_image1 );
     commit;
 end;
+
 
