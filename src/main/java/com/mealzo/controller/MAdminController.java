@@ -30,6 +30,7 @@ import com.mealzo.dto.MProductVO;
 import com.mealzo.dto.MQnaVO;
 import com.mealzo.service.MAdminService;
 import com.mealzo.service.MEventService;
+import com.mealzo.service.MMemberService;
 import com.mealzo.service.MNoticeService;
 import com.mealzo.service.MOrderService;
 import com.mealzo.service.MProductService;
@@ -57,6 +58,9 @@ public class MAdminController {
 
     @Autowired
     MNoticeService ns;
+    
+    @Autowired
+    MMemberService ms;
 
 	@Autowired
 	ServletContext context;
@@ -1180,6 +1184,97 @@ public class MAdminController {
 		}
 		return mav;
 	}
-		
+	
+	@RequestMapping("adminMemberList")
+	public ModelAndView adminMemberList(HttpServletRequest request,
+			@RequestParam(value = "sub", required = false) String sub,
+			@RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "key", required = false) String key) {
+		ModelAndView mav = new ModelAndView();
+
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("redirect:/admin");
+		} else {
+
+			// String sub = request.getParameter("sub");
+			if (sub != null && sub.equals("y")) {
+				session.removeAttribute("key");
+				session.removeAttribute("page");
+			}
+
+			page = 1;
+			key = "";
+			if (request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			} else if (session.getAttribute("page") != null) {
+				page = (int) session.getAttribute("page");
+			} else {
+				page = 1;
+				session.removeAttribute("page");
+			}
+			if (request.getParameter("key") != null) {
+				key = request.getParameter("key");
+				session.setAttribute("key", key);
+			} else if (session.getAttribute("key") != null) {
+				key = (String) session.getAttribute("key");
+			} else {
+				session.removeAttribute("key");
+				key = "";
+			}
+
+			AdminPaging paging = new AdminPaging();
+			paging.setPage(page);
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("key", key);
+			paramMap.put("tableName", "mmember");
+			paramMap.put("culumnName", "name");
+			paramMap.put("cnt", 0);
+			as.getAllcountAdmin(paramMap);
+
+			
+			paging.setTotalCount((int) paramMap.get("cnt"));
+			mav.addObject("paging", paging);
+			
+			paramMap.put("startNum", paging.getStartNum());
+			paramMap.put("endNum", paging.getEndNum());
+			paramMap.put("ref_cursor", null);
+			ms.listMember(paramMap);
+
+			ArrayList<HashMap<String, Object>> memberList 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			System.out.println(memberList);
+			mav.addObject("memberList", memberList);
+			mav.addObject("key", key);
+			
+			mav.setViewName("admin/member/mmemberList");
+		}
+		return mav;
+	}
+	
+	
+	@RequestMapping("adminMemberSave")
+	public ModelAndView adminMemberSave(HttpServletRequest request, 
+			@RequestParam("selectedIndex")String selectedIndex,
+			@RequestParam("useyn")String[] idArr) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("redirect:/admin");
+		} else {
+			
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			for(String id : idArr) {
+				paramMap.put("id", id);
+				paramMap.put("selectedIndex", selectedIndex);
+				ms.updateMemberResult(paramMap);
+			}
+			mav.setViewName("redirect:/adminMemberList");
+		}
+		return mav;
+	}
+	
+
 
 }

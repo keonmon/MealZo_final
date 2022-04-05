@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mealzo.dao.IMReviewDao;
 
@@ -15,20 +16,18 @@ public class MReviewService {
 
 	public void getReviewListByPseq(HashMap<String, Object> paramMap) {
 		rdao.getReviewListByPseq(paramMap);
-		
 	}
 
 	public void listReview(HashMap<String, Object> paramMap) {
 		rdao.listReview(paramMap);
-		
 	}
 
 	public void getproductorderList(HashMap<String, Object> paramMap) {
 		rdao.productorderList(paramMap);
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	public void insertReview(HashMap<String, Object> paramMap) {
 	  rdao.insertReview(paramMap);
-		
 	}
 }
