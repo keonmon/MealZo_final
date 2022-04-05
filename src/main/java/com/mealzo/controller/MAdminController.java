@@ -1116,6 +1116,7 @@ public class MAdminController {
 		return mav;
 	}
 	
+	
 	@RequestMapping("adminNoticeUpdate")
 	public ModelAndView adminNoticeUpdate(HttpServletRequest request, 
 			@ModelAttribute("nvo") @Valid MNoticeVO nvo, BindingResult result,
@@ -1157,5 +1158,28 @@ public class MAdminController {
 		}
 		return mav;
 	}
+	
+	
+	@RequestMapping("adminNoticeSave")
+	public ModelAndView adminNoticeSave(HttpServletRequest request, 
+			@RequestParam("selectedIndex")String selectedIndex,
+			@RequestParam("checkBox_nseq")String[] nseqArr) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("redirect:/admin");
+		} else {
+			
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			for(String nseq : nseqArr) {
+				paramMap.put("nseq", Integer.parseInt( nseq ));
+				paramMap.put("selectedIndex", selectedIndex);
+				ns.updateNoticeUseyn(paramMap);
+			}
+			mav.setViewName("redirect:/adminNoticeList");
+		}
+		return mav;
+	}
+		
 
 }
