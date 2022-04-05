@@ -1,6 +1,7 @@
 package com.mealzo.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -1079,5 +1080,82 @@ public class MAdminController {
 		return mav;
 	}
 	
+	
+	@RequestMapping("adminNoticeDetail")
+	public ModelAndView adminNoticeDetail(HttpServletRequest request, 
+			@RequestParam("nseq") int nseq) {
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("redirect:/admin");
+		} else {
+			
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("nseq", nseq);
+			paramMap.put("ref_cursor", null);
+
+			ns.getNoticeOne(paramMap);
+
+			ArrayList<HashMap<String, Object>> MNoticeVOList 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			HashMap<String, Object> resultMap = MNoticeVOList.get(0);
+			
+			MNoticeVO nvo = new MNoticeVO();
+			nvo.setNseq(nseq);
+			nvo.setSubject(resultMap.get("SUBJECT").toString());
+			nvo.setIndate((Timestamp)resultMap.get("INDATE"));
+			nvo.setUseyn((String) resultMap.get("USEYN"));
+			nvo.setContent(resultMap.get("CONTENT").toString());
+			nvo.setImage1((String) resultMap.get("IMAGE1"));
+
+			mav.addObject("nvo", nvo);
+			
+			mav.setViewName("admin/customerCenter/adminNoticeDetail");
+		}
+		return mav;
+	}
+	
+	@RequestMapping("adminNoticeUpdate")
+	public ModelAndView adminNoticeUpdate(HttpServletRequest request, 
+			@ModelAttribute("nvo") @Valid MNoticeVO nvo, BindingResult result,
+			/* @RequestParam("oldImage") int oldImage, */
+			@RequestParam(value="nseq",required=false) Integer nseq) {
+		ModelAndView mav = new ModelAndView();
+		
+		System.out.println("subject:" + nvo.getSubject() + "/ content:" + nvo.getContent());
+		System.out.println("IMAGE1:" + nvo.getImage1() + "/ nseq:" + nseq);
+		
+		mav.setViewName("admin/customerCenter/adminNoticeDetail");
+		if(result.getFieldError("subject")!=null) {
+			System.out.println("subject:" + nvo.getSubject() + "/ content:" + nvo.getContent());
+			mav.addObject("message", result.getFieldError("subject").getDefaultMessage());
+			return mav;
+		}else if(result.getFieldError("content")!=null) {
+			System.out.println("subject:" + nvo.getSubject() + "/ content:" + nvo.getContent());
+			mav.addObject("message", result.getFieldError("content").getDefaultMessage());
+			return mav;
+		}
+		
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginAdmin 
+			= (HashMap<String, Object>) session.getAttribute("loginAdmin");
+		if (loginAdmin == null) {
+			mav.setViewName("admin/adminLogin");
+			return mav;
+		} else {
+			
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("nseq", nseq);
+			paramMap.put("subject", nvo.getSubject());
+			paramMap.put("useyn", nvo.getUseyn());
+			paramMap.put("content", nvo.getContent());
+			paramMap.put("image1", nvo.getImage1());
+			ns.updateNotice(paramMap);
+			
+			mav.setViewName("redirect:/adminNoticeList");
+		}
+		return mav;
+	}
 
 }

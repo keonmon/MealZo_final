@@ -27,6 +27,15 @@
 			#{image1, jdbcType=VARCHAR}
 		)}
 	</insert>
+	<insert id="updateNotice" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL updateNotice_m(
+			#{nseq, jdbcType=INTEGER},
+			#{subject, jdbcType=VARCHAR},
+			#{useyn, jdbcType=VARCHAR},
+			#{content, jdbcType=VARCHAR},
+			#{image1, jdbcType=VARCHAR}
+		)}
+	</insert>
 	
 	
 </mapper>

@@ -2,7 +2,6 @@ package com.mealzo.dto;
 
 import java.sql.Timestamp;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 

@@ -266,17 +266,9 @@ function go_notice_save(){
 }
 
 function go_Notice_Edit(){
-	if(document.frm.subject.value==""){
-		alert('제목을 입력하세요');
-		document.frm.subject.focus();
-	}else if(document.frm.content.value==""){
-		alert('내용을 입력하세요');
-		document.frm.content.focus();
-	}else{
-		if(confirm('수정하시겠습니까?')){
-			document.frm.action = "adminNoticeUpdate";
-			document.frm.submit();
-		}
+	if(confirm('수정하시겠습니까?')){
+		document.frm1.action = "adminNoticeUpdate";
+		document.frm1.submit();
 	}
 }
 
