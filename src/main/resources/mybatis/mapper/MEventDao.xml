@@ -3,11 +3,19 @@
 
 <mapper namespace="com.mealzo.dao.IMEventDao"> 
 	<resultMap type="java.util.HashMap" id="eventMap"/>
+	
 	<select id="geteventList" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{CALL geteventList_m(
 			#{key},
 			#{startNum},
 			#{endNum},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=eventMap}
+		)}
+	</select>
+	
+	<select id="geteventOne" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL geteventOne_m(
+			#{eseq},
 			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=eventMap}
 		)}
 	</select>
