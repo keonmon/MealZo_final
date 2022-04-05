@@ -47,4 +47,9 @@ public class MOrderService {
 		
 	}
 
+	public void orderCancelForm(HashMap<String, Object> paramMap) {
+		odao.orderCancelForm(paramMap);
+		
+	}
+
 }

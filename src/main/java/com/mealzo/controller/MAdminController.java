@@ -1,6 +1,7 @@
 package com.mealzo.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mealzo.dto.AdminPaging;
 import com.mealzo.dto.MAdminVO;
 import com.mealzo.dto.MAskVO;
+import com.mealzo.dto.MEventVO;
 import com.mealzo.dto.MProductVO;
 import com.mealzo.dto.MQnaVO;
 import com.mealzo.service.MAdminService;
@@ -1013,6 +1015,108 @@ public class MAdminController {
           mav.setViewName("admin/customerCenter/adminNoticeInsert");
       }
       return mav;
+  }
+  @RequestMapping("/adminEventDetail")
+  public ModelAndView admineventdetail(HttpServletRequest request,
+		  @RequestParam("eseq") int eseq) {
+	  ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("redirect:/admin");
+			return mav;
+		} else {
+			HashMap<String, Object> paramMap =new HashMap<String, Object>();
+			paramMap.put("eseq",eseq);
+			paramMap.put("ref_cursor_event", null);
+			as.getEvent(paramMap);
+			
+			ArrayList<HashMap<String, Object>> list
+			=(ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor_event");
+			HashMap<String, Object> resultMap = list.get(0);
+			MEventVO evo = new MEventVO();
+			evo.setEseq(Integer.parseInt(resultMap.get("ESEQ").toString()));
+			evo.setTitle(resultMap.get("TITLE").toString());
+			evo.setContent(resultMap.get("CONTENT").toString());
+			//evo.setImage1(resultMap.get("IMAGE1").toString());
+			//evo.setImage2(resultMap.get("IMAGE2").toString());
+			evo.setSubtitle(resultMap.get("SUBTITLE").toString());
+			evo.setWritedate((Timestamp) resultMap.get("WRITEDATE"));
+			evo.setStartdate((Timestamp) resultMap.get("STARTDATE"));
+			evo.setEnddate((Timestamp) resultMap.get("ENDDATE"));
+			
+			paramMap.put("ref_cursor_image1",null);
+
+			as.getImgesEvent(paramMap);
+			
+			ArrayList<HashMap<String, Object>> image1List 
+			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor_image1");
+			
+		HashMap<String, Object> mevimg1 = image1List.get(0);
+		evo.setImage1((String) mevimg1.get("IMAGE1"));
+		evo.setImage2((String) mevimg1.get("IMAGE2"));
+		
+		
+			
+			
+			
+			
+			
+			mav.addObject("evo",evo);
+	//		mav.addObject("eseq",eseq);
+			mav.setViewName("admin/customerCenter/adminEventDetail");
+		}
+
+	  return mav;
+	  
+  }
+  @RequestMapping("/adminEventUpdate")
+  public ModelAndView admineventupdate(HttpServletRequest request,
+		  @ModelAttribute("evo") @Valid MEventVO evo, BindingResult result) {
+	  ModelAndView mav = new ModelAndView();
+	  mav.setViewName("admin/customerCenter/adminEventDetail");
+	  if(result.getFieldError("title") !=null) {
+		  mav.addObject("message", result.getFieldError("title").getDefaultMessage());
+	 return mav;
+	  }else if (result.getFieldError("content") !=null) {
+		  mav.addObject("message", result.getFieldError("content").getDefaultMessage());
+			 return mav;
+	  }else if (result.getFieldError("image1") !=null) {
+		  mav.addObject("message", result.getFieldError("image1").getDefaultMessage());
+			 return mav;
+	  }else if (result.getFieldError("image2") !=null) {
+		  mav.addObject("message", result.getFieldError("image2").getDefaultMessage());
+			 return mav;
+	  }else if (result.getFieldError("subtitle") !=null) {
+		  mav.addObject("message", result.getFieldError("subtitle").getDefaultMessage());
+			 return mav;
+	  }else if (result.getFieldError("startdate") !=null) {
+		  mav.addObject("message", result.getFieldError("startdate").getDefaultMessage());
+			 return mav;
+	  }else if (result.getFieldError("enddate") !=null) {
+		  mav.addObject("message", result.getFieldError("enddate").getDefaultMessage());
+			 return mav;
+	  }
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("redirect:/admin");
+		}else {
+			System.out.println("이벤트" + evo.getTitle());
+			HashMap<String, Object> paramMap = new HashMap<String , Object>();
+			paramMap.put("eseq", evo.getEseq());
+			paramMap.put("title", evo.getTitle());
+			paramMap.put("content", evo.getContent());
+			paramMap.put("image1", evo.getImage1());
+			paramMap.put("image2", evo.getImage2());
+			paramMap.put("subtitle", evo.getSubtitle());
+			paramMap.put("startdate", evo.getStartdate());
+			paramMap.put("enddate", evo.getEnddate());
+			
+			as.eventUpdate(paramMap);
+			
+			mav.setViewName("redirect:/adminEventDetail");
+			
+		}
+	  return mav;
   }
   
   

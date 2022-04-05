@@ -31,4 +31,9 @@ public class MReviewService {
 	  rdao.insertReview(paramMap);
 		
 	}
+
+	public void reviewDelete(HashMap<String, Object> paramMap) {
+		rdao.reviewDelete(paramMap);
+		
+	}
 }

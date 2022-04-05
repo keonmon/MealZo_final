@@ -23,10 +23,6 @@
 </table>
 </form>
 
-<div class="clear"></div>
-<jsp:include page="../include/paging/paging.jsp">
-	<jsp:param name="command" value="orderList" />	
-</jsp:include>
 
 </article>
 <%@ include file="../include/user/headerfooter/footer.jsp" %>

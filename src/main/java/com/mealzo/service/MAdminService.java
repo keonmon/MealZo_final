@@ -66,6 +66,21 @@ public class MAdminService {
      adao.admininsertQna(paramMap);
 	}
 
+	public void getEvent(HashMap<String, Object> paramMap) {
+	 adao.getEventSelect(paramMap);
+		
+	}
+
+	public void getImgesEvent(HashMap<String, Object> paramMap) {
+	adao.getImgesEvent(paramMap);
+		
+	}
+
+	public void eventUpdate(HashMap<String, Object> paramMap) {
+		adao.eventUpdate(paramMap);
+		
+	}
+
 
 
 }
