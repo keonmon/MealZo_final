@@ -202,11 +202,4 @@
 		)}
 	</update>
 	
-	<update id="updateNoticeUseyn" statementType="CALLABLE" parameterType="java.util.HashMap">
-		{CALL updateNoticeUseyn_m(
-			#{nseq, jdbcType=INTEGER},
-			#{selectedIndex, jdbcType=VARCHAR}
-		)}
-	</update>
-	
 </mapper>
