@@ -1048,3 +1048,48 @@ begin
         ) where rn>=p_startNum
         ) where rn<=p_endNum;
 end;
+
+
+-------------------------------------------------------------------------------
+--리뷰 delete 
+ create or replace procedure reviewDelete_m(
+ p_rseq in mreview.rseq%type
+ )
+ is
+ begin
+ delete from mreview where rseq =p_rseq;
+ end;
+
+ -----------------------------------------------------------------------
+ --오더캔슬 리스트
+ create or replace procedure orderCancelForm_m(
+ p_id in morders.id%type,
+ c_cur out sys_refcursor
+ )
+ is
+ begin
+ open c_cur for
+ select * from mordercancel_view where id=p_id;
+ end;
+---------------------------------------------------------------------------
+--이벤트 eseq로 조회
+create or replace procedure getEventSelect_m(
+p_eseq in mevent.eseq%type,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from mevent where eseq=p_eseq;
+end;
+
+-----------------------------------------------------------------------
+create or replace PROCEDURE getImgesEvent_m(
+    p_eseq in mevent.eseq%type,
+    p_cur1 out sys_refcursor
+    )
+is
+begin
+    open p_cur1 for 
+        select image1, image2 from mevent where eseq=p_eseq;
+end;
