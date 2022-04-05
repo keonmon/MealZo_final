@@ -55,8 +55,8 @@ document.frm.action="adminNoticeInsertForm";
 
 
 function go_Notice(){
-document.frm.action="adminNoticeInsert";
-   document.frm.submit();
+document.frm1.action="adminNoticeInsert";
+   document.frm1.submit();
 
 }
 

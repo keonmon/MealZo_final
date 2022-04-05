@@ -22,4 +22,9 @@ public class MNoticeService {
 		ndao.getNoticeOne(paramMap);
 	}
 
+	public void insertNotice(HashMap<String, Object> paramMap) {
+		ndao.insertNotice(paramMap);
+		
+	}
+
 }

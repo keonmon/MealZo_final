@@ -1,6 +1,6 @@
 package com.mealzo.controller;
 
-import java.io.IOException; 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mealzo.dto.AdminPaging;
 import com.mealzo.dto.MAdminVO;
 import com.mealzo.dto.MAskVO;
+import com.mealzo.dto.MNoticeVO;
 import com.mealzo.dto.MProductVO;
 import com.mealzo.dto.MQnaVO;
 import com.mealzo.service.MAdminService;
@@ -732,7 +733,7 @@ public class MAdminController {
 
 	@RequestMapping("adminQnaList")
 	public ModelAndView adminQnaList(HttpServletRequest request,
-  @RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "key", required = false) String key) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
@@ -790,7 +791,7 @@ public class MAdminController {
 			as.adminlistQna(paramMap);
 			System.out.println(cnt);
 			ArrayList<HashMap<String, Object>> qnaList
-			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor_qna");
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor_qna");
 			mav.addObject("paging", paging);
 			mav.addObject("mqnaList", qnaList);
 			mav.setViewName("admin/qna/qnaList");
@@ -876,146 +877,143 @@ public class MAdminController {
 
 	
 	// VO에 담아서 소문자로 뿌려지도록 한다.
-  @RequestMapping("adminQnaDetail")
-  public ModelAndView adminqnadetail(
-		  @RequestParam("qseq") int qseq , HttpServletRequest request) {
-	  
-	  ModelAndView mav =new ModelAndView();
-	  HttpSession session = request.getSession();
-		HashMap<String, Object> loginAdmin = (HashMap<String, Object>) session.getAttribute("loginAdmin");
+	@RequestMapping("adminQnaDetail")
+	public ModelAndView adminqnadetail(@RequestParam("qseq") int qseq, HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginAdmin 
+			= (HashMap<String, Object>) session.getAttribute("loginAdmin");
 		if (loginAdmin == null) {
 			mav.setViewName("admin/adminLogin");
 			return mav;
 		} else {
-		HashMap<String, Object> paramMap= new HashMap<String, Object>();
-		paramMap.put("qseq", qseq);
-		paramMap.put("ref_cursor", null);
-		qs.getQna(paramMap);
-		
-		ArrayList<HashMap<String, Object>> list
-		=(ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
-		mav.addObject("mqnaVO", list.get(0));
-		mav.setViewName("admin/qna/qnaDetil");
-		
-	//	request.setAttribute("message", message);
-  }
-  return mav;
-  }
-  
-  // jsp에 소문자로 담기니까 키값을 jsp와 일치시킨다. 
-  @RequestMapping("/adminQnaRepSave")
-  public ModelAndView admin_qna_repSave( HttpServletRequest request,
-		@RequestParam("qseq") String qseq,
-		 @RequestParam("reply") String reply,
-		 @ModelAttribute("qvo") @Valid MQnaVO qvo, BindingResult result
-		)  {
-  ModelAndView mav =new ModelAndView();
-  HttpSession session = request.getSession();
-	HashMap<String, Object> loginAdmin = (HashMap<String, Object>) session.getAttribute("loginAdmin");
-	if (loginAdmin == null) {
-		mav.setViewName("admin/adminLogin");
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("qseq", qseq);
+			paramMap.put("ref_cursor", null);
+			qs.getQna(paramMap);
+
+			ArrayList<HashMap<String, Object>> list 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			mav.addObject("mqnaVO", list.get(0));
+			mav.setViewName("admin/qna/qnaDetil");
+
+			// request.setAttribute("message", message);
+		}
 		return mav;
-	} else if (result.getFieldError("reply") != null) {
-		mav.addObject("message", result.getFieldError("reply").getDefaultMessage());
+	}
+
+	// jsp에 소문자로 담기니까 키값을 jsp와 일치시킨다.
+	@RequestMapping("/adminQnaRepSave")
+	public ModelAndView admin_qna_repSave(HttpServletRequest request, @RequestParam("qseq") String qseq,
+			@RequestParam("reply") String reply, @ModelAttribute("qvo") @Valid MQnaVO qvo, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginAdmin 
+			= (HashMap<String, Object>) session.getAttribute("loginAdmin");
+		if (loginAdmin == null) {
+			mav.setViewName("admin/adminLogin");
+			return mav;
+		} else if (result.getFieldError("reply") != null) {
+			mav.addObject("message", result.getFieldError("reply").getDefaultMessage());
+			mav.addObject("qseq", qseq);
+			mav.setViewName("admin/qna/qnaDetil");
+			return mav;
+		}
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		// paramMap.put("qseq", qseq);
+		paramMap.put("qseq", qvo.getQseq());
+		paramMap.put("reply", qvo.getReply());
+
+		as.admininsertQna(paramMap);
+
 		mav.addObject("qseq", qseq);
-		mav.setViewName("admin/qna/qnaDetil");
+		mav.setViewName("redirect:/adminQnaDetail");
+
 		return mav;
-  }
-	HashMap<String,Object> paramMap = new HashMap<String, Object>();
-	//paramMap.put("qseq", qseq);
-	paramMap.put("qseq",qvo.getQseq());
-	paramMap.put("reply", qvo.getReply());
-	
-	as.admininsertQna(paramMap);
-	
-	mav.addObject("qseq",qseq);
-	mav.setViewName("redirect:/adminQnaDetail");
-	
-	return mav;
-  }
-  
-  
-  @RequestMapping("adminNoticeList")
-  public ModelAndView adminNoticeList(HttpServletRequest request,
-          @RequestParam(value = "sub", required = false) String sub,
-          @RequestParam(value = "page", required = false) Integer page,
-          @RequestParam(value = "key", required = false) String key) {
-      ModelAndView mav = new ModelAndView();
-      HttpSession session = request.getSession();
-      if (session.getAttribute("loginAdmin") == null) {
-          mav.setViewName("redirect:/admin");
-      } else {
-          if (request.getParameter("sub") != null) {
-              session.removeAttribute("page");
-              session.removeAttribute("key");
-          }
-          page = 1;
-          key = "";
-          if (request.getParameter("page") != null) {
-              page = Integer.parseInt(request.getParameter("page"));
-              session.setAttribute("page", page);
-          } else if (session.getAttribute("page") != null) {
-              page = (Integer) session.getAttribute("page");
-          } else {
-              page = 1;
-              session.removeAttribute("page");
+	}
 
-          }
-          if (request.getParameter("key") != null) {
-              key = request.getParameter("key");
-              session.setAttribute("key", key);
-          } else if (session.getAttribute("key") != null) {
-              key = (String) session.getAttribute("key");
-          } else {
-              session.removeAttribute("key");
-              key = "";
-          }
-          AdminPaging paging = new AdminPaging();
-          paging.setPage(page);
-          HashMap<String, Object> paramMap = new HashMap<String, Object>();
-          paramMap.put("key", key);
-          paramMap.put("tableName", "notice");
-          paramMap.put("culumnName", "subject");
-          paramMap.put("cnt", 0);
-          as.getAllcountAdmin(paramMap);
+	@RequestMapping("adminNoticeList")
+	public ModelAndView adminNoticeList(HttpServletRequest request,
+			@RequestParam(value = "sub", required = false) String sub,
+			@RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "key", required = false) String key) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("redirect:/admin");
+		} else {
+			if (request.getParameter("sub") != null) {
+				session.removeAttribute("page");
+				session.removeAttribute("key");
+			}
+			page = 1;
+			key = "";
+			if (request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			} else if (session.getAttribute("page") != null) {
+				page = (Integer) session.getAttribute("page");
+			} else {
+				page = 1;
+				session.removeAttribute("page");
 
-          //System.out.println("cnt: " + paramMap.get("cnt"));    // <<< 게시물 개수 카운트된 수 확인
-          
-          paging.setTotalCount((int) paramMap.get("cnt"));
-          mav.addObject("paging", paging);
-          
-          paramMap.put("startNum",paging.getStartNum());
-          paramMap.put("endNum",paging.getEndNum());
-          paramMap.put("ref_cursor", null);
-          ns.getNoticeList(paramMap);
-          
-          ArrayList<HashMap<String, Object>> noticeList 
-              = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
-          mav.addObject("noticeList", noticeList);
-          mav.addObject("key", key);
-          
-          //System.out.println(noticeList);            // <<< 조회된 게시물리스트
-          
-          mav.setViewName("admin/customerCenter/adminNoticeList");
-      }
-      return mav;
-  }
-  
-  @RequestMapping("adminNoticeInsertForm")
-  public ModelAndView adminNoticeInsertForm(HttpServletRequest request) {
-      ModelAndView mav = new ModelAndView();
-      HttpSession session = request.getSession();
-      if (session.getAttribute("loginAdmin") == null) {
-          mav.setViewName("redirect:/admin");
-      } else {
+			}
+			if (request.getParameter("key") != null) {
+				key = request.getParameter("key");
+				session.setAttribute("key", key);
+			} else if (session.getAttribute("key") != null) {
+				key = (String) session.getAttribute("key");
+			} else {
+				session.removeAttribute("key");
+				key = "";
+			}
+			AdminPaging paging = new AdminPaging();
+			paging.setPage(page);
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("key", key);
+			paramMap.put("tableName", "notice");
+			paramMap.put("culumnName", "subject");
+			paramMap.put("cnt", 0);
+			as.getAllcountAdmin(paramMap);
 
-          
-          mav.setViewName("admin/customerCenter/adminNoticeInsert");
-      }
-      return mav;
-  }
+			// System.out.println("cnt: " + paramMap.get("cnt")); // <<< 게시물 개수 카운트된 수 확인
+
+			paging.setTotalCount((int) paramMap.get("cnt"));
+			mav.addObject("paging", paging);
+
+			paramMap.put("startNum", paging.getStartNum());
+			paramMap.put("endNum", paging.getEndNum());
+			paramMap.put("ref_cursor", null);
+			ns.getNoticeList(paramMap);
+
+			ArrayList<HashMap<String, Object>> noticeList 
+			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			mav.addObject("noticeList", noticeList);
+			mav.addObject("key", key);
+
+			// System.out.println(noticeList); // <<< 조회된 게시물리스트
+
+			mav.setViewName("admin/customerCenter/adminNoticeList");
+		}
+		return mav;
+	}
+
+	@RequestMapping("adminNoticeInsertForm")
+	public ModelAndView adminNoticeInsertForm(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("redirect:/admin");
+		} else {
+
+			mav.setViewName("admin/customerCenter/adminNoticeInsert");
+		}
+		return mav;
+	}
   
   
+
   @RequestMapping("adminProductSave")
   public ModelAndView adminProductSave(HttpServletRequest request,
         @RequestParam("selectedIndex")int selectedIndex,
@@ -1042,5 +1040,44 @@ public class MAdminController {
       return mav;
   }
   
-  
+
+	@RequestMapping("adminNoticeInsert")
+	public ModelAndView adminNoticeInsert(HttpServletRequest request,
+				@ModelAttribute("nvo") @Valid MNoticeVO nvo, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		
+		System.out.println("subject:" + nvo.getSubject() + "/ content:" + nvo.getContent());
+		System.out.println("IMAGE1:" + nvo.getImage1());
+		
+		mav.setViewName("admin/customerCenter/adminNoticeInsert");
+		if(result.getFieldError("subject")!=null) {
+			System.out.println("subject:" + nvo.getSubject() + "/ content:" + nvo.getContent());
+			mav.addObject("message", result.getFieldError("subject").getDefaultMessage());
+			return mav;
+		}else if(result.getFieldError("content")!=null) {
+			System.out.println("subject:" + nvo.getSubject() + "/ content:" + nvo.getContent());
+			mav.addObject("message", result.getFieldError("content").getDefaultMessage());
+			return mav;
+		}
+		
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginAdmin 
+			= (HashMap<String, Object>) session.getAttribute("loginAdmin");
+		if (loginAdmin == null) {
+			mav.setViewName("admin/adminLogin");
+			return mav;
+		} else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("subject", nvo.getSubject());
+			paramMap.put("useyn", nvo.getUseyn());
+			paramMap.put("content", nvo.getContent());
+			paramMap.put("image1", nvo.getImage1());
+			ns.insertNotice(paramMap);
+			
+			mav.setViewName("redirect:/adminNoticeList");
+		}
+		return mav;
+	}
+	
+
 }

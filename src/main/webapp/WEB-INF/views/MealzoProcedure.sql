@@ -1071,6 +1071,7 @@ BEGIN
     commit;    
 END;
 
+
 -------------->> user 공지리스트 디테일조회 geteventOne_m <<-------------------
 
 create or replace procedure geteventOne_m(
@@ -1080,6 +1081,21 @@ is
 begin
     open c_cur for
        select * from mevent where eseq=p_eseq;
+end;
+
+
+---------------------------------------------------------
+-- admin - 새 공지 등록
+create or replace procedure insertNotice_m(
+    p_subject in notice.subject%type,
+    p_useyn in notice.useyn%type,
+    p_content in notice.content%type,
+    p_image1 in notice.image1%type )
+is
+begin
+    insert into notice(nseq, subject,useyn, content, image1 ) 
+        values(NOTICE_SEQ.nextval,p_subject,p_useyn,p_content,p_image1 );
+    commit;
 end;
 
 
