@@ -2,6 +2,7 @@ package com.mealzo.dto;
 
 import java.sql.Timestamp;
 
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -26,10 +27,11 @@ public class MEventVO {
 	private Timestamp writedate;
 	
   // @NotBlank(message="시작기간을 입력하세요")
-	   @NotNull(message="끝나는 기간을 입력하세요")
+	   @NotNull(message="밀조왕에게 시작기간을 확인 하시고 시작 기간을 입력하세요")
 	private Timestamp startdate;
 	
 	//@NotBlank(message="끝나는 기간을 입력하세요")
    @NotNull(message="끝나는 기간을 입력하세요")
    private Timestamp enddate;
+
 }

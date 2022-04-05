@@ -11,6 +11,39 @@
 			#{endNum},
 			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=eventMap}
 		)}
-	
 	</select>
+	
+	<select id="getNoticeOne" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getNoticeOne_m(
+			#{nseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=eventMap}
+		)}
+	</select>
+	<insert id="insertNotice" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL insertNotice_m(
+			#{subject, jdbcType=VARCHAR},
+			#{useyn, jdbcType=VARCHAR},
+			#{content, jdbcType=VARCHAR},
+			#{image1, jdbcType=VARCHAR}
+		)}
+	</insert>
+	
+	<update id="updateNotice" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL updateNotice_m(
+			#{nseq, jdbcType=INTEGER},
+			#{subject, jdbcType=VARCHAR},
+			#{useyn, jdbcType=VARCHAR},
+			#{content, jdbcType=VARCHAR},
+			#{image1, jdbcType=VARCHAR}
+		)}
+	</update>
+	
+	<update id="updateNoticeUseyn" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL updateNoticeUseyn_m(
+			#{nseq, jdbcType=INTEGER},
+			#{selectedIndex, jdbcType=VARCHAR}
+		)}
+	</update>
+	
+	
 </mapper>

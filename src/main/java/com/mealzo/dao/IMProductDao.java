@@ -48,5 +48,8 @@ public interface IMProductDao {
 	void updateProduct(HashMap<String, Object> paramMap);
 
 	void deleteProduct(HashMap<String, Object> paramMap);
+
+	void updateProductUseyn(HashMap<String, Object> paramMap);
+
 	
 }

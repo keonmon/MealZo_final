@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mealzo.dao.IMProductDao;
 
@@ -15,7 +16,6 @@ public class MProductService {
 
 	public void getNewBestProduct(HashMap<String, Object> paramMap) {
 		pdao.getNewBestProduct(paramMap);
-		
 	}
 
 	public void getAllCount(HashMap<String, Object> paramMap) {
@@ -84,20 +84,26 @@ public class MProductService {
 
 	public void getImages(HashMap<String, Object> paramMap) {
 		pdao.getImages(paramMap);
-		
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	public void insertProduct(HashMap<String, Object> paramMap) {
 		pdao.insertProduct(paramMap);
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	public void updateProduct(HashMap<String, Object> paramMap) {
 		pdao.updateProduct(paramMap);
-		
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	public void deleteProduct(HashMap<String, Object> paramMap) {
 		pdao.deleteProduct(paramMap);
-		
 	}
+  
+	@Transactional(rollbackFor = Exception.class)
+	public void updateProductUseyn(HashMap<String, Object> paramMap) {
+		pdao.updateProductUseyn(paramMap);
+	}
+  
 }

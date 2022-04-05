@@ -16,8 +16,6 @@ public class MQnaService {
 
 	public void listQna(HashMap<String, Object> paramMap) {
 		qdao.listQna(paramMap);
-		
-		
 	}
 
 	public void getQna(HashMap<String, Object> paramMap) {
@@ -27,12 +25,10 @@ public class MQnaService {
 	@Transactional(rollbackFor = Exception.class)
 	public void insertQna(HashMap<String, Object> paramMap) {
 		qdao.insertQna(paramMap);
-		
 	}
 
 	public void getAllCountQna(HashMap<String, Object> paramMap) {
 		qdao.getAllCount(paramMap);
-		
 	}
 	
 }

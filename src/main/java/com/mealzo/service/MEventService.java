@@ -15,6 +15,9 @@ public class MEventService {
 
 	public void geteventList(HashMap<String, Object> paramMap) {
 		edao.geteventList(paramMap);
-		
+	}
+
+	public void geteventOne(HashMap<String, Object> paramMap) {
+		edao.geteventOne(paramMap);
 	}
 }

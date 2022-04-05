@@ -102,12 +102,12 @@ function printName() {
     
 function go_search( comm ){
 	if( document.formm.key.value == "" ){
-		alert("검색버튼 사용시에는 검색어 입력이 필수입니다");
+		alert("검색어를 입력해주세요🤔");
 	 	document.formm.key.focus();
 	 	return;
 	 	
 	 }else{
-		var url = "meal.do?command=" + comm + "&sort=recently&sub=y&idx=0";   // 검색어로 검색한 결과의 1페이지로 이동
+		var url =  comm + "?sort=recently&sub=y&idx=0";   // 검색어로 검색한 결과의 1페이지로 이동
 		document.formm.action = url;
 		document.formm.submit();
 	}

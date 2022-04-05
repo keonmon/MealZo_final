@@ -28,7 +28,7 @@
 						if(data.FILENAME!=null){
 							$("#filename").empty();
 							$("#filename").append("<div style='max-height:150px;max-width:120px;' id>"+data.FILENAME+"</div>");
-							$("#image").val(data.FILENAME);
+							$("#image1").val(data.FILENAME);
 							$("#filename").append(
 									"<img src='images/"+data.FILENAME+"' style='max-height:150px;max-width:120px; '/>");
 						}
@@ -45,29 +45,38 @@
 
 <article id="mypageArticle2" style="width:900px; max-width:900px;">
 	<h2>공지사항</h2>
-	<form name="frm" method="post" action="meal.do">
-		<input type="hidden" name="nseq" value="${nseq }">
+	<form name="frm1" method="post" >
+		<%-- <input type="hidden" name="nseq" value="${nseq }"> --%>
 		<table id="tableContainer">
 			<tr><th width="100px" style="background-color:lightgrey">공지 제목</th>
 	            <td width="400px" colspan="1">
-	            <input width="500px" type="text" name="subject" size="47" maxlength="100">
+	            <input width="500px" type="text" name="subject" value="${nvo.subject}" size="47" maxlength="100">
 			</td>
 			<th width="70px">공개유무</th>
 					<td style="text-align:center;">
-						<input type="checkbox" name="useyn" value="y" checked="checked">
+					<c:choose>
+						<c:when test='${nvo.useyn == "y"}'>
+							<input type="checkbox" name="useyn" value="y" checked="checked">
+						</c:when>
+						<c:otherwise>
+							<input type="checkbox" name="useyn" value="y" >
+						</c:otherwise>
+					</c:choose>
 			</td></tr>
 			<tr><th>상세설명</th>
 					<td colspan="5">
-						<textarea name="content" rows="8" cols="70" style="max-height:220px;min-height:220px; max-width:560px; min-width:560px; height:250px"></textarea></td>
+						<textarea name="content" rows="8" cols="70" style="max-height:220px;min-height:220px; max-width:560px; min-width:560px; height:250px">${nvo.content}</textarea></td>
 			</tr>
 		</table>
 			
 		<div width="343" style="position:relative; left:410px; vertical-align:top; max-width:300px;">
 		내용이미지
 		 (이미지는 게시물 최상단에 위치합니다)<br>
-			<input type="hidden" name="image">
+			<input type="hidden" name="image1" id="image1">
 			<div id="filename"></div></div>
+			
 			<br><br><br><br><br><br><br><br>
+			
 	<div id="buttons"style="position:relative">
 	 	<input class="btn" type="button" value="등록"  onclick="go_Notice()">
 		<input type="button" class="btn" value="취소" onclick="location.href='adminNoticeList'">
