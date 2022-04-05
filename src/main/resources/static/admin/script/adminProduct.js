@@ -55,8 +55,8 @@ document.frm.action="adminNoticeInsertForm";
 
 
 function go_Notice(){
-document.frm.action="adminNoticeInsert";
-   document.frm.submit();
+document.frm1.action="adminNoticeInsert";
+   document.frm1.submit();
 
 }
 
@@ -214,7 +214,7 @@ function go_member_save(){
 				return;
 			}else{
 				// count 값이 1 이상이면, 현재 폼의 체크박스 value값을 갖고, command = adminOrderSave로 이동
-				alert("선택된 회원이 '"+ memberSelect.options[memberSelect.selectedIndex].text + "'으로 변경되었습니다");
+				// alert("선택된 회원이 '"+ memberSelect.options[memberSelect.selectedIndex].text + "'으로 변경되었습니다");
 				document.frm.action = "adminMemberSave?selectedIndex="+memberSelect.options[memberSelect.selectedIndex].value;
 				document.frm.submit();
 			}
@@ -256,7 +256,7 @@ function go_notice_save(){
 				return;
 			}else{
 				// count 값이 1 이상이면, 현재 폼의 체크박스 value값을 갖고, command = adminOrderSave로 이동
-				alert("선택된 게시물이 '"+ noticeSelect.options[noticeSelect.selectedIndex].text + "'으로 변경되었습니다");
+				// alert("선택된 게시물이 '"+ noticeSelect.options[noticeSelect.selectedIndex].text + "'으로 변경되었습니다");
 				document.frm.action = "adminNoticeSave?selectedIndex="+noticeSelect.options[noticeSelect.selectedIndex].value;
 				document.frm.submit();
 			}
@@ -266,34 +266,18 @@ function go_notice_save(){
 }
 
 function go_Notice_Edit(){
-	if(document.frm.subject.value==""){
-		alert('제목을 입력하세요');
-		document.frm.subject.focus();
-	}else if(document.frm.content.value==""){
-		alert('내용을 입력하세요');
-		document.frm.content.focus();
-	}else{
-		if(confirm('수정하시겠습니까?')){
-			document.frm.action = "adminNoticeUpdate";
-			document.frm.submit();
-		}
+	if(confirm('수정하시겠습니까?')){
+		document.frm1.action = "adminNoticeUpdate";
+		document.frm1.submit();
 	}
 }
 
 function go_Event_Edit(){
-	if(document.frm.title.value==""){
-		alert('제목을 입력하세요');
-		document.frm.title.focus();
-	}else if(document.frm.content.value==""){
-		alert('내용을 입력하세요');
-		document.frm.content.focus();
-	}else{
 		if(confirm('수정하시겠습니까?')){
 			document.frm.action = "adminEventUpdate";
 			document.frm.submit();
 		}
 	}
- }
 
 function go_view(qseq) {
    location.href ="adminQnaDetail?qseq=" + qseq;
@@ -358,4 +342,48 @@ function go_Mov(){
 	if(confirm('상품등록을 취소하시겠습니까?')){
 		location.href="adminProductList";
 	}
+}
+
+
+
+
+function go_product_save(){
+	var checkBox_pseq = document.frm.checkBox_pseq;
+	var productSelect = document.getElementById("productSelect");
+	
+	// 현재 화면에 보여지고 있는 주문들의 체크박스가 몇 개 체크되었는지 갯수를 count한다.
+	if(checkBox_pseq == null){
+		alert("처리 가능한 항목이 없습니다.");
+		return;
+	}else{
+		var useynConfirm = confirm("선택된 항목을 정말 '" + productSelect.options[productSelect.selectedIndex].text + "'로 변경하시겠습니까?");
+		if(useynConfirm){
+			var count = 0;
+			if(checkBox_pseq.length == undefined){ // 체크박스가 총 1개인 경우.
+				if(checkBox_pseq.checked == true){
+					count++;
+				}
+			}else{ // 체크박스가 2개 이상인 경우
+				for(var i = 0; i<checkBox_pseq.length; i++){
+					if(checkBox_pseq[i].checked == true){
+						count++;
+					}
+				}
+			}
+			//if(document.frm.resulted.length==undefined || (document.frm.resulted.length != 0 ))
+			
+			//alert(count);
+			// count 값이 0이면, 더 진행하지 않고 orderList.jsp로 되돌아간다.
+			if( count == 0 ){
+				alert("상품을 선택하세요.")
+				return;
+			}else{
+				// count 값이 1 이상이면, 현재 폼의 체크박스 value값을 갖고, command = adminOrderSave로 이동
+				alert("선택된 상품이 '"+ productSelect.options[productSelect.selectedIndex].text + "'으로 변경되었습니다");
+				document.frm.action = "adminProductSave?selectedIndex="+productSelect.options[productSelect.selectedIndex].value;
+				document.frm.submit();
+			}
+			// 처리하고(주문의 result값을 '1'->'2'로 변경) orderList.jsp로 되돌아온다.
+		}
+	}	
 }

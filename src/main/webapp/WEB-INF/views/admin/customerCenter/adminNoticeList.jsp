@@ -35,7 +35,7 @@
 				<span style="font-weight:bold; color:black">${noticeVO.NSEQ }</span>
 			</td>
 			<td style="">
-				<a href="adminNoticeDetail&nseq=${noticeVO.NSEQ }" style="text-decoration:none;">
+				<a href="adminNoticeDetail?nseq=${noticeVO.NSEQ }" style="text-decoration:none;">
 					${noticeVO.SUBJECT }
 				</a>
 			</td>

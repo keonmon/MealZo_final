@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mealzo.dao.IMOrderDao;
 
@@ -18,6 +19,7 @@ public class MOrderService {
 		odao.listOrder(paramMap);
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	public void insertOrder(HashMap<String, Object> paramMap) {
 		odao.insertOrder( paramMap );
 	}
@@ -34,16 +36,24 @@ public class MOrderService {
 		odao.selectOseqOrderAll( paramMap );
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	public void deleteOrders(HashMap<String, Object> paramMap) {
 		odao.deleteOrders( paramMap );
 	}
-
+	
+	@Transactional(rollbackFor = Exception.class)
 	public void deleteOrder_detail(HashMap<String, Object> paramMap) {
 		odao.deleteOrder_detail( paramMap );
 	}
-
+	
+	@Transactional(rollbackFor = Exception.class)
 	public void updateOrderResult(HashMap<String, Object> paramMap) {
 		odao.updateOrderResult( paramMap );
+		
+	}
+
+	public void orderCancelForm(HashMap<String, Object> paramMap) {
+		odao.orderCancelForm(paramMap);
 		
 	}
 
