@@ -13,4 +13,6 @@ public interface IMNoticeDao {
 
 	void insertNotice(HashMap<String, Object> paramMap);
 
+	void updateNotice(HashMap<String, Object> paramMap);
+
 }

@@ -27,4 +27,9 @@ public class MNoticeService {
 		
 	}
 
+	public void updateNotice(HashMap<String, Object> paramMap) {
+		ndao.updateNotice(paramMap);
+		
+	}
+
 }

@@ -1085,3 +1085,19 @@ begin
     commit;
 end;
 
+---------------------------------------------------------
+-- admin - 공지 수정
+create or replace procedure updateNotice_m(
+    p_nseq in notice.nseq%type,
+    p_subject in notice.subject%type,
+    p_useyn in notice.useyn%type,
+    p_content in notice.content%type,
+    p_image1 in notice.image1%type )
+is
+begin
+    update notice 
+        set subject=p_subject, useyn=p_useyn, content=p_content, image1=p_image1 
+        where nseq = p_nseq;
+    commit;
+end;
+
