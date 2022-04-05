@@ -9,4 +9,6 @@ public interface IMEventDao {
 
 	void geteventList(HashMap<String, Object> paramMap);
 
+	void geteventOne(HashMap<String, Object> paramMap);
+
 }

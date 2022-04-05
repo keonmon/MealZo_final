@@ -5,7 +5,8 @@
 
 <article id="mypageArticle2" style="width:950px; max-width:950px;">
 <h1 align="left">상품 관리</h1>
-<form name="frm" method="post" >
+<!-- <form name="frm" method="post" > -->
+<form>
 	<table>
 		<tr><td width="642">상품명<input type="text" name="key" value="${key }">
 			<input class="btn" type="button" name="btn_search" value="검색" onclick="go_search('adminProductList');">

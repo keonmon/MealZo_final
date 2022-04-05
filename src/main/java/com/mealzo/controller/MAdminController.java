@@ -1017,30 +1017,27 @@ public class MAdminController {
   
   
   @RequestMapping("adminProductSave")
-  public ModelAndView adminProductSave(HttpServletRequest request
-		  /*,@RequestParam("name") String name */
-		  /*,@RequestParam("selectedIndex") String selectedIndex*/) {
+  public ModelAndView adminProductSave(HttpServletRequest request,
+        @RequestParam("selectedIndex")int selectedIndex,
+        @RequestParam("name")String[] nameArr) {
       ModelAndView mav = new ModelAndView();
       HttpSession session = request.getSession();
-      mav.setViewName("admin/product/productList");
       
       if (session.getAttribute("loginAdmin") == null) {
           mav.setViewName("redirect:/admin");
       } else {
-    	  String selectedIndex = request.getParameter("selectedIndex");
-    	  String[] nameArr = request.getParameterValues("useyn");
-    	  
-    	  HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			for(String name : nameArr) {
-				//mdao.updateMemberResult(name, selectedIndex);
-				paramMap.put("name", name);
-				paramMap.put("selectedIndex", selectedIndex);
-				ps.updateProductResult(paramMap);
-				
-				 System.out.println("selectedIndex");
-		    	 System.out.println("useyn");
-			
-			}
+         HashMap<String, Object> paramMap = new HashMap<String, Object>();
+         for(String name : nameArr) {
+            //mdao.updateMemberResult(name, selectedIndex);
+            paramMap.put("name", name);
+            paramMap.put("selectedIndex", selectedIndex);
+            ps.updateProductResult(paramMap);
+            
+            
+         }
+         mav.setViewName("admin/product/productList");
+          System.out.println("selectedIndex");
+           System.out.println("useyn");
       }
       return mav;
   }
