@@ -1129,3 +1129,34 @@ begin
         where nseq = p_nseq;
     commit;
 end;
+
+--------------------------------------------------
+-- Admin - 회원리스트 조회
+create or replace procedure listMember_m(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+        select * from (
+        select * from (
+        select rownum as rn, p.* from 
+        ((select * from mmember where name like '%'||p_key||'%') p) 
+        ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+end;
+
+--------------------------------------------------
+-- Admin - 회원리스트 조회
+create or replace procedure updateMemberResult_m(
+    p_id in mmember.id%type,
+    p_selectedIndex in varchar )
+is
+begin
+    update mmember set useyn=p_selectedIndex where id=p_id ;
+end;
+
+
+
