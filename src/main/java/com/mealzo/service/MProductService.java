@@ -101,7 +101,7 @@ public class MProductService {
 		
 	}
 
-	public void updateProductResult(HashMap<String, Object> paramMap) {
-		pdao.updateProductResult(paramMap);
+	public void updateProductUseyn(HashMap<String, Object> paramMap) {
+		pdao.updateProductUseyn(paramMap);
 	}
 }

@@ -195,10 +195,17 @@
 	</delete>
 	
 	
-	<update id="updateProductResult" statementType="CALLABLE" parameterType="java.util.HashMap">
-		{CALL updateProductResult_m(
-			#{name},
-			#{selectedIndex}
+	<update id="updateProductUseyn" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL updateProductUseyn_m(
+			#{pseq, jdbcType=INTEGER},
+			#{selectedIndex, jdbcType=VARCHAR}
+		)}
+	</update>
+	
+	<update id="updateNoticeUseyn" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL updateNoticeUseyn_m(
+			#{nseq, jdbcType=INTEGER},
+			#{selectedIndex, jdbcType=VARCHAR}
 		)}
 	</update>
 	

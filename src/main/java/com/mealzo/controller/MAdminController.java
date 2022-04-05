@@ -118,6 +118,8 @@ public class MAdminController {
 		session.invalidate();
 		return "redirect:/admin";
 	}
+	
+
 
 	@RequestMapping("adminProductList")
 	public ModelAndView adminProductList(HttpServletRequest request,
@@ -178,7 +180,6 @@ public class MAdminController {
 
 			ArrayList<HashMap<String, Object>> mproductList 
 				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
-			System.out.println(mproductList);
 			mav.addObject("mproductList", mproductList);
 			mav.addObject("key", key);
 			
@@ -1013,35 +1014,6 @@ public class MAdminController {
 		return mav;
 	}
   
-  
-
-  @RequestMapping("adminProductSave")
-  public ModelAndView adminProductSave(HttpServletRequest request,
-        @RequestParam("selectedIndex")int selectedIndex,
-        @RequestParam("name")String[] nameArr) {
-      ModelAndView mav = new ModelAndView();
-      HttpSession session = request.getSession();
-      
-      if (session.getAttribute("loginAdmin") == null) {
-          mav.setViewName("redirect:/admin");
-      } else {
-         HashMap<String, Object> paramMap = new HashMap<String, Object>();
-         for(String name : nameArr) {
-            //mdao.updateMemberResult(name, selectedIndex);
-            paramMap.put("name", name);
-            paramMap.put("selectedIndex", selectedIndex);
-            ps.updateProductResult(paramMap);
-            
-            
-         }
-         mav.setViewName("admin/product/productList");
-          System.out.println("selectedIndex");
-           System.out.println("useyn");
-      }
-      return mav;
-  }
-  
-
 	@RequestMapping("adminNoticeInsert")
 	public ModelAndView adminNoticeInsert(HttpServletRequest request,
 				@ModelAttribute("nvo") @Valid MNoticeVO nvo, BindingResult result) {
@@ -1180,6 +1152,28 @@ public class MAdminController {
 		}
 		return mav;
 	}
+	
+	 @RequestMapping("adminProductSave")
+	  public ModelAndView adminProductSave(HttpServletRequest request,
+	        @RequestParam("selectedIndex")String selectedIndex,
+	        @RequestParam("checkBox_pseq")String[] pseqArr) {
+	      ModelAndView mav = new ModelAndView();
+	      HttpSession session = request.getSession();
+	      
+	      if (session.getAttribute("loginAdmin") == null) {
+	          mav.setViewName("redirect:/admin");
+	      } else {
+	         HashMap<String, Object> paramMap = new HashMap<String, Object>();
+	         for(String pseq : pseqArr) {
+	            //mdao.updateMemberResult(name, selectedIndex);
+	            paramMap.put("pseq", Integer.parseInt( pseq ));
+	            paramMap.put("selectedIndex", selectedIndex);
+	            ps.updateProductUseyn(paramMap);
+	         }
+	         mav.setViewName("redirect:/adminProductList");
+	      }
+	      return mav;
+	  }
 		
 
 }
