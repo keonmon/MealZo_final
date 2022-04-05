@@ -27,6 +27,7 @@
 			#{image1, jdbcType=VARCHAR}
 		)}
 	</insert>
+	
 	<update id="updateNotice" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{CALL updateNotice_m(
 			#{nseq, jdbcType=INTEGER},
