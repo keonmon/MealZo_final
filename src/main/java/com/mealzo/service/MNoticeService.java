@@ -32,4 +32,9 @@ public class MNoticeService {
 		
 	}
 
+	public void updateNoticeUseyn(HashMap<String, Object> paramMap) {
+		ndao.updateNoticeUseyn(paramMap);
+		
+	}
+
 }

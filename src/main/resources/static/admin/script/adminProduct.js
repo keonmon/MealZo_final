@@ -256,7 +256,7 @@ function go_notice_save(){
 				return;
 			}else{
 				// count 값이 1 이상이면, 현재 폼의 체크박스 value값을 갖고, command = adminOrderSave로 이동
-				alert("선택된 게시물이 '"+ noticeSelect.options[noticeSelect.selectedIndex].text + "'으로 변경되었습니다");
+				// alert("선택된 게시물이 '"+ noticeSelect.options[noticeSelect.selectedIndex].text + "'으로 변경되었습니다");
 				document.frm.action = "adminNoticeSave?selectedIndex="+noticeSelect.options[noticeSelect.selectedIndex].value;
 				document.frm.submit();
 			}

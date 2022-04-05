@@ -1115,4 +1115,15 @@ begin
     commit;
 end;
 
-
+---------------------------------------------------------
+-- admin - 공지사항 공개/비공개 셀렉박스변경
+create or replace procedure updateNoticeUseyn_m(
+    p_nseq in notice.nseq%type,
+    p_selectedIndex in varchar )
+is
+begin
+    update notice 
+        set useyn=p_selectedIndex  
+        where nseq = p_nseq;
+    commit;
+end;
