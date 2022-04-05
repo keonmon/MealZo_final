@@ -61,6 +61,11 @@
 			#{selectedIndex}
 		)  }
 	</update>
-
+  <select id="orderCancelForm" statementType="CALLABLE" parameterType="java.util.HashMap">
+  {CALL orderCancelForm_m(
+  #{id},
+  #{ref_cursor_cancel,  mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
+  )}
+  </select>
 
 </mapper>

@@ -14,4 +14,6 @@ public interface IMReviewDao {
 
 	void insertReview(HashMap<String, Object> paramMap);
 
+	void reviewDelete(HashMap<String, Object> paramMap);
+
 }

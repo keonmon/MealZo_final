@@ -273,19 +273,11 @@ function go_Notice_Edit(){
 }
 
 function go_Event_Edit(){
-	if(document.frm.title.value==""){
-		alert('제목을 입력하세요');
-		document.frm.title.focus();
-	}else if(document.frm.content.value==""){
-		alert('내용을 입력하세요');
-		document.frm.content.focus();
-	}else{
 		if(confirm('수정하시겠습니까?')){
 			document.frm.action = "adminEventUpdate";
 			document.frm.submit();
 		}
 	}
- }
 
 function go_view(qseq) {
    location.href ="adminQnaDetail?qseq=" + qseq;

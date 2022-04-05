@@ -30,6 +30,12 @@ public interface IMAdminDao {
 
 	void admininsertQna(HashMap<String, Object> paramMap);
 
+	void getEventSelect(HashMap<String, Object> paramMap);
+
+	void getImgesEvent(HashMap<String, Object> paramMap);
+
+	void eventUpdate(HashMap<String, Object> paramMap);
+
 
 
 
