@@ -356,24 +356,24 @@ function go_Mov(){
 
 
 function go_product_save(){
-	var useyn = document.frm.useyn;
+	var checkBox_pseq = document.frm.checkBox_pseq;
 	var productSelect = document.getElementById("productSelect");
 	
 	// 현재 화면에 보여지고 있는 주문들의 체크박스가 몇 개 체크되었는지 갯수를 count한다.
-	if(useyn == null){
+	if(checkBox_pseq == null){
 		alert("처리 가능한 항목이 없습니다.");
 		return;
 	}else{
 		var useynConfirm = confirm("선택된 항목을 정말 '" + productSelect.options[productSelect.selectedIndex].text + "'로 변경하시겠습니까?");
 		if(useynConfirm){
 			var count = 0;
-			if(useyn.length == undefined){ // 체크박스가 총 1개인 경우.
-				if(useyn.checked == true){
+			if(checkBox_pseq.length == undefined){ // 체크박스가 총 1개인 경우.
+				if(checkBox_pseq.checked == true){
 					count++;
 				}
 			}else{ // 체크박스가 2개 이상인 경우
-				for(var i = 0; i<useyn.length; i++){
-					if(useyn[i].checked == true){
+				for(var i = 0; i<checkBox_pseq.length; i++){
+					if(checkBox_pseq[i].checked == true){
 						count++;
 					}
 				}

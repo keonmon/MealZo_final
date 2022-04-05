@@ -104,5 +104,11 @@ public class MProductService {
 	@Transactional(rollbackFor = Exception.class)
 	public void updateProductResult(HashMap<String, Object> paramMap) {
 		pdao.updateProductResult(paramMap);
+  }
+  
+	@Transactional(rollbackFor = Exception.class)
+	public void updateProductUseyn(HashMap<String, Object> paramMap) {
+		pdao.updateProductUseyn(paramMap);
 	}
+  
 }

@@ -1062,14 +1062,16 @@ end;
 
 -------------->> 어드민 - product 공개유/무 <<-------------------
 
-CREATE OR REPLACE PROCEDURE updateProductResult_m(
-    p_name IN mproduct.name%TYPE,
-    p_selectedIndex in mproduct.useyn%type )
-IS
-BEGIN
-    update mproduct set useyn=p_selectedIndex where name=p_name;
-    commit;    
-END;
+create or replace procedure updateProductUseyn_m(
+    p_pseq in mproduct.pseq%type,
+    p_selectedIndex in varchar )
+is
+begin
+    update mproduct 
+        set useyn=p_selectedIndex  
+        where pseq = p_pseq;
+    commit;
+end;
 
 
 -------------->> user 공지리스트 디테일조회 geteventOne_m <<-------------------
