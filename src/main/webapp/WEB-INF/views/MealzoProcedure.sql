@@ -167,7 +167,7 @@ IS
 BEGIN
     INSERT INTO MORDERS(oseq, id) VALUES( morders_seq.nextVal, p_id);
     SELECT MAX(oseq) INTO v_oseq FROM MORDERS;
-    OPEN temp_cur FOR SELECT cseq, pseq, quantity FROM CART WHERE id=p_id and result='1';
+    OPEN temp_cur FOR SELECT cseq, pseq, quantity FROM MCART WHERE id=p_id and result='1';
     LOOP
         FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;
         EXIT WHEN temp_cur%NOTFOUND; 
@@ -990,4 +990,33 @@ begin
 
 end;
 select * from mevent;
+
+---------------------------------오더캔슬업데이트---------------------------------
+
+CREATE OR REPLACE PROCEDURE orderCancelUpdate_m(
+    p_odseq  IN morder_detail.odseq%TYPE   )
+IS
+BEGIN
+    update morder_detail set RESULT=4 where odseq=p_odseq;
+    commit;    
+END;
+
+------------------------------오더캔슬-------------------------------------------
+
+CREATE OR REPLACE PROCEDURE orderCancelForm_m(
+    p_id IN morders.id%TYPE, 
+    p_cur OUT SYS_REFCURSOR   )
+IS
+BEGIN
+    OPEN p_cur FOR  SELECT * FROM mordercancel_view;
+END;
+
+
+select *from morder_view
+
+
+
+
+
+
 

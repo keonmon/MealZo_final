@@ -27,7 +27,7 @@ if(document.frm.orderCancel == null){
 		return; 
 	}else{ 
 	//count 값이 1 이상이면, 현재 폼의 체크박스 value값을 갖고, command = adminOrderSave로 이동 
-		document.frm.action = "meal.do?command=orderCancelUpdate"; 
+		document.frm.action = "orderCancelUpdate"; 
 		document.frm.submit(); 
 	} 
 	// 처리하고(주문의 result값을 '1'->'2'로 변경) orderList.jsp로 되돌아온다. 
@@ -86,12 +86,12 @@ function go_cart_delete(){
    if( count == 0 ){
       alert("삭제할 항목을 선택해주세요");
    } else{
-      document.form4.action = "meal.do?command=cartDelete";
+      document.form4.action = "cartDelete";
        document.form4.submit();
    }
 }
 
 function go_order_insert(){
-	document.form4.action="meal.do?command=orderInsert";
+	document.form4.action="orderInsert";
 	document.form4.submit();
 }

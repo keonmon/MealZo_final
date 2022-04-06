@@ -24,9 +24,7 @@
 </form>
 
 <div class="clear"></div>
-<jsp:include page="../paging/paging.jsp">
-	<jsp:param name="command" value="orderList" />	
-</jsp:include>
+
 
 </article>
 <%@ include file="../include/user/headerfooter/footer.jsp" %>

@@ -14,7 +14,7 @@
 	</select>
 	
 	<insert id="insertOrder" statementType="CALLABLE" parameterType="java.util.HashMap" >
-		{ CALL insertOrder( 
+		{ CALL insertOrder_m( 
 			#{id},
 			#{oseq, mode=OUT, jdbcType=INTEGER}
 		) }
@@ -62,5 +62,17 @@
 		)  }
 	</update>
 
-
+	<update id="orderCancelUpdate" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{ CALL orderCancelUpdate_m(
+			#{odseq}
+			) }
+	</update>
+	
+	<select id="orderCancelForm" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{ CALL orderCancelForm_m(
+			#{id},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
+		) }
+	</select>
+			
 </mapper>

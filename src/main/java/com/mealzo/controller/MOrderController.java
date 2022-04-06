@@ -96,7 +96,7 @@ public class MOrderController {
 	
 	
 	@RequestMapping(value="/orderDetail")  
-	public ModelAndView orderDetai( HttpServletRequest request, Model model,
+	public ModelAndView orderDetail( HttpServletRequest request, Model model,
 			@RequestParam("oseq") int oseq ) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
@@ -121,6 +121,57 @@ public class MOrderController {
 			mav.addObject("orderList", orderListByOseq);
 			mav.addObject("orderDetail", orderListByOseq.get(0));
 			mav.setViewName("order/orderDetail");
+		}
+		return mav;
+	}
+
+	
+	@RequestMapping(value="/orderCancelUpdate")
+	public ModelAndView orderCancel( HttpServletRequest request, Model model
+			/*@RequestParam(value="odseq") int odseq*/) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser
+			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		if( loginUser == null) {
+			mav.setViewName("member/login");
+		} else {
+			String[] odseqArr = request.getParameterValues("odseq");
+			HashMap<String, Object>paramMap = new HashMap<String, Object>();
+			for(String odseq:odseqArr) {
+				paramMap.put("odseq", Integer.parseInt(odseq));
+				os.orderCancelUpdate(paramMap);
+		//	mav.addObject("odseq", odseq);
+				mav.setViewName("redirect:/orderCancelForm");
+			}
+		}
+		return mav;
+	}
+	
+	
+	@RequestMapping(value="/orderCancelForm")
+	public ModelAndView orderCancelForm( HttpServletRequest request, Model mdoel) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object>loginUser
+			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		if( loginUser == null) {
+			mav.setViewName("member/login");
+		} else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("id", loginUser.get("ID") );
+			paramMap.put("ref_cursor", null);
+			os.orderCancelForm( paramMap );
+			ArrayList<HashMap<String, Object>> list 
+				= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+			mav.addObject("cancelList", list);
+		int totalPrice =0;
+			for( HashMap<String, Object> ovo : list ) {
+				totalPrice += Integer.parseInt( ovo.get("QUANTITY").toString() )
+						* Integer.parseInt( ovo.get("PRICE2").toString() ); 
+			}
+			mav.addObject("totalPrice", totalPrice); 
+			mav.setViewName("order/orderCancel");
 		}
 		return mav;
 	}

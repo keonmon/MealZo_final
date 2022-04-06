@@ -370,3 +370,4 @@ select rownum as rn, p.* from
 delete from mreview where rseq=27;
 
 
+select * from morder_view 
