@@ -1191,9 +1191,23 @@ public class MAdminController {
 
   @RequestMapping("/adminEventUpdate")
   public ModelAndView admineventupdate(HttpServletRequest request,
+		  @RequestParam("eseq") int eseq,
+		  @RequestParam("startTime") String startTime,
+		  @RequestParam("endTime")  String  endTime,
+		  @RequestParam("startDate")  String startDate,
+		  @RequestParam("endDate")  String  endDate,
+	//	  @RequestParam("writedate") String writedate,
 		  @ModelAttribute("evo") @Valid MEventVO evo, BindingResult result) {
 	  ModelAndView mav = new ModelAndView();
-	  mav.setViewName("admin/customerCenter/adminEventDetail");
+	/*  mav.addObject("estartDate", startDate + " " + startTime + ":00");
+	  mav.addObject("eendDate", endDate + " " + endTime + ":59");
+		System.out.println(startDate +"~"+ endDate);
+	*/
+	//  String estartDate = evo.getStartdate() + "~" + getParameter("startTime");
+	 // String eendDate = evo.getEnddate() + "~" + getParameter("endTime");
+	  //System.out.println(estartDate +"~"+ eendDate);
+		
+		mav.setViewName("admin/customerCenter/adminEventDetail");
 	  if(result.getFieldError("title") !=null) {
 		  mav.addObject("message", result.getFieldError("title").getDefaultMessage());
 	 return mav;
@@ -1209,12 +1223,12 @@ public class MAdminController {
 	  }else if (result.getFieldError("subtitle") !=null) {
 		  mav.addObject("message", result.getFieldError("subtitle").getDefaultMessage());
 			 return mav;
-	  }else if (result.getFieldError("startdate") !=null) {
+	/*  }else if (result.getFieldError("startdate") !=null) {
 		  mav.addObject("message", result.getFieldError("startdate").getDefaultMessage());
 			 return mav;
 	  }else if (result.getFieldError("enddate") !=null) {
 		  mav.addObject("message", result.getFieldError("enddate").getDefaultMessage());
-			 return mav;
+			 return mav; */
 	  }
 		HttpSession session = request.getSession();
 		if (session.getAttribute("loginAdmin") == null) {
@@ -1230,9 +1244,12 @@ public class MAdminController {
 			paramMap.put("subtitle", evo.getSubtitle());
 			paramMap.put("startdate", evo.getStartdate());
 			paramMap.put("enddate", evo.getEnddate());
-			
+		//	paramMap.put("writedate" ,evo.getWritedate());
 			as.eventUpdate(paramMap);
 			
+			mav.addObject("eseq", eseq);
+			//mav.addObject("startDate", estartDate);
+		//	mav.addObject("eendDate", eendDate);
 			mav.setViewName("redirect:/adminEventDetail");
 			
 		}
@@ -1240,7 +1257,8 @@ public class MAdminController {
   }
   
 
-	
+
+
 	@RequestMapping("adminNoticeSave")
 	public ModelAndView adminNoticeSave(HttpServletRequest request, 
 			@RequestParam("selectedIndex")String selectedIndex,

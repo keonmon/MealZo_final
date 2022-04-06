@@ -2,7 +2,6 @@ package com.mealzo.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -148,7 +147,7 @@ public class MOrderController {
 		return mav;
 	}
 	
-	
+	/*
 	@RequestMapping(value="/orderCancelForm")
 	public ModelAndView orderCancelForm( HttpServletRequest request, Model mdoel) {
 		ModelAndView mav = new ModelAndView();
@@ -174,7 +173,7 @@ public class MOrderController {
 			mav.setViewName("order/orderCancel");
 		}
 		return mav;
-	}
+	}*/
 	
 	@RequestMapping("/orderCancelForm")
 	public ModelAndView ordercancelform(Model model, HttpServletRequest request) {

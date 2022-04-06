@@ -113,8 +113,8 @@
   #{image1},
   #{image2},
   #{subtitle},
-  #{startdate},
-  #{enddate}
+  #{startdate,  jdbcType=TIMESTAMP},
+  #{enddate,  jdbcType=TIMESTAMP}
   )}
  </update>
  
