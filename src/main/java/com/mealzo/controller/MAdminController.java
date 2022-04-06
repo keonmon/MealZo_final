@@ -1462,5 +1462,25 @@ public class MAdminController {
         	return mav;
         	
         }
+        @RequestMapping("/adminEventDelete")
+        public ModelAndView adminEventDelete(HttpServletRequest request, 
+        		@RequestParam("eseq") int eseq) {
+        	ModelAndView mav= new ModelAndView();
+        	HttpSession session = request.getSession();
+       		if (session.getAttribute("loginAdmin") == null) {
+       			mav.setViewName("redirect:/admin");
+       			return mav;
+       		}else {
+       			HashMap<String , Object>paramMap = new HashMap<String, Object>();
+       			paramMap.put("eseq", eseq);
+       			as.eventDelete(paramMap);
+       		
+        	mav.setViewName("redirect:/adminEventList");
+        	
+       		}
+       		return mav;
+        	
+        }
+     
 }
 

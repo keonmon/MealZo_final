@@ -130,4 +130,9 @@
   #{enddate,  jdbcType=TIMESTAMP}
  )}
  </insert>
+ <delete id="eventDelete" statementType="CALLABLE" parameterType="java.util.HashMap">
+ {CALL eventDelete_m(
+ #{eseq}
+ )}
+ </delete>
 </mapper>

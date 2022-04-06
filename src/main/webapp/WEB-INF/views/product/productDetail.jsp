@@ -36,6 +36,15 @@
 	  	</td></tr>
 	</table>  
 </form>
+
+	<div style="position:absolute; top:40px; right:100px;">
+<from>
+<table>
+<tr><td><a href="#" onClick="go_zzim('${mproductVO.PSEQ}');"><span class="material-icons" >favorite_border</span></a></td></tr>
+</table>
+</from>
+</div>
+
 <script>
 $(function (){ 
 	$("#tabs li").click(function(){

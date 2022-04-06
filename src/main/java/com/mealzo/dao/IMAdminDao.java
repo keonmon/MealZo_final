@@ -38,6 +38,8 @@ public interface IMAdminDao {
 
 	void eventInsert(HashMap<String, Object> paramMap);
 
+	void eventDelete(HashMap<String, Object> paramMap);
+
 
 
 
