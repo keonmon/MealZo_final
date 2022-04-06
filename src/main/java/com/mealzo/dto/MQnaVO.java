@@ -25,7 +25,15 @@ public class MQnaVO {
 	
 	@NotBlank(message="빈칸으로 하면 속을줄 알았냐 ? 내용 입력해 !!!!!!!!!!!!!")
 	private String reply;
+	
+	@NotNull(message="아이디를 입력하세요")
+	@NotEmpty(message="아이디를 입력하세요")
 	private String id;
+	
+	@NotNull(message="비밀번호를 입력하세요(비회원문의 확인시 필요하니 기억해두시기 바랍니다)")
+	@NotEmpty(message="비밀번호를 입력하세요(비회원문의 확인시 필요하니 기억해두시기 바랍니다)")
+	private String pwd;
+	
 	private String rep;
 	private Timestamp indate;
 	

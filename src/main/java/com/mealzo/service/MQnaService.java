@@ -30,5 +30,25 @@ public class MQnaService {
 	public void getAllCountQna(HashMap<String, Object> paramMap) {
 		qdao.getAllCount(paramMap);
 	}
+
+	public void getAllCountnmQna(HashMap<String, Object> paramMap) {
+		qdao.getAllCountnmQna(paramMap);
+	}
+
+	public void nmlistQna(HashMap<String, Object> paramMap) {
+		qdao.nmlistQna(paramMap);
+	}
+
+	public void insertnmQna(HashMap<String, Object> paramMap) {
+		qdao.insertnmQna(paramMap);
+	}
+
+	public void getnmQna(HashMap<String, Object> paramMap) {
+		qdao.getnmQna(paramMap);
+	}
+
+	public void getNmqnaByNqseq(HashMap<String, Object> paramMap) {
+		qdao.getNmqnaByNqseq(paramMap);
+	}
 	
 }
