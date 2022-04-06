@@ -370,6 +370,8 @@ select rownum as rn, p.* from
   delete from ask where aseq between 37 and 38;
 delete from mreview where rseq=27;
 
+
+select * from morder_view 
 select * from order_detail
 select * from mevent;
 select image1, image2  from mevent where eseq='1';
