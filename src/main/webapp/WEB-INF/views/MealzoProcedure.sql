@@ -1204,4 +1204,55 @@ begin
     update mmember set useyn=p_selectedIndex where id=p_id ;
 end;
 
+-----------------------------------------------------------------------------------------------
+create or replace procedure adminlistReview_m(
+p_key in varchar2,
+p_startNum number,
+p_endNum number,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from(
+select * from(
+select rownum rn, p.* from (select * from mreview_view where name like '%'||p_key||'%') p
+)where rn >= p_startNum 
+)where rn <=p_endNum;
+end;
+------------------------------------------------------------------------------------
+--이벤트 업데이트
+create or replace procedure eventUpdate_m(
+p_eseq in mevent.eseq%type,
+p_title in mevent.title%type,
+p_content in mevent.content%type,
+p_image1 in mevent.image1%type,
+p_image2 in mevent.image2%type,
+p_subtitle in mevent.subtitle%type,
+p_startdate in mevent.startdate%type,
+p_enddate in mevent.enddate%type
+)
+is
+begin
+update mevent set  title=p_title, content=p_content,
+image1=p_image1, image2=p_image2, subtitle=p_subtitle, startdate=p_startdate,
+enddate=p_enddate where eseq=p_eseq;
+end;
+---------------------------------------------------------------------------------
+--insert EVent
+create or replace procedure eventInsert_m(
+p_eseq in mevent.eseq%type,
+p_title in mevent.title%type,
+p_content in mevent.content%type,
+p_image1 in mevent.image1%type,
+p_image2 in mevent.image2%type,
+p_subtitle in mevent.subtitle%type,
+p_startdate in mevent.startdate%type,
+p_enddate in mevent.enddate%type
+)
+is
+begin
+insert into mevent(eseq, title, content, image1, image2, subtitle, startdate, enddate)
+values(mevent_seq.nextVal , p_title, P_content, p_image1, p_image2, p_subtitle, p_startdate, p_enddate);
 
+end;

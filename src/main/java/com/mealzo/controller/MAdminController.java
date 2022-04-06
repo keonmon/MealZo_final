@@ -940,71 +940,7 @@ public class MAdminController {
 		return mav;
 	}
 
-	@RequestMapping("adminNoticeList")
-	public ModelAndView adminNoticeList(HttpServletRequest request,
-			@RequestParam(value = "sub", required = false) String sub,
-			@RequestParam(value = "page", required = false) Integer page,
-			@RequestParam(value = "key", required = false) String key) {
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		if (session.getAttribute("loginAdmin") == null) {
-			mav.setViewName("redirect:/admin");
-		} else {
-			if (request.getParameter("sub") != null) {
-				session.removeAttribute("page");
-				session.removeAttribute("key");
-			}
-			page = 1;
-			key = "";
-			if (request.getParameter("page") != null) {
-				page = Integer.parseInt(request.getParameter("page"));
-				session.setAttribute("page", page);
-			} else if (session.getAttribute("page") != null) {
-				page = (Integer) session.getAttribute("page");
-			} else {
-				page = 1;
-				session.removeAttribute("page");
 
-			}
-			if (request.getParameter("key") != null) {
-				key = request.getParameter("key");
-				session.setAttribute("key", key);
-			} else if (session.getAttribute("key") != null) {
-				key = (String) session.getAttribute("key");
-			} else {
-				session.removeAttribute("key");
-				key = "";
-			}
-			AdminPaging paging = new AdminPaging();
-			paging.setPage(page);
-			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("key", key);
-			paramMap.put("tableName", "notice");
-			paramMap.put("culumnName", "subject");
-			paramMap.put("cnt", 0);
-			as.getAllcountAdmin(paramMap);
-
-			// System.out.println("cnt: " + paramMap.get("cnt")); // <<< 게시물 개수 카운트된 수 확인
-
-			paging.setTotalCount((int) paramMap.get("cnt"));
-			mav.addObject("paging", paging);
-
-			paramMap.put("startNum", paging.getStartNum());
-			paramMap.put("endNum", paging.getEndNum());
-			paramMap.put("ref_cursor", null);
-			ns.getNoticeList(paramMap);
-
-			ArrayList<HashMap<String, Object>> noticeList 
-			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
-			mav.addObject("noticeList", noticeList);
-			mav.addObject("key", key);
-
-			// System.out.println(noticeList); // <<< 조회된 게시물리스트
-
-			mav.setViewName("admin/customerCenter/adminNoticeList");
-		}
-		return mav;
-	}
 
 	@RequestMapping("adminNoticeInsertForm")
 	public ModelAndView adminNoticeInsertForm(HttpServletRequest request) {
@@ -1201,20 +1137,7 @@ public class MAdminController {
           mav.setViewName("admin/customerCenter/adminNoticeList");
       }
       return mav;
-  }
   
-  @RequestMapping("adminNoticeInsertForm")
-  public ModelAndView adminNoticeInsertForm(HttpServletRequest request) {
-      ModelAndView mav = new ModelAndView();
-      HttpSession session = request.getSession();
-      if (session.getAttribute("loginAdmin") == null) {
-          mav.setViewName("redirect:/admin");
-      } else {
-
-          
-          mav.setViewName("admin/customerCenter/adminNoticeInsert");
-      }
-      return mav;
   }
   @RequestMapping("/adminEventDetail")
   public ModelAndView admineventdetail(HttpServletRequest request,
@@ -1452,5 +1375,72 @@ public class MAdminController {
 	      }
 	      return mav;
 	  }
+        @RequestMapping("/adminEventInsertForm")
+        public ModelAndView adminEventinsertform(HttpServletRequest request) {
+    	ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("redirect:/admin");
+		} else {
 
+			mav.setViewName("admin/customerCenter/adminEventInsertForm");
+		}
+		return mav;
+        }
+        
+        @RequestMapping("/adminEventInsert")
+        public ModelAndView adminEventinsert(HttpServletRequest request, @RequestParam("startTime") String startTime,
+        		@RequestParam("endTime") String endTime, @RequestParam("startdate") String startdate,  @RequestParam("enddate") String enddate, 
+        @ModelAttribute("evo") @Valid MEventVO evo, BindingResult result	) {
+        	
+        	ModelAndView mav= new ModelAndView();
+        	 mav.setViewName("admin/customerCenter/adminEventInsertForm");
+       	  if(result.getFieldError("title") !=null) {
+       		  mav.addObject("message", result.getFieldError("title").getDefaultMessage());
+       	 return mav;
+       	  }else if (result.getFieldError("content") !=null) {
+       		  mav.addObject("message", result.getFieldError("content").getDefaultMessage());
+       			 return mav;
+       	  }else if (result.getFieldError("image1") !=null) {
+       		  mav.addObject("message", result.getFieldError("image1").getDefaultMessage());
+       			 return mav;
+       	  }else if (result.getFieldError("image2") !=null) {
+       		  mav.addObject("message", result.getFieldError("image2").getDefaultMessage());
+       			 return mav;  
+       	  }else if (result.getFieldError("subtitle") !=null) {
+       		  mav.addObject("message", result.getFieldError("subtitle").getDefaultMessage());
+       			 return mav;
+    /*	 }else if (result.getFieldError("startdate") !=null) {
+       		  mav.addObject("message", result.getFieldError("startdate").getDefaultMessage());
+       			 return mav;
+       	  }else if (result.getFieldError("enddate") !=null) {
+       		  mav.addObject("message", result.getFieldError("enddate").getDefaultMessage());
+       			 return mav;  */
+       	  }
+       		HttpSession session = request.getSession();
+       		if (session.getAttribute("loginAdmin") == null) {
+       			mav.setViewName("redirect:/admin");
+       		}else {
+       			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+       			paramMap.put("eseq", evo.getEseq());
+    			paramMap.put("title", evo.getTitle());
+    			paramMap.put("content", evo.getContent());
+    			paramMap.put("image1", evo.getImage1());
+    			paramMap.put("image2", evo.getImage2());
+    			paramMap.put("subtitle", evo.getSubtitle());
+    			paramMap.put("startdate", evo.getStartdate());
+    			paramMap.put("enddate", evo.getEnddate());
+    			
+    			as.eventInsert(paramMap);
+    			
+    		//	mav.addObject("eseq", evo.getEseq());
+    			mav.addObject("endTime", endTime);
+    			mav.addObject("startTime", startTime);
+    			mav.setViewName("redirect:/adminEventList");
+       		}
+        	
+        	return mav;
+        	
+        }
 }
+
