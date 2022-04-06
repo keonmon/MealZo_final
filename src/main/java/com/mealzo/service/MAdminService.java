@@ -81,6 +81,11 @@ public class MAdminService {
 		
 	}
 
+	public void eventDelete(HashMap<String, Object> paramMap) {
+		adao.eventDelete(paramMap);
+		
+	}
+
 
 
 }

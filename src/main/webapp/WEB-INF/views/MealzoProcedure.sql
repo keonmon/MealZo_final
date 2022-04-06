@@ -154,7 +154,6 @@ BEGIN
 END;
 
 --------------------------------오더인서트---------------------------------
-
 CREATE OR REPLACE PROCEDURE insertOrder_m(
     p_id  IN  MORDERS.ID%TYPE,
     p_oseq  OUT  MORDERS.OSEQ%TYPE  )
@@ -597,6 +596,7 @@ end;
  
 --------------------------------------------------------------------------------------------
 -- Admin - 범용 카운트
+-- Admin - 범용 카운트
 create or replace procedure getAllcountAdmin_m(
     p_key VARCHAR2,
     p_tableName VARCHAR2,   -- 테이블명 변수
@@ -615,13 +615,6 @@ begin
     --DBMS_OUTPUT.PUT_LINE(v_cnt);   
     p_cnt := v_cnt;
 end;
-
-exec getAllcountAdmin_m('스테이크', 'mproduct', 'name');
-select * from mproduct;
-
-
-exec getAllcountAdmin_m('토마호', 'aks_view', 'p_name');
-select * from ask_view;
 
 --------------------------------------------------------------------------------------------
 -- Admin - 전체 주문 조회
@@ -1279,3 +1272,43 @@ insert into mevent(eseq, title, content, image1, image2, subtitle, startdate, en
 values(mevent_seq.nextVal , p_title, P_content, p_image1, p_image2, p_subtitle, p_startdate, p_enddate);
 
 end;
+------------------------------------------------------------------------------------
+--이벤트 삭제
+create or replace procedure eventDelete_m(
+p_eseq in mevent.eseq%type
+)
+is
+begin
+delete from mevent where eseq=p_eseq;
+end;
+
+----------------------------------------------------------------------
+--Zzim 한 상픔 리스트 보기 allcount
+create or replace procedure getAllCountZzim_m(
+ p_cnt OUT NUMBER
+  )
+ is 
+  v_cnt number;
+ begin
+  select count(*) into v_cnt from zzim_view;
+  p_cnt := v_cnt;
+  end;
+  
+------------------------------------------------------------------------
+  --Zzim 한 상픔 리스트 보기
+  create or replace procedure  listZzim_m(
+  startNum number,
+  endNum number,
+  p_id in mzzim.id%type,
+  c_cur out sys_refcursor
+  )
+  is
+  begin
+  open c_cur for
+  select * from (
+  select * from (
+  select rownum rn, p. *from ( select * from zzim_view where id= p_id) p
+  ) where rn>=startNum
+  ) where rn<=endNum ;
+  end;
+  

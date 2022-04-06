@@ -289,4 +289,12 @@ values(mevent_seq.nextVal, '박막례 할머니의 이모저모6', '박막례시
 
 
 
+create table mzzim(
+zseq number(5) primary key,
+pseq number references mproduct(pseq),
+id varchar2(20) references mmeber(id),
+indate date default sysdate -- 찜한잘짜
+image 
+)
+
 
