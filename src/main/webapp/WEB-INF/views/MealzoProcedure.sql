@@ -1220,6 +1220,90 @@ begin
     update mmember set useyn=p_selectedIndex where id=p_id ;
 end;
 
+
+-------------->> 비회원문의 - nmqna 테이블생성 <<-------------------
+
+create table nmqna (
+	  nqseq        number(5)    primary key,  -- 글번호 
+	  subject     varchar2(300),            -- 제목
+	  content     varchar2(1000),          -- 문의내용
+	  reply       varchar2(1000),           -- 답변내용
+	  id          varchar2(20),                 -- 임시id
+	  pwd         varchar2(100),                 -- 임시pwd
+	  rep         char(1)       default '1',        --1:답변 무  2:답변 유  
+	  indate      date default  sysdate     -- 작성일
+); 
+
+create sequence nmqna_seq start with 1;
+
+-------------->> 비회원문의 - 카운트 <<-------------------
+
+create or replace procedure getAllCountnmQna_m(
+   p_cnt OUT NUMBER
+  )
+ is 
+  v_cnt number;
+ begin
+  select count(*) into v_cnt from nmqna;
+  p_cnt := v_cnt;
+  end;
+
+-------------->> 비회원문의 - 리스트 <<-------------------
+
+create or replace procedure nmlistQna_m(
+p_startNum number,
+p_endNum number,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from (
+select * from (
+select rownum rn, p.* from (select * from nmqna order by nqseq desc ) p
+) where rn >= p_startNum
+)where rn<= p_endNum;
+end;
+
+select * from nmqna
+select * from mqna
+
+-------------->> 비회원문의 - 글쓰기 <<-------------------
+
+ create or replace procedure insertnmQna_m(
+ p_id in nmqna.id%type,
+ p_pwd in nmqna.pwd%type,
+ p_subject in nmqna.subject%type,
+ p_content in nmqna.content%type
+ )
+ is
+ begin
+ insert into nmqna(nqseq, id, pwd, subject, content)
+ values(nmqna_seq.nextVal, p_id, p_pwd, p_subject, p_content);
+ end;
+ 
+ -------------->> 비회원문의 - 글조회 <<-------------------
+ 
+ CREATE OR REPLACE PROCEDURE getnmQna_m(
+p_nqseq in nmqna.nqseq%type,
+c_cur out sys_refcursor
+)
+is
+begin
+ open c_cur for select * from nmqna where nqseq=p_nqseq;
+ end;
+ 
+ -------------->> 비회원문의 - 비밀번호조회 <<-------------------
+
+CREATE OR REPLACE PROCEDURE getNmqnaByNqseq_m(
+p_nqseq in nmqna.nqseq%type,
+c_cur out sys_refcursor
+)
+is
+begin
+ open c_cur for select * from nmqna where nqseq=p_nqseq;
+ end;
+
 -----------------------------------------------------------------------------------------------
 create or replace procedure adminlistReview_m(
 p_key in varchar2,
@@ -1272,6 +1356,7 @@ insert into mevent(eseq, title, content, image1, image2, subtitle, startdate, en
 values(mevent_seq.nextVal , p_title, P_content, p_image1, p_image2, p_subtitle, p_startdate, p_enddate);
 
 end;
+
 ------------------------------------------------------------------------------------
 --이벤트 삭제
 create or replace procedure eventDelete_m(
@@ -1312,3 +1397,4 @@ create or replace procedure getAllCountZzim_m(
   ) where rn<=endNum ;
   end;
   
+

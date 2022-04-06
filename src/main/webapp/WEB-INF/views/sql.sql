@@ -401,3 +401,4 @@ select * from zzim_view
 
 alter table mzzim add result varchar2(15) default 'n';	
 update mzzim set result='y' where zseq=1;
+

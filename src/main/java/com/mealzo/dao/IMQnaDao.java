@@ -15,4 +15,14 @@ public interface IMQnaDao {
 
 	void getAllCount(HashMap<String, Object> paramMap);
 
+	void getAllCountnmQna(HashMap<String, Object> paramMap);
+
+	void nmlistQna(HashMap<String, Object> paramMap);
+
+	void insertnmQna(HashMap<String, Object> paramMap);
+
+	void getnmQna(HashMap<String, Object> paramMap);
+
+	void getNmqnaByNqseq(HashMap<String, Object> paramMap);
+
 }

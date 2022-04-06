@@ -167,5 +167,167 @@ public class MQnaController {
 		}
 
 		return mav;
+	}
+	
+	@RequestMapping("/nmqnaForm")
+	public ModelAndView nomemberqnaForm(Model model, HttpServletRequest request,
+			@RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "key", required = false) String key) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser =
+				(HashMap<String, Object> )session.getAttribute("loginUser");
+		if(loginUser!=null) {
+			mav.setViewName("redirect:/qnaForm");
+		}else {
+			
+			page=1;
+			if(request.getParameter("sub") !=null) {
+				session.removeAttribute("page");
+			}
+			if(request.getParameter("page")!=null) {
+				page=Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			}else if(session.getAttribute("page")!=null) {
+				page=(Integer)session.getAttribute("page");
+			}else {
+				session.removeAttribute("page");
+			}	
+			
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			Paging paging = new Paging();
+			paging.setPage(page); //현재 페이지
+			
+		
+		   paramMap.put("cnt" ,0);
+		   qs.getAllCountnmQna(paramMap);
+		    
+		    int cnt = Integer.parseInt(paramMap.get("cnt").toString());
+		    paging.setTotalCount(cnt);
+		    paging.paging();
+		    paramMap.put("startNum", paging.getStartNum());
+		    paramMap.put("endNum", paging.getEndNum());
+			paramMap.put("ref_cursor", null);
+			qs.nmlistQna(paramMap);
+			ArrayList<HashMap<String, Object>> list
+			 = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+			mav.addObject("paging", paging);
+			mav.addObject("nmqnaList", list);
+			mav.setViewName("qna/nmqnaList");			
+		}
+		return mav;	
+	}
+	
+	@RequestMapping("/nmqnaWriteForm")
+	public String nmqnaWriteForm(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser
+			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		if(loginUser!=null) {
+			return "redirect:/qnaForm";
+		}else {
+		return "qna/nmqnaWrite";
 		}
 	}
+		
+	@RequestMapping(value="/nmqnaWrite",  method=RequestMethod.POST)
+	public ModelAndView nmqnaWrite(HttpServletRequest request, @ModelAttribute("dto")
+	@Valid MQnaVO qnavo, 
+	BindingResult result,
+	@RequestParam("subject") String subject, 
+	@RequestParam("content") String content) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser =
+				(HashMap<String, Object> )session.getAttribute("loginUser");
+		if(loginUser!=null) {
+			mav.setViewName("redirect:/qnaForm");
+		}else{
+			if(result.getFieldError("id")!=null) {
+				mav.addObject("message", result.getFieldError("id").getDefaultMessage());
+				mav.setViewName("qna/nmqnaWrite");
+				 return mav;
+			}else if(result.getFieldError("pwd")!=null) {
+				mav.addObject("message", result.getFieldError("pwd").getDefaultMessage());
+				mav.setViewName("qna/nmqnaWrite");
+				 return mav;
+			}else if(result.getFieldError("subject")!=null) {
+				mav.addObject("message", result.getFieldError("subject").getDefaultMessage());
+				mav.setViewName("qna/nmqnaWrite");
+				 return mav;
+			}else if(result.getFieldError("content") !=null) {
+				mav.addObject("message", result.getFieldError("content").getDefaultMessage());
+				mav.setViewName("qna/nmqnaWrite");
+				return mav;
+		}	
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("content", content);
+			paramMap.put("subject", subject);
+			paramMap.put("id", qnavo.getId());
+			paramMap.put("pwd", qnavo.getId());
+			qs.insertnmQna(paramMap);
+			mav.setViewName("redirect:/nmqnaForm");
+		}
+
+		return mav;
+	}
+	
+	@RequestMapping("/nmqnaView")
+	public ModelAndView nmqnaView(
+			@RequestParam("nqseq") int nqseq ,
+			HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser =
+				(HashMap<String, Object> )session.getAttribute("loginUser");
+		if(loginUser!=null) {
+			mav.setViewName("redirect:/qnaForm");
+		}else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			
+			paramMap.put("nqseq", nqseq);
+			paramMap.put("ref_cursor", null);
+			qs.getnmQna(paramMap);
+			
+			ArrayList<HashMap<String, Object>> list
+			 =(ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			mav.addObject("mqnaVO", list.get(0));
+			mav.setViewName("qna/nmqnaView");
+		}
+		return mav;
+	}
+	
+	@RequestMapping("/pwdcheck")
+	public String pwdcheck(HttpServletRequest request,
+			Model model,
+			@RequestParam("nqseq") int nqseq) {
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser
+			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		if(loginUser!=null) {
+			return "redirect:/qnaForm";
+		}else {
+			
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("nqseq", nqseq);
+			paramMap.put("ref_cursor", null);
+			
+			qs.getNmqnaByNqseq(paramMap);
+			
+			ArrayList< HashMap<String, Object> > list 
+			= (ArrayList< HashMap<String, Object>>)paramMap.get("ref_cursor");
+			
+			HashMap<String , Object > mvo = list.get(0);
+			String pwd = (String)mvo.get("PWD");
+			
+			model.addAttribute("pwd", pwd);
+			model.addAttribute("nqseq", nqseq);
+			return "qna/pwdcheck";
+			
+		}
+		
+	}
+	
+	
+	
+}

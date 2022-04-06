@@ -1,30 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
 <%@ include file="include/user/headerfooter/header.jsp"%>
+<style type="text/css">
+	/* #remote ul{list-style: none; padding:0; margin: 0; display: inline-block; } 
+	#remote ul li{float: left; width: 10px; height: 10px; background:beige; margin:18px 8px; border-radius:5px 5px 5px 5px; user-select: none;} */
+	#remote ul li.active{
+	  width:12px;
+	  height:12px;
+	  top:3px;
+	  opacity:1;
+	  box-shadow:rgba(0,0,0,0.1) 1px 1px 0px; 
+	}
+	*{list-style:none;}
+	#sliderWrap ul, #remote ul li{
+	-webkit-transition: all 0.3s cubic-bezier(1,.01,.32,1);
+	-moz-transition: all 0.3s cubic-bezier(1,.01,.32,1);
+	-o-transition: all 0.3s cubic-bezier(1,.01,.32,1);
+	-ms-transition: all 0.3s cubic-bezier(1,.01,.32,1);
+	transition: all 0.3s cubic-bezier(1,.01,.32,1);	
+}
 
+</style>
 <div class="clear"></div>
 
-<div id="index" style="margin-bottom:30px">
-<script type="text/javascript">
+<div id="index"  class='stop-dragging' style="margin-bottom:30px">
+<!-- <script type="text/javascript">
 	$(function(){
 		startInterval();
 	})
-</script>
+</script> -->
 	<!-- 이벤트 슬라이더 -->
 	<div class="slide_event">
-		<div id="images">
-			<a href="productForm?kind=한식&bestyn=&newyn=&sort=recently&sub=y&idx=0"><img src="images/main1.jpg" id="ev1"></a> 
-			<a href="productForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0"><img src="images/main2.jpg" id="ev2"></a> 
-			<a href="productAllForm?sort=recently&sub=y&idx=0"><img src="images/main3.jpg" id="ev3"></a>
-			<a href="#"><img src="images/main4.jpg" id="ev4"></a>
-			<a href="eventDetail?eseq=1"><img src="images/main5.jpg" id="ev5"></a>
-			<a href="productDetail?pseq=89"><img src="images/main6.jpg" id="ev6"></a>
-			<a href="productDetail?pseq=38"><img src="images/main7.jpg" id="ev7"></a>
-			<a href="productDetail?pseq=4"><img src="images/main8.jpg" id="ev8"></a>
-<div class="clear"></div>
+		<div id="sliderWrap">
+		<ul id="images"style="left:-400px;">
+			<li><a href="productForm?kind=한식&bestyn=&newyn=&sort=recently&sub=y&idx=0"><img src="images/main1.jpg" id="ev1"></a></li>
+			<li><a href="productForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0"><img src="images/main2.jpg" id="ev2"></a> </li>
+			<li><a href="productAllForm?sort=recently&sub=y&idx=0"><img src="images/main3.jpg" id="ev3"></a></li>
+			<li><a href="#"><img src="images/main4.jpg" id="ev4"></a></li>
+			<li><a href="eventDetail?eseq=1"><img src="images/main5.jpg" id="ev5"></a></li>
+			<li><a href="productDetail?pseq=89"><img src="images/main6.jpg" id="ev6"></a></li>
+			<li><a href="productDetail?pseq=38"><img src="images/main7.jpg" id="ev7"></a></li>
+			<li><a href="productDetail?pseq=4"><img src="images/main8.jpg" id="ev8"></a></li>
+		</ul>
+		<div id="buttonL" class="material-icons">arrow_back_ios_new</div>
+		<div id="buttonR" class="material-icons" >arrow_forward_ios_new</div>
+		<div id="remote" style="display:block;">
+			<ul>
+			</ul>
+		</div>
 		</div>
 	</div>
-
+	<div class="clear"></div>
 	<!-- 신메뉴 슬라이더 -->
 	<div id="slide_product">
 		<div id="index_catalog_topper">
@@ -94,6 +120,7 @@
 			</div>
 		</div>
 	</div>
+	</div>
  
 	<!-- 정기구독 메뉴 슬라이더 -->
 	<!-- 
@@ -131,6 +158,5 @@
 		</div>
 	</div>
 	-->
-</div>
 
 <%@ include file="include/user/headerfooter/footer.jsp"%>

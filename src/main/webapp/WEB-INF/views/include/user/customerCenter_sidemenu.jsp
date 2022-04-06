@@ -7,5 +7,6 @@
 		<li><h3><a href="noticeList">고객센터</a></h3></li>
 		<li id="menu"><a href="noticeList">공지사항</a></li>
 		<li id="menu"><a href="eventList">이벤트</a></li>
+		<li id="menu"><a href="nmqnaForm">비회원 문의</a></li>
 	</ul>
 </nav>
