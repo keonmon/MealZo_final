@@ -25,6 +25,5 @@
 
 <div class="clear"></div>
 
-
 </article>
 <%@ include file="../include/user/headerfooter/footer.jsp" %>

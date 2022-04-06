@@ -22,17 +22,17 @@
 		<th style="width:380px;  ">제목</th>
 		<th width="70px">작성자</th>
 		<th width="110px">작성일</th>
-	<c:forEach items="${qnaList }" var="mqnaVO">
-	<tr><td height="23" align="center">${mqnaVO.qseq}
+	<c:forEach items="${mqnaList}" var="mqnaVO">
+	<tr><td height="23" align="center">${mqnaVO.QSEQ}
 	     <c:choose>
-	      <c:when test='${mqnaVO.rep=="1"}'>(미처리)</c:when>
+	      <c:when test='${mqnaVO.REP=="1"}'>(미처리)</c:when>
      <c:otherwise >(답변처리완료)</c:otherwise>
      </c:choose>
 	</td>
 		<td style="text-align:left; padding=left:50px;">
-			<a href="#" onclick="go_view('${mqnaVO.qseq}')">${mqnaVO.subject }</a></td>
-		<td>${mqnaVO.id}</td>
-		<td><fmt:formatDate value="${mqnaVO.indate }"/></td></tr>
+			<a href="adminQnaDetail?qseq=${mqnaVO.QSEQ}">${mqnaVO.SUBJECT }</a></td>
+		<td>${mqnaVO.ID}</td>
+		<td><fmt:formatDate value="${mqnaVO.INDATE}"/></td></tr>
 	
 	</c:forEach>
 </table>
@@ -40,7 +40,7 @@
 
 <div class="clear"></div>
 <jsp:include page="../paging/paging.jsp">
-	<jsp:param name="command" value="meal.do?command=adminQnaList" />	
+	<jsp:param name="command" value="adminQnaList" />	
 </jsp:include>
 
 </article>

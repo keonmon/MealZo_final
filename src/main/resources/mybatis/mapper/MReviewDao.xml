@@ -32,5 +32,10 @@
 	)}
 	</insert>
 	
+	<delete id="reviewDelete" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL reviewDelete_m(
+	#{rseq}
+	)}
+	</delete>
 	
 </mapper>

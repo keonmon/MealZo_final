@@ -20,4 +20,8 @@ public interface IMMemberDao {
 	void getMemberByemail(HashMap<String, Object> paramMap);
 
 	void getMemberByphone(HashMap<String, Object> paramMap);
+
+	void listMember(HashMap<String, Object> paramMap);
+
+	void updateMemberResult(HashMap<String, Object> paramMap);
 }

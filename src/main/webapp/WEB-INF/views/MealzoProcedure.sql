@@ -865,7 +865,7 @@ create or replace procedure updateProduct_m(
     p_image2 in mproduct.image%type )
 is
 begin
-    update mproduct set name=p_name, kind=p_kind, bestyn=p_useyn, useyn=p_bestyn, content=p_content, price1=p_price1, price2=p_price2, image=p_image
+    update mproduct set name=p_name, kind=p_kind, bestyn=p_bestyn, useyn=p_useyn, content=p_content, price1=p_price1, price2=p_price2, image=p_image
         where pseq = p_pseq;
 
     -- 상세이미지 추가
@@ -890,7 +890,7 @@ begin
 open c_cur for
 select * from (
 select *from (
-select rownum rn, p.* from (select * from ask_view where pname || content_a like '%'||key||'%' order by  indate_a,arseq desc) p
+select rownum rn, p.* from (select * from ask_view where pname || content_a like '%'||key||'%' order by  arseq desc) p
 ) where rn>=startNum
 ) where rn<=endNum ;
 end;
@@ -987,7 +987,7 @@ begin
         (select * from mevent where title like '%'||p_key||'%' order by enddate desc, startdate desc) p 
         ) where rn>=p_startNum 
         and rn<=p_endNum ;
-
+        
 end;
 select * from mevent;
 
@@ -1015,8 +1015,216 @@ END;
 select *from morder_view
 
 
+-------------->> 카트-회원탈퇴 <<-------------------
+
+CREATE OR REPLACE PROCEDURE deleteCart_m2(
+     p_id IN mcart.id%TYPE   )
+IS
+BEGIN
+    delete from mcart where id=p_id;
+    commit;    
+END;
+
+---------------------------------------------------------------
+--admin qna list
+create or replace procedure adminlistQna_m(
+p_startNum number,
+p_endNum number,
+key VARCHAR2,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from (
+select * from (
+select rownum rn, p.* from (select * from mqna where subject || id like '%'||key||'%' order by rep desc ) p
+) where rn >= p_startNum
+)where rn<= p_endNum;
+
+end;
+------------------------------------------------------------------
+--damin qna 닶글
+create or replace procedure admininsertQna_m(
+p_qseq in mqna.qseq%type,
+p_reply in mqna.reply%type
+)
+is
+begin
+update mqna set reply=p_reply, rep=2 where qseq=p_qseq ;
+end;
+
+-----------------------------------------------------------------------------
+--admin 공지리스트 조회 getNoticeList_m
+create or replace procedure getNoticeList_m(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+        select * from (
+        select * from (
+        select rownum as rn, p.* from 
+        ((select * from notice where subject like '%'||p_key||'%') p) 
+        ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+end;
+
+-------------------------------------------------------------------------------
+
+--리뷰 delete 
+ create or replace procedure reviewDelete_m(
+ p_rseq in mreview.rseq%type
+ )
+ is
+ begin
+ delete from mreview where rseq =p_rseq;
+ end;
+
+ -----------------------------------------------------------------------
+ --오더캔슬 리스트
+ create or replace procedure orderCancelForm_m(
+ p_id in morders.id%type,
+ c_cur out sys_refcursor
+ )
+ is
+ begin
+ open c_cur for
+ select * from mordercancel_view where id=p_id;
+ end;
+---------------------------------------------------------------------------
+--이벤트 eseq로 조회
+create or replace procedure getEventSelect_m(
+p_eseq in mevent.eseq%type,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from mevent where eseq=p_eseq;
+end;
+
+-----------------------------------------------------------------------
+create or replace PROCEDURE getImgesEvent_m(
+    p_eseq in mevent.eseq%type,
+    p_cur1 out sys_refcursor
+    )
+is
+begin
+    open p_cur1 for 
+        select image1, image2 from mevent where eseq=p_eseq;
+end;
 
 
+-------------->> user 공지리스트 디테일조회 getNoticeOne_m <<-------------------
 
+create or replace procedure getNoticeOne_m(
+    p_nseq IN notice.nseq%TYPE,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+       select * from notice where nseq=p_nseq;
+end;
+
+-------------->> 어드민 - product 공개유/무 <<-------------------
+
+create or replace procedure updateProductUseyn_m(
+    p_pseq in mproduct.pseq%type,
+    p_selectedIndex in varchar )
+is
+begin
+    update mproduct 
+        set useyn=p_selectedIndex  
+        where pseq = p_pseq;
+    commit;
+end;
+
+
+-------------->> user 공지리스트 디테일조회 geteventOne_m <<-------------------
+
+create or replace procedure geteventOne_m(
+    p_eseq IN mevent.eseq%TYPE,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+       select * from mevent where eseq=p_eseq;
+end;
+
+
+---------------------------------------------------------
+-- admin - 새 공지 등록
+create or replace procedure insertNotice_m(
+    p_subject in notice.subject%type,
+    p_useyn in notice.useyn%type,
+    p_content in notice.content%type,
+    p_image1 in notice.image1%type )
+is
+begin
+    insert into notice(nseq, subject,useyn, content, image1 ) 
+        values(NOTICE_SEQ.nextval,p_subject,p_useyn,p_content,p_image1 );
+    commit;
+end;
+
+
+---------------------------------------------------------
+-- admin - 공지 수정
+create or replace procedure updateNotice_m(
+    p_nseq in notice.nseq%type,
+    p_subject in notice.subject%type,
+    p_useyn in notice.useyn%type,
+    p_content in notice.content%type,
+    p_image1 in notice.image1%type )
+is
+begin
+    update notice 
+        set subject=p_subject, useyn=p_useyn, content=p_content, image1=p_image1 
+        where nseq = p_nseq;
+    commit;
+end;
+
+---------------------------------------------------------
+-- admin - 공지사항 공개/비공개 셀렉박스변경
+create or replace procedure updateNoticeUseyn_m(
+    p_nseq in notice.nseq%type,
+    p_selectedIndex in varchar )
+is
+begin
+    update notice 
+        set useyn=p_selectedIndex  
+        where nseq = p_nseq;
+    commit;
+end;
+
+--------------------------------------------------
+-- Admin - 회원리스트 조회
+create or replace procedure listMember_m(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+        select * from (
+        select * from (
+        select rownum as rn, p.* from 
+        ((select * from mmember where name like '%'||p_key||'%') p) 
+        ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+end;
+
+--------------------------------------------------
+-- Admin - 회원리스트 조회
+create or replace procedure updateMemberResult_m(
+    p_id in mmember.id%type,
+    p_selectedIndex in varchar )
+is
+begin
+    update mmember set useyn=p_selectedIndex where id=p_id ;
+end;
 
 

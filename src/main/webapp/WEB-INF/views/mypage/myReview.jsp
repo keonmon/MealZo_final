@@ -15,7 +15,7 @@
 			<td style="text-align:center;"><a href="productDetail?pseq=${reviewVO.P_PSEQ}" style="color:black; font-weight:bold;">
 				${reviewVO.NAME}</a></td>
 			<td style="width:900px; word-break:break-all">${reviewVO.CONTENT}</td>
-	    	<td style="text-align:center;"><input type="button" value="후기 삭제" onclick="deleteReview(${reviewVO.RESQ})"></td>
+	    	<td style="text-align:center;"><input type="button" value="후기 삭제" onclick="deleteReview(${reviewVO.RSEQ})"></td>
 	   	</tr>
 	</c:forEach>
 </table>

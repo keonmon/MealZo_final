@@ -75,4 +75,46 @@
 	#{content_r})}
 	</update>
 	
+	<select id="adminlistQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL adminlistQna_m(
+   #{startNum},
+    #{endNum},
+    #{key},
+	#{ref_cursor_qna, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+	)}
+	</select>
+	
+	<insert id="admininsertQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL admininsertQna_m(
+	#{qseq},
+	#{reply}
+	)}
+	</insert>
+	
+	<select id="getEventSelect" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL  getEventSelect_m(
+	#{eseq},
+	#{ref_cursor_event, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+	)}
+	</select>
+	
+	<select id="getImgesEvent"  statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL getImgesEvent_m(
+     #{eseq},
+	#{ref_cursor_image1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+		)}
+		</select>
+		
+ <update id="eventUpdate" statementType="CALLABLE" parameterType="java.util.HashMap">
+  {CALL eventUpdate_m(
+  #{eseq},
+  #{title},
+  #{content},
+  #{image1},
+  #{image2},
+  #{subtitle},
+  #{startdate},
+  #{enddate}
+  )}
+ </update>
 </mapper>

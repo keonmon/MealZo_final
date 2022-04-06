@@ -21,7 +21,14 @@ public class MCartService {
 	public void listCart(HashMap<String, Object> paramMap) {
 		cdao.listCart( paramMap );
 	}
+
+	@Transactional(rollbackFor = Exception.class)
 	public void deleteCart(HashMap<String, Object> paramMap) {
 		cdao.deleteCart( paramMap );
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	public void deleteCart2(HashMap<String, Object> paramMap) {
+		cdao.deleteCart2( paramMap );
 	}
 }

@@ -1,6 +1,6 @@
 package com.mealzo.controller;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -73,7 +73,7 @@ public class MReviewController {
 	}
 	@RequestMapping(value="/reviewWrite" , method=RequestMethod.POST)
 	public ModelAndView reviewWrite(Model model, HttpServletRequest request,
-		@RequestParam("pseq") String pseq , @RequestParam("content") String content,
+		@RequestParam("pseq") int pseq , @RequestParam("content") String content,
 		@ModelAttribute("dto") @Valid MReviewVO mreviewvo, BindingResult result) {
 
 	ModelAndView mav = new ModelAndView();
@@ -85,6 +85,7 @@ public class MReviewController {
 		return mav;
 	} else if (result.getFieldError("content") != null) {
 		mav.addObject("message", result.getFieldError("content").getDefaultMessage());
+		 mav.addObject("pseq",pseq);
 		mav.setViewName("mypage/myReviewWrite");
    return mav;
 	}
@@ -101,4 +102,26 @@ public class MReviewController {
 		
 return mav;	
 }
+	
+	@RequestMapping("myReviewDelete")
+	public ModelAndView myReviewDeltet(HttpServletRequest request,
+			@RequestParam("rseq") int rseq) {
+		
+
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser
+			=(HashMap<String, Object>)session.getAttribute("loginUser");
+		if (loginUser == null) {
+			mav.setViewName("member/login");
+			return mav;
+		}else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("rseq" , rseq);
+			rs.reviewDelete(paramMap);
+			
+			mav.setViewName("redirect:/reviewForm");
+		}
+		return mav;
+	}
 }

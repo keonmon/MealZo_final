@@ -33,7 +33,7 @@
 	
 	<insert id="updateUseyn" statementType="CALLABLE" parameterType="java.util.HashMap" >
 		{ CALL updateUseyn_m( 
-		#{ID}
+		#{id}
 		) }
 	</insert>
 	
@@ -50,6 +50,22 @@
 			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
 		)  }
 	</select>
+	
+	<select id="listMember" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL listMember_m( 
+			#{key, jdbcType=VARCHAR},
+			#{startNum},
+			#{endNum},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
+		)}
+	</select>
+	
+	<insert id="updateMemberResult" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{ CALL updateMemberResult_m( 
+			#{id, jdbcType=VARCHAR},
+			#{selectedIndex, jdbcType=VARCHAR}
+		) }
+	</insert>
 	
 </mapper>
 

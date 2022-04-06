@@ -266,6 +266,7 @@ select  o.oseq, o.indate, o.id,
 from morders o, morder_detail d, mmember m, mproduct p 
 where o.oseq = d.oseq and o.id = m.id and d.pseq = p.pseq and d.result='4';
 
+select * from mordercancel_view
 
 	--ask_view (문의 뷰 생성)
 create or replace view ask_view 
@@ -371,3 +372,6 @@ delete from mreview where rseq=27;
 
 
 select * from morder_view 
+select * from order_detail
+select * from mevent;
+select image1, image2  from mevent where eseq='1';
