@@ -30,4 +30,36 @@
    #{cnt, mode=OUT, jdbcType=INTEGER}
    )}
 	</select>
+	
+	<select id="nmlistQna"  statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL  nmlistQna_m(
+	#{startNum},
+	#{endNum},
+	#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap}
+	)}
+	</select>
+	
+	<select id="getAllCountnmQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+   {CALL  getAllCountnmQna_m(
+   #{cnt, mode=OUT, jdbcType=INTEGER}
+   )}
+	</select>
+	
+	<insert id="insertnmQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL insertnmQna_m(
+	#{id}, #{pwd}, #{subject}, #{content}
+	)}
+	</insert>
+	
+	<select id="getnmQna"  statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL getnmQna_m(#{nqseq},
+	#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap}
+	)}
+	</select>
+	
+	<select id="getNmqnaByNqseq"  statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL getNmqnaByNqseq_m(#{nqseq},
+	#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap}
+	)}
+	</select>
 </mapper>

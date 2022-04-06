@@ -1071,6 +1071,7 @@ public class MAdminController {
 		}
 		return mav;
 	}
+
 	
   
   @RequestMapping("adminNoticeList")
@@ -1139,6 +1140,7 @@ public class MAdminController {
       return mav;
   
   }
+
   @RequestMapping("/adminEventDetail")
   public ModelAndView admineventdetail(HttpServletRequest request,
 		  @RequestParam("eseq") int eseq) {
