@@ -62,41 +62,13 @@ document.frm1.action="adminNoticeInsert";
 
 
 
-function go_Event_Insert(){	
-	if(document.frm.title.value==""){
-		alert('이벤트명을 입력하세요');
-		document.frm.title.focus();
-	}else if(document.frm.startDate.value==""){
-		alert('이벤트 시작일을 입력하세요');
-		document.frm.startDate.focus();
-	}else if(document.frm.startTime.value==""){
-		alert('이벤트 시작시간을 입력하세요');
-		document.frm.startTime.focus();
-	}else if(document.frm.endDate.value==""){
-		alert('이벤트 종료일을 입력하세요');
-		document.frm.endDate.focus();
-	}else if(document.frm.endTime.value==""){
-		alert('이벤트 종료시간을 입력하세요');
-		document.frm.endTime.focus();
-	}else if(document.frm.subtitle.value==""){
-		alert('소제목를 입력하세요');
-		document.frm.subtitle.focus();
-	}else if(document.frm.content.value==""){
-		alert('이벤트 내용을 입력하세요');
-		document.frm.content.focus();
-	}else if(document.frm.image1.value==""){
-		alert('썸네일 이미지를 저장하세요');
-		document.frm.image1.focus();
-	}else if(document.frm.image2.value==""){
-		alert('내용 이미지를 저장하세요');
-		document.frm.image2.focus();
-	}else{
+function go_Event_Insert(){
 		if(confirm('이벤트를 저장하시겠습니까?')){
 			document.frm.action = "adminEventInsert";
 			document.frm.submit();
-		}
 	}
 }
+
 
 function go_wrt_Event(){
 	document.frm.action="adminEventInsertForm";

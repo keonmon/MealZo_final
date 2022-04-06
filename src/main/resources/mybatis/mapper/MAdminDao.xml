@@ -117,4 +117,17 @@
   #{enddate}
   )}
  </update>
+ 
+ <insert id="eventInsert" statementType="CALLABLE" parameterType="java.util.HashMap">
+ {CALL eventInsert_m(
+  #{eseq},
+  #{title},
+  #{content},
+  #{image1},
+  #{image2},
+  #{subtitle},
+  #{startdate, jdbcType=TIMESTAMP},
+  #{enddate,  jdbcType=TIMESTAMP}
+ )}
+ </insert>
 </mapper>
