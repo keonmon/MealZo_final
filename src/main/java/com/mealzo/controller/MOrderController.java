@@ -2,7 +2,6 @@ package com.mealzo.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -148,7 +147,7 @@ public class MOrderController {
 		return mav;
 	}
 	
-	
+	/*
 	@RequestMapping(value="/orderCancelForm")
 	public ModelAndView orderCancelForm( HttpServletRequest request, Model mdoel) {
 		ModelAndView mav = new ModelAndView();
@@ -174,6 +173,35 @@ public class MOrderController {
 			mav.setViewName("order/orderCancel");
 		}
 		return mav;
+	}*/
+	
+	@RequestMapping("/orderCancelForm")
+	public ModelAndView ordercancelform(Model model, HttpServletRequest request) {
+		
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser =
+     	(HashMap<String, Object>)session.getAttribute("loginUser");
+
+		if(loginUser==null) {
+			mav.setViewName("member/login");
+			return mav;
+		}else {
+			 HashMap<String, Object> paramMap= new HashMap<String, Object>();
+			 paramMap.put("id", loginUser.get("ID"));
+			 paramMap.put("ref_cursor_cancel",null);
+			 os.orderCancelForm(paramMap);
+			 
+			 ArrayList<HashMap<String, Object>> list 
+			 =(ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor_cancel");
+			 
+			 
+			 mav.addObject("cancelList", list);
+			 
+			 mav.setViewName("order/orderCancel");
+		}
+		return mav;
+
 	}
 }
 

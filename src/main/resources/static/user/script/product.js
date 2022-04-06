@@ -1,3 +1,74 @@
+/*** 메인 슬라이더 ***/
+var evennum = 0;
+var totalSlides = 0;
+var space = 400
+var sliderWidth = 2000;
+$(document).ready(function(){
+	totalSlides = $('#sliderWrap ul li').length;	// 이미지 개수
+	// sliderWidth = $('#sliderWrap').width();		// 전체 이미지 너비
+	  
+  /* 슬라이드 구조 */
+	$('#sliderWrap').width(sliderWidth*totalSlides);
+  
+    // 다음 슬라이드
+	$('#buttonR').click(function(){
+		slideRight();
+	});
+  
+	// 이전 슬라이드
+	$('#buttonL').click(function(){
+		slideLeft();
+	});
+  
+  
+  /* 슬라이더 설정 */
+  var autoSlider = setInterval(slideRight, 3000);	//자동 슬라이드
+  
+  //슬라이드개수에 따른 하단 li추가
+  $.each($('#sliderWrap ul li'), function() { 
+     var li = document.createElement('li');
+     $('#remote ul').append(li);    
+  });
+	//하단 li
+	pagination();
+	  
+	//마우스 hover시 동작
+	$('.slide_event').hover(
+		function(){ 
+		    clearInterval(autoSlider); 
+		}, 
+		function(){ 
+			autoSlider = setInterval(slideRight, 3000); 
+		}
+  	);
+});
+	
+	
+/*** SLIDE LEFT ***/
+function slideLeft(){
+  evennum--;
+  if(evennum==-1){ evennum = totalSlides-1; }
+  $('#sliderWrap ul#images').css('left', -(sliderWidth*evennum + space));  
+  pagination();
+}
+
+/*** SLIDE RIGHT ***/
+function slideRight(){
+  evennum++;
+  if(evennum==totalSlides){ evennum = 0; }
+  $('#sliderWrap ul#images').css('left', -(sliderWidth*evennum + space)); 
+  pagination();
+}
+	
+/* 하단 li 설정 */
+function pagination(){
+  $('#remote ul li').removeClass('active');
+  $('#remote ul li:eq('+evennum+')').addClass('active');
+}
+
+
+
+
 /* index.jsp */
 var nLocationNum = 0;
 function nProduct_move(num,x){
@@ -17,6 +88,9 @@ function nProduct_move(num,x){
     var dist = imageLength * nLocationNum * (-1);
     document.getElementById("wrap_box1").style.left=dist+"px";
 }
+
+
+
 /* index.jsp */
 var bLocationNum = 0;
 function bProduct_move(num,x){
@@ -37,24 +111,7 @@ function bProduct_move(num,x){
     document.getElementById("wrap_box2").style.left=dist+"px";
 }
 
-/* index.jsp */
-var spacenum= -400;
-var evennum = 0;
-function autoSlide(){
-	window.setInterval(function(){
-		var dist = -2000 * evennum + spacenum;
-		document.getElementById("images").style.left=dist+"px";
-		evennum++;
-		if(evennum==7) evennum=0;
-	},4000);
-}
-/* autoSlide()가 딜레이 없게 하기 위해 만듦 */
-function startInterval(){
-	var dist = -2000 * evennum + spacenum;
-	document.getElementById("images").style.left=dist+"px";
-	evennum++;
-	return autoSlide();
-}
+
 
 function go_cart(){
    if(document.form1.quantity.value =="") {
