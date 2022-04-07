@@ -95,3 +95,13 @@ function go_order_insert(){
 	document.form4.action="orderInsert";
 	document.form4.submit();
 }
+
+function checknmPwd(nqseq){
+	if((document.formm.pwd.value != document.formm.checkpwd.value)) {
+		alert("비밀번호가 일치하지 않습니다");
+	return false;
+	}else{
+	document.formm.action = "nmqnaView?nqseq=" + nqseq;
+	document.formm.submit();
+	}
+}

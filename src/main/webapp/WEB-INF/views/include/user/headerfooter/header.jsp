@@ -10,6 +10,7 @@
 <title>header</title>
 <link href="user/css/meal.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <script src="user/script/jquery-3.6.0.js"></script>
 <script src="user/script/member.js"></script>
 <script src="user/script/product.js"></script>
@@ -66,7 +67,10 @@
 							<a href="orderList">주문조회 </a>|
 						</li>
 						<li>
-							<a href="cartList">장바구니</a>
+							<a href="cartList">장바구니</a> |
+						</li>
+						<li>
+							<a href="zzimList">찜한 상품</a>
 						</li>
 					</ul>
 			<div class="clear"></div>	

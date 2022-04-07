@@ -154,7 +154,6 @@ BEGIN
 END;
 
 --------------------------------오더인서트---------------------------------
-
 CREATE OR REPLACE PROCEDURE insertOrder_m(
     p_id  IN  MORDERS.ID%TYPE,
     p_oseq  OUT  MORDERS.OSEQ%TYPE  )
@@ -597,6 +596,7 @@ end;
  
 --------------------------------------------------------------------------------------------
 -- Admin - 범용 카운트
+-- Admin - 범용 카운트
 create or replace procedure getAllcountAdmin_m(
     p_key VARCHAR2,
     p_tableName VARCHAR2,   -- 테이블명 변수
@@ -615,13 +615,6 @@ begin
     --DBMS_OUTPUT.PUT_LINE(v_cnt);   
     p_cnt := v_cnt;
 end;
-
-exec getAllcountAdmin_m('스테이크', 'mproduct', 'name');
-select * from mproduct;
-
-
-exec getAllcountAdmin_m('토마호', 'aks_view', 'p_name');
-select * from ask_view;
 
 --------------------------------------------------------------------------------------------
 -- Admin - 전체 주문 조회
@@ -1227,4 +1220,181 @@ begin
     update mmember set useyn=p_selectedIndex where id=p_id ;
 end;
 
+
+-------------->> 비회원문의 - nmqna 테이블생성 <<-------------------
+
+create table nmqna (
+	  nqseq        number(5)    primary key,  -- 글번호 
+	  subject     varchar2(300),            -- 제목
+	  content     varchar2(1000),          -- 문의내용
+	  reply       varchar2(1000),           -- 답변내용
+	  id          varchar2(20),                 -- 임시id
+	  pwd         varchar2(100),                 -- 임시pwd
+	  rep         char(1)       default '1',        --1:답변 무  2:답변 유  
+	  indate      date default  sysdate     -- 작성일
+); 
+
+create sequence nmqna_seq start with 1;
+
+-------------->> 비회원문의 - 카운트 <<-------------------
+
+create or replace procedure getAllCountnmQna_m(
+   p_cnt OUT NUMBER
+  )
+ is 
+  v_cnt number;
+ begin
+  select count(*) into v_cnt from nmqna;
+  p_cnt := v_cnt;
+  end;
+
+-------------->> 비회원문의 - 리스트 <<-------------------
+
+create or replace procedure nmlistQna_m(
+p_startNum number,
+p_endNum number,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from (
+select * from (
+select rownum rn, p.* from (select * from nmqna order by nqseq desc ) p
+) where rn >= p_startNum
+)where rn<= p_endNum;
+end;
+
+select * from nmqna
+select * from mqna
+
+-------------->> 비회원문의 - 글쓰기 <<-------------------
+
+ create or replace procedure insertnmQna_m(
+ p_id in nmqna.id%type,
+ p_pwd in nmqna.pwd%type,
+ p_subject in nmqna.subject%type,
+ p_content in nmqna.content%type
+ )
+ is
+ begin
+ insert into nmqna(nqseq, id, pwd, subject, content)
+ values(nmqna_seq.nextVal, p_id, p_pwd, p_subject, p_content);
+ end;
+ 
+ -------------->> 비회원문의 - 글조회 <<-------------------
+ 
+ CREATE OR REPLACE PROCEDURE getnmQna_m(
+p_nqseq in nmqna.nqseq%type,
+c_cur out sys_refcursor
+)
+is
+begin
+ open c_cur for select * from nmqna where nqseq=p_nqseq;
+ end;
+ 
+ -------------->> 비회원문의 - 비밀번호조회 <<-------------------
+
+CREATE OR REPLACE PROCEDURE getNmqnaByNqseq_m(
+p_nqseq in nmqna.nqseq%type,
+c_cur out sys_refcursor
+)
+is
+begin
+ open c_cur for select * from nmqna where nqseq=p_nqseq;
+ end;
+
+-----------------------------------------------------------------------------------------------
+create or replace procedure adminlistReview_m(
+p_key in varchar2,
+p_startNum number,
+p_endNum number,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from(
+select * from(
+select rownum rn, p.* from (select * from mreview_view where name like '%'||p_key||'%') p
+)where rn >= p_startNum 
+)where rn <=p_endNum;
+end;
+------------------------------------------------------------------------------------
+--이벤트 업데이트
+create or replace procedure eventUpdate_m(
+p_eseq in mevent.eseq%type,
+p_title in mevent.title%type,
+p_content in mevent.content%type,
+p_image1 in mevent.image1%type,
+p_image2 in mevent.image2%type,
+p_subtitle in mevent.subtitle%type,
+p_startdate in mevent.startdate%type,
+p_enddate in mevent.enddate%type
+)
+is
+begin
+update mevent set  title=p_title, content=p_content,
+image1=p_image1, image2=p_image2, subtitle=p_subtitle, startdate=p_startdate,
+enddate=p_enddate where eseq=p_eseq;
+end;
+---------------------------------------------------------------------------------
+--insert EVent
+create or replace procedure eventInsert_m(
+p_eseq in mevent.eseq%type,
+p_title in mevent.title%type,
+p_content in mevent.content%type,
+p_image1 in mevent.image1%type,
+p_image2 in mevent.image2%type,
+p_subtitle in mevent.subtitle%type,
+p_startdate in mevent.startdate%type,
+p_enddate in mevent.enddate%type
+)
+is
+begin
+insert into mevent(eseq, title, content, image1, image2, subtitle, startdate, enddate)
+values(mevent_seq.nextVal , p_title, P_content, p_image1, p_image2, p_subtitle, p_startdate, p_enddate);
+
+end;
+
+------------------------------------------------------------------------------------
+--이벤트 삭제
+create or replace procedure eventDelete_m(
+p_eseq in mevent.eseq%type
+)
+is
+begin
+delete from mevent where eseq=p_eseq;
+end;
+
+----------------------------------------------------------------------
+--Zzim 한 상픔 리스트 보기 allcount
+create or replace procedure getAllCountZzim_m(
+ p_cnt OUT NUMBER
+  )
+ is 
+  v_cnt number;
+ begin
+  select count(*) into v_cnt from zzim_view;
+  p_cnt := v_cnt;
+  end;
+  
+------------------------------------------------------------------------
+  --Zzim 한 상픔 리스트 보기
+  create or replace procedure  listZzim_m(
+  startNum number,
+  endNum number,
+  p_id in mzzim.id%type,
+  c_cur out sys_refcursor
+  )
+  is
+  begin
+  open c_cur for
+  select * from (
+  select * from (
+  select rownum rn, p. *from ( select * from zzim_view where id= p_id) p
+  ) where rn>=startNum
+  ) where rn<=endNum ;
+  end;
+  
 

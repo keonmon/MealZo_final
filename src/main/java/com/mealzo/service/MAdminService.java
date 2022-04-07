@@ -76,6 +76,16 @@ public class MAdminService {
 		
 	}
 
+	public void eventInsert(HashMap<String, Object> paramMap) {
+		adao.eventInsert(paramMap);
+		
+	}
+
+	public void eventDelete(HashMap<String, Object> paramMap) {
+		adao.eventDelete(paramMap);
+		
+	}
+
 
 
 }
