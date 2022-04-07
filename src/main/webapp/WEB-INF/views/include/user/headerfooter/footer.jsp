@@ -8,7 +8,7 @@
       <ul class="menu2">
          <li><a href ="/">홈</a></li>
          <li><a href="company">서비스 소개 </a></li>
-         <li><a href="noticeList">고객센터</a></li>
+         <li><a href="noticeList">공지</a></li>
          <li><a href="agreement"> 이용약관 </a></li>
          <li><a href="privacy"> 개인정보취급방침 </a></li>
       </ul>
