@@ -30,12 +30,12 @@ body{ background:#FFFFFF; margin:0; padding:0; font-size:13px; width:1290px; }
 #sideMenu {float:left; margin:50px 20px 0 0; width:200px; padding:0 0 40px;}
 #sideMenu ul{list-style:none; font-family:'Pretendard-Regular'; text-decoration: none; padding:10px;}
 #sideMenu ul a{text-decoration: none; color:black; }
-#sideMenu h3{border-bottom:1px solid lightgrey; margin:10px 0 10px 0;  padding-bottom:10px;}
+#sideMenu h3{border-bottom:1px solid lightgrey; margin:10px 0 10px 0;  padding-bottom:5px;}
 #sideMenu #mypage{font-weight:bold; font-size:1.5em; margin:0;}
-#sideMenu #menu a{font-size:1.2em;}
+#sideMenu #menu a{font-size:1.3em; }
 #sideMenu #menu a:hover{position:relative; color:black; left:5px; font-weight:bold; transition-duration:0.4;}
-
-#orderListSelect{font-family: 'Pretendard-Regular';}
+ #mypage2{font-weight:bold;  margin:0;}
+#orderListSelect{font-family: 'Pretendard-Regular'; margin:0;}
 
 /* footer */
 footer { text-align:left; width:1200px; }
