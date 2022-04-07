@@ -33,6 +33,7 @@
 		</table>
 	
 	  <input type="button" value="장바구니" class="submit2" onClick="go_cart();">
+	  <input type="button" value="바로구매" class="submit2" onClick="go_order();">
 	  	</td></tr>
 	</table>  
 </form>
