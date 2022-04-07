@@ -32,15 +32,11 @@
 	<!-- 이벤트 슬라이더 -->
 	<div class="slide_event">
 		<div id="sliderWrap">
-		<ul id="images"style="left:-400px;">
-			<li><a href="productForm?kind=한식&bestyn=&newyn=&sort=recently&sub=y&idx=0"><img src="images/main1.jpg" id="ev1"></a></li>
-			<li><a href="productForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0"><img src="images/main2.jpg" id="ev2"></a> </li>
-			<li><a href="productAllForm?sort=recently&sub=y&idx=0"><img src="images/main3.jpg" id="ev3"></a></li>
-			<li><a href="#"><img src="images/main4.jpg" id="ev4"></a></li>
-			<li><a href="eventDetail?eseq=1"><img src="images/main5.jpg" id="ev5"></a></li>
-			<li><a href="productDetail?pseq=89"><img src="images/main6.jpg" id="ev6"></a></li>
-			<li><a href="productDetail?pseq=38"><img src="images/main7.jpg" id="ev7"></a></li>
-			<li><a href="productDetail?pseq=4"><img src="images/main8.jpg" id="ev8"></a></li>
+		<ul id="images">
+			<c:forEach items="${bannerList}" var="bannerList">
+				<li><a href="${bannerList.URL }"><img src="images/${bannerList.IMAGE }"></a></li>
+				
+			</c:forEach>
 		</ul>
 		<div id="buttonL" class="material-icons">arrow_back_ios_new</div>
 		<div id="buttonR" class="material-icons" >arrow_forward_ios_new</div>
