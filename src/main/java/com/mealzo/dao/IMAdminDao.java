@@ -21,7 +21,6 @@ public interface IMAdminDao {
 
 	void getAdminAsk(HashMap<String, Object> paramMap);
 
-
 	void adminAskReply(HashMap<String, Object> paramMap);
 
 	void adminAskUpdate(HashMap<String, Object> paramMap);
@@ -38,7 +37,14 @@ public interface IMAdminDao {
 
 	void eventInsert(HashMap<String, Object> paramMap);
 
+	void getBannerList(HashMap<String, Object> paramMap);
+	
+	void insertBanner(HashMap<String, Object> paramMap);
+
+	void deleteBanner();
+
 	void eventDelete(HashMap<String, Object> paramMap);
+
 
 
 

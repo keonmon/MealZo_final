@@ -2,6 +2,7 @@ package com.mealzo.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mealzo.dto.Paging;
 import com.mealzo.service.MOrderService;
 
 @Controller
@@ -21,25 +23,30 @@ public class MOrderController {
 	MOrderService os;
 	
 	@RequestMapping(value="/orderInsert")
-	public String orderInsert( HttpServletRequest request ) {
+	public String orderInsert( HttpServletRequest request, Model model,
+		@RequestParam("pseq")int pseq,
+		@RequestParam("quantity")int quantity) {
 		int oseq = 0;
 		
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser
 			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		
 		if( loginUser == null ) {
 			return "member/login";
 		} else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("id", loginUser.get("ID") );
 			paramMap.put("oseq", 0);
+			paramMap.put("pseq", pseq);
+			paramMap.put("quantity", quantity);
 			
 			os.insertOrder( paramMap );
 			
 			oseq = Integer.parseInt( paramMap.get("oseq").toString() );
 			System.out.println(oseq);
 		}
-		return "redirect:/orderList?oseq="+oseq;
+		return "redirect:/orderList";
 	}
 	
 	
@@ -53,6 +60,27 @@ public class MOrderController {
 			mav.setViewName("member/login");	
 			return mav;
 		} else {
+			
+			int page=1;
+			if(request.getParameter("sub") !=null) {
+				session.removeAttribute("page");
+			}
+			if(request.getParameter("page")!=null) {
+				page=Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			}else if(session.getAttribute("page")!=null) {
+				page=(Integer)session.getAttribute("page");
+			}else {
+				session.removeAttribute("page");
+			}	
+			
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			Paging paging = new Paging();
+			paging.setPage(page); //현재 페이지
+			
+		
+		   paramMap.put("cnt" ,0);
+			
 			ArrayList<HashMap<String, Object>> finalList 
 			= new ArrayList<HashMap<String, Object>>();
 			HashMap<String, Object> paramMap1 = new HashMap<String, Object>();
@@ -87,6 +115,7 @@ public class MOrderController {
 			// 주번 번호별 대표 상품(첫번째 상품)을 별도의 리스트로 모아서 model 에 저장
 			finalList.add(orderFirst);
 			}
+			mav.addObject("paging", paging);
 			mav.addObject("orderList", finalList);
 			mav.setViewName("order/orderList");
 		}
@@ -174,6 +203,7 @@ public class MOrderController {
 		}
 		return mav;
 	}
+
 	/*
 	@RequestMapping("/orderCancelForm")
 	public ModelAndView ordercancelform(Model model, HttpServletRequest request) {
@@ -202,6 +232,7 @@ public class MOrderController {
 		}
 		return mav;
 	}*/
+
 
 }
 

@@ -358,8 +358,21 @@ select rownum as rn, p.* from
  select r.rseq, r.pseq as r_pseq, r.id, r.content, r.indate, p.pseq as p_pseq, p.name 
  from mreview r, mproduct p
  where p.pseq=r.pseq ;
-				
- select * from mreview_view
+ 
+ select * from mreview_view;
+ 
+ 
+ -- 메인 롤링배너 관리테이블
+ create table MRollingBanner(
+ 	name varchar2(100) not null,
+ 	image varchar2(500) not null,
+ 	url varchar2(1000) not null,
+ 	num number(2) not null unique,	-- num은 1~8까지만 지정 가능
+ 	constraint num_check check (num between 1 and 8)
+ );
+ select * from MRollingBanner;
+ --drop table MRollingBanner CASCADE CONSTRAINTS;
+ 
  select * from ask_view;
  select *from ask_reply
   select * from mreview;

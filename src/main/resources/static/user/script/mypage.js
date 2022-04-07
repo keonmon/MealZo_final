@@ -114,12 +114,24 @@ function go_order_insert(){
 	document.form4.submit();
 }
 
-function checknmPwd(nqseq){
-	if((document.formm.pwd.value != document.formm.checkpwd.value)) {
+function checknmPwd(nqseq2){
+	if(document.formm.pwd != document.formm.checkpwd) {
 		alert("비밀번호가 일치하지 않습니다");
 	return false;
 	}else{
-	document.formm.action = "nmqnaView?nqseq=" + nqseq;
+	document.formm.action = "nmqnaView?nqseq=" + nqseq2;
 	document.formm.submit();
 	}
 }
+
+
+function whyfalse(nqseq3){
+	if(document.formm.pwd != document.formm.checkpwd) {
+		alert("비밀번호가 일치하지 않습니다");
+	return false;
+	}else{
+	document.formm.action = "nmqnaView?nqseq=" + nqseq3;
+	$("#formm").submit();
+	}
+}
+

@@ -966,25 +966,6 @@ begin
     commit;
 end;
 
-------------------------------------------------------------------------
---admin 이벤트리스트조회   geteventList_m
-create or replace procedure geteventList_m(
-    p_key in varchar2,
-    p_startNum in number,
-    p_endNum in number,
-    c_cur out sys_refcursor )
-is
-begin
-    open c_cur for
-        select * from ( 
-        select rownum as rn, p.* from 
-        (select * from mevent where title like '%'||p_key||'%' order by enddate desc, startdate desc) p 
-        ) where rn>=p_startNum 
-        and rn<=p_endNum ;
-        
-end;
-select * from mevent;
-
 ---------------------------------오더캔슬업데이트---------------------------------
 
 CREATE OR REPLACE PROCEDURE orderCancelUpdate_m(
@@ -1358,6 +1339,39 @@ values(mevent_seq.nextVal , p_title, P_content, p_image1, p_image2, p_subtitle, 
 
 end;
 
+
+---------------------------------------------------------------------------------
+-- Admin - 배너 테이블 조회 getBannerList_m
+create or replace procedure getBannerList_m(
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+        select * from MRollingBanner order by num;
+
+end;
+
+---------------------------------------------------------------------------------
+-- Admin - 모든 배너 삭제 deleteBanner_m
+create or replace procedure deleteBanner_m
+is
+begin
+    delete MRollingBanner;
+end;
+
+---------------------------------------------------------------------------------
+-- Admin - 배너 재배치 insertBanner_m
+create or replace procedure insertBanner_m(
+    p_num MRollingBanner.num%type,
+    p_name MRollingBanner.name%type,
+    p_image MRollingBanner.image%type,
+    p_url MRollingBanner.url%type )
+is
+begin
+    insert into MRollingBanner(num,name,image,url)
+        values(p_num,p_name,p_image,p_url);
+end;
+
 ------------------------------------------------------------------------------------
 --이벤트 삭제
 create or replace procedure eventDelete_m(
@@ -1398,6 +1412,7 @@ create or replace procedure getAllCountZzim_m(
   ) where rn<=endNum ;
   end;
   
+
   --------------------------------------------------------------------------
   --리스트 개인 조회
   create or  replace procedure getlistZzim_m(
@@ -1425,12 +1440,42 @@ end;
 -------------------------------------------------------------------------------
 --찜삭제
 create or replace procedure zzimDelete_m(
-
-p_pseq in mzzim.pseq%type
-
-)
+  p_pseq in mzzim.pseq%type )
 is
 begin
 delete from mzzim where pseq=p_pseq;
 commit;
 end;
+
+--------------------------- 이벤트 실험 -------------------------
+  
+insert into mevent(eseq, title, content, image1, image2, subtitle, startdate, enddate) 
+values(mevent_seq.nextVal, '박막례 할머니의 고모저모', '박막례시피 출시', 'event1.jpg',
+'event1_inner1.jpg','고모 할머니와 함께!', to_date('2022-11-25','yyyy-MM-dd hh24:mi:ss'), 
+to_date('2023-12-31 23:59:59','yyyy-MM-dd hh24:mi:ss'));
+
+insert into mevent(eseq, title, content, image1, image2, subtitle, startdate, enddate) 
+values(mevent_seq.nextVal, '박막례 할머니의 고모저모', '박막례시피 출시', 'event1.jpg',
+'event1_inner1.jpg','고모 할머니와 함께!', to_date('2022-05-10','yyyy-MM-dd hh24:mi:ss'), 
+to_date('2022-12-31 23:59:59','yyyy-MM-dd hh24:mi:ss'));
+
+select * from mevent
+
+------------------------------------------------------------------------
+--admin 이벤트리스트조회   geteventList_m 수정
+create or replace procedure geteventList_m(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+        select * from ( 
+        select rownum as rn, p.* from 
+        (select * from mevent where title like '%'||p_key||'%' order by startdate desc) p 
+        ) where rn>=p_startNum 
+        and rn<=p_endNum ;
+        
+end;
+select * from mevent;
