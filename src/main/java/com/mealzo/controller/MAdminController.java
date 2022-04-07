@@ -1419,7 +1419,8 @@ public class MAdminController {
 	public ModelAndView adminBannerList(HttpServletRequest request,
 			@RequestParam(value = "sub", required = false) String sub,
 			@RequestParam(value = "page", required = false) Integer page,
-			@RequestParam(value = "key", required = false) String key) {
+			@RequestParam(value = "key", required = false) String key,
+			@RequestParam(value = "message", required = false) String message ) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		if (session.getAttribute("loginAdmin") == null) {
@@ -1441,7 +1442,8 @@ public class MAdminController {
 				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			System.out.println(bannerList);
 			request.setAttribute("bannerList", bannerList);
-	
+			mav.addObject("message", message);
+			
 			mav.setViewName("admin/banner/adminBannerList");
 		}
 		return mav;
@@ -1482,7 +1484,7 @@ public class MAdminController {
 				paramMap.put("url", urlArr[i]);
 				as.insertBanner(paramMap);
 			}
-		
+			mav.addObject("message","배너 설정이 완료되었습니다.");
 			mav.setViewName("redirect:/adminBannerList");
 		}
 		return mav;
