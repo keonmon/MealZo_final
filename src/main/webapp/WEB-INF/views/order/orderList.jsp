@@ -10,9 +10,10 @@
 		<tr>
 		<td>${morderVO.OSEQ}</td>
 		
-		<td>
-			<a href="orderDetail?oseq=${morderVO.OSEQ}">
+		<td><a href="productDetail?pseq=${morderVO.PSEQ}">
 			${morderVO.PNAME}</a></td>
+			<%-- <td><a href="productDetail?pseq=${morderVO.PSEQ}" target="_blank">
+				<h3> ${morderVO.PNAME} </h3></a></td> --%>
 			<td> ${morderVO.QUANTITY}</td>
        		<td><fmt:formatNumber value="${morderVO.PRICE2*morderVO.QUANTITY}" type="currency"/></td>      
        		<td><fmt:formatDate value="${morderVO.INDATE}" type="date"/></td>
