@@ -1364,3 +1364,35 @@ values(mevent_seq.nextVal , p_title, P_content, p_image1, p_image2, p_subtitle, 
 
 end;
 
+---------------------------------------------------------------------------------
+-- Admin - 배너 테이블 조회 getBannerList_m
+create or replace procedure getBannerList_m(
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+        select * from MRollingBanner order by num;
+
+end;
+
+---------------------------------------------------------------------------------
+-- Admin - 모든 배너 삭제 deleteBanner_m
+create or replace procedure deleteBanner_m
+is
+begin
+    delete MRollingBanner;
+end;
+
+---------------------------------------------------------------------------------
+-- Admin - 배너 재배치 insertBanner_m
+create or replace procedure insertBanner_m(
+    p_num MRollingBanner.num%type,
+    p_name MRollingBanner.name%type,
+    p_image MRollingBanner.image%type,
+    p_url MRollingBanner.url%type )
+is
+begin
+    insert into MRollingBanner(num,name,image,url)
+        values(p_num,p_name,p_image,p_url);
+end;
+

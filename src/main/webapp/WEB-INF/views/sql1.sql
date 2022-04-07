@@ -287,6 +287,22 @@ insert into mevent(eseq, title, content, image1, image2, subtitle, startdate, en
 values(mevent_seq.nextVal, '박막례 할머니의 이모저모6', '박막례시피 출시', 'event1.jpg','event1_inner1.jpg','막례 할머니와 함께!', to_date('2022-01-25','yyyy-MM-dd hh24:mi:ss'), to_date('2023-05-31 23:59:59','yyyy-MM-dd hh24:mi:ss'));
 
 
-
+-- 배너테이블 데이터 추가
+insert into mrollingbanner(num, name, image, url) 
+values(1, 'test1', 'main1.jpg','productForm?kind=한식&bestyn=&newyn=&sort=recently&sub=y&idx=0');
+insert into mrollingbanner(num, name, image, url) 
+values(2, 'test2', 'main2.jpg','productForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0');
+insert into mrollingbanner(num, name, image, url) 
+values(3, 'test3', 'main3.jpg','productAllForm?sort=recently&sub=y&idx=0');
+insert into mrollingbanner(num, name, image, url) 
+values(4, 'test4', 'main4.jpg','#');
+insert into mrollingbanner(num, name, image, url) 
+values(5, 'test5', 'main5.jpg','eventDetail?eseq=1');
+insert into mrollingbanner(num, name, image, url) 
+values(6, 'test6', 'main6.jpg','productDetail?pseq=89');
+insert into mrollingbanner(num, name, image, url) 
+values(7, 'test7', 'main7.jpg','productDetail?pseq=38');
+insert into mrollingbanner(num, name, image, url) 
+values(8, 'test8', 'main8.jpg','productDetail?pseq=4');
 
 

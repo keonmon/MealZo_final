@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mealzo.dto.Paging;
+import com.mealzo.service.MAdminService;
 import com.mealzo.service.MProductService;
 import com.mealzo.service.MReviewService;
 
@@ -25,6 +26,9 @@ public class MProductController {
 	
 	@Autowired
 	MReviewService rs;
+	
+	@Autowired
+	MAdminService as;
 	
 	@RequestMapping("/")
 	public ModelAndView index(Model model, HttpServletRequest request) {
@@ -56,8 +60,16 @@ public class MProductController {
 			= (ArrayList<HashMap<String,Object>>) paramMap.get("ref_cursor2");
 		
 		
+		// bannerList 담아오기
+		paramMap.put("ref_cursor", null);
+		as.getBannerList(paramMap);
+		
+		ArrayList<HashMap<String,Object>> bannerList 
+			= (ArrayList<HashMap<String,Object>>) paramMap.get("ref_cursor");
+		System.out.println(bannerList);
 		mav.addObject("newList", newList);
 		mav.addObject("bestList", bestList);
+		mav.addObject("bannerList", bannerList);
 		
 		return mav;
 	}

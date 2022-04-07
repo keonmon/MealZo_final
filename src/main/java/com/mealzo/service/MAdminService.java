@@ -63,24 +63,33 @@ public class MAdminService {
 
 	public void getEvent(HashMap<String, Object> paramMap) {
 	 adao.getEventSelect(paramMap);
-		
 	}
 
 	public void getImgesEvent(HashMap<String, Object> paramMap) {
 	adao.getImgesEvent(paramMap);
-		
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	public void eventUpdate(HashMap<String, Object> paramMap) {
 		adao.eventUpdate(paramMap);
-		
 	}
-
+	
+	@Transactional(rollbackFor = Exception.class)
 	public void eventInsert(HashMap<String, Object> paramMap) {
 		adao.eventInsert(paramMap);
-		
 	}
 
+	public void getBannerList(HashMap<String, Object> paramMap) {
+		adao.getBannerList(paramMap);
+	}
+	
+	public void insertBanner(HashMap<String, Object> paramMap) {
+		adao.insertBanner(paramMap);
+	}
+
+	public void deleteBanner() {
+		adao.deleteBanner();
+	}
 
 
 }

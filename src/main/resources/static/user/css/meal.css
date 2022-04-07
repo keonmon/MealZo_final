@@ -65,12 +65,12 @@ div.stop-dragging {
   user-select: none;
 }
 #index{margin:0 auto;}
-	/* 이벤트슬라이더*/
-.slide_event{position:relative; /* width:2000px; */ /* height:370px; */  display: block;
-    width: 100%; height: 370px; padding:0; overflow:hidden;}
+	/* 이벤트슬라이더 */
+.slide_event{position:relative;  /*width:2000px; height:370px; */  display: block;
+     width:100%; height:370px;  padding:0; overflow:hidden; text-align: center;}
 #sliderWrap{width:2000px; height:370px; position:relative;}
-#images{position:absolute; width:100%; height:370px; left:-400px;  top:0; left:0;display: inline-block}
-#images li{position:relative; width:2000px;float:left;}
+#images{position:absolute; width:100%; height:370px; left:-400px;  top:0; display:inline-block}
+#images li{position:relative; width:2000px; height:370px; float:left;}
 #images li img{display:block; width:100%; height: 100%;}
 #sliderWrap .material-icons{
 	position:absolute;

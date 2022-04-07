@@ -21,32 +21,32 @@
 	</select>
 	
 	<select id="adminlistReview" statementType="CALLABLE" parameterType="java.util.HashMap">
-	{CALL adminlistReview_m(
-	#{key},
-	#{startNum},
-			#{endNum},
-	#{ref_cursor_review, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
-	)}
+		{CALL adminlistReview_m(
+			#{key},
+			#{startNum},
+					#{endNum},
+			#{ref_cursor_review, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+		)}
 	</select>
 	
 	<delete id="deletReview" statementType="CALLABLE" parameterType="java.util.HashMap">
-      {CALL admindeleteReview_m(
-      #{rseq}
-      )}	
+	      {CALL admindeleteReview_m(
+	     	 #{rseq}
+	      )}	
 	</delete>
     
     <select id="adminlistAsk" statementType="CALLABLE" parameterType="java.util.HashMap">
-    {CALL adminlistAsk_m(
-    #{key},
-    #{startNum},
-    #{endNum},
-    #{ref_cursor_ask,  mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
-    )}
-</select>
+	    {CALL adminlistAsk_m(
+		    #{key},
+		    #{startNum},
+		    #{endNum},
+		    #{ref_cursor_ask,  mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+	    )}
+	</select>
 
 
 
-<select id="getAllcountAdminAsk" statementType="CALLABLE" parameterType="java.util.HashMap">
+	<select id="getAllcountAdminAsk" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{CALL getAllcountAdminAsk_m(
 			#{key},
 			#{tableName},
@@ -56,78 +56,101 @@
 	</select>
 	
 	<select id="getAdminAsk" statementType="CALLABLE" parameterType="java.util.HashMap">
-	{CALL getAdminAsk_m(
-	#{aseq},
-	#{ref_cursor,mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
-	)}
+		{CALL getAdminAsk_m(
+			#{aseq},
+			#{ref_cursor,mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+		)}
 	</select>
 	
 	<insert id="adminAskReply" statementType="CALLABLE" parameterType="java.util.HashMap">
-	{CALL adminAskReply_m(
-	#{aseq},
-	#{content_r}
-	)}
+		{CALL adminAskReply_m(
+			#{aseq},
+			#{content_r}
+		)}
 	</insert>
 	
 	<update id="adminAskUpdate"  statementType="CALLABLE" parameterType="java.util.HashMap">
-	{CALL adminAskUpdate_m(
-	#{aseq},
-	#{content_r})}
+		{CALL adminAskUpdate_m(
+			#{aseq},
+			#{content_r}
+		)}
 	</update>
 	
 	<select id="adminlistQna" statementType="CALLABLE" parameterType="java.util.HashMap">
-	{CALL adminlistQna_m(
-   #{startNum},
-    #{endNum},
-    #{key},
-	#{ref_cursor_qna, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
-	)}
+		{CALL adminlistQna_m(
+		   	#{startNum},
+		    #{endNum},
+		    #{key},
+			#{ref_cursor_qna, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+		)}
 	</select>
 	
 	<insert id="admininsertQna" statementType="CALLABLE" parameterType="java.util.HashMap">
-	{CALL admininsertQna_m(
-	#{qseq},
-	#{reply}
-	)}
+		{CALL admininsertQna_m(
+			#{qseq},
+			#{reply}
+		)}
 	</insert>
 	
 	<select id="getEventSelect" statementType="CALLABLE" parameterType="java.util.HashMap">
-	{CALL  getEventSelect_m(
-	#{eseq},
-	#{ref_cursor_event, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
-	)}
+		{CALL  getEventSelect_m(
+			#{eseq},
+			#{ref_cursor_event, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+		)}
 	</select>
 	
 	<select id="getImgesEvent"  statementType="CALLABLE" parameterType="java.util.HashMap">
-	{CALL getImgesEvent_m(
-     #{eseq},
-	#{ref_cursor_image1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+		{CALL getImgesEvent_m(
+	     	#{eseq},
+			#{ref_cursor_image1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
 		)}
-		</select>
+	</select>
 		
- <update id="eventUpdate" statementType="CALLABLE" parameterType="java.util.HashMap">
-  {CALL eventUpdate_m(
-  #{eseq},
-  #{title},
-  #{content},
-  #{image1},
-  #{image2},
-  #{subtitle},
-  #{startdate,  jdbcType=TIMESTAMP},
-  #{enddate,  jdbcType=TIMESTAMP}
-  )}
- </update>
+	 <update id="eventUpdate" statementType="CALLABLE" parameterType="java.util.HashMap">
+		  {CALL eventUpdate_m(
+			  #{eseq},
+			  #{title},
+			  #{content},
+			  #{image1},
+			  #{image2},
+			  #{subtitle},
+			  #{startdate,  jdbcType=TIMESTAMP},
+			  #{enddate,  jdbcType=TIMESTAMP}
+		  )}
+	 </update>
  
- <insert id="eventInsert" statementType="CALLABLE" parameterType="java.util.HashMap">
- {CALL eventInsert_m(
-  #{eseq},
-  #{title},
-  #{content},
-  #{image1},
-  #{image2},
-  #{subtitle},
-  #{startdate, jdbcType=TIMESTAMP},
-  #{enddate,  jdbcType=TIMESTAMP}
- )}
- </insert>
+	 <insert id="eventInsert" statementType="CALLABLE" parameterType="java.util.HashMap">
+		 {CALL eventInsert_m(
+			  #{eseq},
+			  #{title},
+			  #{content},
+			  #{image1},
+			  #{image2},
+			  #{subtitle},
+			  #{startdate, jdbcType=TIMESTAMP},
+			  #{enddate,  jdbcType=TIMESTAMP}
+		 )}
+	 </insert>
+	 
+	 <select id="getBannerList"  statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getBannerList_m(
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+		)}
+	</select>
+	
+	 <insert id="insertBanner" statementType="CALLABLE" parameterType="java.util.HashMap">
+		 {CALL insertBanner_m(
+			  #{num},
+			  #{name},
+			  #{image},
+			  #{url}
+		 )}
+	 </insert>
+	 
+	 <delete id="deleteBanner" statementType="CALLABLE">
+		 {CALL deleteBanner_m( )}
+	 </delete>
+	
+	
+	 
 </mapper>
