@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mealzo.dto.MMemberVO;
 import com.mealzo.dto.MQnaVO;
 import com.mealzo.dto.Paging;
 import com.mealzo.service.MQnaService;
@@ -274,7 +275,12 @@ public class MQnaController {
 	
 	@RequestMapping("/nmqnaView")
 	public ModelAndView nmqnaView(
-			@RequestParam("nqseq") int nqseq ,
+			@RequestParam(value="nqseq",  required=false) int nqseq ,
+			@RequestParam("pwd") String pwd ,
+			@RequestParam("mvo") String mvo ,
+			@RequestParam("checkpwd") String checkpwd ,
+			MMemberVO membervo,
+			@RequestParam(value="message",  required=false) String message ,
 			HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
@@ -283,6 +289,16 @@ public class MQnaController {
 		if(loginUser!=null) {
 			mav.setViewName("redirect:/qnaForm");
 		}else {
+			if(!pwd.equals(membervo.getPwd())) {
+				mav.addObject("message", "비밀번호가 틀렸습니다");
+				mav.setViewName("redirect:/pwdcheck");
+				System.out.println(pwd);
+				System.out.println(checkpwd);
+				System.out.println(nqseq);
+				System.out.println(mvo);
+				System.out.println(message);
+				System.out.println(membervo.getPwd());
+			}else{
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			
 			paramMap.put("nqseq", nqseq);
@@ -293,14 +309,17 @@ public class MQnaController {
 			 =(ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			mav.addObject("mqnaVO", list.get(0));
 			mav.setViewName("qna/nmqnaView");
+			}
+			mav.addObject("nqseq", nqseq);
 		}
 		return mav;
 	}
 	
 	@RequestMapping("/pwdcheck")
 	public String pwdcheck(HttpServletRequest request,
+			@RequestParam(value="message",  required=false) String message ,
 			Model model,
-			@RequestParam("nqseq") int nqseq) {
+			@RequestParam(value="nqseq", required=false) int nqseq) {
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser
 			= (HashMap<String, Object>)session.getAttribute("loginUser");
@@ -320,14 +339,15 @@ public class MQnaController {
 			HashMap<String , Object > mvo = list.get(0);
 			String pwd = (String)mvo.get("PWD");
 			
+			model.addAttribute("mvo", mvo);
 			model.addAttribute("pwd", pwd);
 			model.addAttribute("nqseq", nqseq);
-			return "qna/pwdcheck";
-			
-		}
-		
+			return "qna/pwdcheck";	
+		}	
 	}
 	
 	
+
+
 	
 }

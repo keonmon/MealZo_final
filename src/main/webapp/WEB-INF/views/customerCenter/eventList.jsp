@@ -23,6 +23,9 @@
 				<c:when test="${end < now }">
 					<a href="#" onclick="return alert('종료된 이벤트!')" style="text-decoration:none;">
 				</c:when>
+				<c:when test="${now < start }">
+					<a href="#" onclick="return alert('진행전 이벤트!')" style="text-decoration:none;">
+				</c:when>
 				<c:otherwise>
 					<a href="eventDetail?eseq=${eventVO.ESEQ}" >
 				</c:otherwise>
@@ -34,6 +37,11 @@
 								<c:when test="${end < now }">
 									<div style="background-color:black; color:white; opacity:0.5; position:absolute; width:100%; height:100%; font-weight:2em;">
 										<p style="font-size:3em; text-align:center; line-height:285px; margin:0;" >종료된 이벤트</p>
+									</div>
+								</c:when>
+								<c:when test="${now < start }">
+									<div style="background-color:black; color:white; opacity:0.5; position:absolute; width:100%; height:100%; font-weight:2em;">
+										<p style="font-size:3em; text-align:center; line-height:285px; margin:0;" >진행전 이벤트</p>
 									</div>
 								</c:when>
 							</c:choose>

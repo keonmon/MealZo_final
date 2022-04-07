@@ -965,25 +965,6 @@ begin
     commit;
 end;
 
-------------------------------------------------------------------------
---admin 이벤트리스트조회   geteventList_m
-create or replace procedure geteventList_m(
-    p_key in varchar2,
-    p_startNum in number,
-    p_endNum in number,
-    c_cur out sys_refcursor )
-is
-begin
-    open c_cur for
-        select * from ( 
-        select rownum as rn, p.* from 
-        (select * from mevent where title like '%'||p_key||'%' order by enddate desc, startdate desc) p 
-        ) where rn>=p_startNum 
-        and rn<=p_endNum ;
-        
-end;
-select * from mevent;
-
 ---------------------------------오더캔슬업데이트---------------------------------
 
 CREATE OR REPLACE PROCEDURE orderCancelUpdate_m(
@@ -1397,4 +1378,36 @@ create or replace procedure getAllCountZzim_m(
   ) where rn<=endNum ;
   end;
   
+--------------------------- 이벤트 실험 -------------------------
+  
+insert into mevent(eseq, title, content, image1, image2, subtitle, startdate, enddate) 
+values(mevent_seq.nextVal, '박막례 할머니의 고모저모', '박막례시피 출시', 'event1.jpg',
+'event1_inner1.jpg','고모 할머니와 함께!', to_date('2022-11-25','yyyy-MM-dd hh24:mi:ss'), 
+to_date('2023-12-31 23:59:59','yyyy-MM-dd hh24:mi:ss'));
+
+insert into mevent(eseq, title, content, image1, image2, subtitle, startdate, enddate) 
+values(mevent_seq.nextVal, '박막례 할머니의 고모저모', '박막례시피 출시', 'event1.jpg',
+'event1_inner1.jpg','고모 할머니와 함께!', to_date('2022-05-10','yyyy-MM-dd hh24:mi:ss'), 
+to_date('2022-12-31 23:59:59','yyyy-MM-dd hh24:mi:ss'));
+
+select * from mevent
+
+------------------------------------------------------------------------
+--admin 이벤트리스트조회   geteventList_m 수정
+create or replace procedure geteventList_m(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+        select * from ( 
+        select rownum as rn, p.* from 
+        (select * from mevent where title like '%'||p_key||'%' order by startdate desc) p 
+        ) where rn>=p_startNum 
+        and rn<=p_endNum ;
+        
+end;
+select * from mevent;
 
