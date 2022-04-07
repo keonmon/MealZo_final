@@ -35,7 +35,6 @@
 		<ul id="images">
 			<c:forEach items="${bannerList}" var="bannerList">
 				<li><a href="${bannerList.URL }"><img src="images/${bannerList.IMAGE }"></a></li>
-				
 			</c:forEach>
 		</ul>
 		<div id="buttonL" class="material-icons">arrow_back_ios_new</div>
