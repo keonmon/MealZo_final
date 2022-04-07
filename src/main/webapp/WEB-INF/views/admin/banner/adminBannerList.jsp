@@ -40,8 +40,13 @@
 				
 			</tr>
 		</c:forEach>
+		<tr><td colspan="4">
+			url은 <strong>내부 url('/'이하 url)을 입력</strong>합니다.<br>
+				<strong>외부url</strong>은 'http://'로 시작하도록 입력합니다.
+		</td></tr>
 	</table>
 	<input type="button" class="btn" style="width:100px;" value="배너 저장" onclick="go_banner_save()">
+		&nbsp;&nbsp;&nbsp;<strong style="font-size:1.2em">${message }</strong>
 </form>
 </article>
 

@@ -367,7 +367,7 @@ function go_banner_save(){
 	var image = document.getElementsByName("image");
 	var totalCnt = 0;
 	let dupYn = false;
-	alert(cnt[3].value);
+	// alert(cnt[3].value);
 	for(let i = 0; i < cnt.length; i++) {
 		const currElem = cnt[i].value;
 	  		if(currElem === "") {
@@ -383,7 +383,7 @@ function go_banner_save(){
 	  	
 	  	if(dupYn)  {
 	 		alert("중복된 공지 번호가 있습니다.");
-	     	break;
+	     	return false;
 	  	}else{
 	  		//여기에 공란검사
 	  		// 비어있는 제목 검사
@@ -402,9 +402,11 @@ function go_banner_save(){
 		  			return false;
 		  		}
 		  	}
-		  	document.frm.action = "bannerSave";
-		  	document.frm.submit();
 	  	}
+	}
+  	if(confirm('배너 설정을 적용하시겠습니까?')){
+	  	document.frm.action = "bannerSave";
+	  	document.frm.submit();
 	}
 }
 
