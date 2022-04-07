@@ -81,9 +81,11 @@ public class MQnaController {
 			paramMap.put("id", loginUser.get("ID"));
 			paramMap.put("ref_cursor", null);
 			qs.listQna(paramMap);
-			System.out.println(cnt);
+			//System.out.println(cnt);
+			
 			ArrayList<HashMap<String, Object>> list
 			 = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+			
 			mav.addObject("paging", paging);
 			mav.addObject("mqnaList", list);
 			mav.setViewName("qna/qnaList");

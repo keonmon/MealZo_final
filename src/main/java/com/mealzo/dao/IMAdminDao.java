@@ -40,6 +40,10 @@ public interface IMAdminDao {
 
 	void eventDelete(HashMap<String, Object> paramMap);
 
+	void adminnmlistQna(HashMap<String, Object> paramMap);
+
+	void admininsertnmQna(HashMap<String, Object> paramMap);
+
 
 
 

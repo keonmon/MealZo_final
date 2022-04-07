@@ -29,6 +29,7 @@ import com.mealzo.dto.MEventVO;
 import com.mealzo.dto.MNoticeVO;
 import com.mealzo.dto.MProductVO;
 import com.mealzo.dto.MQnaVO;
+import com.mealzo.dto.NMQnaVO;
 import com.mealzo.service.MAdminService;
 import com.mealzo.service.MEventService;
 import com.mealzo.service.MMemberService;
@@ -250,7 +251,7 @@ public class MAdminController {
 
 			ArrayList<HashMap<String, Object>> orderList 
 				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
-			System.out.println(orderList);
+			//System.out.println(orderList);
 			request.setAttribute("morderList", orderList);
 			request.setAttribute("key", key);
 
@@ -311,7 +312,7 @@ public class MAdminController {
 			paramMap.put("cnt", 0);
 			as.getAllcountAdmin(paramMap);
 
-			System.out.println(paramMap.get("cnt"));
+			//System.out.println(paramMap.get("cnt"));
 
 			int cnt = Integer.parseInt(paramMap.get("cnt").toString());
 			paging.setTotalCount(cnt);
@@ -321,7 +322,7 @@ public class MAdminController {
 
 			paramMap.put("ref_cursor_review", null);
 			as.adminlistReview(paramMap);
-			System.out.println(cnt);
+			//System.out.println(cnt);
 			ArrayList<HashMap<String, Object>> reviewList 
 				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor_review");
 			mav.addObject("paging", paging);
@@ -441,7 +442,7 @@ public class MAdminController {
 			as.getAllcountAdminAsk(paramMap);
 			
 			
-			System.out.println(paramMap.get("cnt"));
+			//System.out.println(paramMap.get("cnt"));
 
 			int cnt = Integer.parseInt(paramMap.get("cnt").toString());
 			paging.setTotalCount(cnt);
@@ -451,7 +452,7 @@ public class MAdminController {
 
 			paramMap.put("ref_cursor_ask", null);
 			as.adminlistAsk(paramMap);
-			System.out.println(cnt);
+			//System.out.println(cnt);
 			ArrayList<HashMap<String, Object>> askList 
 			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor_ask");
 			mav.addObject("paging", paging);
@@ -483,7 +484,7 @@ public class MAdminController {
 				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			mav.addObject("dto", getAdminAsk.get(0));
 
-			mav.setViewName("admin/qna/askDetil");
+			mav.setViewName("admin/qna/askDetail");
 
 		}
 		return mav;
@@ -786,7 +787,7 @@ public class MAdminController {
 			as.getAllcountAdmin(paramMap);
 			
 			
-			System.out.println(paramMap.get("cnt" + "확인"));
+			//System.out.println(paramMap.get("cnt" + "확인"));
 
 			int cnt = Integer.parseInt(paramMap.get("cnt").toString());
 			paging.setTotalCount(cnt);
@@ -796,20 +797,47 @@ public class MAdminController {
 
 			paramMap.put("ref_cursor_qna", null);
 			as.adminlistQna(paramMap);
-			System.out.println(cnt);
+			
+			//System.out.println(cnt);
+			
 			ArrayList<HashMap<String, Object>> qnaList
 				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor_qna");
+			
+			
 			mav.addObject("paging", paging);
 			mav.addObject("mqnaList", qnaList);
 			mav.setViewName("admin/qna/qnaList");
-			
-		//	System.out.println(qnaList);
 
 		}
 			return mav;
 	}      
       
-      
+		// VO에 담아서 소문자로 뿌려지도록 한다.
+	@RequestMapping("adminQnaDetail")
+	   public ModelAndView adminqnadetail(@RequestParam("qseq") int qseq, HttpServletRequest request) {
+
+	      ModelAndView mav = new ModelAndView();
+	      HttpSession session = request.getSession();
+	      HashMap<String, Object> loginAdmin 
+	         = (HashMap<String, Object>) session.getAttribute("loginAdmin");
+	      if (loginAdmin == null) {
+	         mav.setViewName("admin/adminLogin");
+	         return mav;
+	      } else {
+	         HashMap<String, Object> paramMap = new HashMap<String, Object>();
+	         paramMap.put("qseq", qseq);
+	         paramMap.put("ref_cursor", null);
+	         qs.getQna(paramMap);
+
+	         ArrayList<HashMap<String, Object>> list 
+	            = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+	         mav.addObject("mqnaVO", list.get(0));
+	         mav.setViewName("admin/qna/qnaDetail");
+
+	         // request.setAttribute("message", message);
+	      }
+	      return mav;
+	   }
 
                                    
 	@RequestMapping("adminEventList")
@@ -876,36 +904,6 @@ public class MAdminController {
 			System.out.println(eventList);
 			
 			mav.setViewName("admin/customerCenter/adminEventList");
-		}
-		return mav;
-	}
-
-
-
-	
-	// VO에 담아서 소문자로 뿌려지도록 한다.
-	@RequestMapping("adminQnaDetail")
-	public ModelAndView adminqnadetail(@RequestParam("qseq") int qseq, HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		HashMap<String, Object> loginAdmin 
-			= (HashMap<String, Object>) session.getAttribute("loginAdmin");
-		if (loginAdmin == null) {
-			mav.setViewName("admin/adminLogin");
-			return mav;
-		} else {
-			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("qseq", qseq);
-			paramMap.put("ref_cursor", null);
-			qs.getQna(paramMap);
-
-			ArrayList<HashMap<String, Object>> list 
-				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
-			mav.addObject("mqnaVO", list.get(0));
-			mav.setViewName("admin/qna/qnaDetil");
-
-			// request.setAttribute("message", message);
 		}
 		return mav;
 	}
@@ -1479,8 +1477,138 @@ public class MAdminController {
         	
        		}
        		return mav;
-        	
         }
+        
+        @RequestMapping("adminnmQnaList")
+    	public ModelAndView adminnmQnaList(HttpServletRequest request,
+    			@RequestParam(value = "page", required = false) Integer page,
+    			@RequestParam(value = "key", required = false) String key) {
+    		ModelAndView mav = new ModelAndView();
+    		HttpSession session = request.getSession();
+        HashMap<String, Object> loginAdmin 
+            = (HashMap<String, Object>) session.getAttribute("loginAdmin");
+        if (loginAdmin == null) {
+        mav.setViewName("admin/adminLogin");
+        return mav;
+        } else {
+    			if (request.getParameter("sub") != null) {
+    				session.removeAttribute("page");
+    				session.removeAttribute("key");
+    			}
+    			page = 1;
+    			key = "";
+    			if (request.getParameter("page") != null) {
+    				page = Integer.parseInt(request.getParameter("page"));
+    				session.setAttribute("page", page);
+    			} else if (session.getAttribute("page") != null) {
+    				page = (Integer) session.getAttribute("page");
+    			} else {
+    				page = 1;
+    				session.removeAttribute("page");
+    			}
+    			if (request.getParameter("key") != null) {
+    				key = request.getParameter("key");
+    				session.setAttribute("key", key);
+    			} else if (session.getAttribute("key") != null) {
+    				key = (String) session.getAttribute("key");
+    			} else {
+    				session.removeAttribute("key");
+    				key = "";
+    			}
+    			
+    			AdminPaging paging = new AdminPaging();
+    			paging.setPage(page);;
+    			HashMap<String, Object> paramMap = new HashMap<String,Object>();
+    			paramMap.put("key", key);
+    			paramMap.put("tableName", "nmqna");
+    			paramMap.put("culumnName", "subject");
+    	     	paramMap.put("culumnName", "id");
+    			paramMap.put("cnt", 0);
+    			as.getAllcountAdmin(paramMap);
+    			
+    			
+    			//System.out.println(paramMap.get("cnt" + "확인"));
+
+    			int cnt = Integer.parseInt(paramMap.get("cnt").toString());
+    			paging.setTotalCount(cnt);
+    			paging.paging(); // 이거 확인 하기 위에랑 다르게 ㅈ거어서 여기서 빨간줄 나와서 바꾼거거든요 건희님껏두 함 봐주세요 페이징저렁 ㄸㅎ깥은
+    			paramMap.put("startNum", paging.getStartNum());
+    			paramMap.put("endNum", paging.getEndNum());
+
+    			paramMap.put("ref_cursor_qna", null);
+    			as.adminnmlistQna(paramMap);
+    			
+    			//System.out.println(cnt);
+    			
+    			ArrayList<HashMap<String, Object>> nmqnaList
+    				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor_qna");
+    			
+    			
+    			mav.addObject("paging", paging);
+    			mav.addObject("nmqnaList", nmqnaList);
+    			mav.setViewName("admin/nonmember/nmqnaList");
+    			System.out.println(nmqnaList);
+    		}
+    			return mav;
+    	}      
      
+        
+        @RequestMapping("adminnmQnaDetail")
+ 	   public ModelAndView adminnmQnaDetail(@RequestParam("nqseq") int nqseq, HttpServletRequest request) {
+
+ 	      ModelAndView mav = new ModelAndView();
+ 	      HttpSession session = request.getSession();
+ 	      HashMap<String, Object> loginAdmin 
+ 	         = (HashMap<String, Object>) session.getAttribute("loginAdmin");
+ 	      if (loginAdmin == null) {
+ 	         mav.setViewName("admin/adminLogin");
+ 	         return mav;
+ 	      } else {
+ 	         HashMap<String, Object> paramMap = new HashMap<String, Object>();
+ 	         paramMap.put("nqseq", nqseq);
+ 	         paramMap.put("ref_cursor", null);
+ 	         qs.getnmQna(paramMap);
+
+ 	         ArrayList<HashMap<String, Object>> list 
+ 	            = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+ 	         mav.addObject("nmqnaVO", list.get(0));
+ 	         mav.setViewName("admin/nonmember/nmqnaDetail");
+
+ 	         // request.setAttribute("message", message);
+ 	      }
+ 	      return mav;
+ 	   }
+        
+        
+        @RequestMapping("/adminnmQnaRepSave")
+    	public ModelAndView admin_nmqna_repSave(HttpServletRequest request, @RequestParam("nqseq") String nqseq,
+    			@RequestParam("reply") String reply, @ModelAttribute("qvo") @Valid NMQnaVO qvo, BindingResult result) {
+    		ModelAndView mav = new ModelAndView();
+    		HttpSession session = request.getSession();
+    		HashMap<String, Object> loginAdmin 
+    			= (HashMap<String, Object>) session.getAttribute("loginAdmin");
+    		if (loginAdmin == null) {
+    			mav.setViewName("admin/adminLogin");
+    			return mav;
+    		} else if (result.getFieldError("reply") != null) {
+    			mav.addObject("message", result.getFieldError("reply").getDefaultMessage());
+    			mav.addObject("nqseq", nqseq);
+    			mav.setViewName("admin/nonmember/nmqnaDetil");
+    			return mav;
+    		}
+    		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+    		// paramMap.put("qseq", qseq);
+    		System.out.println(qvo.getNqseq());
+    		
+    		paramMap.put("nqseq", qvo.getNqseq());
+    		paramMap.put("reply", qvo.getReply());
+    		
+    		as.admininsertnmQna(paramMap);
+
+    		mav.addObject("nqseq", nqseq);
+    		mav.setViewName("redirect:/adminnmQnaDetail");
+
+    		return mav;
+    	}
 }
 

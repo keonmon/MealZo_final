@@ -359,3 +359,16 @@ function go_product_save(){
 		}
 	}	
 }
+
+
+function go_rep2(nqseq){
+if(document.form4.reply.value==""){
+alert("내용을 입력해주세요");
+document.form4.reply.focus();
+return false;
+}
+if(confirm('등록하시겠습니까?')){	
+document.form4.action="adminnmQnaRepSave";
+   document.form4.submit();
+   }
+   }

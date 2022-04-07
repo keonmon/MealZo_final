@@ -14,6 +14,7 @@
 	     <li><a href='adminQnaList?sub=y'>Q&amp;A</a></li>
 	     <li><a href='adminAskForm?sub=y'>상품문의</a></li>
 	     <li><a href='adminReviewForm?sub=y'>상품후기</a></li>
+	     <li><a href='adminnmQnaList?sub=y'>비회원관리</a></li>
      </ul>
    </li>
    <li id="menu"><a href='adminNoticeList&sub=y'>고객센터 관리</a>

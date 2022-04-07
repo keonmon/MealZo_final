@@ -83,7 +83,14 @@ public class MAdminService {
 
 	public void eventDelete(HashMap<String, Object> paramMap) {
 		adao.eventDelete(paramMap);
-		
+	}
+
+	public void adminnmlistQna(HashMap<String, Object> paramMap) {
+		adao.adminnmlistQna(paramMap);
+	}
+
+	public void admininsertnmQna(HashMap<String, Object> paramMap) {
+		adao.admininsertnmQna(paramMap);
 	}
 
 
