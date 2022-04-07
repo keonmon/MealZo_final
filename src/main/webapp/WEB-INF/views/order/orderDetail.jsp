@@ -46,5 +46,6 @@
        	<td><input type="button" value="주문취소" onclick="go_cancel()"></td></tr> 	
 </table>
 </form>
+
 </article>
 <%@ include file="../include/user/headerfooter/footer.jsp"%>

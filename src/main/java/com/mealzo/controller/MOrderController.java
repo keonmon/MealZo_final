@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mealzo.dto.Paging;
 import com.mealzo.service.MOrderService;
 
 @Controller
@@ -54,6 +55,27 @@ public class MOrderController {
 			mav.setViewName("member/login");	
 			return mav;
 		} else {
+			
+			int page=1;
+			if(request.getParameter("sub") !=null) {
+				session.removeAttribute("page");
+			}
+			if(request.getParameter("page")!=null) {
+				page=Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			}else if(session.getAttribute("page")!=null) {
+				page=(Integer)session.getAttribute("page");
+			}else {
+				session.removeAttribute("page");
+			}	
+			
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			Paging paging = new Paging();
+			paging.setPage(page); //현재 페이지
+			
+		
+		   paramMap.put("cnt" ,0);
+			
 			ArrayList<HashMap<String, Object>> finalList 
 			= new ArrayList<HashMap<String, Object>>();
 			HashMap<String, Object> paramMap1 = new HashMap<String, Object>();
@@ -88,6 +110,7 @@ public class MOrderController {
 			// 주번 번호별 대표 상품(첫번째 상품)을 별도의 리스트로 모아서 model 에 저장
 			finalList.add(orderFirst);
 			}
+			mav.addObject("paging", paging);
 			mav.addObject("orderList", finalList);
 			mav.setViewName("order/orderList");
 		}
@@ -176,33 +199,6 @@ public class MOrderController {
 		return mav;
 	}
 	
-	@RequestMapping("/orderCancelForm")
-	public ModelAndView ordercancelform(Model model, HttpServletRequest request) {
-		
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		HashMap<String, Object> loginUser =
-     	(HashMap<String, Object>)session.getAttribute("loginUser");
-
-		if(loginUser==null) {
-			mav.setViewName("member/login");
-			return mav;
-		}else {
-			 HashMap<String, Object> paramMap= new HashMap<String, Object>();
-			 paramMap.put("id", loginUser.get("ID"));
-			 paramMap.put("ref_cursor_cancel",null);
-			 os.orderCancelForm(paramMap);
-			 
-			 ArrayList<HashMap<String, Object>> list 
-			 =(ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor_cancel");
-			 
-			 
-			 mav.addObject("cancelList", list);
-			 
-			 mav.setViewName("order/orderCancel");
-		}
-		return mav;
-	}
 }
 
 
