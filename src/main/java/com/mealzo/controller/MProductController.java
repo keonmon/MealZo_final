@@ -17,6 +17,7 @@ import com.mealzo.dto.Paging;
 import com.mealzo.service.MAdminService;
 import com.mealzo.service.MProductService;
 import com.mealzo.service.MReviewService;
+import com.mealzo.service.MZzimService;
 
 @Controller
 public class MProductController {
@@ -26,10 +27,13 @@ public class MProductController {
 	
 	@Autowired
 	MReviewService rs;
-	
+
 	@Autowired
 	MAdminService as;
-	
+
+	@Autowired
+	MZzimService zs;
+
 	@RequestMapping("/")
 	public ModelAndView index(Model model, HttpServletRequest request) {
 		
@@ -493,7 +497,18 @@ public class MProductController {
         model.addAttribute("pseq",pseq);
         mav.addObject("productorderList", productorderList);
 		
-		// 후기 카운트
+		
+        paramMap.put("ref_cursor_zzim", null);
+    //    zs.getlistZzim(paramMap);
+        ArrayList<HashMap<String,Object>> zzimList
+         =(ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor_zzim");
+    	if(productorderList.size() ==0)model.addAttribute("result",-1);
+		else model.addAttribute("result",1);
+   // 	model.addAttribute("id", loginUser.get("ID"));
+    	 model.addAttribute("pseq",pseq);
+    	   mav.addObject("zzimList" , zzimList);
+        
+        // 후기 카운트
 		//paramMap.put("replyCnt", 0);
 		//rs.getReplycnt(paramMap);
 		//int cnt = Integer.parseInt(paramMap.get("replyCnt").toString());

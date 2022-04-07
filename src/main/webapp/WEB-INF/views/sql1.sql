@@ -305,4 +305,12 @@ values(7, 'test7', 'main7.jpg','productDetail?pseq=38');
 insert into mrollingbanner(num, name, image, url) 
 values(8, 'test8', 'main8.jpg','productDetail?pseq=4');
 
+create table mzzim(
+zseq number(5) primary key,
+pseq number references mproduct(pseq),
+id varchar2(20) references mmeber(id),
+indate date default sysdate -- 찜한잘짜
+image 
+)
+
 

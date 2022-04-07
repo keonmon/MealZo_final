@@ -119,6 +119,7 @@
 		  )}
 	 </update>
  
+
 	 <insert id="eventInsert" statementType="CALLABLE" parameterType="java.util.HashMap">
 		 {CALL eventInsert_m(
 			  #{eseq},
@@ -150,7 +151,24 @@
 	 <delete id="deleteBanner" statementType="CALLABLE">
 		 {CALL deleteBanner_m( )}
 	 </delete>
-	
-	
-	 
+
+ <insert id="eventInsert" statementType="CALLABLE" parameterType="java.util.HashMap">
+ {CALL eventInsert_m(
+  #{eseq},
+  #{title},
+  #{content},
+  #{image1},
+  #{image2},
+  #{subtitle},
+  #{startdate, jdbcType=TIMESTAMP},
+  #{enddate,  jdbcType=TIMESTAMP}
+ )}
+ </insert>
+  
+ <delete id="eventDelete" statementType="CALLABLE" parameterType="java.util.HashMap">
+ {CALL eventDelete_m(
+ #{eseq}
+ )}
+ </delete>
+
 </mapper>

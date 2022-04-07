@@ -154,7 +154,6 @@ BEGIN
 END;
 
 --------------------------------오더인서트---------------------------------
-
 CREATE OR REPLACE PROCEDURE insertOrder_m(
     p_id  IN  MORDERS.ID%TYPE,
     p_oseq  OUT  MORDERS.OSEQ%TYPE  )
@@ -597,6 +596,7 @@ end;
  
 --------------------------------------------------------------------------------------------
 -- Admin - 범용 카운트
+-- Admin - 범용 카운트
 create or replace procedure getAllcountAdmin_m(
     p_key VARCHAR2,
     p_tableName VARCHAR2,   -- 테이블명 변수
@@ -615,13 +615,6 @@ begin
     --DBMS_OUTPUT.PUT_LINE(v_cnt);   
     p_cnt := v_cnt;
 end;
-
-exec getAllcountAdmin_m('스테이크', 'mproduct', 'name');
-select * from mproduct;
-
-
-exec getAllcountAdmin_m('토마호', 'aks_view', 'p_name');
-select * from ask_view;
 
 --------------------------------------------------------------------------------------------
 -- Admin - 전체 주문 조회
@@ -971,25 +964,6 @@ begin
     update morder_detail set result=p_selectedIndex where odseq=p_odseq;
     commit;
 end;
-
-------------------------------------------------------------------------
---admin 이벤트리스트조회   geteventList_m
-create or replace procedure geteventList_m(
-    p_key in varchar2,
-    p_startNum in number,
-    p_endNum in number,
-    c_cur out sys_refcursor )
-is
-begin
-    open c_cur for
-        select * from ( 
-        select rownum as rn, p.* from 
-        (select * from mevent where title like '%'||p_key||'%' order by enddate desc, startdate desc) p 
-        ) where rn>=p_startNum 
-        and rn<=p_endNum ;
-        
-end;
-select * from mevent;
 
 ---------------------------------오더캔슬업데이트---------------------------------
 
@@ -1364,6 +1338,7 @@ values(mevent_seq.nextVal , p_title, P_content, p_image1, p_image2, p_subtitle, 
 
 end;
 
+
 ---------------------------------------------------------------------------------
 -- Admin - 배너 테이블 조회 getBannerList_m
 create or replace procedure getBannerList_m(
@@ -1395,4 +1370,78 @@ begin
     insert into MRollingBanner(num,name,image,url)
         values(p_num,p_name,p_image,p_url);
 end;
+
+------------------------------------------------------------------------------------
+--이벤트 삭제
+create or replace procedure eventDelete_m(
+p_eseq in mevent.eseq%type
+)
+is
+begin
+delete from mevent where eseq=p_eseq;
+end;
+
+----------------------------------------------------------------------
+--Zzim 한 상픔 리스트 보기 allcount
+create or replace procedure getAllCountZzim_m(
+ p_cnt OUT NUMBER
+  )
+ is 
+  v_cnt number;
+ begin
+  select count(*) into v_cnt from zzim_view;
+  p_cnt := v_cnt;
+  end;
+  
+------------------------------------------------------------------------
+  --Zzim 한 상픔 리스트 보기
+  create or replace procedure  listZzim_m(
+  startNum number,
+  endNum number,
+  p_id in mzzim.id%type,
+  c_cur out sys_refcursor
+  )
+  is
+  begin
+  open c_cur for
+  select * from (
+  select * from (
+  select rownum rn, p. *from ( select * from zzim_view where id= p_id) p
+  ) where rn>=startNum
+  ) where rn<=endNum ;
+  end;
+  
+--------------------------- 이벤트 실험 -------------------------
+  
+insert into mevent(eseq, title, content, image1, image2, subtitle, startdate, enddate) 
+values(mevent_seq.nextVal, '박막례 할머니의 고모저모', '박막례시피 출시', 'event1.jpg',
+'event1_inner1.jpg','고모 할머니와 함께!', to_date('2022-11-25','yyyy-MM-dd hh24:mi:ss'), 
+to_date('2023-12-31 23:59:59','yyyy-MM-dd hh24:mi:ss'));
+
+insert into mevent(eseq, title, content, image1, image2, subtitle, startdate, enddate) 
+values(mevent_seq.nextVal, '박막례 할머니의 고모저모', '박막례시피 출시', 'event1.jpg',
+'event1_inner1.jpg','고모 할머니와 함께!', to_date('2022-05-10','yyyy-MM-dd hh24:mi:ss'), 
+to_date('2022-12-31 23:59:59','yyyy-MM-dd hh24:mi:ss'));
+
+select * from mevent
+
+------------------------------------------------------------------------
+--admin 이벤트리스트조회   geteventList_m 수정
+create or replace procedure geteventList_m(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+        select * from ( 
+        select rownum as rn, p.* from 
+        (select * from mevent where title like '%'||p_key||'%' order by startdate desc) p 
+        ) where rn>=p_startNum 
+        and rn<=p_endNum ;
+        
+end;
+select * from mevent;
+
 

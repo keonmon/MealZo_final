@@ -284,7 +284,7 @@ select * from
  from mproduct where useyn='y' order by indate desc )
  where rownum <= 6 order by price2;
 
-
+select * from ask;
  
  -- 장바구니 뷰 추가
 create or replace view mcart_view 
@@ -388,4 +388,30 @@ select * from morder_view
 select * from order_detail
 select * from mevent;
 select image1, image2  from mevent where eseq='1';
+
+
+--찜 상품 추가 
+create table mzzim(
+zseq number(5) primary key,
+pseq number references mproduct(pseq),
+id varchar2(20) references mmember(id),
+indate date default sysdate -- 찜한날짜
+);
+
+
+ create or replace view zzim_view
+as
+select z.zseq, z.pseq  , z.id ,z.result, z.indate,  p.name , p.image, p.price2,  p.kind
+from mzzim z, mproduct p
+where z.pseq =p.pseq ;
+
+create sequence mzzim_seq start with 1;
+
+
+insert into mzzim(zseq, pseq, id) values(mzzim_seq.nextVal, 1, 'somi');
+
+select * from zzim_view
+
+alter table mzzim add result varchar2(15) default 'n';	
+update mzzim set result='y' where zseq=1;
 

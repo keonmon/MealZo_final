@@ -43,6 +43,9 @@ public interface IMAdminDao {
 
 	void deleteBanner();
 
+	void eventDelete(HashMap<String, Object> paramMap);
+
+
 
 
 

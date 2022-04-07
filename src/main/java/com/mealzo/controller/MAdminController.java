@@ -1547,6 +1547,80 @@ public class MAdminController {
 		return "admin/banner/imageLoad";
 	}
 	
-        
+
+        @RequestMapping("/adminEventInsert")
+        public ModelAndView adminEventinsert(HttpServletRequest request, @RequestParam("startTime") String startTime,
+        		@RequestParam("endTime") String endTime, @RequestParam("startdate") String startdate,  @RequestParam("enddate") String enddate, 
+        @ModelAttribute("evo") @Valid MEventVO evo, BindingResult result	) {
+        	
+        	ModelAndView mav= new ModelAndView();
+        	 mav.setViewName("admin/customerCenter/adminEventInsertForm");
+       	  if(result.getFieldError("title") !=null) {
+       		  mav.addObject("message", result.getFieldError("title").getDefaultMessage());
+       	 return mav;
+       	  }else if (result.getFieldError("content") !=null) {
+       		  mav.addObject("message", result.getFieldError("content").getDefaultMessage());
+       			 return mav;
+       	  }else if (result.getFieldError("image1") !=null) {
+       		  mav.addObject("message", result.getFieldError("image1").getDefaultMessage());
+       			 return mav;
+       	  }else if (result.getFieldError("image2") !=null) {
+       		  mav.addObject("message", result.getFieldError("image2").getDefaultMessage());
+       			 return mav;  
+       	  }else if (result.getFieldError("subtitle") !=null) {
+       		  mav.addObject("message", result.getFieldError("subtitle").getDefaultMessage());
+       			 return mav;
+    /*	 }else if (result.getFieldError("startdate") !=null) {
+       		  mav.addObject("message", result.getFieldError("startdate").getDefaultMessage());
+       			 return mav;
+       	  }else if (result.getFieldError("enddate") !=null) {
+       		  mav.addObject("message", result.getFieldError("enddate").getDefaultMessage());
+       			 return mav;  */
+       	  }
+       		HttpSession session = request.getSession();
+       		if (session.getAttribute("loginAdmin") == null) {
+       			mav.setViewName("redirect:/admin");
+       		}else {
+       			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+       			paramMap.put("eseq", evo.getEseq());
+    			paramMap.put("title", evo.getTitle());
+    			paramMap.put("content", evo.getContent());
+    			paramMap.put("image1", evo.getImage1());
+    			paramMap.put("image2", evo.getImage2());
+    			paramMap.put("subtitle", evo.getSubtitle());
+    			paramMap.put("startdate", evo.getStartdate());
+    			paramMap.put("enddate", evo.getEnddate());
+    			
+    			as.eventInsert(paramMap);
+    			
+    		//	mav.addObject("eseq", evo.getEseq());
+    			mav.addObject("endTime", endTime);
+    			mav.addObject("startTime", startTime);
+    			mav.setViewName("redirect:/adminEventList");
+       		}
+        	
+        	return mav;
+        	
+        }
+        @RequestMapping("/adminEventDelete")
+        public ModelAndView adminEventDelete(HttpServletRequest request, 
+        		@RequestParam("eseq") int eseq) {
+        	ModelAndView mav= new ModelAndView();
+        	HttpSession session = request.getSession();
+       		if (session.getAttribute("loginAdmin") == null) {
+       			mav.setViewName("redirect:/admin");
+       			return mav;
+       		}else {
+       			HashMap<String , Object>paramMap = new HashMap<String, Object>();
+       			paramMap.put("eseq", eseq);
+       			as.eventDelete(paramMap);
+       		
+        	mav.setViewName("redirect:/adminEventList");
+        	
+       		}
+       		return mav;
+        	
+        }
+
 }
 
