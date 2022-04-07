@@ -397,11 +397,11 @@ pseq number references mproduct(pseq),
 id varchar2(20) references mmember(id),
 indate date default sysdate -- 찜한날짜
 );
-
+select * from mzzim
 
  create or replace view zzim_view
 as
-select z.zseq, z.pseq  , z.id ,z.result, z.indate,  p.name , p.image, p.price2,  p.kind
+select z.zseq, z.pseq  , z.id , z.indate,  p.name , p.image, p.price2,  p.kind
 from mzzim z, mproduct p
 where z.pseq =p.pseq ;
 
@@ -414,4 +414,4 @@ select * from zzim_view
 
 alter table mzzim add result varchar2(15) default 'n';	
 update mzzim set result='y' where zseq=1;
-
+alter table mzzim drop column result;	

@@ -26,4 +26,14 @@ public class MZzimService {
 		zdao.getlistZzim(paramMap);
 		
 	}
+
+	public void zzimInsert(HashMap<String, Object> paramMap) {
+		zdao.zzimInsert(paramMap);
+		
+	}
+
+	public void zzimdelete(HashMap<String, Object> paramMap) {
+		zdao.zzimDelete(paramMap);
+		
+	}
 }

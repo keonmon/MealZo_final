@@ -29,8 +29,10 @@ $(function(){
  </ul>
 </div><br><br>
 <div> &nbsp; &nbsp; ${message}</div>
+
 </fieldset>
 </form>
+<div id="message" style="font-size:1.4em; right:200px;'"> ${msg}</div>
 </article>
 
 

@@ -13,6 +13,7 @@
 	<select id="productorderList" statementType="CALLABLE" parameterType="java.util.HashMap">
 	{CALL productorderList_m(
 	#{pseq},
+	#{id, jdbcType=VARCHAR},
 	#{ref_cursor_productorderList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=reviewMap})
 	}
 	</select>

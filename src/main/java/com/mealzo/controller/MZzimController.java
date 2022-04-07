@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mealzo.dto.Paging;
@@ -28,6 +29,7 @@ public class MZzimController {
 		HashMap<String, Object> loginUser 
 		  = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(loginUser==null) {
+			mav.addObject("msg" , "로그인 후 사용하시기바랍니다");
 			mav.setViewName("member/login");
 			return mav;
 		}else {
@@ -68,5 +70,6 @@ public class MZzimController {
 		return mav;
 
 	}
+	
 
 }
