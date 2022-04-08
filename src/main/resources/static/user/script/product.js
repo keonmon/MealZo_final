@@ -149,12 +149,25 @@ $(function(){
    });
    
 function printName() {
- 	   const name = document.getElementById('quantity').value;
+ 	   const name = document.form1.quantity.value;
  	   const name2 = document.getElementById('price2').value;
  	   document.getElementById("result").innerText = (name * name2).toLocaleString('ko-KR')+"원";
     }
     
     
+function add () {
+	hm = document.form1.quantity;
+	hm.value ++ ;
+}
+
+function del () {
+	hm = document.form1.quantity;
+	result = document.form1.result;
+		if (hm.value > 1) {
+			hm.value -- ;
+			result.value = parseInt(hm.value) * pricee2;
+		}
+}
     
     
 function go_search( comm ){

@@ -73,7 +73,7 @@ document.form.submit();
 function zzim(pseq){
 var gozzim = confirm("찜  추가되었습니다 \n 찜리스트로 이동하시겠습니까?♥😊❤️");
    		if(gozzim){
-			location.href= "zzimList";
+			location.href= "zzimInsert?pseq=" + pseq;
 		}else{
 		location.href= "zzim?pseq=" + pseq;
 		}
