@@ -119,7 +119,28 @@
 		  )}
 	 </update>
  
-
+ <delete id="eventDelete" statementType="CALLABLE" parameterType="java.util.HashMap">
+ {CALL eventDelete_m(
+ #{eseq}
+ )}
+ </delete>
+ 
+ <select id="adminnmlistQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL adminnmlistQna_m(
+   #{startNum},
+    #{endNum},
+    #{key},
+	#{ref_cursor_qna, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+	)}
+	</select>
+	
+	<insert id="admininsertnmQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL admininsertnmQna_m(
+	#{nqseq},
+	#{reply}
+	)}
+	</insert>
+ 
 	 <insert id="eventInsert" statementType="CALLABLE" parameterType="java.util.HashMap">
 		 {CALL eventInsert_m(
 			  #{eseq},
