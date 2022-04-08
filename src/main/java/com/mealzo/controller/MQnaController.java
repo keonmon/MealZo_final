@@ -211,7 +211,9 @@ public class MQnaController {
 		    paramMap.put("startNum", paging.getStartNum());
 		    paramMap.put("endNum", paging.getEndNum());
 			paramMap.put("ref_cursor", null);
+			
 			qs.nmlistQna(paramMap);
+			
 			ArrayList<HashMap<String, Object>> list
 			 = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
 			mav.addObject("paging", paging);
@@ -268,7 +270,9 @@ public class MQnaController {
 			paramMap.put("subject", subject);
 			paramMap.put("id", qnavo.getId());
 			paramMap.put("pwd", qnavo.getId());
+			
 			qs.insertnmQna(paramMap);
+			
 			mav.setViewName("redirect:/nmqnaForm");
 		}
 
@@ -291,15 +295,9 @@ public class MQnaController {
 		if(loginUser!=null) {
 			mav.setViewName("redirect:/qnaForm");
 		}else {
-			if(!pwd.equals(membervo.getPwd())) {
+			if(!checkpwd.equals(membervo.getPwd())) {
 				mav.addObject("message", "비밀번호가 틀렸습니다");
-				mav.setViewName("redirect:/pwdcheck");
-				System.out.println(pwd);
-				System.out.println(checkpwd);
-				System.out.println(nqseq);
-				System.out.println(mvo);
-				System.out.println(message);
-				System.out.println(membervo.getPwd());
+				mav.setViewName("redirect:/pwdcheck");				
 			}else{
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			
@@ -321,6 +319,7 @@ public class MQnaController {
 	public String pwdcheck(HttpServletRequest request,
 			@RequestParam(value="message",  required=false) String message ,
 			Model model,
+			@RequestParam(value="checkpwd", required=false) String checkpwd ,
 			@RequestParam(value="nqseq", required=false) int nqseq) {
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser
@@ -341,6 +340,7 @@ public class MQnaController {
 			HashMap<String , Object > mvo = list.get(0);
 			String pwd = (String)mvo.get("PWD");
 			
+			model.addAttribute("message", message);
 			model.addAttribute("mvo", mvo);
 			model.addAttribute("pwd", pwd);
 			model.addAttribute("nqseq", nqseq);

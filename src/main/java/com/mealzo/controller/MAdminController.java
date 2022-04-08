@@ -658,7 +658,7 @@ public class MAdminController {
 		}else if (result.getFieldError("content_r") != null) {
 			model.addAttribute("message", "답글을 작성해주세요 ");
 			model.addAttribute("aseq", aseq);
-			   return "admin/qna/askDetil";
+			   return "admin/qna/askDetail";
 			}
 	HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("aseq", aseq);
@@ -685,7 +685,7 @@ public class MAdminController {
 		}else if (result.getFieldError("content_r") != null) {
 			mav.addObject("message", "답글을 작성해주세요 ");
 			mav.addObject("aseq", aseq);
-			mav.setViewName("admin/qna/askDetil");
+			mav.setViewName("admin/qna/askDetail");
 			return mav;
 		}
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
@@ -922,7 +922,7 @@ public class MAdminController {
 		} else if (result.getFieldError("reply") != null) {
 			mav.addObject("message", result.getFieldError("reply").getDefaultMessage());
 			mav.addObject("qseq", qseq);
-			mav.setViewName("admin/qna/qnaDetil");
+			mav.setViewName("admin/qna/qnaDetail");
 			return mav;
 		}
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
@@ -1601,7 +1601,7 @@ public class MAdminController {
     		} else if (result.getFieldError("reply") != null) {
     			mav.addObject("message", result.getFieldError("reply").getDefaultMessage());
     			mav.addObject("nqseq", nqseq);
-    			mav.setViewName("admin/nonmember/nmqnaDetil");
+    			mav.setViewName("admin/nonmember/nmqnaDetail");
     			return mav;
     		}
     		HashMap<String, Object> paramMap = new HashMap<String, Object>();
