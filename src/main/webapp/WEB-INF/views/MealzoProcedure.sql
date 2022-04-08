@@ -1553,4 +1553,16 @@ is
 begin
 update nmqna set reply=p_reply, rep=2 where nqseq=p_nqseq ;
 end;
- 
+
+---------------------------------------------------
+-- 장바구니 개수 카운트 -- getCartCnt_m
+create or replace procedure getCartCnt_m(
+    p_id in mmember.id%type,
+    p_cnt out number )
+is
+    v_cnt number := 0;
+begin
+    select count(*) into v_cnt from mcart where id=p_id ;
+    p_cnt := v_cnt; 
+end;
+select count(*) from mcart where id='somi';

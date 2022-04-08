@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mealzo.dto.Paging;
+import com.mealzo.service.MCartService;
 import com.mealzo.service.MOrderService;
 
 @Controller
@@ -22,10 +23,14 @@ public class MOrderController {
 	@Autowired
 	MOrderService os;
 	
+	@Autowired
+	MCartService cs;
+	
 	@RequestMapping(value="/orderInsert")
 	public String orderInsert( HttpServletRequest request ) {
 		
 		int oseq = 0;
+		int cnt = 0;
 		
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser
@@ -42,6 +47,14 @@ public class MOrderController {
 			
 			oseq = Integer.parseInt( paramMap.get("oseq").toString() );
 			System.out.println(oseq);
+			
+			// 카트 개수 세션에 담기
+			paramMap.put("cnt", 0);	// 카드 개수 담아올 변수
+			cs.getCartCnt(paramMap);
+			System.out.println(paramMap.get("cnt"));
+			cnt = Integer.parseInt(paramMap.get("cnt").toString());
+			session.setAttribute("cartCnt",cnt);
+			
 		}
 		return "redirect:/orderList?oseq="+oseq;
 	}

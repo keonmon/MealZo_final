@@ -42,7 +42,7 @@ public class MMemberController {
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login( @ModelAttribute("dto") @Valid MMemberVO membervo , BindingResult result, 
 			HttpServletRequest request, Model model ) {
-		
+		int cnt = 0;	// 카트 개수 초기화
 		// 아이디, 비번 빈칸확인
 		if( result.getFieldError("id") != null ) {
 			model.addAttribute("message", result.getFieldError("id").getDefaultMessage() );
@@ -57,7 +57,7 @@ public class MMemberController {
 		paramMap.put("ref_cursor", null);
 		
 		ms.getMember( paramMap );  
-	
+		
 		// 리스트 조회
 		ArrayList< HashMap<String, Object> >list 
 			= (ArrayList< HashMap<String, Object> >)paramMap.get("ref_cursor");
@@ -65,6 +65,7 @@ public class MMemberController {
 			model.addAttribute("message", "밀조) 아이디가 없습니다");
 			return "member/login";
 		}
+		
 		
 		
 		HashMap<String, Object> mvo = list.get(0);
@@ -81,11 +82,22 @@ public class MMemberController {
 		}else if( mvo.get("PWD").equals(membervo.getPwd())) {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", mvo);
+			
+			// 카트 개수 세션에 담기
+			paramMap.put("cnt", 0);	// 카드 개수 담아올 변수
+			cs.getCartCnt(paramMap);
+			System.out.println(paramMap.get("cnt"));
+			cnt = Integer.parseInt(paramMap.get("cnt").toString());
+			session.setAttribute("cartCnt",cnt);
+			
 			return "redirect:/";
+			
+			
 		}else {
 			model.addAttribute("message", "밀조) 무슨이유인지 모르겠지만 로그인 안돼요");
 			return "member/login";
 		}
+		
 	}
 	
 	
@@ -94,6 +106,8 @@ public class MMemberController {
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("loginUser");
+		// 카트 개수 세션 삭제
+		session.removeAttribute("cartCnt");
 		return "redirect:/";
 	}
 	
