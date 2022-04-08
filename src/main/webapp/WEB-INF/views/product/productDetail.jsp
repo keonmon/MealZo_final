@@ -6,10 +6,45 @@
 	$(document).ready( function () {
 		printName();
 	});
+	
+	// 파일 업로드용 ajax
+	$(function(){
+		$('#goCart').click(function(){
+			//var formselect = $("#productForm")[0];	//지목된 폼을 변수에 저장
+			//var formData = new FormData(formselect);
+			
+			//ajax : 웹페이지 새로고침이 필요없는 request(요청)
+			// 문법 : $.ajax({ 객체 });
+			$.ajax({
+				url:"<%=request.getContextPath()%>/cartInsert",	//Controller로 매핑된 메서드를 호출
+				type:"POST",
+				data: {
+					"pseq": $("#pseq").val(),
+					"quantity": $("#quantity").val()
+				},
+				dataType: "json",
+				
+				success: function(data){
+					// Controller에서 넘어온 data의 'STATUS 데이터가 1이면'
+					if(data.STATUS === 1){
+						//동적으로 div 태그 달아주기.
+						if(confirm('해당 상품이 장바구니에 추가되었습니다\n장바구니로 이동하시겠습니까?')){
+							location.href="cartList";
+						}
+					}else{
+						location.href="userLogin";
+					}
+				},
+				error:function(){
+					alert("실패");
+				}
+			});
+		});
+	});
 </script>
     
     <article  id="e1">
-<form method="post" name="form1">
+<form method="post" name="form1" id="productForm" >
 	<table class="pdtable" >
   		<tr><td>
      		<img src="images/${mproductVO.IMAGE}" width="480px" height="490px"/>
@@ -25,14 +60,14 @@
 			  	<tr style="font-size:17px;">
 				  	<td>   
 						<p> 수량 &nbsp; &nbsp; &nbsp;<input type="text" id="quantity" name="quantity" onkeyup="printName()" size="2" value="1"> </p>
-					    <input type="hidden" name="pseq" value="${mproductVO.PSEQ}"><br>
+					    <input type="hidden" name="pseq" id="pseq" value="${mproductVO.PSEQ}"><br>
 					</td>
 				</tr>
 			     <tr><td><h2>총 상품금액</h2> </td><td><h3><div id="result" style=" font-size:25px;"></div></h3></td></tr>
 				
 		</table>
 	
-	  <input type="button" value="장바구니" class="submit2" onClick="go_cart();">
+	  <input type="button" value="장바구니" class="submit2" id="goCart" >
 	  <input type="button" value="바로구매" class="submit2" onClick="go_order();">
 	  	</td></tr>
 	</table>  
@@ -93,7 +128,7 @@ $(function (){
 	 
 	    <!-- 후기 등록 -->
 	 <div class="contents" id="content2">
-	 <form method="post" name="form2">
+	 <form method="post" name="form2" >
 <table id="review" style="width:800px; text-align:center;" >
 	    <tr><th  style="width:100px;">리뷰날짜</th><th>상품평</th><th style="width:100px;">id</th></tr>
 	     <c:forEach items="${mreview}" var="mreviewVO" >
