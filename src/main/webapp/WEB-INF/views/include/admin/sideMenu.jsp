@@ -23,5 +23,6 @@
 			<li><a href='adminEventList?sub=y'>이벤트</a></li>
 		</ul>
    </li>
+   <li id="menu"><a href='adminBannerList?sub=y'>메인배너관리</a></li>
 </ul>
 </nav>

@@ -2,6 +2,7 @@ package com.mealzo.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,25 +23,30 @@ public class MOrderController {
 	MOrderService os;
 	
 	@RequestMapping(value="/orderInsert")
-	public String orderInsert( HttpServletRequest request ) {
+	public String orderInsert( HttpServletRequest request, Model model,
+		@RequestParam("pseq")int pseq,
+		@RequestParam("quantity")int quantity) {
 		int oseq = 0;
 		
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser
 			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		
 		if( loginUser == null ) {
 			return "member/login";
 		} else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("id", loginUser.get("ID") );
 			paramMap.put("oseq", 0);
+			paramMap.put("pseq", pseq);
+			paramMap.put("quantity", quantity);
 			
 			os.insertOrder( paramMap );
 			
 			oseq = Integer.parseInt( paramMap.get("oseq").toString() );
 			System.out.println(oseq);
 		}
-		return "redirect:/orderList?oseq="+oseq;
+		return "redirect:/orderList";
 	}
 	
 	

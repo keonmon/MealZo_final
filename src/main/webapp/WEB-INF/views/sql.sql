@@ -358,8 +358,21 @@ select rownum as rn, p.* from
  select r.rseq, r.pseq as r_pseq, r.id, r.content, r.indate, p.pseq as p_pseq, p.name 
  from mreview r, mproduct p
  where p.pseq=r.pseq ;
-				
- select * from mreview_view
+ 
+ select * from mreview_view;
+ 
+ 
+ -- 메인 롤링배너 관리테이블
+ create table MRollingBanner(
+ 	name varchar2(100) not null,
+ 	image varchar2(500) not null,
+ 	url varchar2(1000) not null,
+ 	num number(2) not null unique,	-- num은 1~8까지만 지정 가능
+ 	constraint num_check check (num between 1 and 8)
+ );
+ select * from MRollingBanner;
+ --drop table MRollingBanner CASCADE CONSTRAINTS;
+ 
  select * from ask_view;
  select *from ask_reply
   select * from mreview;
@@ -384,11 +397,11 @@ pseq number references mproduct(pseq),
 id varchar2(20) references mmember(id),
 indate date default sysdate -- 찜한날짜
 );
-
+select * from mzzim
 
  create or replace view zzim_view
 as
-select z.zseq, z.pseq  , z.id ,z.result, z.indate,  p.name , p.image, p.price2,  p.kind
+select z.zseq, z.pseq  , z.id , z.indate,  p.name , p.image, p.price2,  p.kind
 from mzzim z, mproduct p
 where z.pseq =p.pseq ;
 
@@ -401,4 +414,4 @@ select * from zzim_view
 
 alter table mzzim add result varchar2(15) default 'n';	
 update mzzim set result='y' where zseq=1;
-
+alter table mzzim drop column result;	

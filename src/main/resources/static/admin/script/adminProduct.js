@@ -362,13 +362,69 @@ function go_product_save(){
 
 
 function go_rep2(nqseq){
-if(document.form4.reply.value==""){
-alert("내용을 입력해주세요");
-document.form4.reply.focus();
-return false;
+  if(document.form4.reply.value==""){
+    alert("내용을 입력해주세요");
+    document.form4.reply.focus();
+    return false;
+  }
+  if(confirm('등록하시겠습니까?')){	
+    document.form4.action="adminnmQnaRepSave";
+    document.form4.submit();
+  }
 }
-if(confirm('등록하시겠습니까?')){	
-document.form4.action="adminnmQnaRepSave";
-   document.form4.submit();
-   }
-   }
+
+
+function go_banner_save(){
+	var numarr = "num";
+	var cnt = document.getElementsByName("num");
+	var name = document.getElementsByName("name");
+	var image = document.getElementsByName("image");
+	var totalCnt = 0;
+	let dupYn = false;
+	// alert(cnt[3].value);
+	for(let i = 0; i < cnt.length; i++) {
+		const currElem = cnt[i].value;
+	  		if(currElem === "") {
+	  			alert("비어있는 번호가 있습니다.");
+	  			return false;
+	  		}
+	  	for(let j = i+1; j < cnt.length; j++) {
+	  		if(currElem === cnt[j].value) {
+	     		dupYn = true;
+	     		break;
+	    	}
+	  	}
+	  	
+	  	if(dupYn)  {
+	 		alert("중복된 공지 번호가 있습니다.");
+	     	return false;
+	  	}else{
+	  		//여기에 공란검사
+	  		// 비어있는 제목 검사
+		  	for(let i = 0; i < cnt.length; i++) {
+			const nameCheck = name[i].value;
+		  		if(nameCheck === "") {
+		  			alert("비어있는 제목이 있습니다.");
+		  			return false;
+		  		}
+		  	}
+		  	// 비어있는 이미지 검사
+		  	for(let i = 0; i < cnt.length; i++) {
+			const imageCheck = image[i].value;
+		  		if(imageCheck === "") {
+		  			alert("저장되지 않은 이미지가 있습니다.");
+		  			return false;
+		  		}
+		  	}
+	  	}
+	}
+  	if(confirm('배너 설정을 적용하시겠습니까?')){
+	  	document.frm.action = "bannerSave";
+	  	document.frm.submit();
+	}
+}
+
+function imageLoad(num){
+		var opt = "toolbar=no, menubar=no, resizable=no, width=450,height=200"; 
+		window.open('imageLoad?num='+num, 'selectimg', opt);
+}

@@ -33,16 +33,25 @@
 		</table>
 	
 	  <input type="button" value="장바구니" class="submit2" onClick="go_cart();">
+	  <input type="button" value="바로구매" class="submit2" onClick="go_order();">
 	  	</td></tr>
 	</table>  
 </form>
 
 	<div style="position:absolute; top:40px; right:100px;">
-<from>
+<div class="stop-dragging">
 <table>
-<tr><td><a href="#" onClick="go_zzim('${mproductVO.PSEQ}');"><span class="material-icons" >favorite_border</span></a></td></tr>
+
+<tr><td><c:if test="${ result==-1 }">
+ <span class="material-icons"  id="productSearchIcon"  onClick="zzim('${mproductVO.PSEQ}')">favorite_border</span>
+</c:if>
+<c:if test="${ result==1}">
+<a href="zzimdelete?pseq=${mproductVO.PSEQ}"><span class="material-icons" style="color:red" id="productSearchIcon">favorite</span>
+	</a></c:if>
+</td></tr>
+
 </table>
-</from>
+</div>
 </div>
 
 <script>

@@ -731,12 +731,13 @@ END;
 -------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE  productorderList_m(
 p_pseq morder_detail.pseq%type,
+p_id mmember.id%type,
 c_cur out sys_refcursor
 )
 is
 begin
 open c_cur for
-select * from morder_view where pseq=p_pseq;
+select * from morder_view where pseq=p_pseq and id=p_id;
 end;
 -----------------------------------------------------------------------
 --리뷰 추가 
@@ -1323,6 +1324,39 @@ values(mevent_seq.nextVal , p_title, P_content, p_image1, p_image2, p_subtitle, 
 
 end;
 
+
+---------------------------------------------------------------------------------
+-- Admin - 배너 테이블 조회 getBannerList_m
+create or replace procedure getBannerList_m(
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+        select * from MRollingBanner order by num;
+
+end;
+
+---------------------------------------------------------------------------------
+-- Admin - 모든 배너 삭제 deleteBanner_m
+create or replace procedure deleteBanner_m
+is
+begin
+    delete MRollingBanner;
+end;
+
+---------------------------------------------------------------------------------
+-- Admin - 배너 재배치 insertBanner_m
+create or replace procedure insertBanner_m(
+    p_num MRollingBanner.num%type,
+    p_name MRollingBanner.name%type,
+    p_image MRollingBanner.image%type,
+    p_url MRollingBanner.url%type )
+is
+begin
+    insert into MRollingBanner(num,name,image,url)
+        values(p_num,p_name,p_image,p_url);
+end;
+
 ------------------------------------------------------------------------------------
 --이벤트 삭제
 create or replace procedure eventDelete_m(
@@ -1358,11 +1392,46 @@ create or replace procedure getAllCountZzim_m(
   open c_cur for
   select * from (
   select * from (
-  select rownum rn, p. *from ( select * from zzim_view where id= p_id) p
+  select rownum rn, p. *from ( select * from zzim_view where id= p_id order by indate desc) p
   ) where rn>=startNum
   ) where rn<=endNum ;
   end;
   
+
+  --------------------------------------------------------------------------
+  --리스트 개인 조회
+  create or  replace procedure getlistZzim_m(
+  p_pseq in mzzim.pseq%type,
+  p_id in mzzim.id%type,
+  c_cur out sys_refcursor
+  )
+  is
+  begin
+open c_cur for
+  select * from zzim_view where pseq=p_pseq and id=p_id;
+  end;
+  
+----------------------------------------------------------------------------
+--찜 추가
+create or replace procedure zzimInsert_m(
+p_id in mzzim.id%type,
+p_pseq in mzzim.pseq%type
+)
+is
+begin
+insert into mzzim(zseq, id, pseq)
+values(mzzim_seq.nextVal, p_id, p_pseq);
+end;
+-------------------------------------------------------------------------------
+--찜삭제
+create or replace procedure zzimDelete_m(
+  p_pseq in mzzim.pseq%type )
+is
+begin
+delete from mzzim where pseq=p_pseq;
+commit;
+end;
+
 --------------------------- 이벤트 실험 -------------------------
   
 insert into mevent(eseq, title, content, image1, image2, subtitle, startdate, enddate) 

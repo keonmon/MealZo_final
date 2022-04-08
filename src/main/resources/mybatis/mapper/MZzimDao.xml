@@ -21,7 +21,23 @@
  	 #{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=zzimMap}
 	)}
  	</select>
+ 	<select id="getlistZzim" statementType="CALLABLE" parameterType="java.util.HashMap">
+ 	{CALL getlistZzim_m(
+ 	 #{pseq},
+ 	#{id,  jdbcType=VARCHAR},
+ 	#{ref_cursor_zzim, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=zzimMap}
+ 	)}
+ 	</select>
  	
- 	
- 	
+ 	<insert id="zzimInsert" statementType="CALLABLE" parameterType="java.util.HashMap">
+ 	 {CALL zzimInsert_m(
+ 	 #{id},
+ 	 #{pseq,  jdbcType=INTEGER} 
+ 	 )}
+ 	 </insert>
+ 	 <delete id="zzimDelete"  statementType="CALLABLE" parameterType="java.util.HashMap">
+ 	 {CALL zzimDelete_m(
+ 	 #{pseq, jdbcType=INTEGER}
+ 	 )}
+ 	 </delete>
 	</mapper>

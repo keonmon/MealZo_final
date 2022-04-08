@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mealzo.dto.Paging;
+import com.mealzo.service.MAdminService;
 import com.mealzo.service.MProductService;
 import com.mealzo.service.MReviewService;
 import com.mealzo.service.MZzimService;
@@ -26,10 +27,13 @@ public class MProductController {
 	
 	@Autowired
 	MReviewService rs;
-	
-	
+
+	@Autowired
+	MAdminService as;
+
 	@Autowired
 	MZzimService zs;
+
 	@RequestMapping("/")
 	public ModelAndView index(Model model, HttpServletRequest request) {
 		
@@ -60,8 +64,16 @@ public class MProductController {
 			= (ArrayList<HashMap<String,Object>>) paramMap.get("ref_cursor2");
 		
 		
+		// bannerList 담아오기
+		paramMap.put("ref_cursor", null);
+		as.getBannerList(paramMap);
+		
+		ArrayList<HashMap<String,Object>> bannerList 
+			= (ArrayList<HashMap<String,Object>>) paramMap.get("ref_cursor");
+		System.out.println(bannerList);
 		mav.addObject("newList", newList);
 		mav.addObject("bestList", bestList);
+		mav.addObject("bannerList", bannerList);
 		
 		return mav;
 	}
@@ -441,6 +453,11 @@ public class MProductController {
 				@RequestParam("pseq")int pseq) {
 		ModelAndView mav = new ModelAndView();
 		
+		HttpSession session = request.getSession();
+		
+		HashMap<String, Object> loginUser 
+			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		
 		// 상품정보 가져오기 (프로시저에서 replyCnt 추가)
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("pseq", pseq);
@@ -476,21 +493,23 @@ public class MProductController {
 		else model.addAttribute("result",1);
         model.addAttribute("pseq",pseq);
 	*/	
+		if(loginUser != null)paramMap.put("id", loginUser.get("ID")); 
+		
 		paramMap.put("ref_cursor_productorderList", null);
 		rs.getproductorderList(paramMap);
 		ArrayList<HashMap<String,Object>> productorderList
 		  		= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor_productorderList");
 		if(productorderList.size() ==0)model.addAttribute("result",-1);
 		else model.addAttribute("result",1);
-        model.addAttribute("pseq",pseq);
+		model.addAttribute("pseq",pseq);
         mav.addObject("productorderList", productorderList);
 		
-		
+    	if(loginUser != null)paramMap.put("id", loginUser.get("ID")); 
         paramMap.put("ref_cursor_zzim", null);
-    //    zs.getlistZzim(paramMap);
+        zs.getlistZzim(paramMap);
         ArrayList<HashMap<String,Object>> zzimList
          =(ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor_zzim");
-    	if(productorderList.size() ==0)model.addAttribute("result",-1);
+    	if(zzimList.size() ==0)model.addAttribute("result",-1);
 		else model.addAttribute("result",1);
    // 	model.addAttribute("id", loginUser.get("ID"));
     	 model.addAttribute("pseq",pseq);
@@ -510,6 +529,51 @@ public class MProductController {
 		
 		return mav;
 	}
+	@RequestMapping("/zzim")
+	public ModelAndView zzim(HttpServletRequest request,
+@RequestParam(value="pseq", required=false)Integer pseq
+		//	@RequestParam("pseq") Integer pseq
+			) {
+		ModelAndView mav = new  ModelAndView();
+		
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser 
+		  = (HashMap<String, Object>)session.getAttribute("loginUser");
+		if(loginUser==null)  {
+			mav.addObject("msg" , "로그인 후 사용하시기바랍니다");
+			mav.setViewName("member/login");
+			return mav;
+		} else {
+	HashMap<String, Object > paramMap = new HashMap<String, Object>();
+			paramMap.put("id",loginUser.get("ID"));
+			paramMap.put("pseq", pseq);
+			zs.zzimInsert(paramMap); 
+		mav.addObject("pseq",pseq);  
+		System.out.println("pseq" + pseq);
+		mav.setViewName("redirect:/productDetail");
+		//mav.setViewName("redirect:/zzimList");
+	//		mav.setViewName("/");
+		}
+		return  mav;
+	}
 	
 	
+	@RequestMapping("/zzimdelete")
+	public ModelAndView zzimdelete(HttpServletRequest request,
+			@RequestParam(value="pseq", required=false)Integer pseq) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser 
+		  = (HashMap<String, Object>)session.getAttribute("loginUser");
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		//paramMap.put("id",loginUser.get("ID") );
+		paramMap.put("pseq",pseq);
+		zs.zzimdelete(paramMap);
+		
+		mav.addObject("pseq",pseq);
+		mav.setViewName("redirect:/productDetail");
+		
+		return mav;
+	}
 }
