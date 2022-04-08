@@ -398,7 +398,7 @@ id varchar2(20) references mmember(id),
 indate date default sysdate -- 찜한날짜
 );
 select * from mzzim
-
+--찜뷰
  create or replace view zzim_view
 as
 select z.zseq, z.pseq  , z.id , z.indate,  p.name , p.image, p.price2,  p.kind
@@ -415,3 +415,17 @@ select * from zzim_view
 alter table mzzim add result varchar2(15) default 'n';	
 update mzzim set result='y' where zseq=1;
 alter table mzzim drop column result;	
+
+
+
+create table nmqna (
+	  nqseq        number(5)    primary key,  -- 글번호 
+	  subject     varchar2(300),            -- 제목
+	  content     varchar2(1000),          -- 문의내용
+	  reply       varchar2(1000),           -- 답변내용
+	  id          varchar2(20),                 -- 임시id
+	  pwd         varchar2(100),                 -- 임시pwd
+	  rep         char(1)       default '1',        --1:답변 무  2:답변 유  
+	  indate      date default  sysdate     -- 작성일
+); 
+
