@@ -23,9 +23,8 @@ public class MOrderController {
 	MOrderService os;
 	
 	@RequestMapping(value="/orderInsert")
-	public String orderInsert( HttpServletRequest request, Model model,
-		@RequestParam("pseq")int pseq,
-		@RequestParam("quantity")int quantity) {
+	public String orderInsert( HttpServletRequest request ) {
+		
 		int oseq = 0;
 		
 		HttpSession session = request.getSession();
@@ -38,15 +37,13 @@ public class MOrderController {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("id", loginUser.get("ID") );
 			paramMap.put("oseq", 0);
-			paramMap.put("pseq", pseq);
-			paramMap.put("quantity", quantity);
 			
 			os.insertOrder( paramMap );
 			
 			oseq = Integer.parseInt( paramMap.get("oseq").toString() );
 			System.out.println(oseq);
 		}
-		return "redirect:/orderList";
+		return "redirect:/orderList?oseq="+oseq;
 	}
 	
 	
