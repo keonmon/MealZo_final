@@ -10,7 +10,7 @@
 		<tr>
 		<td>${morderVO.OSEQ}</td>
 		
-		<td><a href="productDetail?pseq=${morderVO.PSEQ}">
+		<td><a href="orderDetail?oseq=${morderVO.OSEQ}">
 			${morderVO.PNAME}</a></td>
 			<%-- <td><a href="productDetail?pseq=${morderVO.PSEQ}" target="_blank">
 				<h3> ${morderVO.PNAME} </h3></a></td> --%>
