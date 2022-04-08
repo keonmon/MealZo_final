@@ -389,23 +389,6 @@ begin
         ) where rn>=p_startNum 
         and rn<=p_endNum ;
 end;
-
-
-
-----------------------------------------------------------------------------
-
---QNA 디테일------------------------------
-
-select * from mqna;
-
-CREATE OR REPLACE PROCEDURE getQna_m(
-p_qseq in mqna.qseq%type,
-c_cur out sys_refcursor
-)
-is
-begin
- open c_cur for select * from mqna where qseq=p_qseq;
- end;
  
  --------------------------------------------------------------------
  --qna 추가
@@ -1216,8 +1199,10 @@ create table nmqna (
 	  rep         char(1)       default '1',        --1:답변 무  2:답변 유  
 	  indate      date default  sysdate     -- 작성일
 ); 
-
+alter table nmqna add qseq number(5) references mqna(qseq);
+alter table nmqna drop column qseq
 create sequence nmqna_seq start with 1;
+select * from nmqna;
 
 -------------->> 비회원문의 - 카운트 <<-------------------
 
@@ -1462,8 +1447,7 @@ to_date('2022-12-31 23:59:59','yyyy-MM-dd hh24:mi:ss'));
 
 select * from mevent
 
-------------------------------------------------------------------------
---admin 이벤트리스트조회   geteventList_m 수정
+-------------->> admin 이벤트리스트조회   geteventList_m 수정 <<-------------------
 create or replace procedure geteventList_m(
     p_key in varchar2,
     p_startNum in number,
@@ -1480,3 +1464,93 @@ begin
         
 end;
 select * from mevent;
+
+-------------->> admin qna list 회원/비회원 동시 조회수정 <<-------------------
+-- 도르마무 ---
+create or replace procedure adminlistQna_m2(
+p_startNum number,
+p_endNum number,
+key VARCHAR2,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from (
+select * from (
+select rownum rn, p.* from (
+select qseq,id,rep,subject,content,reply,indate from mqna union all 
+select nqseq,id,rep,subject,content,reply,indate from nmqna 
+where subject || id like '%'||key||'%' order by rep desc,indate desc ) p
+) where rn >= p_startNum
+)where rn<= p_endNum;
+end;
+
+-------------->> admin qna 디테일 회원/비회원 조회수정 <<-------------------
+-- 도르마무 ---
+CREATE OR REPLACE PROCEDURE getQna_m2(
+p_qseq in number,
+c_cur out sys_refcursor
+)
+is
+begin
+ open c_cur for 
+ select qseq,id,rep,subject,content,reply,indate from mqna union all 
+ select nqseq as qseq,id,rep,subject,content,reply,indate from nmqna 
+ where qseq = p_qseq;
+end;
+
+select * from nmqna
+select * from mqna
+
+-------------->> admin qna 디테일 조회수정 <<-------------------
+
+CREATE OR REPLACE PROCEDURE getQna_m(
+p_qseq in mqna.qseq%type,
+c_cur out sys_refcursor
+)
+is
+begin
+ open c_cur for select * from mqna where qseq=p_qseq;
+ end;
+ 
+-------------->> admin nmqna list <<-------------------
+
+create or replace procedure adminnmlistQna_m(
+p_startNum number,
+p_endNum number,
+key VARCHAR2,
+c_cur out sys_refcursor
+)
+is
+begin
+open c_cur for
+select * from (
+select * from (
+select rownum rn, p.* from (select * from nmqna where subject || id like '%'||key||'%' order by rep desc ) p
+) where rn >= p_startNum
+)where rn<= p_endNum;
+end;
+
+-------------->> admin nmqna 디테일 조회수정 <<-------------------
+
+CREATE OR REPLACE PROCEDURE getnmQna_m(
+p_nqseq in nmqna.nqseq%type,
+c_cur out sys_refcursor
+)
+is
+begin
+ open c_cur for select * from nmqna where nqseq=p_nqseq;
+ end;
+ 
+-------------->> admin nmqna 답글 <<-------------------
+
+create or replace procedure admininsertnmQna_m(
+p_nqseq in nmqna.nqseq%type,
+p_reply in nmqna.reply%type
+)
+is
+begin
+update nmqna set reply=p_reply, rep=2 where nqseq=p_nqseq ;
+end;
+ 
