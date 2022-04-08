@@ -29,5 +29,12 @@
 		#{id}	
 		)}
 	</delete>
+	
+	<select id="getCartCnt" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{ CALL getCartCnt_m(
+			#{id},
+			#{cnt , mode=OUT, jdbcType=INTEGER}
+		) }
+	</select>
 </mapper>
 

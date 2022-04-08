@@ -7,7 +7,7 @@
 		printName();
 	});
 	
-	// 파일 업로드용 ajax
+	// ajax
 	$(function(){
 		$('#goCart').click(function(){
 			//var formselect = $("#productForm")[0];	//지목된 폼을 변수에 저장
@@ -28,6 +28,8 @@
 					// Controller에서 넘어온 data의 'STATUS 데이터가 1이면'
 					if(data.STATUS === 1){
 						//동적으로 div 태그 달아주기.
+						$("#cartCnt").empty();
+						$("#cartCnt").append(data.cnt);
 						if(confirm('해당 상품이 장바구니에 추가되었습니다\n장바구니로 이동하시겠습니까?')){
 							location.href="cartList";
 						}
@@ -43,7 +45,7 @@
 	});
 </script>
     
-    <article  id="e1">
+<article  id="e1">
 <form method="post" name="form1" id="productForm" >
 	<table class="pdtable" >
   		<tr><td>

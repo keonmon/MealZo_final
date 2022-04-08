@@ -30,6 +30,7 @@ public class MCartController {
 			@RequestParam(value="pseq",required = false)String pseq,
 			@RequestParam(value="quantity",required = false)String quantity
 			) {
+		int cnt = 0;
 		System.out.println("pseq:"+pseq+" / quantity:"+quantity);
 		HttpSession session = request.getSession();
 		HashMap<String, Object>loginUser
@@ -42,10 +43,18 @@ public class MCartController {
 			return paramMap;
 			//return "member/login";
 		} else {
+			
 			paramMap.put("id", loginUser.get("ID") );
 			paramMap.put("pseq", pseq);
 			paramMap.put("quantity",quantity);
 			cs.insertCart( paramMap );
+			
+			// 카트 개수 세션에 담기
+			paramMap.put("cnt", 0);	// 카드 개수 담아올 변수
+			cs.getCartCnt(paramMap);
+			System.out.println(paramMap.get("cnt"));
+			cnt = Integer.parseInt(paramMap.get("cnt").toString());
+			session.setAttribute("cartCnt",cnt);
 			
 			paramMap.put("STATUS", 1);
 		}
@@ -87,12 +96,25 @@ public class MCartController {
 	@RequestMapping(value="/cartDelete")
 	public String cartDelete( HttpServletRequest request,
 			@RequestParam("cseq") String [] cseqArr ) {
+		int cnt = 0;
+		HttpSession session = request.getSession();
+		HashMap<String, Object>loginUser
+			= (HashMap<String, Object>)session.getAttribute("loginUser");
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		for( String cseq : cseqArr ) {
 			paramMap.put("cseq", cseq);
 			cs.deleteCart(paramMap);
 		}
+		
+		// 카트 개수 세션에 담기
+		paramMap.put("id", loginUser.get("ID"));
+		paramMap.put("cnt", 0);	// 카드 개수 담아올 변수
+		cs.getCartCnt(paramMap);
+		System.out.println(paramMap.get("cnt"));
+		cnt = Integer.parseInt(paramMap.get("cnt").toString());
+		session.setAttribute("cartCnt",cnt);
+		
 		return "redirect:/cartList";
 	}
 }

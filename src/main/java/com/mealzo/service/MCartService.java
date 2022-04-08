@@ -31,4 +31,8 @@ public class MCartService {
 	public void deleteCart2(HashMap<String, Object> paramMap) {
 		cdao.deleteCart2( paramMap );
 	}
+	public void getCartCnt(HashMap<String, Object> paramMap) {
+		cdao.getCartCnt( paramMap );
+		
+	}
 }
