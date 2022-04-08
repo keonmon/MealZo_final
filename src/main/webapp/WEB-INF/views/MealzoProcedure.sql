@@ -1487,7 +1487,7 @@ where subject || id like '%'||key||'%' order by rep desc,indate desc ) p
 end;
 
 -------------->> admin qna 디테일 회원/비회원 조회수정 <<-------------------
--- 도르마무 ---
+-- 도르마무  실행안함 !!!!!!!!!!!!!!!!!!!!!!!하지마세요---
 CREATE OR REPLACE PROCEDURE getQna_m2(
 p_qseq in number,
 c_cur out sys_refcursor

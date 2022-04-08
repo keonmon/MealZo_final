@@ -181,7 +181,7 @@ create table notice(
 	content varchar2(1500) not null,
 	indate date default sysdate,
 	image1 varchar2(50),		-- 내부이미지
-	useyn char(1) default 'y'	-- y:공개 / n:비공개
+	useyn char(1) default 'y'	-- y:공개 / n:비공개 / p: 필독
 );
 create sequence notice_seq start with 1;
 select * from notice;
@@ -429,3 +429,10 @@ create table nmqna (
 	  indate      date default  sysdate     -- 작성일
 ); 
 
+
+
+select * from ask_reply;
+delete from ask_reply where arseq between 22 and  30;
+
+
+select * from notice

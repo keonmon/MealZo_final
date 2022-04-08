@@ -576,4 +576,33 @@ public class MProductController {
 		
 		return mav;
 	}
+	
+	
+	@RequestMapping("/zzimInsert")
+	public ModelAndView zzimInsert(HttpServletRequest request,
+@RequestParam(value="pseq", required=false)Integer pseq
+		//	@RequestParam("pseq") Integer pseq
+			) {
+		ModelAndView mav = new  ModelAndView();
+		
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser 
+		  = (HashMap<String, Object>)session.getAttribute("loginUser");
+		if(loginUser==null)  {
+			mav.addObject("msg" , "로그인 후 사용하시기바랍니다");
+			mav.setViewName("member/login");
+			return mav;
+		} else {
+	HashMap<String, Object > paramMap = new HashMap<String, Object>();
+			paramMap.put("id",loginUser.get("ID"));
+			paramMap.put("pseq", pseq);
+			zs.zzimInsert(paramMap); 
+		//mav.addObject("pseq",pseq);  
+	//	System.out.println("pseq" + pseq);
+	//	mav.setViewName("redirect:/productDetail");
+	mav.setViewName("redirect:/zzimList");
+	//		mav.setViewName("/");
+		}
+		return  mav;
+}
 }

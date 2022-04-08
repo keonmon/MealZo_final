@@ -30,7 +30,7 @@
      <c:otherwise >(답변처리완료)</c:otherwise>
      </c:choose>
 	</td>
-	<td>${mAskVO.PNAME}</td>
+	<td><A href="adminProductUpdateForm?pseq=${mAskVO.PSEQ}">${mAskVO.PNAME}</a></td>
 		<td style="text-align:left; width:500px; word-break:break-all">
 			<a href="#" onclick="go_askview('${mAskVO.ASEQ}')">&nbsp;&nbsp;${mAskVO.TITLE }</a></td>
 		<td>${mAskVO.ID}</td>
