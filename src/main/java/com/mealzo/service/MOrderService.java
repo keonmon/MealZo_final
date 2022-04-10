@@ -48,16 +48,19 @@ public class MOrderService {
 	
 	@Transactional(rollbackFor = Exception.class)
 	public void updateOrderResult(HashMap<String, Object> paramMap) {
-		odao.updateOrderResult( paramMap );
-		
+		odao.updateOrderResult( paramMap );		
 	}
 
-	public void orderCancelUpdate(HashMap<String, Object> paramMap) {
-		odao.orderCancelUpdate( paramMap );
+	public void orderCancelDetail(HashMap<String, Object> paramMap) {
+		odao.orderCancelDetail( paramMap );
 	}
 
 	public void orderCancelForm(HashMap<String, Object> paramMap) {
 		odao.orderCancelForm( paramMap );
+	}
+
+	public void listOrderByIdIng(HashMap<String, Object> paramMap1) {
+		odao.listOrderByIdIng( paramMap1 );
 	}
 
 }

@@ -10,7 +10,7 @@
 <div id="orderTotalView">
 	<div>주문내역</div>
 	<ul id="my_orderButtons">
-		<li><a href="orderListForm">주문/배송조회</a></li>
+		<li><a href="orderList">주문/배송조회</a></li>
 		<li><a href="orderCancelForm?id=${loginUser.id}">주문취소내역</a></li>
 		<li><a href="reviewForm">나의 상품후기</a></li>
 	</ul>

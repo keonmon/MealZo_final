@@ -24,9 +24,11 @@ public interface IMOrderDao {
 
 	void updateOrderResult(HashMap<String, Object> paramMap);
 
-	void orderCancelUpdate(HashMap<String, Object> paramMap);
+	void orderCancelDetail(HashMap<String, Object> paramMap);
 
 	void orderCancelForm(HashMap<String, Object> paramMap);
+
+	void listOrderByIdIng(HashMap<String, Object> paramMap1);
 
 	
 }

@@ -62,8 +62,8 @@
 		)  }
 	</update>
 
-	<update id="orderCancelUpdate" statementType="CALLABLE" parameterType="java.util.HashMap">
-		{ CALL orderCancelUpdate_m(
+	<update id="orderCancelDetail" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{ CALL orderCancelDetail_m(
 			#{odseq}
 			) }
 	</update>
