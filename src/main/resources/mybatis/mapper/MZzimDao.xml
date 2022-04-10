@@ -40,4 +40,12 @@
  	 #{pseq, jdbcType=INTEGER}
  	 )}
  	 </delete>
+ 	 
+ 	 	 <select id="getZimcount"   statementType="CALLABLE" parameterType="java.util.HashMap">
+ 	 {CALL getZimcount_m(
+ 	 #{pseq},
+ 	 #{ref_cursor_zzimcnt, mode=OUT, jdbcType=INTEGER}
+ 	)}
+ 	 </select>
+
 	</mapper>

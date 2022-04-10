@@ -1566,3 +1566,20 @@ begin
     p_cnt := v_cnt; 
 end;
 select count(*) from mcart where id='somi';
+
+
+--------------------------------------------------------
+--찜 갯수
+create  or replace procedure getZimcount_m(
+p_pseq in mproduct.pseq%type,
+p_cnt out number
+
+)
+is
+v_cnt number;
+begin 
+select count(*) into v_cnt from mzzim where pseq=p_pseq;
+--select pseq,  count(pseq) as cnt  from mzzim group by pseq=p_pseq;
+p_cnt := v_cnt;
+end;
+
