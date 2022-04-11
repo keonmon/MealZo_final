@@ -11,7 +11,6 @@
 		<tr><td width="642">제목 &nbsp;<input type="text" name="key" value="${key }">&nbsp;
 			<input class="btn" type="button" name="btn_search" value="검색" onclick="go_search('adminAskForm');">&nbsp;
 			<input class="btn" type="button" name="btn_total" value="전체보기" onclick="go_total('adminAskForm');">&nbsp;
-			<input class="btn" type="button" name="btn_write" value="음" onclick="go_wrt();">&nbsp;</td>
 		</tr>
 	</table>
 	</form>
@@ -31,7 +30,7 @@
      <c:otherwise >(답변처리완료)</c:otherwise>
      </c:choose>
 	</td>
-	<td>${mAskVO.PNAME}</td>
+	<td><A href="adminProductUpdateForm?pseq=${mAskVO.PSEQ}">${mAskVO.PNAME}</a></td>
 		<td style="text-align:left; width:500px; word-break:break-all">
 			<a href="#" onclick="go_askview('${mAskVO.ASEQ}')">&nbsp;&nbsp;${mAskVO.TITLE }</a></td>
 		<td>${mAskVO.ID}</td>

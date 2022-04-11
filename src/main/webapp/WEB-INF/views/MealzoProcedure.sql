@@ -1487,7 +1487,7 @@ where subject || id like '%'||key||'%' order by rep desc,indate desc ) p
 end;
 
 -------------->> admin qna 디테일 회원/비회원 조회수정 <<-------------------
--- 도르마무 ---
+-- 도르마무  실행안함 !!!!!!!!!!!!!!!!!!!!!!!하지마세요---
 CREATE OR REPLACE PROCEDURE getQna_m2(
 p_qseq in number,
 c_cur out sys_refcursor
@@ -1554,5 +1554,33 @@ begin
 update nmqna set reply=p_reply, rep=2 where nqseq=p_nqseq ;
 end;
 
-select * from mevent
-select * from mqna
+
+---------------------------------------------------
+-- 장바구니 개수 카운트 -- getCartCnt_m
+create or replace procedure getCartCnt_m(
+    p_id in mmember.id%type,
+    p_cnt out number )
+is
+    v_cnt number := 0;
+begin
+    select count(*) into v_cnt from mcart where id=p_id ;
+    p_cnt := v_cnt; 
+end;
+select count(*) from mcart where id='somi';
+
+
+--------------------------------------------------------
+--찜 갯수
+create  or replace procedure getZimcount_m(
+p_pseq in mproduct.pseq%type,
+p_cnt out number
+
+)
+is
+v_cnt number;
+begin 
+select count(*) into v_cnt from mzzim where pseq=p_pseq;
+--select pseq,  count(pseq) as cnt  from mzzim group by pseq=p_pseq;
+p_cnt := v_cnt;
+end;
+

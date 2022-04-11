@@ -36,4 +36,10 @@ public class MZzimService {
 		zdao.zzimDelete(paramMap);
 		
 	}
+
+	public void getZimcount(HashMap<String, Object> paramMap) {
+		zdao.getZimcount(paramMap);
+		
+	}
+
 }

@@ -31,6 +31,10 @@
 	//}else{ }
 %>
 </script>
+
+<!-- Ajax -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
 </head>
 <body>
 	<div id="wrap">
@@ -67,7 +71,8 @@
 							<a href="orderList">주문조회 </a>|
 						</li>
 						<li>
-							<a href="cartList">장바구니</a> |
+							<a href="cartList">장바구니&nbsp;
+								<b id="cartCnt" style="color:black">${cartCnt }</b></a> |
 						</li>
 						<li>
 							<a href="zzimList">찜한 상품</a>

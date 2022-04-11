@@ -10,7 +10,7 @@ header{margin:0 0 0 0;}
 .header_1st{  width:1200px;} 
 #header ul{float:right; list-style:none; padding:0; margin:15px 0px 0px 0px;}
 .header_1st ul li{display:inline-block; font-size:90%; margin: 0 0 10px 0; }
-.header_1st a { text-decoration: none; display:inline-block; width:65px; text-align: center; color:#A5AAAE; font-weight: bold; }
+.header_1st a { text-decoration: none; display:inline-block; width:70px; text-align: center; color:#A5AAAE; font-weight: bold; }
 .header_1st a:hover {color: green; font-weight: bold;}
 
 #logo{display:block;  text-align:center; border-top:1px solid lightgrey; border-bottom:1px solid lightgrey;}

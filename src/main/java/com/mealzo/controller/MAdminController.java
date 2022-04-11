@@ -486,8 +486,8 @@ public class MAdminController {
 			ArrayList<HashMap<String, Object>> getAdminAsk 
 				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			mav.addObject("dto", getAdminAsk.get(0));
-
-			mav.setViewName("admin/qna/askDetail");
+		//	mav.addObject("aseq", aseq);
+			mav.setViewName("admin/qna/askDetil");
 
 		}
 		return mav;
