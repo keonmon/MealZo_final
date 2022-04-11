@@ -79,16 +79,26 @@
 	</table>  
 </form>
 
-	<div style="position:absolute; top:40px; right:100px;">
+	<div style="position:absolute; top:40px; right:160px;">
 <div class="stop-dragging">
 <table>
 
 <tr><td><c:if test="${ result==-1 }">
- <span class="material-icons"  id="productSearchIcon"  onClick="zzim('${mproductVO.PSEQ}')">favorite_border</span>
-</c:if>
+
+ <span class="material-icons"  id="productSearchIcon"  onClick="zzim('${mproductVO.PSEQ}')" style="font-weight:bold;" >favorite_border</span>
+ 	 <div style="font-size:1.5em; text-align: center; font-weight:bold; top:10px; "><br>찜하기 
+  <c:if test = "${zzimcount>0}">
+${zzimcount}
+</c:if></div></c:if>
+
 <c:if test="${ result==1}">
-<a href="zzimdelete?pseq=${mproductVO.PSEQ}"><span class="material-icons" style="color:red" id="productSearchIcon">favorite</span>
-	</a></c:if>
+
+<a href="zzimdelete?pseq=${mproductVO.PSEQ}"><span class="material-icons" style="color:red; font-weight:bold;" id="productSearchIcon">favorite</span>
+	</a>
+	 <div style="font-size:1.5em; text-align: center; font-weight:bold; top:10px; "><br>찜하기
+<c:if test = "${zzimcount>0}">	
+ ${zzimcount}
+	</c:if> </div></c:if>
 </td></tr>
 
 </table>

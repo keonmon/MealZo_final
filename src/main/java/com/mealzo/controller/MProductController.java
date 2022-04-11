@@ -514,6 +514,12 @@ public class MProductController {
    // 	model.addAttribute("id", loginUser.get("ID"));
     	 model.addAttribute("pseq",pseq);
     	   mav.addObject("zzimList" , zzimList);
+    	   
+    		paramMap.put("ref_cursor_zzimcnt", null);
+			zs.getZimcount(paramMap);
+			int zzim =Integer.parseInt(paramMap.get("ref_cursor_zzimcnt").toString());
+			System.out.println("찜갯수" + zzim);
+			mav.addObject("zzimcount", zzim);
         
         // 후기 카운트
 		//paramMap.put("replyCnt", 0);
@@ -548,6 +554,8 @@ public class MProductController {
 			paramMap.put("id",loginUser.get("ID"));
 			paramMap.put("pseq", pseq);
 			zs.zzimInsert(paramMap); 
+			
+		
 		mav.addObject("pseq",pseq);  
 		System.out.println("pseq" + pseq);
 		mav.setViewName("redirect:/productDetail");

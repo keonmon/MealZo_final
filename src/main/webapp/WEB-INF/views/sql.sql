@@ -436,3 +436,16 @@ delete from ask_reply where arseq between 22 and  30;
 
 
 select * from notice
+
+select * from mcart
+
+select pseq,  count(pseq)  from mzzim group by pseq
+
+select * from mproduct
+
+alter table mproduct add zzimcnt number(3) default 0;
+alter table  mproduct   drop column zzimcnt;	
+
+
+
+select count  from mzzim where pseq=120;
