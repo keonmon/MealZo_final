@@ -1,0 +1,122 @@
+@charset "UTF-8";
+body{margin:0;}
+#wrap{width:100%; margin:0 auto;}
+#header{position:fixed; z-index:99; background-color:white; 
+	top: 0;
+    left: 0;
+    right: 0;
+	border:none;}
+.header_1st{ width:100%; position:relation;} 
+.header_1st a { text-decoration: none; display:inline-block; width:70px; text-align: center; color:#A5AAAE; font-weight: bold; }
+.header_1st a:hover {color: green; font-weight: bold;}
+.header_1st #sidemenuIcon{position:absolute; font-size:250%; margin:1rem 0 0 0.6rem;}
+#search {position:absolute; right:65px; top:20px; display:flex; margin:0;
+	border: 1px solid lightgrey;
+	height: 40px;
+	padding: 0 20px;
+	width:200px; }
+#serch form{ height:40px;}
+#search input{height:40px; width:150px; line-height:40px; flex: 1;  outline:none; width:150px; border:none; padding:0; font-family:'Pretendard-Regular';}
+#productSearchIcon { position:absolute; top:8px; right:25px; cursor: pointer; float:right; }
+.header_1st #cartIcon{position:absolute; font-size:2em; right:0px; top:20px; z-index:100}
+
+
+#logo{margin: 0 0 0 4rem;
+    display:inline-block;}
+#logo img{height:75px;}
+
+#category{float:left}
+.header_3rd{margin:10px 0;}
+.header_3rd ul li{ display:inline-block; width:85px; height:30px; font-size:1.2em; }
+.header_3rd a {position:relative; text-decoration :none; display:inline-block; width:85px; height:30px; text-align:center; color:black; font-weight:bold; }
+.header_3rd a:hover{ color:green; top:1px;}
+
+
+/* 이벤트슬라이더 */
+.slide_event{position:absolute;  width:100%;  display: block;
+	 height:auto;  padding:0; overflow:hidden; text-align: center;
+	top: 0;
+	left: 0;
+	right: 0;}
+#sliderWrap{width:100%; height:370px; position:relative;}
+#images{position:absolute; width:100%; height:100%; left:-400px;  top:0; display:inline-block;}
+#images li{position:relative; width:12.5%; height:370px; float:left; }
+#images li img{display:block; width:100%; height: 100%; object-fit:contain;}
+#sliderWrap .material-icons{
+	position:absolute;
+	/* width:50px; */
+	/* height:50px; */
+	top:50%;
+	font-size:48px;
+	color:rgba(255, 255, 255, 0.8);
+	margin-top:-25px;
+	line-height:57px;
+	text-align:center;
+	cursor:pointer;	
+	/* background:rgba(255, 255, 255, 0.5); */
+	z-index:100;
+	border-radius:25px 25px 25px 25px;
+	transition: all 0.1s ease;
+	direction: ltr;
+	/* Support for all WebKit browsers. */
+	-webkit-font-smoothing: antialiased;
+	/* Support for Safari and Chrome. */
+	text-rendering: optimizeLegibility;
+	
+	/* Support for Firefox. */
+	-moz-osx-font-smoothing: grayscale;
+	
+	/* Support for IE. */
+	font-feature-settings: 'liga';
+}
+
+#buttonL{ left:3px; }
+#buttonR{ left:1150px; }
+
+#remote{
+	position:absolute;
+	bottom:10px;
+	left:550px;
+}
+
+#remote ul {
+	width:100%;
+	padding:0;
+}
+
+#remote ul li{
+	margin: 0 4px;
+	display: inline-block;
+	width:5px;
+	height:5px;
+	border-radius:50%;
+	background:#fff;
+	opacity:0.5;
+	position:relative;
+	top:0;
+}
+
+	
+	#remote ul {
+		width:100%;
+		padding:0;
+	}
+	
+	#remote ul li{
+		margin: 0 4px;
+		display: inline-block;
+		width:5px;
+		height:5px;
+		border-radius:50%;
+		background:#fff;
+		opacity:0.5;
+		position:relative;
+		top:0;
+	}
+
+}
+
+
+
+
+
