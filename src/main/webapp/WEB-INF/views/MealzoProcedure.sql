@@ -1553,4 +1553,6 @@ is
 begin
 update nmqna set reply=p_reply, rep=2 where nqseq=p_nqseq ;
 end;
- 
+
+select * from mevent
+select * from mqna

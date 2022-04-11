@@ -73,9 +73,9 @@ $(function(){
 		<tr>
 			<th width="75">기간</th>
 			<td style="text-align:left; padding:5px 10px;" colspan="4">
-				<input type="date" value="" name="startdate" style="width:125px;" value="${evo.startdate}"><input type="time" value="" name="startTime">
+				<input type="date" name="startdate" style="width:125px;" value="${startdate}"><input type="time" value="${startTime}" name="startTime">
 				~
-				<input type="date" value="" name="enddate" style="width:125px;" value="${evo.enddate}"><input type="time" value="" name="endTime">
+				<input type="date" name="enddate" style="width:125px;" value="${enddate}"><input type="time" value="${endTime}" name="endTime">
 			</td>
 		</tr>
 		<tr>

@@ -428,4 +428,6 @@ create table nmqna (
 	  rep         char(1)       default '1',        --1:답변 무  2:답변 유  
 	  indate      date default  sysdate     -- 작성일
 ); 
+create sequence nmqna_seq start with 1;
 
+select * from mzzim

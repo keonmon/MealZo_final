@@ -3,6 +3,7 @@ package com.mealzo.controller;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -887,7 +890,7 @@ public class MAdminController {
 			paramMap.put("cnt", 0);
 			as.getAllcountAdmin(paramMap);
 
-			System.out.println("cnt: " + paramMap.get("cnt"));
+			//System.out.println("cnt: " + paramMap.get("cnt"));
 			
 			paging.setTotalCount((int) paramMap.get("cnt"));
 			mav.addObject("paging", paging);
@@ -901,7 +904,7 @@ public class MAdminController {
 				= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
 			mav.addObject("eventListVO", eventList);
 			mav.addObject("key", key);
-			System.out.println(eventList);
+			//System.out.println(eventList);
 			
 			mav.setViewName("admin/customerCenter/adminEventList");
 		}
@@ -958,8 +961,8 @@ public class MAdminController {
 				@ModelAttribute("nvo") @Valid MNoticeVO nvo, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
 		
-		System.out.println("subject:" + nvo.getSubject() + "/ content:" + nvo.getContent());
-		System.out.println("IMAGE1:" + nvo.getImage1());
+		//System.out.println("subject:" + nvo.getSubject() + "/ content:" + nvo.getContent());
+		//System.out.println("IMAGE1:" + nvo.getImage1());
 		
 		mav.setViewName("admin/customerCenter/adminNoticeInsert");
 		if(result.getFieldError("subject")!=null) {
@@ -1167,6 +1170,7 @@ public class MAdminController {
 			evo.setStartdate((Timestamp) resultMap.get("STARTDATE"));
 			evo.setEnddate((Timestamp) resultMap.get("ENDDATE"));
 			
+			
 			paramMap.put("ref_cursor_image1",null);
 
 			as.getImgesEvent(paramMap);
@@ -1178,7 +1182,6 @@ public class MAdminController {
 		evo.setImage1((String) mevimg1.get("IMAGE1"));
 		evo.setImage2((String) mevimg1.get("IMAGE2"));
 		
-			
 			mav.addObject("evo",evo);
 	//		mav.addObject("eseq",eseq);
 			mav.setViewName("admin/customerCenter/adminEventDetail");
@@ -1192,11 +1195,11 @@ public class MAdminController {
   @RequestMapping("/adminEventUpdate")
   public ModelAndView admineventupdate(HttpServletRequest request,
 		  @RequestParam("eseq") int eseq,
-		  /*@RequestParam("startTime") String startTime,
-		  @RequestParam("endTime")  String  endTime,
-		  @RequestParam("startDate")  String startDate,
-		  @RequestParam("endDate")  String  endDate,*/
 	//	  @RequestParam("writedate") String writedate,
+		  @RequestParam("startTime") String startTime,
+  		  @RequestParam("endTime") String endTime, 
+		  @RequestParam("startdate") String startdate, 
+		  @RequestParam("enddate") String enddate,
 		  @ModelAttribute("evo") @Valid MEventVO evo, BindingResult result) {
 	  ModelAndView mav = new ModelAndView();
 	  
@@ -1204,10 +1207,10 @@ public class MAdminController {
 	/*  mav.addObject("estartDate", startDate + " " + startTime + ":00");
 	  mav.addObject("eendDate", endDate + " " + endTime + ":59");
 	*/
-	  String startDate = request.getParameter("startDate") + " " + request.getParameter("startTime")+":00";
-	  String endDate = request.getParameter("endDate") + " " + request.getParameter("endTime")+":59";
+	  //String startDate = request.getParameter("startDate") + " " + request.getParameter("startTime")+":00";
+	  //String endDate = request.getParameter("endDate") + " " + request.getParameter("endTime")+":59";
+	  //System.out.println(startDate +"~"+ endDate);
 	  
-	 System.out.println(startDate +"~"+ endDate);
 	//String estartDate = evo.getStartdate() + "~" + getParameter("startTime");
 	//String eendDate = evo.getEnddate() + "~" + getParameter("endTime");
 	  
@@ -1247,14 +1250,20 @@ public class MAdminController {
 			paramMap.put("image1", evo.getImage1());
 			paramMap.put("image2", evo.getImage2());
 			paramMap.put("subtitle", evo.getSubtitle());
-			paramMap.put("startdate", evo.getStartdate());
-			paramMap.put("enddate", evo.getEnddate());
+			paramMap.put("startdate", startdate);
+			paramMap.put("enddate", enddate);
+			//paramMap.put("startdate", evo.getStartdate());
+			//paramMap.put("enddate", evo.getEnddate());
 		//	paramMap.put("writedate" ,evo.getWritedate());
 			as.eventUpdate(paramMap);
 			
 			mav.addObject("eseq", eseq);
-			evo.setStartdate(Timestamp.valueOf(startDate));
-			evo.setEnddate(Timestamp.valueOf(endDate));
+			//evo.setStartdate(Timestamp.valueOf(startdate));
+			//evo.setEnddate(Timestamp.valueOf(enddate));
+			mav.addObject("startdate", startdate);
+			mav.addObject("enddate", enddate);
+			mav.addObject("startTime", startTime);
+			mav.addObject("endTime", endTime);
 			mav.addObject(evo);
 			//mav.addObject("endDate", Timestamp.valueOf(endDate));
 			mav.setViewName("redirect:/adminEventDetail");
@@ -1415,15 +1424,19 @@ public class MAdminController {
         
 
         @RequestMapping("/adminEventInsert")
-        public ModelAndView adminEventinsert(HttpServletRequest request, @RequestParam("startTime") String startTime,
-        		@RequestParam("endTime") String endTime, @RequestParam("startdate") String startdate,  @RequestParam("enddate") String enddate, 
-        @ModelAttribute("evo") @Valid MEventVO evo, BindingResult result	) {
+        public ModelAndView adminEventinsert(HttpServletRequest request, 
+        		@RequestParam("startTime") String startTime,
+        		@RequestParam("endTime") String endTime, 
+				@RequestParam("startdate") String startdate, 
+				@RequestParam("enddate") String enddate,
+        @ModelAttribute("evo") @Valid MEventVO evo, 
+        BindingResult result	) {
         	
         	ModelAndView mav= new ModelAndView();
         	 mav.setViewName("admin/customerCenter/adminEventInsertForm");
        	  if(result.getFieldError("title") !=null) {
        		  mav.addObject("message", result.getFieldError("title").getDefaultMessage());
-       	 return mav;
+       		  	 return mav;
        	  }else if (result.getFieldError("content") !=null) {
        		  mav.addObject("message", result.getFieldError("content").getDefaultMessage());
        			 return mav;
@@ -1436,7 +1449,7 @@ public class MAdminController {
        	  }else if (result.getFieldError("subtitle") !=null) {
        		  mav.addObject("message", result.getFieldError("subtitle").getDefaultMessage());
        			 return mav;
-    /*	 }else if (result.getFieldError("startdate") !=null) {
+    	 /*}else if (result.getFieldError("startdate") !=null) {
        		  mav.addObject("message", result.getFieldError("startdate").getDefaultMessage());
        			 return mav;
        	  }else if (result.getFieldError("enddate") !=null) {
@@ -1454,12 +1467,26 @@ public class MAdminController {
     			paramMap.put("image1", evo.getImage1());
     			paramMap.put("image2", evo.getImage2());
     			paramMap.put("subtitle", evo.getSubtitle());
-    			paramMap.put("startdate", evo.getStartdate());
-    			paramMap.put("enddate", evo.getEnddate());
+    			paramMap.put("startdate", startdate);
+    			paramMap.put("enddate", enddate);
+    			//paramMap.put("startdate", evo.getStartdate());
+    			//paramMap.put("enddate", evo.getEnddate());
     			
     			as.eventInsert(paramMap);
     			
     		//	mav.addObject("eseq", evo.getEseq());
+    			
+    			//System.out.println(evo.getStartdate());
+    			//System.out.println(evo.getEnddate());
+    			
+    			//System.out.println(startdate);
+    			//System.out.println(enddate);
+    			
+    			//System.out.println(startTime);
+    			//System.out.println(endTime);
+    			
+    			mav.addObject("enddate", enddate);
+    			mav.addObject("startdate", startdate);
     			mav.addObject("endTime", endTime);
     			mav.addObject("startTime", startTime);
     			mav.setViewName("redirect:/adminEventList");
