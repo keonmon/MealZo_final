@@ -1554,6 +1554,7 @@ begin
 update nmqna set reply=p_reply, rep=2 where nqseq=p_nqseq ;
 end;
 
+
 ---------------------------------------------------
 -- 장바구니 개수 카운트 -- getCartCnt_m
 create or replace procedure getCartCnt_m(

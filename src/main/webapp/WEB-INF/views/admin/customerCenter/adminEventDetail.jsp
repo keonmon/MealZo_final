@@ -54,8 +54,8 @@ $(function(){
 
 
 
-<fmt:formatDate value="${evo.startdate}" pattern="yyyy-MM-dd" var="startDate" />
-<fmt:formatDate value="${evo.enddate}" pattern="yyyy-MM-dd" var="endDate" />
+<fmt:formatDate value="${evo.startdate}" pattern="yyyy-MM-dd" var="startdate" />
+<fmt:formatDate value="${evo.enddate}" pattern="yyyy-MM-dd" var="enddate" />
 <fmt:formatDate value="${evo.startdate}" pattern="HH:mm:ss" var="startTime" />
 <fmt:formatDate value="${evo.enddate}" pattern="HH:mm:ss" var="endTime" />
 
@@ -73,9 +73,9 @@ $(function(){
 		<tr>
 			<th width="75">기간</th>
 			<td style="text-align:left; padding:5px 10px;" colspan="2">
-				<input type="date" value="${startDate}" name="startDate" style="width:125px;"><input type="time" value="${startTime}" name="startTime">
+				<input type="date" value="${startdate}" name="startdate" style="width:125px;"><input type="time" value="${startTime}" name="startTime">
 				~
-				<input type="date" value="${endDate}" name="endDate" style="width:125px;"><input type="time" value="${endTime}" name="endTime">
+				<input type="date" value="${enddate}" name="enddate" style="width:125px;"><input type="time" value="${endTime}" name="endTime">
 			</td>
 			<th width="45px">게시일</th>
 			<td width="85px" style="text-align:center;" >

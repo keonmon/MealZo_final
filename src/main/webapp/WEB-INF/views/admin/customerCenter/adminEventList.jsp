@@ -54,7 +54,7 @@
 			</a>
 			</td>
 			<td>
-			<a href="adminEventDetail?eseq=${eventList.eseq }" style="text-decoration:none;">
+			<a href="adminEventDetail?eseq=${eventList.ESEQ }" style="text-decoration:none;">
 				<fmt:formatDate value="${eventList.WRITEDATE }" type="date"/>
 			</a>
 			</td>

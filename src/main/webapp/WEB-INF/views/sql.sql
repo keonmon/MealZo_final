@@ -428,24 +428,6 @@ create table nmqna (
 	  rep         char(1)       default '1',        --1:답변 무  2:답변 유  
 	  indate      date default  sysdate     -- 작성일
 ); 
+create sequence nmqna_seq start with 1;
 
 
-
-select * from ask_reply;
-delete from ask_reply where arseq between 22 and  30;
-
-
-select * from notice
-
-select * from mcart
-
-select pseq,  count(pseq)  from mzzim group by pseq
-
-select * from mproduct
-
-alter table mproduct add zzimcnt number(3) default 0;
-alter table  mproduct   drop column zzimcnt;	
-
-
-
-select count  from mzzim where pseq=120;
