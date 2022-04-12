@@ -66,34 +66,81 @@ function pagination(){
 }
 
 
+/***신상 베스트 드래그 슬라이드 
+let sliders = document.querySelectorAll(".slider_p");
+let innerSliders = document.querySelectorAll(".wrap_box");
+let presseds = [false,false];
+let startx = [];
+let x = [];
+alert=('slider=' + sliders + '/inner='+innerSliders);
+sliders.forEach((slider, index) => {
+    slider.addEventListener("mousedown", e => {
+        presseds[index] = true;
+        startx[index] = e.offsetX - innerSliders[index].offsetLeft
+        slider.style.cursor = "grabbing";
+    })
+
+    slider.addEventListener("mouseenter", () => {
+        slider.style.cursor = "grab";
+    })
+
+    slider.addEventListener("mouseup", () => {
+        slider.style.cursor = "grab";
+    })
+
+    window.addEventListener("mouseup", () => {
+        presseds[index] = false;
+    })
+
+    slider.addEventListener("mousemove", e => {
+        if (!presseds[index]) return;
+        e.preventDefault();
+        x[index] = e.offsetX;
+
+        innerSliders[index].style.left = `${x[index] - startx[index]}px`
+        checkboundary(index) 
+    })
+})
 
 
-/* index.jsp */
+function checkboundary(index) {
+    let outer = sliders[index].getBoundingClientRect()
+    let inner = innerSliders[index].getBoundingClientRect()
+
+    if (parseInt(innerSliders[index].style.left) > 0) {
+        innerSliders[index].style.left = "0px"
+    } else if (inner.right < outer.right) {
+        innerSliders[index].style.left = `-${inner.width - outer.width}px`
+    }
+}	End 신상 베스트 드래그 슬라이드 ***/
+
+
+/* index 신상 슬라이드*/
 var nLocationNum = 0;
 function nProduct_move(num,x){
-    var imageLength= 308;
+    var imageLength= 40;
     
     if(num==-1) {
+        nLocationNum--;
         if(nLocationNum==0){
             return;
         }
-        nLocationNum--;
     }else{
-        if(nLocationNum==2){
+        if(nLocationNum==4){
             return;
         }
         nLocationNum++;
     }
     var dist = imageLength * nLocationNum * (-1);
-    document.getElementById("wrap_box1").style.left=dist+"px";
-}
+    document.getElementById("wrap_box1").style.left=dist+"vw";
+} 
 
 
 
-/* index.jsp */
+/* index 베스트 슬라이드 */
 var bLocationNum = 0;
 function bProduct_move(num,x){
-    var imageLength= 308;
+    var imageLength= 40;
     
     if(num==-1) {
         if(bLocationNum==0){
@@ -101,14 +148,16 @@ function bProduct_move(num,x){
         }
         bLocationNum--;
     }else{
-        if(bLocationNum==2){
+        if(bLocationNum==4){
             return;
         }
         bLocationNum++;
     }
     var dist = imageLength * bLocationNum * (-1);
-    document.getElementById("wrap_box2").style.left=dist+"px";
+    document.getElementById("wrap_box2").style.left=dist+"vw";
 }
+
+
 
 
 

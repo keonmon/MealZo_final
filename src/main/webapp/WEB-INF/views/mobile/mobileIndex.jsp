@@ -23,13 +23,14 @@
 </style>
 <div class="clear"></div>
 
-<div id="index"  class='stop-dragging' style="margin-bottom:30px">
+<div id="index"  class='stop-dragging' style="margin-bottom:30px; margin-top:100px;" >
 <!-- <script type="text/javascript">
 	$(function(){
 		startInterval();
 	})
 </script> -->
-	<!-- 이벤트 슬라이더 -->
+	<!-- 이벤트 슬라이더 
+	<div id="">
 	<div class="slide_event">
 		<div id="sliderWrap">
 		<ul id="images">
@@ -45,40 +46,41 @@
 		</div>
 		</div>
 	</div>
+	</div>
 	<div class="clear"></div>
+	-->
+	
 	<!-- 신메뉴 슬라이더 -->
 	<div id="slide_product">
 		<div id="index_catalog_topper">
 			<span id="name">
-				신메뉴!
+				<a href="productForm?kind=&bestyn=&newyn=y&sort=recently&sub=y&idx=0">신메뉴!</a>
 			</span>
-			<a href="productForm?kind=&bestyn=&newyn=y&sort=recently&sub=y&idx=0">전체보기</a>
 		</div>
 		<div>
-			<div class="arw">
-				<span id="arw_l" class="material-icons" onclick="nProduct_move(-1,1)">arrow_back_ios</span>
-				<span id="arw_r" class="material-icons" onclick="nProduct_move(1,1)">arrow_forward_ios</span>
-			</div>
-			<div id="overflow">
-				<div id="wrap_box1" class="wrap_box">
-					<c:forEach items="${newList}" var="mproductVO">
-						<div id="product_wrap1">
-							<div id="product_thum1">
-								<a href="productDetail?pseq=${mproductVO.PSEQ}">
-									<img src="images/${mproductVO.IMAGE}">
-								</a>
-							</div>
-							<div id="product_cont1">
-								<a id="name" href="productDetail?pseq=${mproductVO.PSEQ}">${mproductVO.NAME }</a><br>
-								<a id="price"> <fmt:formatNumber value="${mproductVO.PRICE2}" pattern="###,###,###"/>원</a> <br>
-								${mproductVO.CONTENT}
-							</div>
+			<span id="arw_l" class="material-icons" onclick="nProduct_move(-1,1)">arrow_back_ios</span>
+			<span id="arw_r" class="material-icons" onclick="nProduct_move(1,1)">arrow_forward_ios</span>
+			
+			<div id="overflow" class="slider_p">
+			<div id="wrap_box1" class="wrap_box">
+				<c:forEach items="${newList}" var="mproductVO">
+					<div id="product_wrap1">
+						<div id="product_thum1">
+							<a href="productDetail?pseq=${mproductVO.PSEQ}">
+								<img src="images/${mproductVO.IMAGE}">
+							</a>
 						</div>
-					</c:forEach>
-				</div>
-				<div class="clear"></div>
+						<div id="product_cont1">
+							<a id="name" href="productDetail?pseq=${mproductVO.PSEQ}">${mproductVO.NAME }</a><br>
+							<a id="price"href="productDetail?pseq=${mproductVO.PSEQ}"> <fmt:formatNumber value="${mproductVO.PRICE2}" pattern="###,###,###"/>원</a> <br>
+							<a id="content"href="productDetail?pseq=${mproductVO.PSEQ}">${mproductVO.CONTENT}</a>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
+			<div class="clear"></div>
 		</div>
+	</div>
 	</div>
 	
 	<!-- 베스트 슬라이더 -->
@@ -86,9 +88,8 @@
 	<div id="slide_product">
 		<div id="index_catalog_topper">
 			<span id="name">
-				베스트
+				<a href="productForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0">베스트</a>
 			</span>
-			<a href="productForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0">전체보기</a>
 		</div>
 		<div>
 			<div class="arw">
@@ -96,24 +97,23 @@
 				<span id="arw_r" class="material-icons" onclick="bProduct_move(1,2)">arrow_forward_ios</span>
 			</div>
 			<div id="overflow">
-				<div id="wrap_box2" class="wrap_box">
-					<c:forEach items="${bestList}" var="mproductVO">
-						<div id="product_wrap1" >
-							<div id="product_thum1">
-								<a href="productDetail?pseq=${mproductVO.PSEQ }">
-									<img src="images/${mproductVO.IMAGE}">
-								</a>
-							</div>
-							<div id="product_cont1">
-								<a id="name" href="productDetail?pseq=${mproductVO.PSEQ }">${mproductVO.NAME }</a><br>
-								<a id="price"> <fmt:formatNumber value="${mproductVO.PRICE2}" pattern="###,###,###"/>원</a> <br>
-								${mproductVO.CONTENT}
-							</div>
+			<div id="wrap_box2" class="wrap_box">
+				<c:forEach items="${bestList}" var="mproductVO">
+					<div id="product_wrap1" >
+						<div id="product_thum1">
+							<a href="productDetail?pseq=${mproductVO.PSEQ }">
+								<img src="images/${mproductVO.IMAGE}">
+							</a>
 						</div>
-					</c:forEach>
-				</div>
-				<div class="clear"></div>
+						<div id="product_cont1">
+							<a id="name" href="productDetail?pseq=${mproductVO.PSEQ }">${mproductVO.NAME }</a><br>
+							<a id="price"href="productDetail?pseq=${mproductVO.PSEQ}"> <fmt:formatNumber value="${mproductVO.PRICE2}" pattern="###,###,###"/>원</a> <br>
+							<a id="content"href="productDetail?pseq=${mproductVO.PSEQ}">${mproductVO.CONTENT}</a>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
+			<div class="clear"></div>
 		</div>
 	</div>
 	</div>

@@ -7,24 +7,24 @@ body{margin:0;}
     right: 0;
 	border:none;
 	min-width:550px;}
-.header_1st{ width:100%; position:relation;} 
+.header_1st{ width:100%; height:150px; position:relation;} 
 .header_1st a { text-decoration: none; display:inline-block; width:70px; text-align: center; color:#A5AAAE; font-weight: bold; }
 .header_1st a:hover {color: green; font-weight: bold;}
-.header_1st #sidemenuIcon{position:absolute; font-size:250%; margin:1rem 0 0 0.6rem;}
-#search {position:absolute; right:65px; top:20px; display:flex; margin:0;
+.header_1st #sidemenuIcon{position:absolute; font-size:250%; margin:0.7rem 0 0 5rem;}
+#search {position:absolute; right:180px; top:30px; display:flex; margin:0;
 	border: 1px solid lightgrey;
-	height: 40px;
-	padding: 0 20px;
-	width:200px; }
+	height: 55px;
+	padding: 20px 30px;
+	width:355px; }
 #serch form{ height:40px;}
-#search input{height:40px; width:150px; line-height:40px; flex: 1;  outline:none; width:150px; border:none; padding:0; font-family:'Pretendard-Regular';}
-#productSearchIcon { position:absolute; top:8px; right:25px; cursor: pointer; float:right; }
-.header_1st #cartIcon{position:absolute; font-size:2em; right:0px; top:20px; z-index:100}
+#search input{height:50px; width:auto; font-size:2em; line-height:40px; flex: 1;  outline:none; width:350px; border:none; padding:0; font-family:'Pretendard-Regular';font-weight:bold;}
+#productSearchIcon { position:absolute; font-size:5em; top:10px; right:11px; cursor: pointer; float:right; }
+.header_1st #cartIcon{position:absolute; font-size:5.5em; right:40px; top:30px; z-index:100}
 
 
-#logo{margin: 0 0 0 4rem;
+#logo{margin: 0.7rem 0 0 5rem;
     display:inline-block;}
-#logo img{height:75px;}
+#logo img{height:140px;}
 
 #category{float:left}
 .header_3rd{margin:10px 0;}
@@ -34,14 +34,12 @@ body{margin:0;}
 
 
 /* 이벤트슬라이더 */
-.slide_event{position:absolute;  width:100%;  display: block;
-	 height:auto;  padding:0; overflow:hidden; text-align: center;
-	top: 0;
-	left: 0;
-	right: 0;}
-#sliderWrap{width:100%; height:370px; position:relative;}
-#images{position:absolute; width:100%; height:100%; left:-400px;  top:0; display:inline-block;}
-#images li{position:relative; width:12.5%; height:370px; float:left; }
+#mainSlider{position:relative;}
+.slide_event{width:100vw;  height:400px; display: block;
+	  padding:0; overflow:visible; text-align: center; }
+#sliderWrap{width:100%; height:100%; left:-400px;  display:flex; }
+#images{width:calc(100vw*8); height:100%; left:-400px; }
+#images li{ width:100vw; height:370px;  }
 #images li img{display:block; width:100%; height: 100%; object-fit:contain;}
 #sliderWrap .material-icons{
 	position:absolute;
@@ -93,15 +91,37 @@ body{margin:0;}
 	position:relative;
 	top:0;
 }
-	#remote ul {
-		width:100%;
-		padding:0;
-	
-	}
 
 
+/* 제품슬라이더*/
+#slide_product{position:relative; width:100%; height:720px; margin:140px 0 0 0;  /* overflow:hidden; */ }
+#index_catalog_topper{position:realtive; margin:150px 0 0 0; width:100%; height:150px;}
+#index_catalog_topper span a{position:absolute; left:10px; font-size:4em; font-weight:bold; line-height:150px;color:black;text-decoration:none;margin: 0 0 0 30px;}
+/* #index_catalog_topper a{position:absolute; right:10px; font-size:5em;line-height:150px; text-decoration:none; color:black;} */
 
+#overflow {position:relative; width:100%; height:700px;  overflow:hidden; }
+.wrap_box{position:absolute; width:auto; left:0px; top:0px; display:flex; }
+#product_wrap1{width:40vw; height:685px; background:white; border:1px solid lightgrey; margin:0 0 0 10px; float:left; }
 
+#product_thum1{width:75%;height:500px; margin:0 auto;}
+#product_thum1 img{width:100%; height:500px; object-fit:contain;}
+#product_cont1{width:100%; height:85px; padding:12px 10px 12px 10px; box-sizing:border-box;}
+#product_cont1 #name{font-size:2.5em; font-weight:bold; text-decoration:none; color:black}
+#product_cont1 #price{font-size:3em; font-weight:bold; text-decoration:none; color:black}
+#product_cont1 #content{font-size:2em; font-weight:bold; text-decoration:none; color:black}
+	/* 화살표 */
+#arw_l{position:absolute; left:20px; top:400px; cursor:pointer; color:grey; z-index:20; font-size:7em; color:rgba(255, 255, 255, 0.5); text-shadow: 2px 2px 6px black; text-align:center; }
+#arw_l:hover{color:white;  }
+#arw_r{position:absolute; right:20px; top:400px; cursor:pointer; color:grey;z-index:20; font-size:7em; color:rgba(255, 255, 255, 0.5); text-shadow: 2px 2px 6px black; text-align:center;}
+#arw_r:hover{color:white;  }
+
+.wrap_box, #arw_r:hover{
+	-webkit-transition: all 0.3s cubic-bezier(1,.01,.32,1);
+	-moz-transition: all 0.3s cubic-bezier(1,.01,.32,1);
+	-o-transition: all 0.3s cubic-bezier(1,.01,.32,1);
+	-ms-transition: all 0.3s cubic-bezier(1,.01,.32,1);
+	transition: all 0.3s cubic-bezier(1,.01,.32,1);	
+}
 
 
 
