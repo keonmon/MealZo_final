@@ -5,7 +5,8 @@ body{margin:0;}
 	top: 0;
     left: 0;
     right: 0;
-	border:none;}
+	border:none;
+	min-width:550px;}
 .header_1st{ width:100%; position:relation;} 
 .header_1st a { text-decoration: none; display:inline-block; width:70px; text-align: center; color:#A5AAAE; font-weight: bold; }
 .header_1st a:hover {color: green; font-weight: bold;}
@@ -54,18 +55,15 @@ body{margin:0;}
 	text-align:center;
 	cursor:pointer;	
 	/* background:rgba(255, 255, 255, 0.5); */
-	z-index:100;
+	z-index:98;
 	border-radius:25px 25px 25px 25px;
-	transition: all 0.1s ease;
 	direction: ltr;
 	/* Support for all WebKit browsers. */
 	-webkit-font-smoothing: antialiased;
 	/* Support for Safari and Chrome. */
 	text-rendering: optimizeLegibility;
-	
 	/* Support for Firefox. */
 	-moz-osx-font-smoothing: grayscale;
-	
 	/* Support for IE. */
 	font-feature-settings: 'liga';
 }
@@ -95,26 +93,13 @@ body{margin:0;}
 	position:relative;
 	top:0;
 }
-
-	
 	#remote ul {
 		width:100%;
 		padding:0;
-	}
 	
-	#remote ul li{
-		margin: 0 4px;
-		display: inline-block;
-		width:5px;
-		height:5px;
-		border-radius:50%;
-		background:#fff;
-		opacity:0.5;
-		position:relative;
-		top:0;
 	}
 
-}
+
 
 
 
