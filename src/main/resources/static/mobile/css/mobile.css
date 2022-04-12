@@ -1,0 +1,102 @@
+@charset "UTF-8";
+#wrap{width:100%; margin:0 auto;}
+
+/* 모바일 x 400 y 570 // 1213 1715 */
+
+body{ background:#FFFFFF; margin:0; padding:0; font-size:13px;  }
+.clear {clear: both; }
+a{text-decoration:none; color:black;}
+
+/* article {position: relative; width:55%; margin:0 auto; height:500px; } */
+#mypageArticle2 {display:table-cell; width:100%; margin:0 auto; height:500px; padding-top:25px;}
+
+div#side_buttons{list-style:none;  margin:35px 0; }
+div#side_buttons ul li{display:block;  font-size:11px; float:left; }
+div#side_buttons a{text-decoration :none; display:inline-block; width:80px; text-align:center; color:gray; font-weight:light;  }
+div#side_buttons .join{font-weight:bold;}
+
+form fieldset {border:none; margin:0 auto; margin-top:80px; width:300px; height:300px;}
+/* form fieldset {border:none; margin:0 auto; margin-top:80px; width:80px; height:300px;} */
+.text{ outline: none; margin:15px 0;  height:30px; 	width:300px; font-size:16px;}
+div #input1{border-bottom:1px solid #76797D;width:300px; }
+form .submit{margin-top:30px;width:300px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+
+/* 아이디/비번찾기 탭 색상 */
+.table3 .active{background-color:green; color:white; font-weight:bold; }
+
+#tabs .active {background-color:#1AB137; color:white; font-weight:bold; }
+#tabs li{color:gray;}
+
+#article2 h1, div h1 {font-family: Verdana; font-size: 45px; color: #6F0C78;   margin: 20px 0;   font-weight: normal; }
+#article2 { width: 830px; padding-
+: 10px; font-family: Verdana; font-size: 1em; line-height: 1.5em; height:600px; margin : 0 auto; margin-right:0px;}
+/* #article2 { width: 830px; padding-right: 10px; font-family: Verdana; font-size: 1em; line-height: 1.5em; height:600px; margin : 0 auto; margin-right:80px;} */
+
+#form2 {width: 300px; border:none; }
+/* #form2 {width: 640px; border:none; } */
+#form2 #fieldset2 { padding: 10px 0 10px 5px; width:666px; border:none; margin:0 auto; margin-top:80px; align:center;}
+.text2{ outline: none; margin:15px 0;  height:30px; width:200px; font-size:14px; }
+
+#table2 {margin:0 auto;}
+
+
+#form2 #fieldset2 #legend2 { font-size: 20px;   border-bottom: 1px dotted #666;   width: 640px;    padding: 5px 0; align:center;}
+
+tr{width:310px; height:49px;}
+th{color:#666; /* background:#f8f8f8; */ width:140px;}
+.tr3{width:300px; height:49px;}
+
+#form2 #label {width:140px; text-align:left; margin: 5px 0; border-left:1px #eee solid; vertical-align:middle; }
+#form2 #th1{color:#666; background:#f8f8f8; width:100px;}
+#form2 #selectBox{ cursor:pointer;}
+#form2 input { float:left; margin: 0px 0; border: 1px solid #C4C7C8;    background-color: #white; }
+
+#form2 #buttons {position:relative; margin: 20px 0 0 0; }
+#form2 .submit, #form2 .cancel {position:relative; height: 40px;   width: 250px;    border: 1px solid #666;
+font-size: 17px; background-repeat: repeat-x; background-position:center; color: #FFFFFF; margin: 0 0 0 20px; background-color:#1AB137;}
+#form2 .submit55, #form2 .cancel55 {position:relative; height: 40px;   width: 300px;    border: 1px solid #666;
+font-size: 17px; background-repeat: repeat-x; background-position:center; color: #FFFFFF; margin: 0 0 0 20px; background-color:#1AB137;}
+
+#form2 #label2 {width:640px;}
+#form2 #th3{background:white; width:640px; text-align: center; align:center;}
+#form2 #th4{background:white; width:320px; text-align: center; align:center;}
+
+#article3 { width: 310px; border:none;
+font-family: Verdana; font-size: 1em; line-height: 1.5em; height:600px; margin : 0 auto; }
+/* #article3 { width: 700px; border:none;
+font-family: Verdana; font-size: 1em; line-height: 1.5em; height:600px; margin : 0 auto; }
+ */
+#sunghee { height:500px; margin : 0 auto; width:310px; }
+/* #sunghee { height:700px; margin : 0 auto; width:700px; } */
+#sunghee2 {width:310px;}
+/* #sunghee2 {width:700px;} */
+
+.table3 { margin: 0 auto; width:150px; align:center;}
+/* .table3 { margin: 0 auto; width:700px; align:center;} */
+.table3 ul {list-style:none; margin:0 auto; padding:0;}
+.table3 ul li{list-style:none; width:50%; float:left;  height:50px; text-align:center; line-height: 50px; font-weight:bold; /* font-size: 1.2em; */}
+.table4 {margin:0 auto; margin-left:0px;}
+/* .table4 {margin:0 auto; margin-left:150px;} */
+
+form .cancel{margin-top:30px;width:300px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+
+.text3{ outline: none; height:30px; width:100px; font-size:14px; margin-left:0;}
+#form2 #th5{background:white; width:200px; text-align: center; align:center;}
+
+form .submit3, form .cancel3{margin-top:30px; width:350px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+
+form .submit4, form .cancel4{margin-top:30px; width:300px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+
+form .submit5 {margin-top:30px; margin-left:0px; width:150px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:30px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+/* form .submit5 {margin-top:30px; margin-left:3px; width:150px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:30px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';} */
+.byeform {margin-top:100px;}
+
+form cancel5 {margin-top:30px;width:150px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:30px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+.byeform {margin-top:100px;}
