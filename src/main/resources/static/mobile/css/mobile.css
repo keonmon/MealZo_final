@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+
+/*-----사이드메뉴 건들지마세오 !  *********   */
+input[id="menuicon"] {
+	display:none;
+	
+}
+input[id="menuicon"] + label{
+	display:block;
+	width:60px;
+	height:40px;
+	position:relative;
+	cursor:pointer;
+
+}
+
+input[id="menuicon"] + label span{
+	display:block;
+	position:absolute;
+	width:50%;   /*가로 줄*/
+	height:3px;
+	border-radius:30px;
+	background:#000;
+	transition : all .35s;
+	z-index:1;
+	
+}
+input[id="menuicon"] + label span:nth-child(1){
+	top:0;
+}
+input[id="menuicon"] + label span:nth-child(2){
+	top:50%;
+	transform:translateY(-50%);
+}
+input[id="menuicon"] + label span:nth-child(3){
+	bottom:0;
+}
+
+input[id="menuicon"]:checked + label span:nth-child(1){
+	top:50%;
+	transform:translateY(-50%) rotate(45deg);
+}
+input[id="menuicon"]:checked + label span:nth-child(2){
+	opacity:0;
+}
+input[id="menuicon"]:checked + label span:nth-child(3){
+	bottom:50%;
+	transform:translateY(50%) rotate(-45deg);
+}
+
+
+.sidebar{
+	width:700px;
+	height:100%;
+	background:#ECF4EA;
+	position:fixed;
+	top:0;
+	left:-700px;
+	transition:all .35s;
+}
+input[id="menuicon"]:checked + label + div{
+	left:0;
+}
+
+/*#sideMenu2{margin:60px 0 0 0;}*/
+/*#sidelogin {margin :10 0 0 350px; }*/
+#sidelogin ul {float: right; list-style:none;}
+#sidelogin ul li{display:inline-block; color:black; font-size:1.5em; margin:0 100px 0 0;}
+#sidelogin a{text-decoration:none; disply:inline-block; color:black;}
+#login3{font-weight:bold;}
+
+
+#sideicon ul {float:left; list-style:none; }
+#sideicon ul li{display:inline-block; color:black;   margin: 0 40px 0 25px; padding:0 0 0 25px;}
+#sideicon a{text-decoration:none; disply:inline-block; color:black; }
+
+
+#sidelist {margin-top:250px;}
+#sidelist ul{list-style:none; }
+#sidelist ul li{ color:black; margin: 0 0 45px 45px; font-size:1.7em; font-weight:bold;  }
+#sidelist a{text-decoration:none; disply:inline-block; color:black; }
+
+#homeicon {position:absolute;   margin:12px 0 0 620px;}
+#homeicon a{text-decoration:none; disply:inline-block; color:black;  font-size:1.7em; }
+/*---------------------------------------------------사이드메뉴 여기까지--------------------------------------------------------------------------*/
