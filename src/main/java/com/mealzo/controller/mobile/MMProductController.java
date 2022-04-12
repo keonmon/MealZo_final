@@ -1,4 +1,4 @@
-package com.mealzo.controller;
+package com.mealzo.controller.mobile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,8 +20,9 @@ import com.mealzo.service.MReviewService;
 import com.mealzo.service.MZzimService;
 
 @Controller
-public class MProductController {
-
+public class MMProductController {
+	// 모바일 웹용 컨트롤러
+	
 	@Autowired
 	MProductService ps;
 	
@@ -35,15 +36,8 @@ public class MProductController {
 	MZzimService zs;
 	
 	
-	@RequestMapping("/")
-	public String index(Model model, HttpServletRequest request) {
-		
-		
-		return "startPage";
-	}
-	
 
-	@RequestMapping("/webMain")
+	@RequestMapping("/mobileMain")
 	public ModelAndView webMain(Model model, HttpServletRequest request) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -56,7 +50,7 @@ public class MProductController {
 			session.removeAttribute("key");
 			session.removeAttribute("page");
 		}
-		mav.setViewName("index");
+		mav.setViewName("mobile/mobileIndex");
 		
 		
 		//mproductDao pdao = mproductDao.getInstance();
@@ -89,7 +83,7 @@ public class MProductController {
 	
 	
 	// 전체보기
-	@RequestMapping("productAllForm")
+	@RequestMapping("mobileProductAllForm")
 	public String productAllForm(HttpServletRequest request, Model model, 
 			@RequestParam("sort")String sort,
 			//@RequestParam("sub")String sub,
@@ -181,7 +175,7 @@ public class MProductController {
 	}
 	
 	// 카테고리 메뉴
-	@RequestMapping("productForm")
+	@RequestMapping("mobileProductForm")
 	public String productForm(HttpServletRequest request, Model model, 
 			@RequestParam("sort")String sort,
 			//@RequestParam("sub")String sub,
@@ -457,7 +451,7 @@ public class MProductController {
 	}
 	
 	// 전체보기
-	@RequestMapping("productDetail")
+	@RequestMapping("mobileProductDetail")
 	public ModelAndView productDetail(HttpServletRequest request, Model model,
 				@RequestParam("pseq")int pseq) {
 		ModelAndView mav = new ModelAndView();
@@ -545,7 +539,7 @@ public class MProductController {
 		return mav;
 	}
 	
-	@RequestMapping("/zzim")
+	@RequestMapping("/mobileZzim")
 	public ModelAndView zzim(HttpServletRequest request,
 @RequestParam(value="pseq", required=false)Integer pseq
 		//	@RequestParam("pseq") Integer pseq
@@ -576,7 +570,7 @@ public class MProductController {
 	}
 	
 	
-	@RequestMapping("/zzimdelete")
+	@RequestMapping("/mobileZzimdelete")
 	public ModelAndView zzimdelete(HttpServletRequest request,
 			@RequestParam(value="pseq", required=false)Integer pseq) {
 		ModelAndView mav = new ModelAndView();
@@ -596,7 +590,7 @@ public class MProductController {
 	}
 	
 	
-	@RequestMapping("/zzimInsert")
+	@RequestMapping("/mobilZzimInsert")
 	public ModelAndView zzimInsert(HttpServletRequest request,
 @RequestParam(value="pseq", required=false)Integer pseq
 		//	@RequestParam("pseq") Integer pseq
