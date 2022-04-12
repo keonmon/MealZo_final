@@ -29,6 +29,12 @@
 			<!-- 헤더 최상단 -->
 			<div class="header_1st">
 				<span class="material-icons" id="sidemenuIcon" name="sidemenu"  >menu</span>
+			    <input type="checkbox" id="menuicon">
+			    <label for="menuicon">
+			      <span></span>
+			      <span></span>
+			      <span></span>
+			    </label>
 				<!-- 로고 -->
 				<div id="logo"><a href="mobileMain?sub=y"><img src="images/MealZologo.png"></a></div>
 					

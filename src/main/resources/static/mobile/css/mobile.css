@@ -23,7 +23,7 @@ input[id="menuicon"] + label span{
 	border-radius:30px;
 	background:#000;
 	transition : all .35s;
-	z-index:1;
+	z-index:101;
 	
 }
 input[id="menuicon"] + label span:nth-child(1){
@@ -58,6 +58,7 @@ input[id="menuicon"]:checked + label span:nth-child(3){
 	top:0;
 	left:-700px;
 	transition:all .35s;
+	z-index:100;
 }
 input[id="menuicon"]:checked + label + div{
 	left:0;
@@ -84,6 +85,7 @@ input[id="menuicon"]:checked + label + div{
 #homeicon {position:absolute;   margin:12px 0 0 620px;}
 #homeicon a{text-decoration:none; disply:inline-block; color:black;  font-size:1.7em; }
 /*---------------------------------------------------사이드메뉴 여기까지--------------------------------------------------------------------------*/
+
 body{margin:0;}
 #wrap{width:100%; margin:0 auto;}
 #header{position:fixed; z-index:99; background-color:white; 
@@ -118,7 +120,7 @@ body{margin:0;}
 .header_3rd a:hover{ color:green; top:1px;}
 
 
-/* 이벤트슬라이더 */
+/* 이벤트슬라이더 (실패함) */
 #mainSlider{position:relative;}
 .slide_event{width:100vw;  height:400px; display: block;
 	  padding:0; overflow:visible; text-align: center; }
@@ -207,6 +209,6 @@ body{margin:0;}
 	-ms-transition: all 0.3s cubic-bezier(1,.01,.32,1);
 	transition: all 0.3s cubic-bezier(1,.01,.32,1);	
 }
-
+/* -------------------------------------------- 여기까지 메인헤더, 메인 ----------------------------------- */
 
 
