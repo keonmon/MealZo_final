@@ -21,7 +21,8 @@ import com.mealzo.service.MZzimService;
 
 @Controller
 public class MMProductController {
-
+	// 모바일 웹용 컨트롤러
+	
 	@Autowired
 	MProductService ps;
 	
