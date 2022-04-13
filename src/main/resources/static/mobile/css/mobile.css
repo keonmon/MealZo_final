@@ -1,6 +1,109 @@
 @charset "UTF-8";
 
 
+#wrap{width:100%; margin:0 auto;}
+
+/* 로그인 --*/
+
+body{ background:#FFFFFF; margin:0; padding:0; font-size:0.8em;  }
+.clear {clear: both; }
+a{text-decoration:none; color:black;}
+
+article {position: relative; width:97%; margin:0 auto; height:70%; }
+
+div#side_buttons{list-style:none;  margin:5% 0; }
+div#side_buttons ul li{display:block;  font-size:0.8em; float:left; width:45%;}
+div#side_buttons a{text-decoration :none; text-align:center; color:gray; font-weight:light;  }
+div#side_buttons .join{font-weight:bold;}
+
+form fieldset {border:none; margin:0 auto; margin-top:3%; width:97%; height:50%;}
+.text{ outline: none;  margin:5% 0;  height:10%; 	width:90%; font-size:1.2em;}
+div #input1{border-bottom:1px solid #76797D;width:100%; }
+form .submit{margin-top:8%;width:90%; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+form .submit2{margin-top:8%;width:90%; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+
+.table3 .active{background-color:green; color:white; font-weight:bold; }
+
+#tabs .active {background-color:#1AB137; color:white; font-weight:bold; }
+#tabs li{color:gray;}
+
+#article2 h1, div h1 {font-family: Verdana; font-size: 45px; color: #6F0C78;   margin: 20px 0;   font-weight: normal; }
+#article2 { width:97%; padding-right: 10px; font-family: Verdana; font-size: 1em; line-height: 1.5em; height:90%; margin : 0 auto; margin-right:3%;}
+
+#form2 {width: 97%; border:none; }
+#form2 #fieldset2 { padding: 10px 0 10px 5px; width:97%; border:none; margin:0 auto; margin-top:5%; align:center;}
+.text2{ outline: none; height:30px; width:85%; font-size:1.0em; }
+.text3{ outline: none; height:30px; width:50%; font-size:1.0em; }
+
+#table2 {margin:0 auto;}
+
+/* 회원정보입력쪽 */
+
+#form2 #fieldset2 #legend2 { font-size: 20px;   border-bottom: 1px dotted #666;   width: 97%;    padding: 5px 0; align:center;}
+
+tr{width:97%; height:49px;}
+
+#form2 #label {width: 20%; text-align:left; margin: 5px 0; border-left:1px #eee solid; vertical-align:middle; }
+#form2 #th1{color:#666; background:#f8f8f8; width:20%;}
+#form2 #th1{color:#666; width:25%;}
+#form2 #selectBox{ cursor:pointer;}
+#form2 input { float:left; margin: 0px 0; border: 1px solid #C4C7C8;    background-color: #white; }
+
+#form2 #buttons {position:relative; margin: 20px 0 0 0; }
+#form2 .submit, #form2 .cancel {position:relative; height: 40px;   width: 90%;    border: 1px solid #666;
+font-size: 17px; background-repeat: repeat-x; background-position:center; color: #FFFFFF; margin: 0 0 0 20px; background-color:#1AB137;}
+
+#form2 #label2 {width:20%;}
+#form2 #th3{background:white; width:40%; text-align: center; align:center;}
+#form2 #th4{background:white; width:20%; text-align: center; align:center;}
+
+/* #article3 { width: 97%; border:none;
+font-family: Verdana; font-size: 1em; line-height: 1.5em; height:90%; margin : 0 auto; } */
+article3 { width:97%; padding-right: 10px; font-family: Verdana; font-size: 1em; line-height: 1.5em; height:90%; margin : 0 auto; margin-right:3%;}
+
+
+#sunghee { height:90%; margin : 0 auto; width:97%; }
+#sunghee2 {width:97%;}
+
+.table3 { margin: 0 auto; width:97%; align:center;}
+.table3 ul {list-style:none; margin:0 auto; padding:0;}
+.table3 ul li{list-style:none; width:48%; float:left;  height:50px; text-align:center; line-height: 250%; font-weight:bold; font-size: 1.2em;}
+.table4 {margin:0 auto; margin-left:3%;}
+   
+form .cancel{margin-top:30px;width:45%; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+
+.text3{ outline: none; height:30px; width:50%; font-size:0.8em; margin-left:0;}
+#form2 #th5{background:#f8f8f8; width:20%; text-align: center; align:center;}
+
+form .submit3, form .cancel3{margin-top:30px; width:45%; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+
+form .submit4, form .cancel4{margin-top:30px; width:45%; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+
+form .submit5 {margin-top:30px; margin-left:30px; width:20%; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:30px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+.byeform {margin-top:100px;}
+
+form cancel5 {margin-top:30px;width:20%; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:1.3em; height:30px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+.byeform {margin-top:100px;}
+
+tr{width:90%; height:49px;}
+
+#th6{color:#666; background:#f8f8f8; width:95%;}
+
+#th2{background:white; width:70%;}
+#th7{background:white; width:50%;}
+
+
+#message{position:relative;  margin-bottom:5%;  margin-top:3%; font-weight:bold;}
+
+
+
 /*-----사이드메뉴 건들지마세오 !  *********   */
 input[id="menuicon"] {
 	display:none;
@@ -10,9 +113,20 @@ input[id="menuicon"] + label{
 	display:block;
 	width:60px;
 	height:40px;
-	position:relative;
+	position:fixed;
+	left:0;
+	top:calc(50% - 25px);
+	transition: all .35s;
 	cursor:pointer;
 
+}
+input[id="menuicon"]:checked + label  {
+	z-index:2;
+	left:700px;
+	width:50px;
+	height:50px;
+	background-color:gray;
+	margin :0 auto;
 }
 
 input[id="menuicon"] + label span{
@@ -26,6 +140,7 @@ input[id="menuicon"] + label span{
 	z-index:101;
 	
 }
+
 input[id="menuicon"] + label span:nth-child(1){
 	top:0;
 }
@@ -49,6 +164,8 @@ input[id="menuicon"]:checked + label span:nth-child(3){
 	transform:translateY(50%) rotate(-45deg);
 }
 
+
+/*  버튼 움직이는거 여기까지 */
 
 .sidebar{
 	width:700px;
@@ -84,8 +201,61 @@ input[id="menuicon"]:checked + label + div{
 
 #homeicon {position:absolute;   margin:12px 0 0 620px;}
 #homeicon a{text-decoration:none; disply:inline-block; color:black;  font-size:1.7em; }
+
+
+  #sidelist ul li a:hover{  background-color :white;}
 /*---------------------------------------------------사이드메뉴 여기까지--------------------------------------------------------------------------*/
 
+/*
+
+#item2{float:left;  border:1px solid black; padding:0;}
+*/
+#e {width:100%; height:100% ;margin:0 auto; margin-bottom:80px;  margin-left:80px;}
+.clear{clear:both;}
+#paggingg{font-size:2.0em; margin-top:20px;}
+#allmenu{width:100%; /* border:1px solid black; */ margin:0 auto; }
+#item3{ float:left; padding-right:0px; }
+#item3 ul{list-style:none;   padding-left:20px; padding-right:0px;}
+/*#item3  ul li{margin: 0 40% 300% 0px; } */
+/* #item3 img{ height: 60%; width:auto; margin-right:0px;} */
+#item3 img{ height: 60%; max-width:100%; width:400px;}
+#item3  ul li{font-size:2.5em; font-weight:bold;}
+#item3 a{text-decoration:none; disply:inline-block; color:black;}
+
+@media only screen and (max-width: 940px)
+#item3_display>ul>li {
+    width: 33.33%;
+}
+@media (min-width: 320px) and (max-width: 480px)
+#item3_display>ul>li {
+    width: 50%;
+    padding: 0;
+}
+
+#iteme3>ul>li {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 25%;
+    vertical-align: top;
+    padding: 20px 0 0 20px;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+
+/*
+@media all and (max-width:720px){
+#item3 ul {padding-left:0}
+}
+*/
+.kind{font-size:4.0em; font-weigh:bold ; margin:50px 0 0 30px; font-weight:bold; pointer-events : none;}
+#top_menu {float:left;}
+#top_menu ul {list-style:none;}
+#top_menu ul li{display:inline-block; margin-right:40px; }
+#top_menu a{text-decoration:none; disply:inline-block;  font-size:2.5em;color: gray;} 
+#top_menu ul li a:hover{color:green; font-weight:bold; }
+#top_menu ul li a:active{color:green; font-weight:bold; }
+/* ------------------------------------------여기까지 상품 카테고리 -------------------------------------------------------*/
 body{margin:0;}
 #wrap{width:100%; margin:0 auto;}
 #header{position:fixed; z-index:99; background-color:white; 
@@ -241,6 +411,5 @@ body{margin:0;}
 #mypageView ul>li>a{padding: 10px 0;  text-decoration:none; color:black;}
 #mypageView #mypage_nextIcon{float:right; color:lightgrey;}
 /* -------------------------------------------- 여기까지 마이페이지 ----------------------------------- */
-
 
 

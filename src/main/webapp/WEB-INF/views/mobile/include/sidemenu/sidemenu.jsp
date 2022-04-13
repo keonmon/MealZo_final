@@ -39,12 +39,12 @@
 <br>
  <div id="sidelist">
       <ul>
-      <li><a href="mobileProductAll">전체 보기</a></li>
-      <li><a href="mobileProductForm?kind=&bestyn=y">신메뉴</a></li>
-      <li><a href="mobileProductForm?kind=&best&newyn=y">베스트메뉴</a></li>
-       <li><a href="mobileProductForm?kind=한식">한식</a></li>
-        <li><a href="mobileProductForm?kind=중식">중식</a></li>
-         <li><a href="mobileProductForm?kind=양식">양식</a></li>
+      <li><a href="mobileProductAllForm?sort=recently&sub=y&idx=0">전체 보기</a></li>
+      <li><a href="mobileProductForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0">베스트 메뉴</a></li>
+      <li><a href="mobileProductForm?kind=&bestyn=&newyn=y&sort=recently&sub=y&idx=0">신제품</a></li>
+       <li><a href="mobileProductForm?kind=한식&bestyn=&newyn=&sort=recently&sub=y&idx=0">한식</a></li>
+        <li><a href="mobileProductForm?kind=중식&bestyn=&newyn=&sort=recently&sub=y&idx=0">중식</a></li>
+         <li><a href="mobileProductForm?kind=양식&bestyn=&newyn=&sort=recently&sub=y&idx=0">양식</a></li>
       <hr><br>
       <li><a href="mobileEventList">이벤트</a></li>
       <li><a href="mbileCompany">밀조 소개</a></li>

@@ -89,7 +89,7 @@ public class MMProductController {
 			//@RequestParam("sub")String sub,
 			@RequestParam("idx")Integer idx ) {
 		
-		String url="product/productAll";
+		String url="mobile/product/mobileProductAll";
 		HttpSession session = request.getSession();
 		 
 		String sub = request.getParameter("sub");
@@ -181,7 +181,7 @@ public class MMProductController {
 			//@RequestParam("sub")String sub,
 			@RequestParam("idx")Integer idx ) {
 		
-		String url="product/productkind";
+		String url="mobile/product/mobileProductKind";
 	    
 		HttpSession session = request.getSession();
 		String sub=request.getParameter("sub");
@@ -534,7 +534,7 @@ public class MMProductController {
 		
 	//	request.setAttribute("pseq", pseq );
 		//request.setAttribute("pvo1", pvo1 );
-		mav.setViewName("product/productDetail");
+		mav.setViewName("mobile/product/mobileProductDetail");
 		
 		return mav;
 	}
