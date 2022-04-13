@@ -227,4 +227,6 @@ function checknum() {
 		document.IdForm.action = "mobileFindIdStep2";
 		document.IdForm.submit();
 	}
+	
+
 

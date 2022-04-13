@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/headerfooter/mobileHeader.jsp" %> 
+<head>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+</head>
 <script>
 function move_login() {
 	document.IdForm.action = "mobileUserLogin";
@@ -33,8 +36,8 @@ $(function(){
 		</table>
 		
 		<div id="buttons">
-		    <input type="button" class="submit3" value="로그인 창으로" onClick="move_login();">
-			<input type="button" class="submit3" value="비밀번호찾기" 
+		    <input type="button" class="submit3" value="로그인 창으로" onClick="move_login(); style="margin-left:5%"">
+			<input type="button" class="submit3" value="비밀번호찾기" style="margin-left:2%"
 			onClick="location.href='mobileFindIdForm?returnpwd=pwd'" >
 		</div>
 	</fieldset>
