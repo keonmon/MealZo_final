@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/headerfooter/mobileHeader.jsp" %>
+<%@ include file ="../include/sidemenu/sidemenu.jsp"%>
+<%@ include file="../include/headerfooter/mobileMainHeader.jsp"%>
 
 <!-- 로그인폼 불러올 시 아이디 입력란 focus() -->
 <script type="text/javascript">
