@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/headerfooter/mobileMainHeader.jsp"%>
 <%@ include file ="../include/sidemenu/sidemenu.jsp"%>
+
 <div id="e">
 
 <c:choose>
@@ -48,7 +49,7 @@ $(document).ready(function (){
 		</div>
 
 	</div>
-
+</div>
 	<div class="clear" ></div>
 	<div id="paggingg">
 <jsp:include page="../../include/paging/productPaging.jsp">

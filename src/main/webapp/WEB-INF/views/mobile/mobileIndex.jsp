@@ -2,8 +2,6 @@
 <%@ include file="include/headerfooter/mobileMainHeader.jsp"%>
 <%@ include file ="include/sidemenu/sidemenu.jsp"%>
 
-<%-- <%@ include file ="include/headerfooter/mobileHeader.jsp"%> --%>
-
 <style type="text/css">
 	/* #remote ul{list-style: none; padding:0; margin: 0; display: inline-block; } 
 	#remote ul li{float: left; width: 10px; height: 10px; background:beige; margin:18px 8px; border-radius:5px 5px 5px 5px; user-select: none;} */
