@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file ="../include/sidemenu/sidemenu.jsp"%>
-<%@ include file="../include/headerfooter/mobileMainHeader.jsp"%>
+<%@ include file ="../include/sidemenu/memberSidemenu.jsp"%>
+<%@ include file="../include/headerfooter/mobileMemberHeader.jsp"%>
+
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+</head>
 <script>
 
 $(document).ready(function(){
@@ -71,8 +75,7 @@ function changeImg() {
   }
 </script>
 <article id="article3">
-<form method="POST" name="IdForm" id="form2" ><!-- action="findIdStep1" -->
-	<!-- <input type="hidden" name="command" value="findIdStep1"> -->
+<form method="POST" name="IdForm" id="form2" >
 	<input type="hidden" name="selected" id="selected" value="email">
 	<input type="hidden" name="selected" id="selected" value="phone">
 	<input type="hidden" name="selected2" id="selected2" value="id">

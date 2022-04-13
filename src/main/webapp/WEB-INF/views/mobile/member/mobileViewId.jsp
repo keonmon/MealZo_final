@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file ="../include/sidemenu/sidemenu.jsp"%>
-<%@ include file="../include/headerfooter/mobileMainHeader.jsp"%>
+<%@ include file ="../include/sidemenu/memberSidemenu.jsp"%>
+<%@ include file="../include/headerfooter/mobileMemberHeader.jsp"%>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+</head>
 <script>
 function move_login() {
-	document.IdForm.action = "mobileUserLogin";
+	document.IdForm.action = "mobileLogin";
 	document.IdForm.submit();
 }
 
@@ -34,7 +37,7 @@ $(function(){
 		</table>
 		
 		<div id="buttons">
-		    <input type="button" class="submit3" value="로그인 창으로" onClick="move_login(); style="margin-left:5%"">
+		    <input type="button" class="submit3" value="로그인창으로" onClick="move_login();" style="margin-left:5%">
 			<input type="button" class="submit3" value="비밀번호찾기" style="margin-left:2%"
 			onClick="location.href='mobileFindIdForm?returnpwd=pwd'" >
 		</div>

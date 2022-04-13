@@ -466,18 +466,6 @@ public class MMMemberController {
 		return mav;
 	}
 	
-	@RequestMapping("/mobileMypageForm")
-	public String mobileMypageForm(HttpServletRequest request  ) {
-		HttpSession session = request.getSession();
-		HashMap<String, Object> loginUser =
-				(HashMap<String, Object>)session.getAttribute("loginUser");
-
-		if(loginUser==null) {
-			return "mobile/member/mobileLogin";
-		}else
-			
-		
-		return "mobile/mypage/mobileMypage";
-	}
+	
 
 }

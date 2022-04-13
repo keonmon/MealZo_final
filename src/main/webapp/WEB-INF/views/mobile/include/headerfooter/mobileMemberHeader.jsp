@@ -25,28 +25,28 @@
 	<div id="wrap">
 	<header>
 		
-		<div id="header">
+		<div id="header2">
 			<!-- 헤더 최상단 -->
-			<div class="header_1st">
-				<!-- 햄버거버튼 
-			    <input type="checkbox" id="menuicon">
-			    <label for="menuicon">
+			<div class="header2_2st">
+				<!-- 햄버거 버튼 
+			    <input type="checkbox" id="menuicon2">
+			    <label for="menuicon2">
 			      <span></span>
 			      <span></span>
 			      <span></span>
-			    </label>-->
+			    </label> -->
 				<!-- 로고 -->
-				<div id="logo"><a href="mobileMain?sub=y"><img src="images/MealZologo.png"></a></div>
+				<div id="logo2" style="height:3%"><a href="mobileMain?sub=y"><img src="images/MealZologo.png" style=""></a></div>
 					
 				<!-- 검색창 -->
-				<div id="search">
+				<div id="search2">
 					<form method="post" name="formm" onsubmit="return false;">
 						<span><input type="text" name="key" id="key" placeholder="검색어를 입력해주세요" class="search_word" value="${key}" onkeyup="enterkey();"></span>
-						<span class="material-icons" id="productSearchIcon" name="search" onClick="go_search('productAllForm');">search</span>
+						<span class="material-icons" id="productSearchIcon2" name="search" onClick="go_search('productAllForm');">search</span>
 					</form>
 				</div>
 				<div id="cart">
-					<a href="cartList"><span class="material-icons" id="cartIcon" name="cart" >shopping_cart</span>
+					<a href="cartList"><span class="material-icons" id="cartIcon2" name="cart" >shopping_cart</span>
 						<b id="cartCnt" style="position:absolute; background-color:green; border-radius:3px 3px 3px 3px; color:white">${cartCnt }</b></a>
 				</div>
 				
@@ -56,9 +56,9 @@
 			
 	
 			<!-- menu 
-			<div class="header_3rd">
+			<div class="header2_3rd">
 				카테고리
-				<div id="category">
+				<div id="category2">
 					<ul>
 		                  <li class="menu"><a href="productAllForm?sort=recently&sub=y&idx=0">전체보기</a></li>
 		                  <li class="menu"><a href="productForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0">베스트</a></li>
