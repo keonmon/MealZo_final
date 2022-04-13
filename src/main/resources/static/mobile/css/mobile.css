@@ -380,4 +380,36 @@ body{margin:0;}
 	transition: all 0.3s cubic-bezier(1,.01,.32,1);	
 }
 /* -------------------------------------------- 여기까지 메인헤더, 메인 ----------------------------------- */
+/* mypage 사이드메뉴 */
+#sideMenu {float:left; display:inline-block; margin:50px 20px 0 0; width:200px; padding:0 0 40px;}
+#sideMenu ul{list-style:none; font-family:'Pretendard-Regular'; text-decoration: none; padding:10px;}
+#sideMenu ul a{text-decoration: none; color:black; }
+#sideMenu h3{border-bottom:1px solid lightgrey; margin:10px 0 10px 0;  padding-bottom:10px;}
+#sideMenu #mypage{font-weight:bold; font-size:1.5em; margin:0;}
+#sideMenu #menu a{font-size:1.2em;}
+#sideMenu #menu a:hover{position:relative; color:black; left:5px; font-weight:bold; transition-duration:0.4;}
+
+/* MYPAGE */
+#subpageContainer{position:relative; display:inline-block; width:980px; padding:0 0 40px;}
+	/* greeting */
+#my_greeting{position:relative; width:980px; display:inline-block; background-color:green; height:100px;}
+#my_greeting #my_greeting_text{color:white; font-size:2em; line-height:100px; font-family:'Pretendard-Regular'; margin-left:50px; font-weight:bold;}
+#userSettingIcon{text-decoration:none; color:white; float:right; line-height: 100px; font-size:2.5em; margin-right:50px; cursor: pointer;}
+	/* mypage_주문내역 */
+#orderTotalView{position:relative; display:inline-block; width:980px; padding:15px; box-sizing:border-box; margin:25px 0 0 0;}
+#orderTotalView div{font-size:1.5em; font-family:'Pretendard-Regular'; font-weight:bold;}
+#orderTotalView ul{position:relative; display:inline-block;  font-family:'Pretendard-Regular'; padding:0; width:100%; border-radius:30px; border:.5px solid lightgrey;}
+#orderTotalView ul>li{list-style:none; float:left; display: block; width:33%; padding:20px 0; margin:0;  letter-spacing:-0.5px; cursor:pointer; text-align: center; font-size:1.2em; border-right:.5px solid lightgrey;}
+#orderTotalView ul>li:last-child{border:none;}
+#orderTotalView ul>li>a{padding: 10px 0;  text-decoration:none; color:black;}
+	/* mypage_하단메뉴 */
+#mypageView{position:relative; display:inline-block; width:980px; padding:15px; box-sizing:border-box; margin:0;}
+#mypageView ul{position:relative; display:inline-block;  font-family:'Pretendard-Regular'; padding:0; width:100%; border-bottom:.5px solid lightgrey; margin:0 ;}
+#mypageView ul>li{list-style:none; float:left; display: block; width:50%; padding:20px 20px; margin:0;  letter-spacing:-0.5px; cursor:pointer; text-align:left; font-size:1.2em; border-right:.5px solid lightgrey; box-sizing:border-box; margin:0 auto;}
+#mypageView ul>li:last-child{border:none;}
+#mypageView ul:last-child{border:none;}
+#mypageView ul>li>a{padding: 10px 0;  text-decoration:none; color:black;}
+#mypageView #mypage_nextIcon{float:right; color:lightgrey;}
+/* -------------------------------------------- 여기까지 마이페이지 ----------------------------------- */
+
 
