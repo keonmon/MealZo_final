@@ -3,7 +3,7 @@
 
 /* 로그인 --*/
 
-/* 만지면 안돼 */
+/* --------------만지면 안돼---------------- */
 body{ background:#FFFFFF; margin:0; padding:0;}
 article {position: relative; width:97%; margin:0 auto; height:70%; }
 #wrap{width:100%; margin:0 auto;}
@@ -383,7 +383,7 @@ input[id="menuicon"]:checked + label + div{
 #sideMenu #menu a:hover{position:relative; color:black; left:5px; font-weight:bold; transition-duration:0.4;}
 */
 /* MYPAGE */
-#subpageContainer{position:relative; display:inline-block; width:100%; padding:0 3% 40px 3%; margin:200px 0 0 0 ; box-sizing:border-box; }
+#subpageContainer{position:relative; display:inline-block; width:100%; padding:0 2% 40px 2%; margin:200px 0 200px 0 ; box-sizing:border-box; }
 	/* greeting */
 #my_greeting{position:relative; width:100%; display:inline-block; background-color:green; height:300px;}
 #my_greeting #my_greeting_text{color:white; font-size:3em; line-height:300px; font-family:'Pretendard-Regular'; margin-left:50px; font-weight:bold;}
@@ -416,6 +416,7 @@ input[id="menuicon"]:checked + label + div{
 #pdmainimg { width:100%; height:100%;}
 #pay{margin-top:20px;}
 
+
 #tabs2{position:sticky; margin:0 auto;  text-align:center;
         margin:50px 0 0 20px;}
 #tabs2 ul{list-style : none; padding:0; margin-bottom:0px; display:inline-block;  background-color:#B1BBC4;}
@@ -443,3 +444,18 @@ font-weight: bold; font-size:15px; height:60px; border:none; border-radius:2%; c
 #cart{width:100%}
 #goCart{width:90% ; height:150px; font-size:2.4em; }
 #proddetailcon{margin-left:20px;}
+
+
+/* --------------------------주문 시작-------------------------------- */
+#orderTable{width:95%; }
+#orderTable th{font-size:2.3em; background-color:#ebebeb; height:50px;height:100px;}
+#orderTable td{font-size:2em; text-align:center; border-bottom:.5px solid gray;height:150px;}
+#botFlyingContainer{position:fixed;width:100%;height:120px; bottom:0px; border-top:0.5px solid green;}
+#botFlyingContainer #botBtn{
+	position:relative; display:inline-block; 
+	width:50%; height:100%; cursor:pointer; 
+	text-align:center; line-height:120px;
+}
+
+/* --------------------------주문 여기까지-------------------------------- */
+
