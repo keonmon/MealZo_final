@@ -1,8 +1,6 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-<%@ include file ="../mobile/include/sidemenu/sidemenu.jsp"%>
-<%-- <%@ include file="include/headerfooter/mobileMainHeader.jsp"%> --%>
-<%@ include file ="../mobile/include/headerfooter/mobileHeader.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="include/headerfooter/mobileMainHeader.jsp"%>
+<%@ include file ="include/sidemenu/sidemenu.jsp"%>
 
 <style type="text/css">
 	/* #remote ul{list-style: none; padding:0; margin: 0; display: inline-block; } 

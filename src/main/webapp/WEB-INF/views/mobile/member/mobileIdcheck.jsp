@@ -1,32 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="../include/headerfooter/mobileHeader.jsp" %> 
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="mobile/css/mobile.css" rel="stylesheet"> 
-<script src="mobile/script/mobileMember.js"></script>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
 </head>
-<body>
-<article id="article3">
-<h1>ID 중복확인</h1>
-<form method="post" name="idCheckForm" action="mobileIdcheck">
-	<!-- <input type="hidden" name="command" value="idCheckForm"> -->
-	User ID :  <input type="text" name="id" value="${id}" >
-	<input type="submit" value="검색" class="submit5"><br><br><br>	
+<article id="article2">
+<form method="post" name="idCheckForm" id="form2">
+	<fieldset id="fieldset2"><h2 align="center">중복확인</h2>
+	
+	
+	<table id="table2">
+	<tr><th id="th4"><label>User ID </label></th><th id="th7"><input type="text" name="id" value="${id}" >
+		<input type="submit" value="검색" class="submit5" style="float:left;"></th></tr>
+	</table>
+	
+	<table id="table2">
+	<tr style="float:left;">
 	<div>
 		<c:if test="${result == 1}">
 			<script type="text/javascript">opener.document.joinForm.id.value="";</script>
-			${id}는 이미 사용중인 아이디입니다.
+			<h2 align="center">${id}는 이미 사용중인 아이디입니다.</h2>
 		</c:if>
 		<c:if test="${result == -1}">
-			${id}는 사용 가능한 ID입니다.    
-			<input type="button" value="사용" class="cancel5" onclick="idok('${id}');">
+			<h2 align="center">${id}는 사용 가능한 ID입니다.</h2>    
 		</c:if>
-	</div>
-	
-</form>
-</article>
-</body>
-</html>
+		<!-- <div class="clear"></div> -->
+			<div id="buttons">
+				<input type="button" value="사용" class="cancel" onclick="idok('${id}');">
+			</div>
+	</div></tr>
+	</table></fieldset>
+</form></article>
+<%@ include file="../include/headerfooter/mobileFooter.jsp" %>

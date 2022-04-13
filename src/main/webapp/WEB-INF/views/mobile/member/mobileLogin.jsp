@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/headerfooter/mobileHeader.jsp" %>
+<%@ include file ="../include/sidemenu/sidemenu.jsp"%>
+<%@ include file="../include/headerfooter/mobileMainHeader.jsp"%>
 
 <!-- 로그인폼 불러올 시 아이디 입력란 focus() -->
 <script type="text/javascript">
@@ -11,7 +12,7 @@ $(function(){
 <br><br><br><br>
 <article>
 
-<form method="post" action="login" name="loginFrm">
+<form method="post" action="mobileLogin" name="loginFrm">
 
  <fieldset>
   <legend></legend>
@@ -33,7 +34,7 @@ $(function(){
 
 </fieldset>
 </form>
-<div id="message" style="font-size:1.3em; width:80%; left:20%;"> ${message}</div>
+<div id="message" style="font-size:1.2em; width:80%; left:10%;"> ${message}</div>
 </article>
 
 

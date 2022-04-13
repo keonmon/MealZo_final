@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/headerfooter/mobileHeader.jsp" %> 
+<%@ include file ="../include/sidemenu/sidemenu.jsp"%>
+<%@ include file="../include/headerfooter/mobileMainHeader.jsp"%>
 <script>
 
 $(document).ready(function(){
@@ -140,8 +141,8 @@ function changeImg() {
 	
 			<tr>
 				<th rowspan="2" height="100px"><label>보안문자</label></th>
-				<td><img src="images/a1.jpg" width="50%" height="60%" id="img"/>&nbsp;&nbsp;&nbsp;
-				<img src="images/refresh.jpg" width="10%" height="40%" onclick="changeImg()"/></td>
+				<td><img src="images/a1.jpg" width="70%" height="60%" id="img"/>&nbsp;&nbsp;&nbsp;
+				<img src="images/refresh.jpg" width="15%" height="40%" onclick="changeImg()"/></td>
 			</tr>
 			<tr>
 				<td id="th2"><input type="text" id="security" name="security" size="6" placeholder="보안 문자 입력" class="text2" ></td>

@@ -1,15 +1,21 @@
 @charset "UTF-8";
 
 
+/* 로그인 --*/
+
+/* 만지면 안돼 */
+body{ background:#FFFFFF; margin:0; padding:0;}
+article {position: relative; width:97%; margin:0 auto; height:70%; }
 #wrap{width:100%; margin:0 auto;}
+tr{width:90%; height:49px;}
+/* ----------------------------------------- */
+
+.clear {clear: both; }
 
 /* 로그인 --*/
 
-body{ background:#FFFFFF; margin:0; padding:0;   }
-.clear {clear: both; }
-a{text-decoration:none; color:black;}
 
-article {position: relative; width:97%; margin:0 auto; height:70%; }
+a{text-decoration:none; color:black;}
 
 div#side_buttons{list-style:none;  margin:5% 0; }
 div#side_buttons ul li{display:block;  font-size:0.8em; float:left; width:45%;}
@@ -17,12 +23,12 @@ div#side_buttons a{text-decoration :none; text-align:center; color:gray; font-we
 div#side_buttons .join{font-weight:bold;}
 
 form fieldset {border:none; margin:0 auto; margin-top:3%; width:97%; height:50%;}
-.text{ outline: none;  margin:5% 0;  height:10%; 	width:90%; font-size:1.2em;}
+.text{ outline: none;  margin:5% 0;  height:10%; 	width:90%; font-size:1.0em;}
 div #input1{border-bottom:1px solid #76797D;width:100%; }
 form .submit{margin-top:8%;width:90%; background-color:#1AB137; color:#FFFFFF; 
-font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+font-weight: bold; font-size:1.1em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
 form .submit2{margin-top:8%;width:90%; background-color:#1AB137; color:#FFFFFF; 
-font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+font-weight: bold; font-size:1.1em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
 
 .table3 .active{background-color:green; color:white; font-weight:bold; }
 
@@ -30,12 +36,12 @@ font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; 
 #tabs li{color:gray;}
 
 #article2 h1, div h1 {font-family: Verdana; font-size: 45px; color: #6F0C78;   margin: 20px 0;   font-weight: normal; }
-#article2 { width:97%; padding-right: 10px; font-family: Verdana; font-size: 1em; line-height: 1.5em; height:90%; margin : 0 auto; margin-right:3%;}
+#article2 { width:97%; padding-right: 10px; font-family: Verdana; font-size:0.8em; line-height: 1.2em; height:90%; margin : 0 auto; margin-right:3%;}
 
 #form2 {width: 97%; border:none; }
 #form2 #fieldset2 { padding: 10px 0 10px 5px; width:97%; border:none; margin:0 auto; margin-top:5%; align:center;}
 .text2{ outline: none; height:30px; width:85%; font-size:1.0em; }
-.text3{ outline: none; height:30px; width:50%; font-size:1.0em; }
+.text3{ outline: none; height:30px; width:60%; font-size:0.8em; margin-left:0;}
 
 #table2 {margin:0 auto;}
 
@@ -43,7 +49,7 @@ font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; 
 
 #form2 #fieldset2 #legend2 { font-size: 20px;   border-bottom: 1px dotted #666;   width: 97%;    padding: 5px 0; align:center;}
 
-tr{width:97%; height:49px;}
+/* tr{width:97%; height:49px;} */
 
 #form2 #label {width: 20%; text-align:left; margin: 5px 0; border-left:1px #eee solid; vertical-align:middle; }
 #form2 #th1{color:#666; background:#f8f8f8; width:20%;}
@@ -73,26 +79,24 @@ article3 { width:97%; padding-right: 10px; font-family: Verdana; font-size: 1em;
 .table4 {margin:0 auto; margin-left:3%;}
    
 form .cancel{margin-top:30px;width:45%; background-color:#1AB137; color:#FFFFFF; 
-font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+font-weight: bold; font-size:1.1em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
 
-.text3{ outline: none; height:30px; width:50%; font-size:0.8em; margin-left:0;}
-#form2 #th5{background:#f8f8f8; width:20%; text-align: center; align:center;}
+
+#form2 #th5{width:30%; text-align: center; align:center;}
 
 form .submit3, form .cancel3{margin-top:30px; width:45%; background-color:#1AB137; color:#FFFFFF; 
-font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+font-weight: bold; font-size:1.1em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
 
 form .submit4, form .cancel4{margin-top:30px; width:45%; background-color:#1AB137; color:#FFFFFF; 
-font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+font-weight: bold; font-size:1.1em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
 
 form .submit5 {margin-top:30px; margin-left:30px; width:20%; background-color:#1AB137; color:#FFFFFF; 
-font-weight: bold; font-size:1.3em; height:30px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+font-weight: bold; font-size:1.1em; height:30px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
 .byeform {margin-top:100px;}
 
 form cancel5 {margin-top:30px;width:20%; background-color:#1AB137; color:#FFFFFF; 
-font-weight: bold; font-size:1.3em; height:30px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+font-weight: bold; font-size:1.1em; height:30px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
 .byeform {margin-top:100px;}
-
-tr{width:90%; height:49px;}
 
 #th6{color:#666; background:#f8f8f8; width:95%;}
 
@@ -110,34 +114,25 @@ input[id="menuicon"] {
 	
 }
 input[id="menuicon"] + label{
-	display:block;
-	width:60px;
-	height:40px;
-	position:fixed;
-	left:0;
-	top:calc(50% - 25px);
-	transition: all .35s;
-	cursor:pointer;
-
-}
-input[id="menuicon"]:checked + label  {
-	z-index:2;
-	left:700px;
-	width:50px;
-	height:50px;
-	background-color:gray;
-	margin :0 auto;
+	display: block;
+    width: 90px;
+    height: 45px;
+    position: fixed;
+    left: 25px;
+    top: 60px;
+    transition: all .35s;
+    cursor: pointer;
+    z-index:101;
 }
 
 input[id="menuicon"] + label span{
 	display:block;
 	position:absolute;
 	width:50%;   /*가로 줄*/
-	height:3px;
+	height:4px;
 	border-radius:30px;
 	background:#000;
 	transition : all .35s;
-	z-index:101;
 	
 }
 
@@ -211,7 +206,6 @@ input[id="menuicon"]:checked + label + div{
 #item2{float:left;  border:1px solid black; padding:0;}
 */
 #e {width:100%; height:100% ;margin:0 auto; margin-bottom:80px;  margin-left:85px;}
-.clear{clear:both;}
 #paggingg{font-size:2.0em; margin-top:50px; margin-bottom:50px;}
 #allmenu{width:100%; /* border:1px solid black; */ margin:0 auto; }
 #item3{ float:left; padding-right:0px; }
@@ -256,14 +250,13 @@ input[id="menuicon"]:checked + label + div{
 #top_menu ul li a:hover{color:green; font-weight:bold; }
 #top_menu ul li a.active {color:green; font-weight:bold; }
 /* ------------------------------------------여기까지 상품 카테고리 -------------------------------------------------------*/
-body{margin:0;}
-#wrap{width:100%; margin:0 auto;}
+
 #header{position:fixed; z-index:99; background-color:white; 
 	top: 0;
     left: 0;
     right: 0;
 	border:none;
-	min-width:550px;}
+	min-width:1000px;}
 .header_1st{ width:100%; height:150px; position:relation;} 
 .header_1st a { text-decoration: none; display:inline-block; width:70px; text-align: center; color:#A5AAAE; font-weight: bold; }
 .header_1st a:hover {color: green; font-weight: bold;}
@@ -274,9 +267,9 @@ body{margin:0;}
 	padding: 20px 30px;
 	width:355px; }
 #serch form{ height:40px;}
-#search input{height:50px; width:auto; font-size:2em; line-height:40px; flex: 1;  outline:none; width:350px; border:none; padding:0; font-family:'Pretendard-Regular';font-weight:bold;}
+#search input{height:50px; width:auto; font-size:1.7em; line-height:40px; flex: 1;  outline:none; width:350px; border:none; padding:0; font-family:'Pretendard-Regular';font-weight:bold;}
 #productSearchIcon { position:absolute; font-size:5em; top:10px; right:11px; cursor: pointer; float:right; }
-.header_1st #cartIcon{position:absolute; font-size:5.5em; right:40px; top:30px; z-index:100}
+.header_1st #cartIcon{position:absolute; font-size:5.5em; right:60px; top:30px; z-index:100}
 
 
 #logo{margin: 0.7rem 0 0 5rem;
@@ -380,6 +373,38 @@ body{margin:0;}
 	transition: all 0.3s cubic-bezier(1,.01,.32,1);	
 }
 /* -------------------------------------------- 여기까지 메인헤더, 메인 ----------------------------------- */
+/* mypage 사이드메뉴 
+#sideMenu {float:left; display:inline-block; margin:50px 20px 0 0; width:200px; padding:0 0 40px;}
+#sideMenu ul{list-style:none; font-family:'Pretendard-Regular'; text-decoration: none; padding:10px;}
+#sideMenu ul a{text-decoration: none; color:black; }
+#sideMenu h3{border-bottom:1px solid lightgrey; margin:10px 0 10px 0;  padding-bottom:10px;}
+#sideMenu #mypage{font-weight:bold; font-size:1.5em; margin:0;}
+#sideMenu #menu a{font-size:1.2em;}
+#sideMenu #menu a:hover{position:relative; color:black; left:5px; font-weight:bold; transition-duration:0.4;}
+*/
+/* MYPAGE */
+#subpageContainer{position:relative; display:inline-block; width:980px; padding:0 0 40px;}
+	/* greeting */
+#my_greeting{position:relative; width:980px; display:inline-block; background-color:green; height:100px;}
+#my_greeting #my_greeting_text{color:white; font-size:2em; line-height:100px; font-family:'Pretendard-Regular'; margin-left:50px; font-weight:bold;}
+#userSettingIcon{text-decoration:none; color:white; float:right; line-height: 100px; font-size:2.5em; margin-right:50px; cursor: pointer;}
+	/* mypage_주문내역 */
+#orderTotalView{position:relative; display:inline-block; width:980px; padding:15px; box-sizing:border-box; margin:25px 0 0 0;}
+#orderTotalView div{font-size:1.5em; font-family:'Pretendard-Regular'; font-weight:bold;}
+#orderTotalView ul{position:relative; display:inline-block;  font-family:'Pretendard-Regular'; padding:0; width:100%; border-radius:30px; border:.5px solid lightgrey;}
+#orderTotalView ul>li{list-style:none; float:left; display: block; width:33%; padding:20px 0; margin:0;  letter-spacing:-0.5px; cursor:pointer; text-align: center; font-size:1.2em; border-right:.5px solid lightgrey;}
+#orderTotalView ul>li:last-child{border:none;}
+#orderTotalView ul>li>a{padding: 10px 0;  text-decoration:none; color:black;}
+	/* mypage_하단메뉴 */`
+#mypageView{position:relative; display:inline-block; width:980px; padding:15px; box-sizing:border-box; margin:0;}
+#mypageView ul{position:relative; display:inline-block;  font-family:'Pretendard-Regular'; padding:0; width:100%; border-bottom:.5px solid lightgrey; margin:0 ;}
+#mypageView ul>li{list-style:none; float:left; display: block; width:50%; padding:20px 20px; margin:0;  letter-spacing:-0.5px; cursor:pointer; text-align:left; font-size:1.2em; border-right:.5px solid lightgrey; box-sizing:border-box; margin:0 auto;}
+#mypageView ul>li:last-child{border:none;}
+#mypageView ul:last-child{border:none;}
+#mypageView ul>li>a{padding: 10px 0;  text-decoration:none; color:black;}
+#mypageView #mypage_nextIcon{float:right; color:lightgrey;}
+/* -------------------------------------------- 여기까지 마이페이지 ----------------------------------- */
+
 
 
 /* 프로덕트 디텡일 */
