@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/user/headerfooter/header.jsp" %>  
-
 <%@ include file="../include/user/mypage_sidemenu.jsp" %>
 <div id=subpageContainer>
 <div id="my_greeting">

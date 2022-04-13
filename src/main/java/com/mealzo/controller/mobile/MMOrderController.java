@@ -32,7 +32,7 @@ public class MMOrderController {
 				(HashMap<String, Object>)session.getAttribute("loginUser");
 
 		if(loginUser==null) {
-			return "member/login";
+			return "mobile/member/mobileLogin";
 		}else {
 	    }
 		return "mobile/mypage/mobileMypage";
