@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/headerfooter/mobileHeader.jsp" %>
 <%@ include file ="../include/sidemenu/sidemenu.jsp"%>
-<head>
-<meta name="viewport" content="user-scalable=no, initial-scale=0.5, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
-</head>
+<%@ include file="../include/headerfooter/mobileMainHeader.jsp"%>
+
 <!-- 로그인폼 불러올 시 아이디 입력란 focus() -->
 <script type="text/javascript">
 $(function(){

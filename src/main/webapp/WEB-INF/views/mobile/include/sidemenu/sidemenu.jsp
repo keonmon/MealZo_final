@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
     <input type="checkbox" id="menuicon">
+    <!-- 헤더로 이사감 ~-->
     <label for="menuicon">
       <span></span>
       <span></span>
       <span></span>
-    </label>
+    </label> 		
     <div class="sidebar">  <!--  사이드바 나오는거 건드리지 말기 -->
 
     
