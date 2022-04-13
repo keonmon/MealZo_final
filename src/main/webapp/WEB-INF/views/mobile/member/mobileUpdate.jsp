@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/headerfooter/mobileHeader.jsp" %> 
-<%@ include file="../include/sidemenu/sidemenu.jsp" %>
+<%@ include file ="../include/sidemenu/sidemenu.jsp"%>
+<%@ include file="../include/headerfooter/mobileMainHeader.jsp"%>
 
 <article id="article2">
 <form method="post" name="joinForm" id="form2" action="mobileMemberUpdate">

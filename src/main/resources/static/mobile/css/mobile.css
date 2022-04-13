@@ -1,12 +1,12 @@
 @charset "UTF-8";
 
-
+body{margin:0;}
 #wrap{width:100%; margin:0 auto;}
+.clear {clear: both; }
 
 /* 로그인 --*/
 
-body{ background:#FFFFFF; margin:0; padding:0; font-size:0.8em;  }
-.clear {clear: both; }
+
 a{text-decoration:none; color:black;}
 
 article {position: relative; width:97%; margin:0 auto; height:70%; }
@@ -110,34 +110,25 @@ input[id="menuicon"] {
 	
 }
 input[id="menuicon"] + label{
-	display:block;
-	width:60px;
-	height:40px;
-	position:fixed;
-	left:0;
-	top:calc(50% - 25px);
-	transition: all .35s;
-	cursor:pointer;
-
-}
-input[id="menuicon"]:checked + label  {
-	z-index:2;
-	left:700px;
-	width:50px;
-	height:50px;
-	background-color:gray;
-	margin :0 auto;
+	display: block;
+    width: 90px;
+    height: 45px;
+    position: fixed;
+    left: 25px;
+    top: 60px;
+    transition: all .35s;
+    cursor: pointer;
+    z-index:101;
 }
 
 input[id="menuicon"] + label span{
 	display:block;
 	position:absolute;
 	width:50%;   /*가로 줄*/
-	height:3px;
+	height:4px;
 	border-radius:30px;
 	background:#000;
 	transition : all .35s;
-	z-index:101;
 	
 }
 
@@ -211,7 +202,6 @@ input[id="menuicon"]:checked + label + div{
 #item2{float:left;  border:1px solid black; padding:0;}
 */
 #e {width:100%; height:100% ;margin:0 auto; margin-bottom:80px;  margin-left:80px;}
-.clear{clear:both;}
 #paggingg{font-size:2.0em; margin-top:20px;}
 #allmenu{width:100%; /* border:1px solid black; */ margin:0 auto; }
 #item3{ float:left; padding-right:0px; }
@@ -256,14 +246,13 @@ input[id="menuicon"]:checked + label + div{
 #top_menu ul li a:hover{color:green; font-weight:bold; }
 #top_menu ul li a:active{color:green; font-weight:bold; }
 /* ------------------------------------------여기까지 상품 카테고리 -------------------------------------------------------*/
-body{margin:0;}
-#wrap{width:100%; margin:0 auto;}
+
 #header{position:fixed; z-index:99; background-color:white; 
 	top: 0;
     left: 0;
     right: 0;
 	border:none;
-	min-width:550px;}
+	min-width:1000px;}
 .header_1st{ width:100%; height:150px; position:relation;} 
 .header_1st a { text-decoration: none; display:inline-block; width:70px; text-align: center; color:#A5AAAE; font-weight: bold; }
 .header_1st a:hover {color: green; font-weight: bold;}
@@ -274,9 +263,9 @@ body{margin:0;}
 	padding: 20px 30px;
 	width:355px; }
 #serch form{ height:40px;}
-#search input{height:50px; width:auto; font-size:2em; line-height:40px; flex: 1;  outline:none; width:350px; border:none; padding:0; font-family:'Pretendard-Regular';font-weight:bold;}
+#search input{height:50px; width:auto; font-size:1.7em; line-height:40px; flex: 1;  outline:none; width:350px; border:none; padding:0; font-family:'Pretendard-Regular';font-weight:bold;}
 #productSearchIcon { position:absolute; font-size:5em; top:10px; right:11px; cursor: pointer; float:right; }
-.header_1st #cartIcon{position:absolute; font-size:5.5em; right:40px; top:30px; z-index:100}
+.header_1st #cartIcon{position:absolute; font-size:5.5em; right:60px; top:30px; z-index:100}
 
 
 #logo{margin: 0.7rem 0 0 5rem;
@@ -380,7 +369,7 @@ body{margin:0;}
 	transition: all 0.3s cubic-bezier(1,.01,.32,1);	
 }
 /* -------------------------------------------- 여기까지 메인헤더, 메인 ----------------------------------- */
-/* mypage 사이드메뉴 */
+/* mypage 사이드메뉴 
 #sideMenu {float:left; display:inline-block; margin:50px 20px 0 0; width:200px; padding:0 0 40px;}
 #sideMenu ul{list-style:none; font-family:'Pretendard-Regular'; text-decoration: none; padding:10px;}
 #sideMenu ul a{text-decoration: none; color:black; }
@@ -388,7 +377,7 @@ body{margin:0;}
 #sideMenu #mypage{font-weight:bold; font-size:1.5em; margin:0;}
 #sideMenu #menu a{font-size:1.2em;}
 #sideMenu #menu a:hover{position:relative; color:black; left:5px; font-weight:bold; transition-duration:0.4;}
-
+*/
 /* MYPAGE */
 #subpageContainer{position:relative; display:inline-block; width:980px; padding:0 0 40px;}
 	/* greeting */
@@ -402,7 +391,7 @@ body{margin:0;}
 #orderTotalView ul>li{list-style:none; float:left; display: block; width:33%; padding:20px 0; margin:0;  letter-spacing:-0.5px; cursor:pointer; text-align: center; font-size:1.2em; border-right:.5px solid lightgrey;}
 #orderTotalView ul>li:last-child{border:none;}
 #orderTotalView ul>li>a{padding: 10px 0;  text-decoration:none; color:black;}
-	/* mypage_하단메뉴 */
+	/* mypage_하단메뉴 */`
 #mypageView{position:relative; display:inline-block; width:980px; padding:15px; box-sizing:border-box; margin:0;}
 #mypageView ul{position:relative; display:inline-block;  font-family:'Pretendard-Regular'; padding:0; width:100%; border-bottom:.5px solid lightgrey; margin:0 ;}
 #mypageView ul>li{list-style:none; float:left; display: block; width:50%; padding:20px 20px; margin:0;  letter-spacing:-0.5px; cursor:pointer; text-align:left; font-size:1.2em; border-right:.5px solid lightgrey; box-sizing:border-box; margin:0 auto;}
