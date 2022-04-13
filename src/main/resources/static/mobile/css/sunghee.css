@@ -1,13 +1,9 @@
 @charset "UTF-8";
 
-body{ background:#FFFFFF; margin:0; padding:0; font-size:0.8em;  }
-.clear {clear: both; }
-#wrap{  width:100%; margin:0 auto;}
-a{text-decoration:none; color:black;}
+
 
 /* 로그인 --*/
 article {position: relative; width:97%; margin:0 auto; height:70%; }
-#mypageArticle2 {display:table-cell; width:100%; margin:0 auto; height:500px; padding-top:25px;}
 
 div#side_buttons{list-style:none;  margin:5% 0; }
 div#side_buttons ul li{display:block;  font-size:0.8em; float:left; width:45%;}
@@ -22,14 +18,11 @@ font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; 
 form .submit2{margin-top:8%;width:90%; background-color:#1AB137; color:#FFFFFF; 
 font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
 
-
-/* 아이디/비번찾기 탭 색상 */
 .table3 .active{background-color:green; color:white; font-weight:bold; }
 
 #tabs .active {background-color:#1AB137; color:white; font-weight:bold; }
 #tabs li{color:gray;}
 
-/* 한성희 해보는중  2.11 여기부터 수정함 */
 #article2 h1, div h1 {font-family: Verdana; font-size: 45px; color: #6F0C78;   margin: 20px 0;   font-weight: normal; }
 #article2 { width:97%; padding-right: 10px; font-family: Verdana; font-size: 1em; line-height: 1.5em; height:90%; margin : 0 auto; margin-right:3%;}
 
