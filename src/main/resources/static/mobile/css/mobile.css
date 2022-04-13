@@ -408,13 +408,42 @@ input[id="menuicon"]:checked + label + div{
 
 
 /* 프로덕트 디텡일 */
-#e10{width:100%; height:100% ; margin-bottom:80px; /*margin-left:10px;*/}
+#e10{width:100%; height:100% ; margin-bottom:80px; margin-top:20px; /*margin-left:10px;*/}
 
 #content{ width:100%;}
 #contentimg img{left:40px;}
 #pdmainimg img{height: 70%; max-width:100%; width:400%; margin :0 0 0 0px;}
 #pdmainimg { width:100%; height:100%;}
 #pay{margin-top:20px;}
+
+
+#tabs2{position:sticky; margin:0 auto;  text-align:center;
+        margin:50px 0 0 20px;}
+#tabs2 ul{list-style : none; padding:0; margin-bottom:0px; display:inline-block;  background-color:#B1BBC4;}
+#tabs2 ul li{width:300px; height:100px; float:left; line-height:100px;  font-weight:bold;
+text-align:center; font-size:2.8em; cursor:pointer; border:1px solid lightgray;  }
+
+#contentimg img{max-width:100%; width:400%; margin :0 0 0 0px;}
+
+#content2{position:relative;  display:none; width:100%; height:100%; margin-top:30px;}
+#review{margin: 0 auto; margin-top:30px;}
+.submit2{margin-top:15px; margin-left:50px; width:480px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; height:60px; border:none; border-radius:2%; cursor: pointer;}
+
+#reviewb{  color:#FFFFFF;  font-size:2.3em; font-wight:bold; margin-left:800px; margin-top:50px; background-color:#1AB100; width:20%; height:60px; border:none;  cursor:pointer;}
+
+#content3{position:relative; display:none; width:100%; height:100% ;}
+#review{margin: 0 auto;}
+.submit2{margin-top:15px; margin-left:50px; width:480px; background-color:#1AB137; color:#FFFFFF; 
+font-weight: bold; font-size:15px; height:60px; border:none; border-radius:2%; cursor: pointer;}
+
+#ask2{ width:100%;}
+.ask{ color:#FFFFFF;  font-size:2.3em; font-wight:bold; margin-left:50%; margin-top:50px; background-color:#1AB100; width:20%; height:100px; border:none;  cursor:pointer;}
+
+#zzimicon{position:absolute;  margin-top:-130px;  right:100px;}
+#cart{width:100%}
+#goCart{width:90% ; height:150px; font-size:2.4em; }
+#proddetailcon{margin-left:20px;}
 
 
 /* --------------------------주문 시작-------------------------------- */
@@ -429,3 +458,4 @@ input[id="menuicon"]:checked + label + div{
 }
 
 /* --------------------------주문 여기까지-------------------------------- */
+
