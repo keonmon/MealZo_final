@@ -2,7 +2,7 @@
 <%@ include file="../include/headerfooter/mobileHeader.jsp" %> 
 <script>
 function move_login() {
-	document.IdForm.action = "login";
+	document.IdForm.action = "mobileUserLogin";
 	document.IdForm.submit();
 }
 

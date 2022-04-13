@@ -21,7 +21,7 @@ $(function(){
  
  
 <div id = "buttons">
-   <input type="submit" value="로그인" class="submit" onClick="return loginCheck()">
+   <input type="submit" value="로그인" class="submit" onClick="href='mobileLogin'"> <!-- onClick="loginCheck()" -->
 </div>
 <div id="side_buttons" >
  <ul style="margin-top:0; ">
@@ -33,7 +33,7 @@ $(function(){
 
 </fieldset>
 </form>
-<div id="message" style="font-size:1.5em; width:80%; left:30%;"> ${message}</div>
+<div id="message" style="font-size:1.3em; width:80%; left:20%;"> ${message}</div>
 </article>
 
 
