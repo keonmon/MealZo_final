@@ -7,5 +7,8 @@
 </head>
 <body>
 <h2>모바일임당</h2>
+<ul>
+<li><a href="mobileCartList">장바구니&nbsp;</li>
+</ul>
 </body>
 </html>
