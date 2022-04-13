@@ -47,21 +47,21 @@
 	});
 </script>
     
-<article  id="e10">
+<article  id="e1">
 <form method="post" name="form1" id="productForm" >
-   <input type="hidden" id="price2" name="price2" value="${mproductVO.PRICE2}">
- <div id="pdmainimg">
-     		<img src="images/${mproductVO.IMAGE}" />
-	</div>
-	<br><br>
-	
-			<div  id="pay"  style="font-size:2.8em; font-weight:bold "> 
-				${mproductVO.NAME }  </div>
-				
-		<div id="pay" style="font-size:3.3em; color:black; font-weight:bold">
-			<fmt:formatNumber value="${mproductVO.PRICE2}"  pattern="###,###,###"/>원
-			</div>
-	<table >
+	<table class="pdtable" >
+  		<tr><td>
+     		<img src="images/${mproductVO.IMAGE}" width="480px" height="490px"/>
+		</td>
+	<td>
+		<table  style="heigh:320px; width:490px; margin-left:50px;">
+			<tr style="font-size:20px;"><td> 
+				<h2>${mproductVO.NAME }</h2> 
+				   <input type="hidden" id="price2" name="price2" value="${mproductVO.PRICE2}">
+			    <h2><fmt:formatNumber value="${mproductVO.PRICE2}"  pattern="###,###,###"/>원</h2>
+			</td></tr>	
+				<tr><td></td></tr><tr><td></td></tr>
+
 			  	<tr style="font-size:20px; width:100px;" >
 				  	<td >   
 					<p> 수량 &nbsp; &nbsp; &nbsp;
@@ -81,18 +81,43 @@
 	</table>  
 </form>
 
+	<div style="position:absolute; top:40px; right:160px;">
+<div class="stop-dragging">
+<table>
+
+<tr><td><c:if test="${ result==-1 }">
+
+ <span class="material-icons"  id="productSearchIcon"  onClick="zzim('${mproductVO.PSEQ}')" style="font-weight:bold;" >favorite_border</span>
+ 	 <div style="font-size:1.5em; text-align: center; font-weight:bold; top:10px; "><br>찜하기 
+  <c:if test = "${zzimcount>0}">
+${zzimcount}
+</c:if></div></c:if>
+
+<c:if test="${ result==1}">
+
+<a href="zzimdelete?pseq=${mproductVO.PSEQ}"><span class="material-icons" style="color:red; font-weight:bold;" id="productSearchIcon">favorite</span>
+	</a>
+	 <div style="font-size:1.5em; text-align: center; font-weight:bold; top:10px; "><br>찜하기
+<c:if test = "${zzimcount>0}">	
+ ${zzimcount}
+	</c:if> </div></c:if>
+</td></tr>
+
+</table>
+</div>
+</div>
 
 <script>
 $(function (){ 
-	$("#tabs2 li").click(function(){
+	$("#tabs li").click(function(){
 		var num = $(this).index();
-		$('#tabs2 li').removeClass('active');
-		$('#tabs2 li').eq(num).addClass('active');
+		$('#tabs li').removeClass('active');
+		$('#tabs li').eq(num).addClass('active');
 		
 	});
 })
 </script>
-<div id="tabs2">
+<div id="tabs">
 	<ul>
 		<li class="active">상품상세</li>
 		<li>후기 
