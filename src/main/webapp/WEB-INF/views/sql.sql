@@ -361,7 +361,7 @@ select rownum as rn, p.* from
  
  select * from mreview_view;
  
- 
+ DROP VIEW mreview_view;
  -- 메인 롤링배너 관리테이블
  create table MRollingBanner(
  	name varchar2(100) not null,
@@ -430,4 +430,11 @@ create table nmqna (
 ); 
 create sequence nmqna_seq start with 1;
 
+delete  from mpdimg where pseq=121;
 
+SELECT constraint_name,
+    table_name,
+    r_constraint_name FROM USER_CONSTRAINTS
+WHERE CONSTRAINT_NAME = 'SYS_C007125'
+
+select * from mpdimg 
