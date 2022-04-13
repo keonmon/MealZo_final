@@ -1,7 +1,15 @@
 @charset "UTF-8";
 
-body{margin:0;}
+
+/* 로그인 --*/
+
+/* 만지면 안돼 */
+body{ background:#FFFFFF; margin:0; padding:0;}
+article {position: relative; width:97%; margin:0 auto; height:70%; }
 #wrap{width:100%; margin:0 auto;}
+tr{width:90%; height:49px;}
+/* ----------------------------------------- */
+
 .clear {clear: both; }
 
 /* 로그인 --*/
@@ -9,20 +17,18 @@ body{margin:0;}
 
 a{text-decoration:none; color:black;}
 
-article {position: relative; width:97%; margin:0 auto; height:70%; }
-
 div#side_buttons{list-style:none;  margin:5% 0; }
 div#side_buttons ul li{display:block;  font-size:0.8em; float:left; width:45%;}
 div#side_buttons a{text-decoration :none; text-align:center; color:gray; font-weight:light;  }
 div#side_buttons .join{font-weight:bold;}
 
 form fieldset {border:none; margin:0 auto; margin-top:3%; width:97%; height:50%;}
-.text{ outline: none;  margin:5% 0;  height:10%; 	width:90%; font-size:1.2em;}
+.text{ outline: none;  margin:5% 0;  height:10%; 	width:90%; font-size:1.0em;}
 div #input1{border-bottom:1px solid #76797D;width:100%; }
 form .submit{margin-top:8%;width:90%; background-color:#1AB137; color:#FFFFFF; 
-font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+font-weight: bold; font-size:1.1em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
 form .submit2{margin-top:8%;width:90%; background-color:#1AB137; color:#FFFFFF; 
-font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+font-weight: bold; font-size:1.1em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
 
 .table3 .active{background-color:green; color:white; font-weight:bold; }
 
@@ -30,12 +36,12 @@ font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; 
 #tabs li{color:gray;}
 
 #article2 h1, div h1 {font-family: Verdana; font-size: 45px; color: #6F0C78;   margin: 20px 0;   font-weight: normal; }
-#article2 { width:97%; padding-right: 10px; font-family: Verdana; font-size: 1em; line-height: 1.5em; height:90%; margin : 0 auto; margin-right:3%;}
+#article2 { width:97%; padding-right: 10px; font-family: Verdana; font-size:0.8em; line-height: 1.2em; height:90%; margin : 0 auto; margin-right:3%;}
 
 #form2 {width: 97%; border:none; }
 #form2 #fieldset2 { padding: 10px 0 10px 5px; width:97%; border:none; margin:0 auto; margin-top:5%; align:center;}
 .text2{ outline: none; height:30px; width:85%; font-size:1.0em; }
-.text3{ outline: none; height:30px; width:50%; font-size:1.0em; }
+.text3{ outline: none; height:30px; width:60%; font-size:0.8em; margin-left:0;}
 
 #table2 {margin:0 auto;}
 
@@ -43,7 +49,7 @@ font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; 
 
 #form2 #fieldset2 #legend2 { font-size: 20px;   border-bottom: 1px dotted #666;   width: 97%;    padding: 5px 0; align:center;}
 
-tr{width:97%; height:49px;}
+/* tr{width:97%; height:49px;} */
 
 #form2 #label {width: 20%; text-align:left; margin: 5px 0; border-left:1px #eee solid; vertical-align:middle; }
 #form2 #th1{color:#666; background:#f8f8f8; width:20%;}
@@ -73,26 +79,24 @@ article3 { width:97%; padding-right: 10px; font-family: Verdana; font-size: 1em;
 .table4 {margin:0 auto; margin-left:3%;}
    
 form .cancel{margin-top:30px;width:45%; background-color:#1AB137; color:#FFFFFF; 
-font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+font-weight: bold; font-size:1.1em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
 
-.text3{ outline: none; height:30px; width:50%; font-size:0.8em; margin-left:0;}
-#form2 #th5{background:#f8f8f8; width:20%; text-align: center; align:center;}
+
+#form2 #th5{width:30%; text-align: center; align:center;}
 
 form .submit3, form .cancel3{margin-top:30px; width:45%; background-color:#1AB137; color:#FFFFFF; 
-font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+font-weight: bold; font-size:1.1em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
 
 form .submit4, form .cancel4{margin-top:30px; width:45%; background-color:#1AB137; color:#FFFFFF; 
-font-weight: bold; font-size:1.3em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+font-weight: bold; font-size:1.1em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
 
 form .submit5 {margin-top:30px; margin-left:30px; width:20%; background-color:#1AB137; color:#FFFFFF; 
-font-weight: bold; font-size:1.3em; height:30px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+font-weight: bold; font-size:1.1em; height:30px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
 .byeform {margin-top:100px;}
 
 form cancel5 {margin-top:30px;width:20%; background-color:#1AB137; color:#FFFFFF; 
-font-weight: bold; font-size:1.3em; height:30px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
+font-weight: bold; font-size:1.1em; height:30px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
 .byeform {margin-top:100px;}
-
-tr{width:90%; height:49px;}
 
 #th6{color:#666; background:#f8f8f8; width:95%;}
 

@@ -12,7 +12,7 @@ $(function(){
 <br><br><br><br>
 <article>
 
-<form method="post" action="login" name="loginFrm">
+<form method="post" action="mobileLogin" name="loginFrm">
 
  <fieldset>
   <legend></legend>
@@ -34,7 +34,7 @@ $(function(){
 
 </fieldset>
 </form>
-<div id="message" style="font-size:1.3em; width:80%; left:20%;"> ${message}</div>
+<div id="message" style="font-size:1.2em; width:80%; left:10%;"> ${message}</div>
 </article>
 
 

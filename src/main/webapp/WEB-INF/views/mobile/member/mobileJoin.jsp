@@ -13,10 +13,10 @@
 	    <tr><th id="th2"><label>비밀번호 확인</label></th><th id="th7"><input type="password" name="pwdCheck" size="6" placeholder="비밀번호 확인"  class="text3" style="border:0 solid black;"></th></tr>
 	    <tr><th id="th2"><label>이름</label></th><th id="th7"><input type="text"  name="name" ></th></tr>
 	    <tr><th id="th2"><label>이메일</label></th><th id="th7"><input type="text"  name="email"></th></tr>
-	    <tr><th id="th2"><label>우편번호</label></th><th id="th7"><input type="text" name="zip_num"   size="10" >    
+	    <tr><th id="th2"><label>우편번호</label></th><th id="th7"><input type="text" name="zip_num"   size="10%" >    
 	    <input type="button" value="주소 찾기" class="dup" onclick="post_zip()"></th></tr>
 		<tr><th id="th2"><label>주소</label></th><th id="th7"><input type="text" name="addr1" size="35%"></th></tr>
-		<tr><th id="th2"><label>&nbsp;</label></th><th id="th7"><input type="text" name="addr2"   size="25"></th></tr>
+		<tr><th id="th2"><label>&nbsp;</label></th><th id="th7"><input type="text" name="addr2"   size="25%"></th></tr>
 		<tr><th id="th2"><label>휴대폰 번호</label></th><th id="th7"><input  type="text" name="phone"></th></tr>
 	</table>
 	<div class="clear"></div>

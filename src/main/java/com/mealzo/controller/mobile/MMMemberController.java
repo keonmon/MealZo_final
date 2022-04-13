@@ -34,12 +34,12 @@ public class MMMemberController {
 	@Autowired
 	MCartService cs;
 	
-	@RequestMapping("/mobileUserLogin")
-	public String mobileLoginForm() {
-		return "mobile/member/mobileLogin";
-	}
+	//@RequestMapping("/mobileUserLogin")
+	//public String mobileLoginForm() {
+	//	return "mobile/member/mobileLogin";
+	//}
 	
-	@RequestMapping(value="/mobileLogin", method=RequestMethod.GET)
+	@RequestMapping(value="/mobileLogin", method= {RequestMethod.GET, RequestMethod.POST})
 	public String mobileLogin( @ModelAttribute("dto") @Valid MMemberVO membervo , BindingResult result, 
 			HttpServletRequest request, Model model ) {
 		int cnt = 0;	// 카트 개수 초기화
@@ -225,13 +225,16 @@ public class MMMemberController {
 			HttpServletRequest request,
 			Model model ) {
 		ModelAndView mav = new ModelAndView(); 
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser 
 		= (HashMap<String, Object>)session.getAttribute("loginUser");
 		
+		if( loginUser == null ) {
+			mav.setViewName("mobile/member/mobileLogin");
+		} else {
 		String address = (String)loginUser.get("ADDRESS");
-		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("id", (String)loginUser.get("ID"));
 		paramMap.put("name", (String)loginUser.get("NAME"));
 		paramMap.put("email", (String)loginUser.get("EMAIL"));
@@ -254,6 +257,7 @@ public class MMMemberController {
 			
 		}
 		mav.setViewName("mobile/member/mobileUpdate");
+		}
 		return mav;
 	}
 
@@ -460,6 +464,20 @@ public class MMMemberController {
 		}
 		
 		return mav;
+	}
+	
+	@RequestMapping("/mobileMypageForm")
+	public String mobileMypageForm(HttpServletRequest request  ) {
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser =
+				(HashMap<String, Object>)session.getAttribute("loginUser");
+
+		if(loginUser==null) {
+			return "mobile/member/mobileLogin";
+		}else
+			
+		
+		return "mobile/mypage/mobileMypage";
 	}
 
 }

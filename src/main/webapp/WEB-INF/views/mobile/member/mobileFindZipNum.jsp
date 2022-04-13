@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
 <title>Insert title here</title>
 <link href="mobile/css/mobile.css" rel="stylesheet"> 
 <script src="mobile/script/mobileMember.js"></script>

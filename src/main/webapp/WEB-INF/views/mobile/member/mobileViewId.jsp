@@ -34,8 +34,8 @@ $(function(){
 		</table>
 		
 		<div id="buttons">
-		    <input type="button" class="submit3" value="로그인 창으로" onClick="move_login();">
-			<input type="button" class="submit3" value="비밀번호찾기" 
+		    <input type="button" class="submit3" value="로그인 창으로" onClick="move_login(); style="margin-left:5%"">
+			<input type="button" class="submit3" value="비밀번호찾기" style="margin-left:2%"
 			onClick="location.href='mobileFindIdForm?returnpwd=pwd'" >
 		</div>
 	</fieldset>
