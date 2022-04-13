@@ -121,10 +121,10 @@ function nProduct_move(num,x){
     var imageLength= 40;
     
     if(num==-1) {
-        nLocationNum--;
         if(nLocationNum==0){
             return;
         }
+        nLocationNum--;
     }else{
         if(nLocationNum==4){
             return;
