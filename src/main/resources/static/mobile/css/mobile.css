@@ -5,7 +5,7 @@
 
 /* 로그인 --*/
 
-body{ background:#FFFFFF; margin:0; padding:0; font-size:0.8em;  }
+body{ background:#FFFFFF; margin:0; padding:0;   }
 .clear {clear: both; }
 a{text-decoration:none; color:black;}
 
@@ -210,15 +210,15 @@ input[id="menuicon"]:checked + label + div{
 
 #item2{float:left;  border:1px solid black; padding:0;}
 */
-#e {width:100%; height:100% ;margin:0 auto; margin-bottom:80px;  margin-left:80px;}
+#e {width:100%; height:100% ;margin:0 auto; margin-bottom:80px;  margin-left:85px;}
 .clear{clear:both;}
-#paggingg{font-size:2.0em; margin-top:20px;}
+#paggingg{font-size:2.0em; margin-top:50px; margin-bottom:50px;}
 #allmenu{width:100%; /* border:1px solid black; */ margin:0 auto; }
 #item3{ float:left; padding-right:0px; }
 #item3 ul{list-style:none;   padding-left:20px; padding-right:0px;}
 /*#item3  ul li{margin: 0 40% 300% 0px; } */
 /* #item3 img{ height: 60%; width:auto; margin-right:0px;} */
-#item3 img{ height: 60%; max-width:100%; width:400px;}
+#item3 img{ height: 60%; max-width:100%; width:420px;}
 #item3  ul li{font-size:2.5em; font-weight:bold;}
 #item3 a{text-decoration:none; disply:inline-block; color:black;}
 
@@ -254,7 +254,7 @@ input[id="menuicon"]:checked + label + div{
 #top_menu ul li{display:inline-block; margin-right:40px; }
 #top_menu a{text-decoration:none; disply:inline-block;  font-size:2.5em;color: gray;} 
 #top_menu ul li a:hover{color:green; font-weight:bold; }
-#top_menu ul li a:active{color:green; font-weight:bold; }
+#top_menu ul li a.active {color:green; font-weight:bold; }
 /* ------------------------------------------여기까지 상품 카테고리 -------------------------------------------------------*/
 body{margin:0;}
 #wrap{width:100%; margin:0 auto;}
@@ -381,3 +381,12 @@ body{margin:0;}
 }
 /* -------------------------------------------- 여기까지 메인헤더, 메인 ----------------------------------- */
 
+
+/* 프로덕트 디텡일 */
+#e10{width:100%; height:100% ; margin-bottom:80px; /*margin-left:10px;*/}
+
+#content{ width:100%;}
+#contentimg img{left:40px;}
+#pdmainimg img{height: 70%; max-width:100%; width:400%; margin :0 0 0 0px;}
+#pdmainimg { width:100%; height:100%;}
+#pay{margin-top:20px;}

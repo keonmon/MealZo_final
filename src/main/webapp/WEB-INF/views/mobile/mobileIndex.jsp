@@ -1,7 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ include file ="../mobile/include/sidemenu/sidemenu.jsp"%>
-<%@ include file="include/headerfooter/mobileMainHeader.jsp"%>
+<%-- <%@ include file="include/headerfooter/mobileMainHeader.jsp"%> --%>
 <%@ include file ="../mobile/include/headerfooter/mobileHeader.jsp"%>
 
 <style type="text/css">
