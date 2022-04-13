@@ -319,7 +319,7 @@ public class MAdminController {
 
 			int cnt = Integer.parseInt(paramMap.get("cnt").toString());
 			paging.setTotalCount(cnt);
-			paging.paging(); // 이거 확인 하기 위에랑 다르게 ㅈ거어서 여기서 빨간줄 나와서 바꾼거거든요 건희님껏두 함 봐주세요 페이징저렁 ㄸㅎ깥은
+			paging.paging(); // 이거 확인 하기 위에랑 다르게 줄거어서 여기서 빨간줄 나와서 바꾼거거든요 건희님껏두 함 봐주세요 페이징저렁 똑같은
 			paramMap.put("startNum", paging.getStartNum());
 			paramMap.put("endNum", paging.getEndNum());
 
@@ -487,7 +487,7 @@ public class MAdminController {
 				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			mav.addObject("dto", getAdminAsk.get(0));
 		//	mav.addObject("aseq", aseq);
-			mav.setViewName("admin/qna/askDetil");
+			mav.setViewName("admin/qna/askDetail");
 
 		}
 		return mav;
