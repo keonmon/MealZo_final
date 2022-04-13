@@ -55,7 +55,7 @@
 	<div id="slide_product">
 		<div id="index_catalog_topper">
 			<span id="name">
-				<a href="productForm?kind=&bestyn=&newyn=y&sort=recently&sub=y&idx=0">신메뉴!</a>
+				<a href="mobileProductForm?kind=&bestyn=&newyn=y&sort=recently&sub=y&idx=0">신상품</a>
 			</span>
 		</div>
 		<div>
@@ -67,14 +67,14 @@
 				<c:forEach items="${newList}" var="mproductVO">
 					<div id="product_wrap1">
 						<div id="product_thum1">
-							<a href="productDetail?pseq=${mproductVO.PSEQ}">
+							<a href="mobileProductDetail?pseq=${mproductVO.PSEQ}">
 								<img src="images/${mproductVO.IMAGE}">
 							</a>
 						</div>
 						<div id="product_cont1">
-							<a id="name" href="productDetail?pseq=${mproductVO.PSEQ}">${mproductVO.NAME }</a><br>
-							<a id="price"href="productDetail?pseq=${mproductVO.PSEQ}"> <fmt:formatNumber value="${mproductVO.PRICE2}" pattern="###,###,###"/>원</a> <br>
-							<a id="content"href="productDetail?pseq=${mproductVO.PSEQ}">${mproductVO.CONTENT}</a>
+							<a id="name" href="mobileProductDetail?pseq=${mproductVO.PSEQ}">${mproductVO.NAME }</a><br>
+							<a id="price"href="mobileProductDetail?pseq=${mproductVO.PSEQ}"> <fmt:formatNumber value="${mproductVO.PRICE2}" pattern="###,###,###"/>원</a> <br>
+							<a id="content"href="mobileProductDetail?pseq=${mproductVO.PSEQ}">${mproductVO.CONTENT}</a>
 						</div>
 					</div>
 				</c:forEach>
@@ -89,7 +89,7 @@
 	<div id="slide_product">
 		<div id="index_catalog_topper">
 			<span id="name">
-				<a href="productForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0">베스트</a>
+				<a href="mobileProductForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0">베스트 상품</a>
 			</span>
 		</div>
 		<div>
@@ -102,14 +102,14 @@
 				<c:forEach items="${bestList}" var="mproductVO">
 					<div id="product_wrap1" >
 						<div id="product_thum1">
-							<a href="productDetail?pseq=${mproductVO.PSEQ }">
+							<a href="mobileProductDetail?pseq=${mproductVO.PSEQ }">
 								<img src="images/${mproductVO.IMAGE}">
 							</a>
 						</div>
 						<div id="product_cont1">
-							<a id="name" href="productDetail?pseq=${mproductVO.PSEQ }">${mproductVO.NAME }</a><br>
-							<a id="price"href="productDetail?pseq=${mproductVO.PSEQ}"> <fmt:formatNumber value="${mproductVO.PRICE2}" pattern="###,###,###"/>원</a> <br>
-							<a id="content"href="productDetail?pseq=${mproductVO.PSEQ}">${mproductVO.CONTENT}</a>
+							<a id="name" href="mobileProductDetail?pseq=${mproductVO.PSEQ }">${mproductVO.NAME }</a><br>
+							<a id="price"href="mobileProductDetail?pseq=${mproductVO.PSEQ}"> <fmt:formatNumber value="${mproductVO.PRICE2}" pattern="###,###,###"/>원</a> <br>
+							<a id="content"href="mobileProductDetail?pseq=${mproductVO.PSEQ}">${mproductVO.CONTENT}</a>
 						</div>
 					</div>
 				</c:forEach>
