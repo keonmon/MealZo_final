@@ -104,13 +104,13 @@ function go_cart_delete(){
    if( count == 0 ){
       alert("삭제할 항목을 선택해주세요");
    } else{
-      document.form4.action = "cartDelete";
+      document.form4.action = "mobileCartDelete";
        document.form4.submit();
    }
 }
 
 function go_order_insert(){
-	document.form4.action="orderInsert";
+	document.form4.action="mobileOrderInsert";
 	document.form4.submit();
 }
 

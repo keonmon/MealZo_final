@@ -8,7 +8,7 @@
 	padding:10px 30px; box-sizing: border-box;" >
 	<b style="font-size:3em ">${loginUser.ID }&nbsp;님의 장바구니</b>
 </div>
-<form style="text-align:center;">
+<form name="form4" style="text-align:center;">
 
 <!-- <div style="position: fixed; left: 0; right:0;  z-index: 1000; font-size: 16px;">
 		<ul style="display: table; width:100%;">
