@@ -46,8 +46,8 @@
 					</form>
 				</div>
 				<div id="cart">
-					<a href="cartList"><span class="material-icons" id="cartIcon" name="cart" >shopping_cart</span>
-						<b id="cartCnt" style="position:absolute; background-color:green; border-radius:3px 3px 3px 3px; color:white">${cartCnt }</b></a>
+					<a href="mobileCartList"><span class="material-icons" id="cartIcon" name="cart" >shopping_cart</span>
+						<b id="cartCnt" >${cartCnt }</b></a>
 				</div>
 				
 			

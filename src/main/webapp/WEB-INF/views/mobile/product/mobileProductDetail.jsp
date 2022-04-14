@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  <%@ include file ="../../mobile/include/headerfooter/mobileHeader.jsp"%>
-<%@ include file ="../../mobile/include/sidemenu/sidemenu.jsp"%>
-
+<%@ include file="../include/headerfooter/mobileMainHeader.jsp"%>
+<%@ include file ="../include/sidemenu/sidemenu.jsp"%>
 
 <script type="text/javascript">
 	$(document).ready( function () {
@@ -54,32 +53,69 @@
      		<img src="images/${mproductVO.IMAGE}" />
 	</div>
 	<br><br>
-	
+	<div id="proddetailcon">
 			<div  id="pay"  style="font-size:2.8em; font-weight:bold "> 
 				${mproductVO.NAME }  </div>
 				
 		<div id="pay" style="font-size:3.3em; color:black; font-weight:bold">
 			<fmt:formatNumber value="${mproductVO.PRICE2}"  pattern="###,###,###"/>원
 			</div>
-	<table >
-			  	<tr style="font-size:20px; width:100px;" >
+
+		<div id="zzimicon">
+			<div class="stop-dragging">
+				<table>
+
+					<tr>
+						<td><c:if test="${ result==-1 }">
+
+								<span class="material-icons" id="productSearchIcon"
+									onClick="zzim('${mproductVO.PSEQ}')" style="font-weight: bold; top: -37px;">favorite_border</span>
+								<div
+									style="font-size: 1.5em; text-align: center; font-weight: bold; top: -37px;">
+									<br>찜하기
+									<c:if test="${zzimcount>0}">
+                                      ${zzimcount}
+										</c:if>
+								</div>
+							</c:if> <c:if test="${ result==1}">
+
+								<a href="zzimdelete?pseq=${mproductVO.PSEQ}"><span
+									class="material-icons" style="color: red; font-weight: bold;  top: -37px;"
+									id="productSearchIcon" >favorite</span> </a>
+								<div
+									style="font-size: 1.5em; text-align: center; font-weight: bold; top: -37px;">
+									<br>찜하기
+									<c:if test="${zzimcount>0}">   
+ 							${zzimcount}
+  										 </c:if>
+								</div>
+							</c:if></td>
+					</tr>
+
+				</table>
+			</div>
+		</div>
+		
+		<table >
+			  	<tr style="font-size:2.4em; width:100px;" >
 				  	<td >   
-					<p> 수량 &nbsp; &nbsp; &nbsp;
-					<input type="button" value=" + " onclick="add();"  style="font-size:20px; background:white;">
-					<input type="text" id="quantity" name="quantity" id="quantity" onkeyup="printName()" size="2" value="1"  style="font-size:20px ; text-align:center;"> 
+					<p style="font-size:1.0em"> 수량 </p></td><td style= width:413px;>
+					<input type="button" value=" - " onclick="del();"  style="font-size:1.3em; background:white;">
+				  <input type="text" id="quantity" name="quantity" id="quantity" onkeyup="printName()" size="4" value="1"  style="font-size:1.3em ; text-align:center;"> 
                    <input type="hidden" name="pseq" id="pseq" value="${mproductVO.PSEQ}">
-                   <input type="button" value=" - " onclick="del();"  style="font-size:20px; background:white;"><br><br></p>
-               </td>
-            </tr>
-              <tr><td><h2>총 상품금액</h2> </td><td><h3><div id="result" name="result" style=" font-size:25px;"></div></h3></td></tr>
+                   <input type="button" value=" + " onclick="add();"  style="font-size:1.3em; background:white;">
+               </td> </tr>
+              <tr height="100px;"><td style="font-size:1.5em;"><h2>총 상품금액</h2> </td><td style=" font-size:1.8em; text-align:center"><h2><div id="result" name="result" ></div></h2></td></tr>
 
 		</table>
-	
+		</div>
+	<div id="cart">
 	  <input type="button" value="장바구니" class="submit2" id="goCart" >
-	  <input type="button" value="바로구매" class="submit2" onClick="go_order();">
-	  	</td></tr>
-	</table>  
+</div>
+	  	
 </form>
+
+
 
 
 <script>
@@ -123,9 +159,9 @@ $(function (){
 	 <div class="contents" id="content2">
 	 <form method="post" name="form2" >
 <table id="review" style="width:800px; text-align:center;" >
-	    <tr><th  style="width:100px;">리뷰날짜</th><th>상품평</th><th style="width:100px;">id</th></tr>
+	    <tr style="font-size:2.3em;"><th  style="width:200px;">리뷰날짜</th><th>상품평</th><th style="width:100px;">id</th></tr>
 	     <c:forEach items="${mreview}" var="mreviewVO" >
-	    <tr><td><fmt:formatDate value="${mreviewVO.INDATE}" type="date"/>
+	    <tr style="font-size:2.3em;"><td><fmt:formatDate value="${mreviewVO.INDATE}" type="date"/>
 	     </td><td style="width:500px; word-break:break-all;">${mreviewVO.CONTENT}</td>
 	  <td>${mreviewVO.ID}</td></tr>
 	    </c:forEach>
@@ -146,7 +182,7 @@ $(function (){
 	 <div class="contents" id="content3">
 	 <form method="post" name="form3">
 
-	    <div id=aks2>
+	    <div id=ask2 >
 	    <input type="button" value="문의하기" class="ask" onclick="location.href='askWriteForm?pseq=${pseq}'">
 </div>
 

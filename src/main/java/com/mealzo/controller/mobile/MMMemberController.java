@@ -465,7 +465,5 @@ public class MMMemberController {
 		
 		return mav;
 	}
-	
-	
 
 }
