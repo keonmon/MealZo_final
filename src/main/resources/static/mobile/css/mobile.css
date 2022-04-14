@@ -191,7 +191,7 @@ input[id="menuicon"]:checked + label + div{
 
 #sidelist {margin-top:250px;}
 #sidelist ul{list-style:none; }
-#sidelist ul li{ color:black; margin: 0 0 45px 45px; font-size:1.7em; font-weight:bold;  }
+#sidelist ul li{ color:black; margin: 0 0 45px 45px; font-size:2.0em; font-weight:bold;  }
 #sidelist a{text-decoration:none; disply:inline-block; color:black; }
 
 #homeicon {position:absolute;   margin:12px 0 0 620px;}

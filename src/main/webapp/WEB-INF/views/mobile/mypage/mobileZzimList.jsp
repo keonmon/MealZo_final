@@ -4,12 +4,12 @@
 <%@ include file ="../include/sidemenu/sidemenu.jsp"%>
 
 <article id="zzim2" style="width:900px; max-width:900px;">
-<h2 id="cancelTitle">나의 찜한상품 보기</h2>
+<h2 class="kind">나의 찜한상품 보기</h2>
 
 <br><br><br><br>
 <form>
 <table id="zzimtable" style="text-align:center;" >
-<tr    style="font-size:2.3em; height:140px;"><th width="160px">번호</th><th colspan="2">상품이름</th>
+<tr    style="font-size:2.3em; height:140px; background-color:#ededed;"><th width="160px">날짜</th><th colspan="3">상품이름</th>
 <c:forEach items="${zzimList}" var="zzimVO">
 <input type="hidden" value="${zzimVO.ZSEQ}">
 <tr ><td style="font-size:2.0em;"><fmt:formatDate value="${zzimVO.INDATE}" type="date" pattern="YY.MM.dd"/></td>
@@ -27,15 +27,17 @@
 
 
 </table>
-
+	<div class="clear" ></div>
+	<div id="paggingg">
 <jsp:include page="../../include/paging/paging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>
     <jsp:param value="${paging.endPage}" name="endPage"/>
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
-    <jsp:param value="zzimList" name="command"/>
+    <jsp:param value="mobileZzimList" name="command"/>
 </jsp:include>
+</div>
 </form>
 </article>
 
