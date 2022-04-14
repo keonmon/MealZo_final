@@ -32,7 +32,7 @@
 						$("#cartCnt").empty();
 						$("#cartCnt").append(data.cnt);
 						if(confirm('해당 상품이 장바구니에 추가되었습니다\n장바구니로 이동하시겠습니까?')){
-							location.href="mobileCartList";
+							location.href="cartList";
 						}
 					}else{
 						location.href="mobileLogin";

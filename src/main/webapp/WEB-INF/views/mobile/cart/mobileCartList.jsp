@@ -33,9 +33,23 @@
 			<tr><th colspan="2"> 총 액 </th><th colspan="2">
        				<fmt:formatNumber value="${totalPrice}" type="currency" /></th>
        				<th><a href="#" onClick="go_cart_delete();">삭제하기</a></th></tr> 
-			</table>
+</table>
+</form>
 
-<div style="position: fixed;left: 0;  bottom: 0;  right: 0;z-index: 1002;font-size: 16px;">
+<div class="clear"></div>
+</div>
+<div id="botFlyingContainer2">
+	<div id="botBtn2" style="background-color:#434343; color:#ffffff;
+		font-size:3em; font-weight:bold;">
+		<fmt:formatNumber value="${totalPrice}" type="currency" />
+</div><div id="botBtn2"
+	style=" background-color:#6db800; color:#ffffff; font-size:3em; font-weight:bold;"
+	class="submit" onclick="go_order_insert();"><!-- onclick="location.href='mobileOrderList'" -->
+		주문하기
+	</div>
+</div>
+
+<%-- <div style="position: fixed;left: 0;  bottom: 0;  right: 0;z-index: 1002;font-size: 16px;">
 			<ul style="display: table; width:100%;">
 			<li style="display: table-cell;text-align: center;vertical-align: middle; width: 42%;background-color: #434343;color: #ffffff;/* line-height: 48px; */">
 				<ul style="display: table; width: 100%;  height: 50px;">
@@ -50,5 +64,5 @@
 				</ul>
 			</div>
 		</table>
-	</form>
+	</form> --%>
 <%@ include file="../include/headerfooter/mobileFooter.jsp" %>
