@@ -33,8 +33,8 @@
       <div id="sideicon2">
       <ul>
 	 <li><a href="mobileOrderList"><span class="material-icons" style="font-size:2.0em; ">&nbsp;local_shipping</span><br><span style="font-size:0.8em; font-weight:bold;">주문내역</span></a></li>
-	 <li><a href="mobileMypageForm"><span class="material-icons" style="font-size:2.0em;">&nbsp;&nbsp;account_circle</span><br><span style="font-size:0.8em; font-weight:bold;">&nbsp;마이페이지</span></a></li>
-	 <li><a href="mobileZzimList"><span class="material-icons" style="font-size:2.0em;">&nbsp;volunteer_activism</span><br><span style="font-size:0.8em; font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;찜</span></a></li>
+	 <li style="margin-left:20px;"><a href="mobileMypageForm"><span class="material-icons" style="font-size:2.0em;">&nbsp;&nbsp;account_circle</span><br><span style="font-size:0.8em; font-weight:bold;">&nbsp;마이페이지</span></a></li>
+	 <li style="margin-left:20px;"><a href="mobileZzimList"><span class="material-icons" style="font-size:2.0em;">&nbsp;volunteer_activism</span><br><span style="font-size:0.8em; font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;찜</span></a></li>
      </ul>
     </div>     
 <br>

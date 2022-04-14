@@ -206,7 +206,7 @@ input[id="menuicon"]:checked + label + div{
 
 
 #sideicon ul {float:left; list-style:none; }
-#sideicon ul li{display:inline-block; color:black;   margin: 0 40px 0 25px; padding:0 0 0 25px;}
+#sideicon ul li{display:inline-block; color:black;   margin: 0 60px 0 25px; padding:0 0 0 25px;}
 #sideicon a{text-decoration:none; disply:inline-block; color:black; }
 
 
@@ -440,7 +440,7 @@ input[id="menuicon"]:checked + label + div{
 
 
 
-/* 멤버 헤더 */
+/* 멤버 헤더------------------------------------------------------------ */
 
 #header2{position:fixed; z-index:99; background-color:white; 
 	top: 0;
@@ -544,7 +544,7 @@ input[id="menuicon2"]:checked + label + div{
 #sidelogin2 a{text-decoration:none; disply:inline-block; color:black;}
 
 #sideicon2 ul {float:left; list-style:none; }
-#sideicon2 ul li{display:inline-block; color:black;   margin: -7% 0 5% 0; padding:0 0 0 15px;}
+#sideicon2 ul li{display:inline-block; color:black;   margin: -15% 0 5% 0; padding:0 0 0 0px;}
 #sideicon2 a{text-decoration:none; disply:inline-block; color:black; }
 
 
@@ -618,6 +618,23 @@ font-weight: bold; font-size:15px; height:60px; border:none; border-radius:2%; c
 #zzimtable img{ max-width:100%; width:250%; }
 
 
+/* --------------------------비회원 문의-------------------------------- */
+#qnaTable{width:95%; margin:0 auto;}
+#qnaTable th{font-size:2.3em; background-color:#ebebeb; height:50px;height:100px;}
+#qnaTable td{font-size:2em; text-align:center; border-bottom:.5px solid gray;height:150px;}
+
+
+#e11{width:100%; height:100% ; margin-bottom:80px; margin-top:20px; /*margin-left:10px;*/}
+#qnaWrite input{}
+#qnaWrite h2{font-size:1.5em}
+
+#content{ width:100%;}
+#contentimg img{left:40px;}
+#pdmainimg img{height: 70%; max-width:100%; width:400%; margin :0 0 0 0px;}
+#pdmainimg { width:100%; height:100%;}
+#pay{margin-top:20px;}
+
+
 /* --------------------------이벤트 시작-------------------------------- */
 #eventTable th{font-size:2em; background-color:#ebebeb; height:50px;height:100px; font-weight:bold;}
 #eventTable td{font-size:1.7em; text-align:center; border-bottom:.5px solid gray;height:50px;}
@@ -635,4 +652,5 @@ font-weight: bold; font-size:15px; height:60px; border:none; border-radius:2%; c
  #button3{margin:0 auto; }
  
  .qnaviewb1{width:100%; height:100px; font-size:1.4em ;   font-weight:bold;border: 1px solid #666; background-position:center; color: #FFFFFF; margin-top: 30px; background-color:#1AB137;} 
+
 

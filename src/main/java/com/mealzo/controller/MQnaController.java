@@ -269,7 +269,7 @@ public class MQnaController {
 			paramMap.put("content", content);
 			paramMap.put("subject", subject);
 			paramMap.put("id", qnavo.getId());
-			paramMap.put("pwd", qnavo.getId());
+			paramMap.put("pwd", qnavo.getPwd());
 			
 			qs.insertnmQna(paramMap);
 			

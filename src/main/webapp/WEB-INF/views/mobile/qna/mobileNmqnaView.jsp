@@ -45,10 +45,10 @@
 	<div id="botBtn" style=" 
 		background-color:#434343; color:white; font-size:3em; font-weight:bold;"
 		onclick="location.href='mobileMain'">
-		쇼핑 계속하기
+		홈으로 이동
 	</div><div id="botBtn"
 	style=" background-color:#6db800; color:white; font-size:3em; font-weight:bold;"
-	onclick="location.href='mobileQnaForm'">
+	onclick="location.href='mobileNmqnaForm'">
 		목록으로
 	</div>
 </div>

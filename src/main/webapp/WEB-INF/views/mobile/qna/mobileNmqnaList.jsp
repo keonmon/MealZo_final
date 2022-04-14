@@ -6,20 +6,22 @@
 <div style="width:95%; height:120px; margin:0 auto;
 	background-color:green; color:white; line-height:120px; 
 	padding:10px 30px; box-sizing: border-box;" >
-	<b style="font-size:3em ">나의 Q&amp;A</b>
+	<b style="font-size:3em ">비회원문의</b>
 </div>
 <form style="text-align:center;">
 <table id="qnaTable"  >
 	<tr><th >번호</th>
 		<th>제목</th>
+		<th>임시아이디</th>
 		<th>등록일</th>
 		<th>답변여부</th></tr>
-	<c:forEach items="${mqnaList}" var="mqnaVO">
+	<c:forEach items="${nmqnaList}" var="mqnaVO">
 		<tr>
 		<td><b>${mqnaVO.NQSEQ}</b></td>
 		
 		<td><a href="mobilePwdcheck?nqseq=${mqnaVO.NQSEQ}">
-			${mqnaVO.SUBJECT}</a></td> 
+			${mqnaVO.SUBJECT}</a></td>
+       		<td>${mqnaVO.ID}</td>      
        		<td><fmt:formatDate value="${mqnaVO.INDATE}" type="date"/></td>
       		<td> 
       			<c:choose>
@@ -38,7 +40,7 @@
     <jsp:param value="${paging.endPage}" name="endPage"/>
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
-	<jsp:param value="qnaForm" name="command" />
+	<jsp:param value="nmqnaForm" name="command" />
 </jsp:include>
 </div>
 <div id="botFlyingContainer" >
@@ -48,7 +50,7 @@
 		쇼핑 계속하기
 	</div><div id="botBtn"
 	style=" background-color:#6db800; color:white; font-size:3em; font-weight:bold;"
-	onclick="location.href='mobileQnaWriteForm'">
+	onclick="location.href='mobileNmqnaWriteForm'">
 		질문하기
 	</div>
 </div>
