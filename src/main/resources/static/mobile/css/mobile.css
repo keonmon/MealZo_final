@@ -591,4 +591,6 @@ font-weight: bold; font-size:15px; height:60px; border:none; border-radius:2%; c
 	text-align:center; line-height:120px;
 }
 
-
+/******************zzimList********************************************/
+#zzim2{margin-top:180px;}
+#zzimtable img{ max-width:100%; width:250%; }
