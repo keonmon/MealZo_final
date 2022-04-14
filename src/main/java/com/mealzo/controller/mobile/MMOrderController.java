@@ -170,7 +170,8 @@ public class MMOrderController {
 			mav.addObject("totalPrice", totalPrice);
 			mav.addObject("orderList", orderListByOseq);
 			mav.addObject("orderDetail", orderListByOseq.get(0));
-			mav.setViewName("order/mobileOrderDetail");
+			mav.addObject("OSEQ",oseq);
+			mav.setViewName("mobile/order/mobileOrderDetail");
 		}
 		return mav;
 	}
@@ -250,14 +251,14 @@ public class MMOrderController {
 						* Integer.parseInt( ovo.get("PRICE2").toString() ); 
 			}
 			mav.addObject("totalPrice", totalPrice); 
-			mav.setViewName("order/mobileOrderCancel");
+			mav.setViewName("mobile/order/mobileOrderCancel");
 		}
 		return mav;
 	}
 
 	@RequestMapping(value="/mobileOrderCancelDetail")
 	public ModelAndView orderCancelDetail( HttpServletRequest request, Model model,
-			@RequestParam(value="odseq", required=false) int odseq) {
+			@RequestParam(value="oseq", required=false) int oseq) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser
@@ -266,7 +267,7 @@ public class MMOrderController {
 			mav.setViewName("mobile/member/mobileLogin");
 		} else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("odseq", odseq);
+			paramMap.put("oseq", oseq);
 			paramMap.put("ref_cursor", null);
 			os.listOrderByOseq(paramMap);
 			
@@ -280,7 +281,8 @@ public class MMOrderController {
 			mav.addObject("totalPrice", totalPrice);
 			mav.addObject("orderList", orderListByOseq);
 			mav.addObject("orderDetail", orderListByOseq.get(0));
-			mav.setViewName("order/mobileOrderCancelDetail");
+			mav.addObject("OSEQ",oseq);
+			mav.setViewName("mobile/order/mobileOrderCancelDetail");
 		}
 		return mav;
 	}
