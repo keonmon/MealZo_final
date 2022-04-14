@@ -118,7 +118,7 @@
 		</div>
 	</div>
 	</div>
- 
+
 	<!-- 정기구독 메뉴 슬라이더 -->
 	<!-- 
 	<div id="slide_product">
@@ -155,6 +155,6 @@
 		</div>
 	</div>
 	-->
-
+</div>
 <%@ include file="include/headerfooter/mobileFooter.jsp"%>
 
