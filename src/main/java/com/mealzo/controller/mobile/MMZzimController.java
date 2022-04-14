@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mealzo.dto.Paging;
@@ -71,5 +72,22 @@ public class MMZzimController {
 
 	}
 	
-
+	@RequestMapping("/mobiledeleteZzim")
+	public ModelAndView zzimdelete(HttpServletRequest request,
+			@RequestParam(value="pseq", required=false)Integer pseq) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser 
+		  = (HashMap<String, Object>)session.getAttribute("loginUser");
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		//paramMap.put("id",loginUser.get("ID") );
+		paramMap.put("pseq",pseq);
+		zs.zzimdelete(paramMap);
+		
+	//	mav.addObject("pseq",pseq);
+		mav.setViewName("redirect:/mobileZzimList");
+		
+		return mav;
+	}
 }
