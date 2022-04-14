@@ -502,8 +502,8 @@ public class MMProductController {
 		rs.getproductorderList(paramMap);
 		ArrayList<HashMap<String,Object>> productorderList
 		  		= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor_productorderList");
-		if(productorderList.size() ==0)model.addAttribute("result",-1);
-		else model.addAttribute("result",1);
+		if(productorderList.size() ==0)model.addAttribute("reviewresult",-1);
+		else model.addAttribute("reviewresult",1);;
 		model.addAttribute("pseq",pseq);
         mav.addObject("productorderList", productorderList);
 		

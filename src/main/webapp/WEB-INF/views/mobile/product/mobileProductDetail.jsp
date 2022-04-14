@@ -167,12 +167,12 @@ $(function (){
 	    </c:forEach>
 	         </table>
 
-				<c:if test="${ result==1 }">
+				<c:if test="${ reviewresult==1 }">
 					<div>
 						<input type="button" value="리뷰쓰기" id="reviewb"	onclick="location.href='mobileReviewWriteForm?pseq=${pseq}'">
 					</div>
 				</c:if>
-				<c:if test="${ result==-1}">
+				<c:if test="${ reviewresult==-1}">
 				</c:if>
 
 			</form>
@@ -193,3 +193,9 @@ $(function (){
 	      
     </article>
     <div class="clear"></div>
+    
+    
+    
+
+
+    <%@ include file="../include/headerfooter/mobileFooter.jsp"%>

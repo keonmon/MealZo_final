@@ -19,13 +19,13 @@
 
 <div id="mypageView">
 	<ul id="mypageView_Buttons">
-		<li><a href="mobileQnaList">
+		<li><a href="mobileQnaForm">
 				<div>나의 Q&amp;A
 					<span id="mypage_nextIcon" class="material-icons" >arrow_forward_ios</span>
 				</div>
 		</a>
 		</li>
-		<li><a href="mobileReviewForm">
+		<li><a href="mobileAskForm">
 				<div>나의 상품문의
 					<span id="mypage_nextIcon" class="material-icons" >arrow_forward_ios</span>
 				</div>				

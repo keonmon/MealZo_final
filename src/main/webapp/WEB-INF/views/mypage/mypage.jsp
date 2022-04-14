@@ -17,7 +17,7 @@
 
 <div id="mypageView">
 	<ul id="mypageView_Buttons">
-		<li><a href="qnaList">
+		<li><a href="qnaForm">
 				<div>나의 Q&amp;A
 					<span id="mypage_nextIcon" class="material-icons" >arrow_forward_ios</span>
 				</div>
