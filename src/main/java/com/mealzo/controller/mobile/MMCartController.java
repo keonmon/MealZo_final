@@ -27,7 +27,7 @@ public class MMCartController {
 	
 	@RequestMapping(value="/mobileCartInsert")
 	@ResponseBody
-	public String cartInsert( HttpServletRequest request, Model model,
+	public Map<String,Object> cartInsert( HttpServletRequest request, Model model,
 			@RequestParam(value="pseq", required = false)String pseq,
 			@RequestParam(value="quantity", required = false)String quantity) {
 		int cnt = 0;
@@ -40,7 +40,7 @@ public class MMCartController {
 		if( loginUser == null ) {
 			paramMap.put("STATUS", 0);
 			
-			return "mobile/member/mobileLogin";
+			return paramMap;
 			
 		} else {
 			
@@ -57,7 +57,7 @@ public class MMCartController {
 			
 			paramMap.put("STATUS", 1);
 		}
-		return "redirect:/mobileCartList";
+		return paramMap;
 	}
 	
 	@RequestMapping(value="/mobileCartList")
