@@ -39,9 +39,9 @@ font-weight: bold; font-size:1.1em; height:40px; border:none; border-radius:2%; 
 #article2 { width:97%; padding-right: 10px; font-family: Verdana; font-size:0.8em; line-height: 1.2em; height:90%; margin : 0 auto; margin-right:3%;}
 
 #form2 {width: 97%; border:none; }
-#form2 #fieldset2 { padding: 10px 0 10px 5px; width:97%; border:none; margin:0 auto; margin-top:8%; align:center;}
+#form2 #fieldset2 { padding: 10px 0 10px 5px; width:97%; border:none; margin:0 auto; margin-top:22%; align:center;}
 .text2{ outline: none; height:30px; width:85%; font-size:1.0em; }
-.text3{ outline: none; height:30px; width:70%; font-size:0.8em; margin-left:0;}
+.text3{ outline: none; height:30px; width:73%; font-size:0.8em; margin-left:0;}
 
 #table2 {margin:0 auto;}
 
@@ -427,7 +427,7 @@ input[id="menuicon"]:checked + label + div{
 	border:none;
 	min-width:50%;}
 .header2_2st{ width:95%; height:100px; position:relation;} 
-.header2_2st a { text-decoration: none; display:inline-block; width:100%; text-align: center; color:#A5AAAE; font-weight: bold; }
+.header2_2st a { text-decoration: none; margin-left:-35%; display:inline-block; width:100%; text-align: center; color:#A5AAAE; font-weight: bold; }
 .header2_2st a:hover {color: green; font-weight: bold;}
 .header2_2st #sidemenuIcon{position:absolute; font-size:250%; margin:0.7rem 0 0 5rem;}
 #search2 {position:absolute; right:18%; top:15%; display:flex; margin:0;
@@ -436,7 +436,7 @@ input[id="menuicon"]:checked + label + div{
 	padding: 2% 3%;
 	width:30%; }
 #serch2 form{ height:40px;}
-#search2 input{height:0%; width:auto; font-size:1.4em; line-height:0%; flex: 1;  outline:none; width:95%; border:none; padding:0; font-family:'Pretendard-Regular';font-weight:bold;}
+#search2 input{height:20; width:auto; font-size:0.5em; line-height:5%; flex: 1;  outline:none; width:100%; border:none; padding:5%; margin-left:-12px; font-family:'Pretendard-Regular';font-weight:bold;}
 #productSearchIcon2 { position:absolute; font-size:2.0em; top:5%; right:1%; cursor: pointer; float:right; }
 .header2_2st #cartIcon2{position:absolute; font-size:3.0em; right:5%; top:10%; z-index:100}
 
@@ -457,11 +457,11 @@ input[id="menuicon2"] {
 }
 input[id="menuicon2"] + label{
 	display: block;
-    width: 20%;
-    height: 30px;
+    width: 13%;
+    height: 25px;
     position: fixed;
-    left: 4%;
-    top: 20px;
+    left: 3%;
+    top: 25px;
     transition: all .35s;
     cursor: pointer;
     z-index:101;
@@ -471,7 +471,7 @@ input[id="menuicon2"] + label span{
 	display:block;
 	position:absolute;
 	width:50%;   /*가로 줄*/
-	height:4px;
+	height:2.6px;
 	border-radius:30px;
 	background:#000;
 	transition : all .35s;
@@ -502,37 +502,37 @@ input[id="menuicon2"]:checked + label span:nth-child(3){
 }
 
 .sidebar2{
-	width:700px;
+	width:70%;
 	height:100%;
 	background:#ECF4EA;
 	position:fixed;
 	top:0;
-	left:-700px;
+	left:-70%;
 	transition:all .35s;
 	z-index:100;
 }
-input[id="menuicon"]:checked + label + div{
+input[id="menuicon2"]:checked + label + div{
 	left:0;
 }
 
 /*#sideMenu2{margin:60px 0 0 0;}*/
 /*#sidelogin {margin :10 0 0 350px; }*/
 #sidelogin2 ul {float: right; list-style:none;}
-#sidelogin2 ul li{display:inline-block; color:black; font-size:1.5em; margin:0 100px 0 0;}
+#sidelogin2 ul li{display:inline-block; color:black; font-size:0.9em; margin:0 40px 0 0;}
 #sidelogin2 a{text-decoration:none; disply:inline-block; color:black;}
 
 #sideicon2 ul {float:left; list-style:none; }
-#sideicon2 ul li{display:inline-block; color:black;   margin: 0 40px 0 25px; padding:0 0 0 25px;}
+#sideicon2 ul li{display:inline-block; color:black;   margin: -7% 0 5% 0; padding:0 0 0 15px;}
 #sideicon2 a{text-decoration:none; disply:inline-block; color:black; }
 
 
-#sidelist2 {margin-top:250px;}
+#sidelist2 {margin-top:110px;}
 #sidelist2 ul{list-style:none; }
-#sidelist2 ul li{ color:black; margin: 0 0 45px 45px; font-size:1.7em; font-weight:bold;  }
+#sidelist2 ul li{ color:black; margin: 0 0 8% 5%; font-size:0.9em; font-weight:bold;  }
 #sidelist2 a{text-decoration:none; disply:inline-block; color:black; }
 
-#homeicon2 {position:absolute;   margin:12px 0 0 620px;}
-#homeicon2 a{text-decoration:none; disply:inline-block; color:black;  font-size:1.7em; }
+#homeicon2 {position:absolute;   margin:12px 0 0 88%;}
+#homeicon2 a{text-decoration:none; disply:inline-block; color:black;  font-size:1.0em; }
 
 
 #sidelist2 ul li a:hover{  background-color :white;}

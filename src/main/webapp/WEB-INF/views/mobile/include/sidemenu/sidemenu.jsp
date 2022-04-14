@@ -49,7 +49,7 @@
       <hr><br>
       <li><a href="mobileEventList">이벤트</a></li>
       <li><a href="mbileCompany">밀조 소개</a></li>
-      <li><a href="mobilenmqnaForm">고객센터</a></li>
+      <li><a href="mobileNmqnaForm">고객센터</a></li>
    </ul>
    </div>
    
