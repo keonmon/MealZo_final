@@ -79,7 +79,7 @@
 								</div>
 							</c:if> <c:if test="${ result==1}">
 
-								<a href="zzimdelete?pseq=${mproductVO.PSEQ}"><span
+								<a href="mobileZzimdelete?pseq=${mproductVO.PSEQ}"><span
 									class="material-icons" style="color: red; font-weight: bold;  top: -37px;"
 									id="productSearchIcon" >favorite</span> </a>
 								<div
@@ -169,7 +169,7 @@ $(function (){
 
 				<c:if test="${ result==1 }">
 					<div>
-						<input type="button" value="리뷰쓰기" id="reviewb"	onclick="location.href='reviewWriteForm?pseq=${pseq}'">
+						<input type="button" value="리뷰쓰기" id="reviewb"	onclick="location.href='mobileReviewWriteForm?pseq=${pseq}'">
 					</div>
 				</c:if>
 				<c:if test="${ result==-1}">
@@ -183,7 +183,7 @@ $(function (){
 	 <form method="post" name="form3">
 
 	    <div id=ask2 >
-	    <input type="button" value="문의하기" class="ask" onclick="location.href='askWriteForm?pseq=${pseq}'">
+	    <input type="button" value="문의하기" class="ask" onclick="location.href='mobileAskWriteForm?pseq=${pseq}'">
 </div>
 
 

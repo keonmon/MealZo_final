@@ -37,6 +37,8 @@ $(function(){
 </fieldset>
 </form>
 <div id="message" style="font-size:1.2em; width:80%; left:10%;"> ${message}</div>
+<div id="msg" style="font-size:1.2em; width:80%; left:10%;"> ${msg}</div>
+
 </article>
 
 
