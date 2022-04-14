@@ -6,11 +6,11 @@
 		<div class="kind">나의 상품문의</div>
 	<h3 style="font-size:2.0em">고객님의 질문에 대해서 운영자가 답변을 드립니다.</h3>
 	<form>
-		<table id=mqnaview>
+		<table id="mqnaview" style="width:100%" >
 			<tr  >
 			<th>문의상품</th><td style="font-szie:2.0em"><a href="mobileProductDetail?pseq=${maskVO.PSEQ}" style="color:black; font-weight:bold;">
-<img src="images/${maskVO.IMAGE}" width="200px" style="float:left;"/>	<br><br>${maskVO.PNAME}<br>
-									<fmt:formatNumber value="${maskVO.PRICE2}" pattern="###,###,###"/>원
+<img src="images/${maskVO.IMAGE}" width="200px" style="float:left;"/>	<br><br>&nbsp;&nbsp;${maskVO.PNAME}<br>
+								&nbsp;&nbsp;	<fmt:formatNumber value="${maskVO.PRICE2}" pattern="###,###,###"/>원
 							
 
 </a></td></tr>
@@ -33,7 +33,7 @@
 			</tr>
 		</table>
 		<div class="clear"></div>
-		<div id="buttons3" style="  font-size:2.4em">
+		<div id="buttons3" style="  font-size:2.4em; margin-top:30%;">
 			<input type="button" class="qnaviewb"value="목록보기" onClick="location.href='mobileAskForm'">
 			<input type="button" class="qnaviewb" value="쇼핑 계속하기" c onClick="location.href='/'">
 		</div>
