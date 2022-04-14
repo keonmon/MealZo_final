@@ -42,7 +42,7 @@
 				<div id="search2">
 					<form method="post" name="formm" onsubmit="return false;">
 						<span><input type="text" name="key" id="key" placeholder="검색어를 입력해주세요" class="search_word" value="${key}" onkeyup="enterkey();"></span>
-						<span class="material-icons" id="productSearchIcon2" name="search" onClick="go_search('productAllForm');">search</span>
+						<span class="material-icons" id="productSearchIcon2" name="search" onClick="go_search('mobileProductAllForm');">search</span>
 					</form>
 				</div>
 				<div id="cart">

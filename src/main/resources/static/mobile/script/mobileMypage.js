@@ -135,3 +135,8 @@ function whyfalse(nqseq3){
 	}
 }
 
+
+function go_mobileNmqnaView(){
+	document.formm.action = "mobileNmqnaView";
+	document.formm.submit();
+}

@@ -34,12 +34,12 @@ public class MMMemberController {
 	@Autowired
 	MCartService cs;
 	
-	//@RequestMapping("/mobileUserLogin")
+	//@RequestMapping("/mobileLogin")
 	//public String mobileLoginForm() {
 	//	return "mobile/member/mobileLogin";
 	//}
 	
-	@RequestMapping(value="/mobileLogin", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/mobileLogin",method= {RequestMethod.GET, RequestMethod.POST} )  // method= {RequestMethod.GET, RequestMethod.POST}
 	public String mobileLogin( @ModelAttribute("dto") @Valid MMemberVO membervo , BindingResult result, 
 			HttpServletRequest request, Model model ) {
 		int cnt = 0;	// 카트 개수 초기화
@@ -76,8 +76,8 @@ public class MMMemberController {
 		}else if( !mvo.get("PWD").equals(membervo.getPwd())) {
 			model.addAttribute("message", "밀조) 비밀번호가 맞지않습니다");
 			return "mobile/member/mobileLogin";
-		}else if( mvo.get("USEYN").equals("x")) {
-			model.addAttribute("message", "밀조) 탈퇴하거나 휴먼중인 계정입니다. 하단 공지에서 비회원 문의를 통해 밀조왕에게 문의하세요");
+		}else if( mvo.get("USEYN").equals("n")) {
+			model.addAttribute("message", "밀조) 탈퇴하거나 휴먼중인 계정입니다. 고객센터에서 비회원 문의를 통해 밀조왕에게 문의하세요");
 			return "mobile/member/mobileLogin";
 		}else if( mvo.get("PWD").equals(membervo.getPwd())) {
 			HttpSession session = request.getSession();

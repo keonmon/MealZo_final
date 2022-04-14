@@ -1,4 +1,4 @@
-package com.mealzo.controller;
+package com.mealzo.controller.mobile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,33 +23,20 @@ import com.mealzo.dto.Paging;
 import com.mealzo.service.MQnaService;
 
 @Controller
-public class MQnaController {
+public class MMQnaController {
 
 	@Autowired
 	MQnaService qs;
 	
-	@RequestMapping("/mypageForm")
-	public String mypageForm(HttpServletRequest request  ) {
-		HttpSession session = request.getSession();
-		HashMap<String, Object> loginUser =
-				(HashMap<String, Object>)session.getAttribute("loginUser");
-
-		if(loginUser==null) {
-			return "member/login";
-		}else
-			
-		
-		return "mypage/mypage";
-	}
 	
-	@RequestMapping("/qnaForm")
-	public ModelAndView qnaForm(Model model, HttpServletRequest request) {
+	@RequestMapping("/mobileQnaForm")
+	public ModelAndView mobileQnaForm(Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser =
 				(HashMap<String, Object> )session.getAttribute("loginUser");
 		if(loginUser ==null) {
-			mav.setViewName("member/login");
+			mav.setViewName("mobile/member/mobileLogin");
 		}else {
 			
 			int page=1;
@@ -88,7 +75,7 @@ public class MQnaController {
 			
 			mav.addObject("paging", paging);
 			mav.addObject("mqnaList", list);
-			mav.setViewName("qna/qnaList");
+			mav.setViewName("mobile/qna/mobileQnaList");
 			
 			
 					
@@ -98,8 +85,8 @@ public class MQnaController {
 			
 	}
 	
-	@RequestMapping("/qnaView")
-	public ModelAndView qnaView(
+	@RequestMapping("/mobileQnaView")
+	public ModelAndView mobileQnaView(
 			@RequestParam("qseq") int qseq ,HttpServletRequest request) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -107,7 +94,7 @@ public class MQnaController {
 		HashMap<String, Object> loginUser =
 				(HashMap<String, Object> )session.getAttribute("loginUser");
 		if(loginUser ==null) {
-			mav.setViewName("member/login");
+			mav.setViewName("mobile/member/mobileLogin");
 		}else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			
@@ -118,28 +105,28 @@ public class MQnaController {
 			ArrayList<HashMap<String, Object>> list
 			 =(ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			mav.addObject("mqnaVO", list.get(0));
-			mav.setViewName("qna/qnaView");
+			mav.setViewName("mobile/qna/mobileQnaView");
 			
 			
 		}
 		
 		return mav;
 	}
-	@RequestMapping("/qnaWriteForm")
-	public String qnaWriteForm(HttpServletRequest request) {
+	@RequestMapping("/mobileQnaWriteForm")
+	public String mobileQnaWriteForm(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser
 			= (HashMap<String, Object>)session.getAttribute("loginUser");
 		
 		if( loginUser == null) {
-		 return "member/login";
+		 return "mobile/member/mobileLogin";
 		}else
 			
-		return "qna/qnaWrite";
+		return "mobile/qna/mobileQnaWrite";
 	}
 	
-	@RequestMapping(value="/qnaWrite",  method=RequestMethod.POST)
-	public ModelAndView qnaWrite(HttpServletRequest request, @ModelAttribute("dto")
+	@RequestMapping(value="/mobileQnaWrite",  method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView mobileQnaWrite(HttpServletRequest request, @ModelAttribute("dto")
 	@Valid MQnaVO qnavo, BindingResult result,
 	@RequestParam("subject") String subject, @RequestParam("content") String content) {
 		ModelAndView mav = new ModelAndView();
@@ -147,15 +134,15 @@ public class MQnaController {
 		HashMap<String, Object> loginUser =
 				(HashMap<String, Object> )session.getAttribute("loginUser");
 		if(loginUser ==null) 
-			mav.setViewName("member/login");
+			mav.setViewName("mobile/member/mobileLogin");
 		else {
 			if(result.getFieldError("subject")!=null) {
 				mav.addObject("message", result.getFieldError("subject").getDefaultMessage());
-				mav.setViewName("qna/qnaWrite");
+				mav.setViewName("mobile/qna/mobileQnaWrite");
 				 return mav;
 			}else if(result.getFieldError("content") !=null) {
 				mav.addObject("message", result.getFieldError("content").getDefaultMessage());
-				mav.setViewName("qna/qnaWrite");
+				mav.setViewName("mobile/qna/mobileQnaWrite");
 				return mav;
 		}
 		
@@ -166,14 +153,14 @@ public class MQnaController {
 			paramMap.put("subject", subject);
 			paramMap.put("id", loginUser.get("ID"));
 			qs.insertQna(paramMap);
-			mav.setViewName("redirect:/qnaForm");
+			mav.setViewName("redirect:/mobileQnaForm");
 		}
 
 		return mav;
 	}
 	
-	@RequestMapping("/nmqnaForm")
-	public ModelAndView nomemberqnaForm(Model model, HttpServletRequest request,
+	@RequestMapping("/mobileNmqnaForm")
+	public ModelAndView mobileNonmemberqnaForm(Model model, HttpServletRequest request,
 			@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "key", required = false) String key) {
 		ModelAndView mav = new ModelAndView();
@@ -181,7 +168,7 @@ public class MQnaController {
 		HashMap<String, Object> loginUser =
 				(HashMap<String, Object> )session.getAttribute("loginUser");
 		if(loginUser!=null) {
-			mav.setViewName("redirect:/qnaForm");
+			mav.setViewName("redirect:/mobileQnaForm");
 		}else {
 			
 			page=1;
@@ -218,25 +205,25 @@ public class MQnaController {
 			 = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
 			mav.addObject("paging", paging);
 			mav.addObject("nmqnaList", list);
-			mav.setViewName("qna/nmqnaList");			
+			mav.setViewName("mobile/qna/mobileNmqnaList");			
 		}
 		return mav;	
 	}
 	
-	@RequestMapping("/nmqnaWriteForm")
-	public String nmqnaWriteForm(HttpServletRequest request) {
+	@RequestMapping("/mobileNmqnaWriteForm")
+	public String mobileNmqnaWriteForm(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser
 			= (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(loginUser!=null) {
-			return "redirect:/qnaForm";
+			return "redirect:/mobileQnaForm";
 		}else {
-		return "qna/nmqnaWrite";
+		return "mobile/qna/mobileNmqnaWrite";
 		}
 	}
 		
-	@RequestMapping(value="/nmqnaWrite",  method=RequestMethod.POST)
-	public ModelAndView nmqnaWrite(HttpServletRequest request, @ModelAttribute("dto")
+	@RequestMapping(value="/mobileNmqnaWrite",  method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView mobileNmqnaWrite(HttpServletRequest request, @ModelAttribute("dto")
 	@Valid MQnaVO qnavo, 
 	BindingResult result,
 	@RequestParam("subject") String subject, 
@@ -246,25 +233,31 @@ public class MQnaController {
 		HashMap<String, Object> loginUser =
 				(HashMap<String, Object> )session.getAttribute("loginUser");
 		if(loginUser!=null) {
-			mav.setViewName("redirect:/qnaForm");
+			mav.setViewName("redirect:/mobileQnaForm");
 		}else{
 			if(result.getFieldError("id")!=null) {
 				mav.addObject("message", result.getFieldError("id").getDefaultMessage());
-				mav.setViewName("qna/nmqnaWrite");
+				mav.setViewName("mobile/qna/mobileNmqnaWrite");
 				 return mav;
 			}else if(result.getFieldError("pwd")!=null) {
 				mav.addObject("message", result.getFieldError("pwd").getDefaultMessage());
-				mav.setViewName("qna/nmqnaWrite");
+				mav.setViewName("mobile/qna/mobileNmqnaWrite");
 				 return mav;
 			}else if(result.getFieldError("subject")!=null) {
 				mav.addObject("message", result.getFieldError("subject").getDefaultMessage());
-				mav.setViewName("qna/nmqnaWrite");
+				mav.setViewName("mobile/qna/mobileNmqnaWrite");
 				 return mav;
 			}else if(result.getFieldError("content") !=null) {
 				mav.addObject("message", result.getFieldError("content").getDefaultMessage());
-				mav.setViewName("qna/nmqnaWrite");
+				mav.setViewName("mobile/qna/mobileNmqnaWrite");
 				return mav;
 		}	
+			System.out.println(subject);
+			System.out.println(content);
+			System.out.println(qnavo.getId());
+			System.out.println(qnavo.getId());
+			
+			
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("content", content);
 			paramMap.put("subject", subject);
@@ -273,14 +266,14 @@ public class MQnaController {
 			
 			qs.insertnmQna(paramMap);
 			
-			mav.setViewName("redirect:/nmqnaForm");
+			mav.setViewName("redirect:/mobileNmqnaForm");
 		}
 
 		return mav;
 	}
 	
-	@RequestMapping("/nmqnaView")
-	public ModelAndView nmqnaView(
+	@RequestMapping("/mobileNmqnaView")
+	public ModelAndView mobileNmqnaView(
 			@RequestParam(value="nqseq",  required=false) int nqseq ,
 			@RequestParam("pwd") String pwd ,
 			@RequestParam("mvo") String mvo ,
@@ -293,11 +286,11 @@ public class MQnaController {
 		HashMap<String, Object> loginUser =
 				(HashMap<String, Object> )session.getAttribute("loginUser");
 		if(loginUser!=null) {
-			mav.setViewName("redirect:/qnaForm");
+			mav.setViewName("redirect:/mobileQnaForm");
 		}else {
 			if(!checkpwd.equals(membervo.getPwd())) {
 				mav.addObject("message", "비밀번호가 틀렸습니다");
-				mav.setViewName("redirect:/pwdcheck");				
+				mav.setViewName("redirect:/mobilePwdcheck");				
 			}else{
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			
@@ -308,15 +301,15 @@ public class MQnaController {
 			ArrayList<HashMap<String, Object>> list
 			 =(ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			mav.addObject("mqnaVO", list.get(0));
-			mav.setViewName("qna/nmqnaView");
+			mav.setViewName("mobile/qna/mobileNmqnaView");
 			}
 			mav.addObject("nqseq", nqseq);
 		}
 		return mav;
 	}
 	
-	@RequestMapping("/pwdcheck")
-	public String pwdcheck(HttpServletRequest request,
+	@RequestMapping("/mobilePwdcheck")
+	public String mobilePwdcheck(HttpServletRequest request,
 			@RequestParam(value="message",  required=false) String message ,
 			Model model,
 			@RequestParam(value="checkpwd", required=false) String checkpwd ,
@@ -325,7 +318,7 @@ public class MQnaController {
 		HashMap<String, Object> loginUser
 			= (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(loginUser!=null) {
-			return "redirect:/qnaForm";
+			return "redirect:/mobileQnaForm";
 		}else {
 			
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
@@ -344,7 +337,7 @@ public class MQnaController {
 			model.addAttribute("mvo", mvo);
 			model.addAttribute("pwd", pwd);
 			model.addAttribute("nqseq", nqseq);
-			return "qna/pwdcheck";	
+			return "mobile/qna/mobilePwdcheck";	
 		}	
 	}
 	
