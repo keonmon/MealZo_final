@@ -48,7 +48,7 @@
          <li><a href="mobileProductForm?kind=양식&bestyn=&newyn=&sort=recently&sub=y&idx=0">양식</a></li>
       <hr><br>
       <li><a href="mobileEventList">이벤트</a></li>
-      <li><a href="mbileCompany">밀조 소개</a></li>
+      <li><a href="mobileCompany">밀조 소개</a></li>
       <li><a href="mobileNmqnaForm">고객센터</a></li>
    </ul>
    </div>

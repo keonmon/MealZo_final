@@ -27,7 +27,7 @@ if(document.frm.orderCancel == null){
 		return; 
 	}else{ 
 	//count 값이 1 이상이면, 현재 폼의 체크박스 value값을 갖고, command = adminOrderSave로 이동 
-		document.frm.action = "orderCancelUpdate"; 
+		document.frm.action = "mobileOrderCancelUpdate"; 
 		document.frm.submit(); 
 	} 
 	// 처리하고(주문의 result값을 '1'->'2'로 변경) orderList.jsp로 되돌아온다. 
@@ -47,7 +47,7 @@ function deleteReview(rseq){
 	var delete_confirm = confirm("삭제된 후기는 복구할 수 없습니다.\n정말로 삭제하시겠습니까?");
 	if(delete_confirm){
 		alert("해당 상품의 후기가 삭제되었습니다.");
-		location.href="myReviewDelete?rseq=" + rseq;
+		location.href="mobileMyReviewDelete?rseq=" + rseq;
 	}else{
 		alert("삭제가 취소되었습니다");
 	}	

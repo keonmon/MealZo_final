@@ -24,7 +24,7 @@
 </style>
 <div class="clear"></div>
 
-<div id="index"  class='stop-dragging' style="margin-bottom:30px; margin-top:100px;" >
+<div id="index"  class='stop-dragging' style="margin-bottom:150px; margin-top:100px;" >
 <!-- <script type="text/javascript">
 	$(function(){
 		startInterval();
@@ -118,7 +118,7 @@
 		</div>
 	</div>
 	</div>
- 
+
 	<!-- 정기구독 메뉴 슬라이더 -->
 	<!-- 
 	<div id="slide_product">
@@ -155,6 +155,6 @@
 		</div>
 	</div>
 	-->
-
+</div>
 <%@ include file="include/headerfooter/mobileFooter.jsp"%>
 

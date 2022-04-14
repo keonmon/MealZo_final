@@ -215,7 +215,7 @@ values(morder_detail_seq.nextVal, 4, 2, 2, '4');
 
 
 -- 상품리뷰/후기
-insert into mreview(rseq, pseq, content, id) values(mreview_seq.nextVal, 1, '정말 맛있어요', 'somi');
+insert into mreview(rseq, pseq, content, id) values(mreview_seq.nextVal, 115, '정말 맛있어요하하하하하', 'somi');
 
 
 -- 구독정보 추가

@@ -10,9 +10,9 @@
 </div>
 <form style="text-align:center;">
 <table id="orderTable"  >
-	<tr><th >주문<br>번호</th>
-		<th>상품명</th>
-		<th>수량</th>
+	<tr><th style="width:10%;">주문<br>번호</th>
+		<th style="width:24%;">상품명</th>
+		<th style="width:10%;">수량</th>
 		<th>가격</th>
 		<th>주문일</th>
 		<th>상태</th></tr>
@@ -32,6 +32,7 @@
       				<c:when test="${morderVO.RESULT=='1'}">주문<br>처리중</c:when>
       				<c:when test="${morderVO.RESULT=='2'}">배송중</c:when>
       				<c:when test="${morderVO.RESULT=='3'}">배송<br>완료</c:when>
+      				<c:otherwise>주문<br>취소</c:otherwise>
       			</c:choose>
       		</td></tr>
 	</c:forEach>

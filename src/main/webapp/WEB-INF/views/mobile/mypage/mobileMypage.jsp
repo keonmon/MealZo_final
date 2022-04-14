@@ -5,7 +5,7 @@
 
 <div id=subpageContainer>
 <div id="my_greeting">
-<span id="my_greeting_text">${loginUser.NAME} 님의 MYPAGE입니다.</span>
+<span id="my_greeting_text">${loginUser.NAME} 님의 MYPAGE입니다😉</span>
 <span class="material-icons" id="userSettingIcon" onclick="location.href='mobileUpdateForm'">manage_accounts</span>
 </div>
 <div id="orderTotalView">
@@ -25,7 +25,7 @@
 				</div>
 		</a>
 		</li>
-		<li><a href="mobileReviewForm">
+		<li><a href="mobileAskForm">
 				<div>나의 상품문의
 					<span id="mypage_nextIcon" class="material-icons" >arrow_forward_ios</span>
 				</div>				

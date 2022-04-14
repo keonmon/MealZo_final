@@ -5,9 +5,30 @@
 
 /* --------------만지면 안돼---------------- */
 body{ background:#FFFFFF; margin:0; padding:0;}
-article {position: relative; width:97%; margin:0 auto; height:70%; }
+article {position: relative; width:97%; margin:0 auto; }
 #wrap{width:100%; margin:0 auto;}
 tr{width:90%; height:49px;}
+html {
+	/* Prevent font scaling in landscape */
+	-webkit-text-size-adjust: none; /*Chrome, Safari, newer versions of Opera*/
+	-moz-text-size-adjust: none; /*Firefox*/
+	-ms-text-size-adjust: none;  /*Ie*/
+	-o-text-size-adjust: none; /*old versions of Opera*/
+	font-family: 'Pretendard-Regular';
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    
+	font-family: 'Material Icons';
+	font-style: normal;
+	font-weight: 400;
+	src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+	src: local('Material Icons'),
+	    local('MaterialIcons-Regular'),
+}
 /* ----------------------------------------- */
 
 .clear {clear: both; }
@@ -191,7 +212,7 @@ input[id="menuicon"]:checked + label + div{
 
 #sidelist {margin-top:250px;}
 #sidelist ul{list-style:none; }
-#sidelist ul li{ color:black; margin: 0 0 45px 45px; font-size:1.7em; font-weight:bold;  }
+#sidelist ul li{ color:black; margin: 0 0 45px 45px; font-size:2.0em; font-weight:bold;  }
 #sidelist a{text-decoration:none; disply:inline-block; color:black; }
 
 #homeicon {position:absolute;   margin:12px 0 0 620px;}
@@ -205,7 +226,8 @@ input[id="menuicon"]:checked + label + div{
 
 #item2{float:left;  border:1px solid black; padding:0;}
 */
-#e {width:100%; height:100% ;margin:0 auto; margin-bottom:80px;  margin-left:85px;}
+#e {width:100%; height:100% ;margin:0 auto; margin-bottom:80px;     margin-top: 180px;
+  margin-left:85px;}
 #paggingg{font-size:2.0em; margin-top:50px; margin-bottom:50px;}
 #allmenu{width:100%; /* border:1px solid black; */ margin:0 auto; }
 #item3{ float:left; padding-right:0px; }
@@ -345,8 +367,8 @@ input[id="menuicon"]:checked + label + div{
 
 /* 제품슬라이더*/
 #slide_product{position:relative; width:100%; height:720px; margin:140px 0 0 0;  /* overflow:hidden; */ }
-#index_catalog_topper{position:realtive; margin:150px 0 0 0; width:100%; height:150px;}
-#index_catalog_topper span a{position:absolute; left:10px; font-size:4em; font-weight:bold; line-height:150px;color:black;text-decoration:none;margin: 0 0 0 30px;}
+#index_catalog_topper{position:realtive; margin:150px 0 0 0; width:100%; height:100px;}
+#index_catalog_topper span a{position:absolute; left:10px; font-size:3em; font-weight:bold; line-height:100px;color:black;text-decoration:none;margin: 0 0 0 30px;}
 /* #index_catalog_topper a{position:absolute; right:10px; font-size:5em;line-height:150px; text-decoration:none; color:black;} */
 
 #overflow {position:relative; width:100%; height:700px;  overflow:hidden; }
@@ -357,8 +379,8 @@ input[id="menuicon"]:checked + label + div{
 #product_thum1 img{width:100%; height:500px; object-fit:contain;}
 #product_cont1{width:100%; height:85px; padding:12px 10px 12px 10px; box-sizing:border-box;}
 #product_cont1 #name{font-size:2.5em; font-weight:bold; text-decoration:none; color:black}
-#product_cont1 #price{font-size:3em; font-weight:bold; text-decoration:none; color:black}
-#product_cont1 #content{font-size:2em; font-weight:bold; text-decoration:none; color:black}
+#product_cont1 #price{font-size:2.5em; font-weight:bold; text-decoration:none; color:black}
+#product_cont1 #content{font-size:1.4em; font-weight:bold; text-decoration:none; color:black}
 	/* 화살표 */
 #arw_l{position:absolute; left:20px; top:400px; cursor:pointer; color:grey; z-index:20; font-size:7em; color:rgba(255, 255, 255, 0.5); text-shadow: 2px 2px 6px black; text-align:center; }
 #arw_l:hover{color:white;  }
@@ -383,11 +405,11 @@ input[id="menuicon"]:checked + label + div{
 #sideMenu #menu a:hover{position:relative; color:black; left:5px; font-weight:bold; transition-duration:0.4;}
 */
 /* MYPAGE */
-#subpageContainer{position:relative; display:inline-block; width:100%; padding:0 2% 40px 2%; margin:200px 0 200px 0 ; box-sizing:border-box; }
+#subpageContainer{position:relative; display:inline-block; width:100%; padding:0 2% 40px 2%; margin:200px 0 0 0 ; box-sizing:border-box; }
 	/* greeting */
 #my_greeting{position:relative; width:100%; display:inline-block; background-color:green; height:300px;}
-#my_greeting #my_greeting_text{color:white; font-size:3em; line-height:300px; font-family:'Pretendard-Regular'; margin-left:50px; font-weight:bold;}
-#userSettingIcon{text-decoration:none; color:white; float:right; line-height: 300px; font-size:7em; margin-right:70px; cursor: pointer;}
+#my_greeting #my_greeting_text{color:white; font-size:2.5em; line-height:300px; font-family:'Pretendard-Regular'; margin-left:40px; font-weight:bold;}
+#userSettingIcon{text-decoration:none; color:white; float:right; line-height: 300px; font-size:6em; margin-right:70px; cursor: pointer;}
 	/* mypage_주문내역 */
 #orderTotalView{position:relative; display:inline-block; width:100%; padding:15px; box-sizing:border-box; margin:25px 0 0 0;}
 #orderTotalView div{font-size:1.5em; font-family:'Pretendard-Regular'; font-weight:bold;}
@@ -595,6 +617,7 @@ font-weight: bold; font-size:15px; height:60px; border:none; border-radius:2%; c
 #zzim2{margin-top:180px;}
 #zzimtable img{ max-width:100%; width:250%; }
 
+
 /* --------------------------비회원 문의-------------------------------- */
 #qnaTable{width:95%; margin:0 auto;}
 #qnaTable th{font-size:2.3em; background-color:#ebebeb; height:50px;height:100px;}
@@ -610,5 +633,24 @@ font-weight: bold; font-size:15px; height:60px; border:none; border-radius:2%; c
 #pdmainimg img{height: 70%; max-width:100%; width:400%; margin :0 0 0 0px;}
 #pdmainimg { width:100%; height:100%;}
 #pay{margin-top:20px;}
+
+
+/* --------------------------이벤트 시작-------------------------------- */
+#eventTable th{font-size:2em; background-color:#ebebeb; height:50px;height:100px; font-weight:bold;}
+#eventTable td{font-size:1.7em; text-align:center; border-bottom:.5px solid gray;height:50px;}
+
+/* --------------------------이벤트 끝-------------------------------- */
+
+#asktable img{ max-width:100%; width:100%; }
+/***********qnaVIew!!!!!!!!!!!!!!!!!!!!!************/
+#mqnaview th{ font-size:2.1em; height:140px; width:30%; background-color:#ededed;}
+#mqnaview td{font-size:2.3em;     height: 160%;
+ }
+
+ .qnaviewb{border: 1px solid #666; width:47%; height:80px; font-size: 0.8em;  font-weight:bold;
+ background-repeat: repeat-x; background-position:center; color: #FFFFFF; margin-top: 30px; background-color:#1AB137;}
+ #button3{margin:0 auto; }
+ 
+ .qnaviewb1{width:100%; height:100px; font-size:1.4em ;   font-weight:bold;border: 1px solid #666; background-position:center; color: #FFFFFF; margin-top: 30px; background-color:#1AB137;} 
 
 

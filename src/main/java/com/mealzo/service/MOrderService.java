@@ -51,8 +51,8 @@ public class MOrderService {
 		odao.updateOrderResult( paramMap );		
 	}
 
-	public void orderCancelDetail(HashMap<String, Object> paramMap) {
-		odao.orderCancelDetail( paramMap );
+	public void orderCancelUpdate(HashMap<String, Object> paramMap) {
+		odao.orderCancelUpdate( paramMap );
 	}
 
 	public void orderCancelForm(HashMap<String, Object> paramMap) {

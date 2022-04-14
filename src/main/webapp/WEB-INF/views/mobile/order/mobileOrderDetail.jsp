@@ -17,8 +17,8 @@
 				<a href="mobileProductDetail?pseq=${morderVO.PSEQ}">
 				<h3>${morderVO.PNAME}</h3></a></td>
 				<td> ${morderVO.QUANTITY}</td>
-	       		<td><fmt:formatNumber value="${morderVO.PRICE2*morderVO.QUANTITY}" type="currency"/></td>      
-	       		<td><fmt:formatDate value="${morderVO.INDATE}" type="date"/></td>
+	       		<td><b><fmt:formatNumber value="${morderVO.PRICE2*morderVO.QUANTITY}" type="currency"/></b></td>      
+	       		<td><fmt:formatDate value="${morderVO.INDATE}" pattern="YY.MM.dd" type="date"/></td>
 	      		<td> 
 	      			<c:choose>
 	      				<c:when test='${morderVO.RESULT=="1"}'>
@@ -31,7 +31,7 @@
 	      					배송<br>완료
 	      				</c:when>
 	      				<c:otherwise>
-			      			주문<br>취소됨 
+			      			주문<br>취소
 	      				</c:otherwise>
 	      			</c:choose>
 	      		</td>
@@ -48,10 +48,14 @@
 	      			</c:choose>
 	      		</td></tr>
 		</c:forEach>
-		<tr><th colspan="2" style="font-size:1.2em;"> 총 액 </th>
+		<tr><th colspan="2" > <b style="font-size:1em;">총 액</b> </th>
 	       	<td colspan="2"><fmt:formatNumber value="${totalPrice}" type="currency"/></td>
-	       	<th colspan="2"></th>
-	       	<th></th>
+	       	<th colspan="2">
+	       		<div onclick="go_cancel()" style="font-size:1.2em; background-color:#6db800; 
+	       			color:white; width:100%; height:100%; line-height: 140px;">
+	       			주문취소
+	       		</div>
+			</th>
 	  	</tr>
 	</table>
 	</form>
@@ -67,15 +71,5 @@
 		주문 목록으로 이동
 	</div>
 </div>
-<div id="botFlyingContainer" >
-	<div id="botBtn" style=" 
-		background-color:#434343; color:white; font-size:3em; font-weight:bold;"
-		onclick="location.href='mobileMypageForm'">
-		마이페이지로 이동
-	</div><div id="botBtn"
-	style=" background-color:#6db800; color:white; font-size:3em; font-weight:bold;"
-	onclick="location.href='mobileOrderList'">
-		주문 목록으로 이동
-	</div>
-</div>
+
 <%@ include file="../include/headerfooter/mobileFooter.jsp" %>
