@@ -6,7 +6,7 @@
 		<div id="hr" style="width: 100%"></div>
 		<br>
 		<hr>
-		<div id="footer_c" style="width: 100%; font-size:1.25em;">
+		<div id="footer_c" style="width: 100%; font-size:1.38em;">
 			<span class="f_title">회사명&nbsp;</span>:&nbsp;<span class="f_title2">밀조</span>&nbsp;&nbsp;
 			<span class="f_title">대표자&nbsp;</span>:&nbsp;<span class="f_title2">
 				<a href="admin" style="text-decoration: none; color: #4C4E50;">

@@ -28,8 +28,8 @@ $(document).ready(function (){
 <div id="top_menu" style="width:100%; margin:0 auto;">
 <ul>
 <li><a href="mobileProductForm?kind=${kind}&bestyn=${bestyn}&newyn=${newyn}&sort=recently&sub=y&idx=0">최근등록순</a></li>
-<li><a href="mobileProductForm?kind=${kind}&bestyn=${bestyn}&newyn=${newyn}&sort=recently&sub=y&idx=1">가격낮은순</a></li>
-<li><a href="mobileProductForm?kind=${kind}&bestyn=${bestyn}&newyn=${newyn}&sort=recently&sub=y&idx=2">가격높은순</a></li>
+<li><a href="mobileProductForm?kind=${kind}&bestyn=${bestyn}&newyn=${newyn}&sort=low_price&sub=y&idx=1">가격낮은순</a></li>
+<li><a href="mobileProductForm?kind=${kind}&bestyn=${bestyn}&newyn=${newyn}&sort=high_price&sub=y&idx=2">가격높은순</a></li>
 </ul>
 </div>
 
