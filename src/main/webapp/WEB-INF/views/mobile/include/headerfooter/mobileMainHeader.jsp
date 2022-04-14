@@ -14,7 +14,8 @@
 <script src="user/script/jquery-3.6.0.js"></script>
 <script src="user/script/member.js"></script>
 <script src="mobile/script/mobileProduct.js"></script>
-<script src="user/script/mypage.js"></script>
+<script src="mobile/script/mobileMypage.js"></script>
+
 
 
 <!-- Ajax -->

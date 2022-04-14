@@ -551,7 +551,7 @@ public class MMProductController {
 		  = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(loginUser==null)  {
 			mav.addObject("msg" , "로그인 후 사용하시기바랍니다");
-			mav.setViewName("member/login");
+			mav.setViewName("mobile/member/mobileLogin");
 			return mav;
 		} else {
 	HashMap<String, Object > paramMap = new HashMap<String, Object>();
@@ -562,7 +562,7 @@ public class MMProductController {
 		
 		mav.addObject("pseq",pseq);  
 		System.out.println("pseq" + pseq);
-		mav.setViewName("redirect:/productDetail");
+		mav.setViewName("redirect:/mobileProductDetail");
 		//mav.setViewName("redirect:/zzimList");
 	//		mav.setViewName("/");
 		}
@@ -584,13 +584,13 @@ public class MMProductController {
 		zs.zzimdelete(paramMap);
 		
 		mav.addObject("pseq",pseq);
-		mav.setViewName("redirect:/productDetail");
+		mav.setViewName("redirect:/mobileProductDetail");
 		
 		return mav;
 	}
 	
 	
-	@RequestMapping("/mobilZzimInsert")
+	@RequestMapping("/mobileZzimInsert")
 	public ModelAndView zzimInsert(HttpServletRequest request,
 @RequestParam(value="pseq", required=false)Integer pseq
 		//	@RequestParam("pseq") Integer pseq
@@ -602,7 +602,7 @@ public class MMProductController {
 		  = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(loginUser==null)  {
 			mav.addObject("msg" , "로그인 후 사용하시기바랍니다");
-			mav.setViewName("member/login");
+			mav.setViewName("mobile/member/mobileLogin");
 			return mav;
 		} else {
 	HashMap<String, Object > paramMap = new HashMap<String, Object>();
@@ -612,7 +612,7 @@ public class MMProductController {
 		//mav.addObject("pseq",pseq);  
 	//	System.out.println("pseq" + pseq);
 	//	mav.setViewName("redirect:/productDetail");
-	mav.setViewName("redirect:/zzimList");
+	mav.setViewName("redirect:/mobileZzimList");
 	//		mav.setViewName("/");
 		}
 		return  mav;

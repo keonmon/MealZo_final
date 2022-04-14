@@ -2,6 +2,8 @@
 <%@ include file="../include/headerfooter/mobileMainHeader.jsp"%>
 <%@ include file ="../include/sidemenu/sidemenu.jsp"%>
 
+
+
 <div id="e">
 
 <c:choose>
