@@ -145,9 +145,6 @@ public class MMQnaController {
 				mav.setViewName("mobile/qna/mobileQnaWrite");
 				return mav;
 		}
-		
-			
-			
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("content", content);
 			paramMap.put("subject", subject);
