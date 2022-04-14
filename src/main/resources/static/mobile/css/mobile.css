@@ -5,9 +5,16 @@
 
 /* --------------만지면 안돼---------------- */
 body{ background:#FFFFFF; margin:0; padding:0;}
-article {position: relative; width:97%; margin:0 auto; height:70%; }
+article {position: relative; width:97%; margin:0 auto; }
 #wrap{width:100%; margin:0 auto;}
 tr{width:90%; height:49px;}
+html {
+	/* Prevent font scaling in landscape */
+	-webkit-text-size-adjust: none; /*Chrome, Safari, newer versions of Opera*/
+	-moz-text-size-adjust: none; /*Firefox*/
+	-ms-text-size-adjust: none;  /*Ie*/
+	-o-text-size-adjust: none; /*old versions of Opera*/
+}
 /* ----------------------------------------- */
 
 .clear {clear: both; }
@@ -383,7 +390,7 @@ input[id="menuicon"]:checked + label + div{
 #sideMenu #menu a:hover{position:relative; color:black; left:5px; font-weight:bold; transition-duration:0.4;}
 */
 /* MYPAGE */
-#subpageContainer{position:relative; display:inline-block; width:100%; padding:0 2% 40px 2%; margin:200px 0 200px 0 ; box-sizing:border-box; }
+#subpageContainer{position:relative; display:inline-block; width:100%; padding:0 2% 40px 2%; margin:200px 0 0 0 ; box-sizing:border-box; }
 	/* greeting */
 #my_greeting{position:relative; width:100%; display:inline-block; background-color:green; height:300px;}
 #my_greeting #my_greeting_text{color:white; font-size:3em; line-height:300px; font-family:'Pretendard-Regular'; margin-left:50px; font-weight:bold;}
@@ -594,3 +601,8 @@ font-weight: bold; font-size:15px; height:60px; border:none; border-radius:2%; c
 /******************zzimList********************************************/
 #zzim2{margin-top:180px;}
 #zzimtable img{ max-width:100%; width:250%; }
+
+/* --------------------------이벤트 시작-------------------------------- */
+#event li {}
+
+/* --------------------------이벤트 끝-------------------------------- */

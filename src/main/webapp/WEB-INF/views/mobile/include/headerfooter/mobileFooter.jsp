@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 	<div class="clear"></div>
-	<footer style="margin:200px 2% 0 2%;">
+	<footer style="margin:50px 2% 150px 2%;">
 		<br>
 		<div id="hr" style="width: 100%"></div>
 		<br>

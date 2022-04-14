@@ -10,9 +10,9 @@
 </div>
 <form style="text-align:center;">
 <table id="orderTable"  >
-	<tr><th >주문<br>번호</th>
-		<th>상품명</th>
-		<th>수량</th>
+	<tr><th style="width:10%;">주문<br>번호</th>
+		<th style="width:24%;">상품명</th>
+		<th style="width:10%;">수량</th>
 		<th>가격</th>
 		<th>주문일</th>
 		<th>상태</th></tr>
