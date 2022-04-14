@@ -58,3 +58,4 @@ $(document).ready(function (){
 	<jsp:param name="command" value="mobileProductForm?kind=${kind}&bestyn=${bestyn}&newyn=${newyn}&sort=${sort}&idx=${idx}" />	
 </jsp:include>
 </div>
+ <%@ include file="../include/headerfooter/mobileFooter.jsp"%>

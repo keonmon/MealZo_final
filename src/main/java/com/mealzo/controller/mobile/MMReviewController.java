@@ -95,7 +95,7 @@ public class MMReviewController {
 		 
 		 rs.insertReview(paramMap);
 		 mav.addObject("pseq",pseq);
-		 mav.setViewName("redirect:/productDetail");
+		 mav.setViewName("redirect:/mobileProductDetail");
 				
 			
 	return mav;	

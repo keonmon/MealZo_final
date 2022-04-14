@@ -13,7 +13,7 @@
 					<tr>
 						<th>문의상품</th>
 						<td  style="padding:5px 10px; margin:0 auto;">
-							<a href="meal.do?command=productDetail&pseq=${maskVO.PSEQ}" style="color: black; font-weight: bold;"> 
+							<a href="productDetail&pseq=${maskVO.PSEQ}" style="color: black; font-weight: bold;"> 
 								<div>
 									<img src="images/${maskVO.IMAGE}" width="100px"  />
 									${maskVO.PNAME}

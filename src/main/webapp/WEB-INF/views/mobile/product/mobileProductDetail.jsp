@@ -193,3 +193,9 @@ $(function (){
 	      
     </article>
     <div class="clear"></div>
+    
+    
+    
+
+
+    <%@ include file="../include/headerfooter/mobileFooter.jsp"%>

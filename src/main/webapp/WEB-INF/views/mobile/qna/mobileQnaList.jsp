@@ -30,14 +30,14 @@
 </c:forEach>
 
   </table>
-		<div id="buttons3" style="  font-size:2.4em; margin:30%">
- 
- 	<input type="button" value="질문하기" class="qnaviewb" onClick="location.href='mobileQnaWriteForm'">
- 	<input type="button" value="쇼핑 계속하기" class="qnaviewb" onClick="location.href='/'">
- </div>
- 
-  </form>
-    
+  <div class="clear"></div>
+		<div id="buttons3" style="  font-size:2.6em;">
+			<input type="button" class="qnaviewb"value="질문하기" onClick="location.href='mobileQnaWriteForm'">
+			<input type="button" class="qnaviewb" value="쇼핑 계속하기" c onClick="location.href='/'">
+		</div>
+	</form>
+  
+
     
     </article>
     

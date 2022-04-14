@@ -16,7 +16,7 @@
 <td ><a href="mobileProductDetail?pseq=${zzimVO.PSEQ}" style="color:black; font-weight:bold;">
 <img src="images/${zzimVO.IMAGE}" width="200px" style="float:left;"/>
 </a></td>
-<td style="font-wight:bold; width:271px;"><a href="productDetail?pseq=${zzimVO.PSEQ}" style="color:black; font-weight:bold; font-size:2.0em;">${zzimVO.NAME}</a>
+<td style="font-wight:bold; width:271px;"><a href="mobileProductDetail?pseq=${zzimVO.PSEQ}" style="color:black; font-weight:bold; font-size:2.0em;">${zzimVO.NAME}</a>
 <br><br><p style="font-size:1.8em; font-weight:bold; width:295px;">${zzimVO.PRICE2}<br>${zzimVO.KIND}</p></td>
 <td style="vertical-align: top;"><a href="mobiledeleteZzim?pseq=${zzimVO.PSEQ}">
 <span class="material-icons" style="font-size:2.8em; color:#828282;" >close</span></a></td></tr>
@@ -41,3 +41,4 @@
 </form>
 </article>
 
+ <%@ include file="../include/headerfooter/mobileFooter.jsp"%>
