@@ -27,7 +27,7 @@ if(document.frm.orderCancel == null){
 		return; 
 	}else{ 
 	//count 값이 1 이상이면, 현재 폼의 체크박스 value값을 갖고, command = adminOrderSave로 이동 
-		document.frm.action = "orderCancelUpdate"; 
+		document.frm.action = "mobileOrderCancelUpdate"; 
 		document.frm.submit(); 
 	} 
 	// 처리하고(주문의 result값을 '1'->'2'로 변경) orderList.jsp로 되돌아온다. 

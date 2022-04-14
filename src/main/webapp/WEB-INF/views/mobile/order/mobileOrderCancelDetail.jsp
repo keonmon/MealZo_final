@@ -46,15 +46,5 @@
 		주문 목록으로 이동
 	</div>
 </div>
-<div id="botFlyingContainer" >
-	<div id="botBtn" style=" 
-		background-color:#434343; color:white; font-size:3em; font-weight:bold;"
-		onclick="location.href='mobileMypageForm'">
-		마이페이지로 이동
-	</div><div id="botBtn"
-	style=" background-color:#6db800; color:white; font-size:3em; font-weight:bold;"
-	onclick="location.href='mobileOrderList'">
-		주문 목록으로 이동
-	</div>
-</div>
+
 <%@ include file="../include/headerfooter/mobileFooter.jsp" %>
