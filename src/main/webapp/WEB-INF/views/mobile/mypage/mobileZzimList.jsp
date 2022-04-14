@@ -8,7 +8,7 @@
 
 <br><br><br><br>
 <form>
-<table id="zzimtable" style="text-align:center;" >
+<table id="zzimtable" style="text-align:center; width: 100%;" >
 <tr    style="font-size:2.3em; height:140px; background-color:#ededed;"><th width="160px">날짜</th><th colspan="3">상품이름</th>
 <c:forEach items="${zzimList}" var="zzimVO">
 <input type="hidden" value="${zzimVO.ZSEQ}">
