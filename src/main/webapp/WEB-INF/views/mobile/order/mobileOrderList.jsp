@@ -3,7 +3,7 @@
 <%@ include file="../include/headerfooter/mobileMainHeader.jsp"%>
 
 <div id=subpageContainer>
-<div style="width:95%; height:120px; 
+<div style="width:95%; height:120px; margin:0 auto;
 	background-color:green; color:white; line-height:120px; 
 	padding:10px 30px; box-sizing: border-box;" >
 	<b style="font-size:3em ">${loginUser.ID }&nbsp;님의 주문목록💗</b>
@@ -14,7 +14,7 @@
 		<th>상품명</th>
 		<th>수량</th>
 		<th>가격</th>
-		<th width:>주문일</th>
+		<th>주문일</th>
 		<th>상태</th></tr>
 	<c:forEach items="${orderList}" var="morderVO">
 		<tr>
@@ -50,11 +50,11 @@
 </div>
 <div id="botFlyingContainer" >
 	<div id="botBtn" style=" 
-		background-color:teal; color:white; font-size:3em; font-weight:bold;"
+		background-color:#434343; color:white; font-size:3em; font-weight:bold;"
 		onclick="location.href='mobileMain'">
 		홈으로 이동
 	</div><div id="botBtn"
-	style=" background-color:beige; font-size:3em; font-weight:bold;"
+	style=" background-color:#6db800; color:white; font-size:3em; font-weight:bold;"
 	onclick="location.href='mobileMypageForm'">
 		마이페이지로 이동
 	</div>
