@@ -5,7 +5,7 @@
 
 <div id=subpageContainer>
 <div id="my_greeting">
-<span id="my_greeting_text">${loginUser.NAME} 님의 MYPAGE입니다.</span>
+<span id="my_greeting_text">${loginUser.NAME} 님의 MYPAGE입니다😉</span>
 <span class="material-icons" id="userSettingIcon" onclick="location.href='mobileUpdateForm'">manage_accounts</span>
 </div>
 <div id="orderTotalView">

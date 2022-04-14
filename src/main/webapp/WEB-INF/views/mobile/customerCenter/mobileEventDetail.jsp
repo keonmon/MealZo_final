@@ -2,37 +2,48 @@
 <%@ include file ="../include/sidemenu/sidemenu.jsp"%>
 <%@ include file="../include/headerfooter/mobileMainHeader.jsp"%>
 
-<article id="mypageArticle2" style="width:900px; max-width:900px;">
-	<h2>이벤트 상세페이지</h2>
-	<form>
-		<table id="cartList" width="100%" style="text-align:center;">
-			<tr>
-				<th width="50" style="font-size:1.2em;">제목</th>
-				<td  style="text-align: left;">${eventVO.TITLE}</td>
-				<th width="50" style="font-size:1.2em;">이벤트 기간</th>
-				<td align="left" style="text-align: left;">
-					<fmt:formatDate value="${eventVO.STARTDATE}" type="date" />
-					~
-					<fmt:formatDate value="${eventVO.ENDDATE}" type="date" />
-				
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4" align="left" style="text-align: left; font-size: 115%; max-width:900px; word-break:break-all">
-					<div style="margin-top:5px; padding:20px; border:1px solid lightgrey; height:100%; max-height:9999px; margin-bottom:10px; ">
-						<div style="margin-bottom:10px;">
-							<img width="100%" src="images/${eventVO.IMAGE2 }">
-						</div>
-						${eventVO.CONTENT}
+<div id="mypageArticle2" style="width: 100%; margin: 150px 0 0 0;">
+<div style="width:100%; height:120px; margin:0 auto;
+	background-color:green; color:white; line-height:120px; 
+	padding:10px 30px; box-sizing: border-box;" >
+	<b style="font-size:3em ">밀조의 특별한 이벤트🎉✨</b>
+</div>
+	
+	<table id="eventTable" width="100%" style="text-align:center; margin:0 auto;">
+		<tr>
+			<th>제목</th>
+			<td>${eventVO.TITLE}</td>
+			
+		</tr>
+		<tr>
+			<th>이벤트 기간</th>
+			<td>
+				<fmt:formatDate value="${eventVO.STARTDATE}" type="date" />
+				~
+				<fmt:formatDate value="${eventVO.ENDDATE}" type="date" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4" align="left" style="text-align: left; font-size: 1.7em; word-break:break-all">
+				<div style="margin-top:5px; padding:20px; border:1px solid lightgrey; height:auto;  margin-bottom:10px; ">
+					<div style="margin-bottom:10px;">
+						<img width="100%" src="images/${eventVO.IMAGE2 }">
 					</div>
-				</td>
-			</tr>
-		</table>
-		<div class="clear"></div>
-		<div id="buttons" style="text-align:center; margin-bottom:20px;" onclick="location.href='eventList'">
-			<input type="button" value="목록으로" class="submit" onClick="location.href='eventList'">
-		</div>
-	</form>
-</article>
+					${eventVO.CONTENT}
+				</div>
+			</td>
+		</tr>
+	</table>
+	<div class="clear"></div>
+		
+	
+</div>
+</div>
+<div id="botFlyingContainer" >
+	<div id="botBtn" style="width:100%;font-weight:bold;font-size:3em;background-color:#6db800; color:white;"
+	onclick="location.href='mobileEventList'">
+		이벤트 목록
+	</div>
+</div>
 
 <%@ include file="../include/headerfooter/mobileFooter.jsp" %>

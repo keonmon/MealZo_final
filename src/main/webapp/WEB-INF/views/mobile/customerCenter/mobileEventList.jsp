@@ -2,8 +2,12 @@
 <%@ include file ="../include/sidemenu/sidemenu.jsp"%>
 <%@ include file="../include/headerfooter/mobileMainHeader.jsp"%>
 
-<div id="mypageArticle2" style="width:95%; margin:150px 2% 0 2%; ">
-<h2 id="cancelTitle">이벤트</h2>
+<div id="mypageArticle2" style="width:100%; margin:150px 0 0 0; ">
+<div style="width:100%; height:120px; margin:0 auto;
+	background-color:green; color:white; line-height:120px; 
+	padding:10px 30px; box-sizing: border-box;" >
+	<b style="font-size:3em ">밀조의 특별한 이벤트🎉✨</b>
+</div>
 <form>
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" var="now" />
@@ -30,12 +34,12 @@
 						<c:choose>
 							<c:when test="${end < now }">
 								<div style="background-color:black; color:white; opacity:0.5; position:absolute; width:100%; height:100%; font-weight:2em;">
-									<p style="font-size:3em; text-align:center; line-height:285px; margin:0;" >종료된 이벤트</p>
+									<p style="font-size:5em; text-align:center; line-height:285px; margin:0;" >종료된 이벤트</p>
 								</div>
 							</c:when>
 							<c:when test="${now < start }">
 								<div style="background-color:black; color:white; opacity:0.5; position:absolute; width:100%; height:100%; font-weight:2em;">
-									<p style="font-size:3em; text-align:center; line-height:285px; margin:0;" >진행전 이벤트</p>
+									<p style="font-size:5em; text-align:center; line-height:285px; margin:0;" >진행전 이벤트</p>
 								</div>
 							</c:when>
 						</c:choose>
@@ -43,9 +47,9 @@
 					</div>
 					<div style=" color:black; padding:10px 5px;">
 						<ul style="text-decoration:none;  list-style:none; padding:0;">
-							<li style="font-size:1.2em;">${eventVO.TITLE }</li>
-							<li style="font-size:1em; color:grey; font-weight:light;">${eventVO.SUBTITLE}</li>
-							<li style="font-size:1.2em; font-weight:light;">
+							<li style="font-size:2em; font-weight:bold;">${eventVO.TITLE }</li>
+							<li style="font-size:1.5em; color:grey; font-weight:light;">${eventVO.SUBTITLE}</li>
+							<li style="font-size:2em; font-weight:light;">
 								<fmt:formatDate value="${eventVO.STARTDATE}" type="date"/> ~ <fmt:formatDate value="${eventVO.ENDDATE}" type="date"/>
 							</li>
 						</ul>	
