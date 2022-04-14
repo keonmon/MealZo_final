@@ -17,7 +17,7 @@
 			//ajax : 웹페이지 새로고침이 필요없는 request(요청)
 			// 문법 : $.ajax({ 객체 });
 			$.ajax({
-				url:"<%=request.getContextPath()%>/cartInsert",	//Controller로 매핑된 메서드를 호출
+				url:"<%=request.getContextPath()%>/mobileCartInsert",	//Controller로 매핑된 메서드를 호출
 				type:"POST",
 				data: {
 					"pseq": $("#pseq").val(),
@@ -32,10 +32,10 @@
 						$("#cartCnt").empty();
 						$("#cartCnt").append(data.cnt);
 						if(confirm('해당 상품이 장바구니에 추가되었습니다\n장바구니로 이동하시겠습니까?')){
-							location.href="cartList";
+							location.href="mobileCartList";
 						}
 					}else{
-						location.href="userLogin";
+						location.href="mobileLogin";
 					}
 				},
 				error:function(){

@@ -28,7 +28,7 @@
 							 ${mcartVO.PNAME}</a></td><td> ${mcartVO.QUANTITY} </td>
 						<td><fmt:formatNumber value="${mcartVO.PRICE2*mcartVO.QUANTITY}"	type="currency"/></td>
 						<td><fmt:formatDate value="${mcartVO.INDATE}" type="date" /></td>
-						<td><input type="checkbox" name="cseq" value="${mcartVO.CSEQ}"></td></tr>
+						<td><input type="checkbox" name="cseq" value="${mcartVO.CSEQ}" style="height:50px;width:50px;"></td></tr>
 					</c:forEach>	
 			<tr><th colspan="2"> 총 액 </th><th colspan="2">
        				<fmt:formatNumber value="${totalPrice}" type="currency" /></th>

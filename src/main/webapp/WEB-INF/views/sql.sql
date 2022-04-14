@@ -438,3 +438,5 @@ SELECT constraint_name,
 WHERE CONSTRAINT_NAME = 'SYS_C007125'
 
 select * from mpdimg 
+
+select * from mmember
