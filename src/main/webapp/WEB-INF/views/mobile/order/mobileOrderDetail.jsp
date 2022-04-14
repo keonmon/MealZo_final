@@ -31,7 +31,7 @@
 	      					배송<br>완료
 	      				</c:when>
 	      				<c:otherwise>
-			      			주문<br>취소됨 
+			      			주문<br>취소
 	      				</c:otherwise>
 	      			</c:choose>
 	      		</td>

@@ -32,6 +32,7 @@
       				<c:when test="${morderVO.RESULT=='1'}">주문<br>처리중</c:when>
       				<c:when test="${morderVO.RESULT=='2'}">배송중</c:when>
       				<c:when test="${morderVO.RESULT=='3'}">배송<br>완료</c:when>
+      				<c:otherwise>주문<br>취소</c:otherwise>
       			</c:choose>
       		</td></tr>
 	</c:forEach>
