@@ -392,7 +392,7 @@ input[id="menuicon"]:checked + label + div{
 #orderTotalView{position:relative; display:inline-block; width:100%; padding:15px; box-sizing:border-box; margin:25px 0 0 0;}
 #orderTotalView div{font-size:1.5em; font-family:'Pretendard-Regular'; font-weight:bold;}
 #orderTotalView ul{position:relative; display:inline-block;  font-family:'Pretendard-Regular'; padding:0; width:100%; border-radius:30px; border:.5px solid lightgrey;}
-#orderTotalView ul>li{list-style:none; float:left; display: block; width:33%; padding:20px 0; margin:0;  letter-spacing:-0.5px; cursor:pointer; text-align: center; font-size:2.5em; border-right:.5px solid lightgrey;}
+#orderTotalView ul>li{list-style:none; float:left; display: block; width:33%; padding:50px 0; margin:0;  letter-spacing:-0.5px; cursor:pointer; text-align: center; font-size:2.5em; border-right:.5px solid lightgrey;}
 #orderTotalView ul>li:last-child{border:none;}
 #orderTotalView ul>li>a{padding: 10px 0;  text-decoration:none; color:black;}
 	/* mypage_하단메뉴 */
@@ -567,7 +567,7 @@ font-weight: bold; font-size:15px; height:60px; border:none; border-radius:2%; c
 
 
 /* --------------------------주문 시작-------------------------------- */
-#orderTable{width:95%; }
+#orderTable{width:95%; margin:0 auto;}
 #orderTable th{font-size:2.3em; background-color:#ebebeb; height:50px;height:100px;}
 #orderTable td{font-size:2em; text-align:center; border-bottom:.5px solid gray;height:150px;}
 #botFlyingContainer{position:fixed;width:100%;height:120px; bottom:0px; border-top:0.5px solid green;}
