@@ -579,4 +579,16 @@ font-weight: bold; font-size:15px; height:60px; border:none; border-radius:2%; c
 
 /* --------------------------주문 여기까지-------------------------------- */
 
+/*  -----------------------------카트 해보는중 ------------------------------- */
+
+#cartTable{width:95%; }
+#cartTable th{font-size:2.3em; background-color:#ebebeb; height:50px;height:100px;}
+#cartTable td{font-size:2em; text-align:center; border-bottom:.5px solid gray;height:150px;}
+#botFlyingContainer{position:fixed;width:100%;height:120px; bottom:0px; border-top:0.5px solid green;}
+#botFlyingContainer #botBtn{
+	position:relative; display:inline-block; 
+	width:50%; height:100%; cursor:pointer; 
+	text-align:center; line-height:120px;
+}
+
 
