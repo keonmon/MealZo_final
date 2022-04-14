@@ -287,7 +287,7 @@ public class MOrderController {
 			HashMap<String, Object>paramMap = new HashMap<String, Object>();
 			for(String odseq1:odseqArr) {
 				paramMap.put("odseq", Integer.parseInt(odseq1));
-				os.orderCancelDetail(paramMap);
+				os.orderCancelUpdate(paramMap);
 				mav.addObject("odseq", odseq1);
 				mav.setViewName("redirect:/orderCancelForm");
 			}
