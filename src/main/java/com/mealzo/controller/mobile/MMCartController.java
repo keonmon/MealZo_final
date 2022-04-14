@@ -44,7 +44,7 @@ public class MMCartController {
 									* Integer.parseInt( cart.get("PRICE2").toString() ); 
 			}
 			mav.addObject("totalPrice", totalPrice);
-			mav.setViewName("cart/mobileCartList");
+			mav.setViewName("mobile/cart/mobileCartList");
 		}
 		return mav;
 	} 
