@@ -24,7 +24,7 @@
 </style>
 <div class="clear"></div>
 
-<div id="index"  class='stop-dragging' style="margin-bottom:30px; margin-top:100px;" >
+<div id="index"  class='stop-dragging' style="margin-bottom:150px; margin-top:100px;" >
 <!-- <script type="text/javascript">
 	$(function(){
 		startInterval();
