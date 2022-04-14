@@ -28,7 +28,7 @@ public class MMCartController {
 			= (HashMap<String, Object>)session.getAttribute("loginUser");
 		
 		if( loginUser == null ) {
-			mav.setViewName("member/login");
+			mav.setViewName("mobile/member/mobileLogin");
 		} else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("id", loginUser.get("ID") );
