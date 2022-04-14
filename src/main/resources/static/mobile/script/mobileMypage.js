@@ -47,7 +47,7 @@ function deleteReview(rseq){
 	var delete_confirm = confirm("삭제된 후기는 복구할 수 없습니다.\n정말로 삭제하시겠습니까?");
 	if(delete_confirm){
 		alert("해당 상품의 후기가 삭제되었습니다.");
-		location.href="myReviewDelete?rseq=" + rseq;
+		location.href="mobileMyReviewDelete?rseq=" + rseq;
 	}else{
 		alert("삭제가 취소되었습니다");
 	}	

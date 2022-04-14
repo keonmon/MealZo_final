@@ -10,12 +10,19 @@
 <br><br><br><br>
 <form>
 <table id="zzimtable" style="text-align:center;" >
-<tr    style="font-size:2.3em; height:140px; background-color:#ededed;"><th width="160px">등록일</th><th colspan="3">상품평</th><th>후기 내용</th><th>후기삭제</th>
-	<c:forEach items="${myReviewList }" var="reviewVO"><input type="hidden" value="${zzimVO.ZSEQ}">
-<tr ><td style="font-size:2.0em;"><fmt:formatDate value="${zzimVO.INDATE}" type="date" pattern="YY.MM.dd"/></td>
-<td >${reviewVO.NAME } </td>
+<tr    style="font-size:2.3em; height:140px; background-color:#ededed;"><th width="160px">등록일</th><th >상품명</th>
+<th colspan="2" style="  width: 500px;">후기 내용</th>
+	<c:forEach items="${myReviewList }" var="reviewVO">
+			<input type="hidden" value="${mrivewVO.ZSEQ}">
+<tr style="height: 100px;" ><td style="font-size:2.0em;">
+		<fmt:formatDate value="${reviewVO.INDATE}" type="date" pattern="YY.MM.dd"/></td>
+	<td style="text-align:center;font-size:2.0em;"><a href="mobileProductDetail?pseq=${reviewVO.P_PSEQ}" style="color:black; font-weight:bold;">
+				${reviewVO.NAME}</a></td>
 <td style="font-wight:bold; font-size:2.0em">${reviewVO.CONTENT}
-<span class="material-icons" style="font-size:2.8em; color:#828282;" >close</span></a></td></tr>
+<td style="vertical-align: top;">
+<span class="material-icons" style="font-size:1.5em; color:#828282;" onclick="deleteReview(${reviewVO.RSEQ})" >close</span></a></td></tr>
+ 
+
  
 
 

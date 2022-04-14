@@ -440,3 +440,8 @@ WHERE CONSTRAINT_NAME = 'SYS_C007125'
 select * from mpdimg 
 
 select * from mmember
+
+
+select * from morders;
+select * from morder_detail
+select *from morder_view
