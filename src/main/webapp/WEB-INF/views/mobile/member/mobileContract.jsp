@@ -6,10 +6,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
 </head>
 
-<article>
+<article style="margin: 25% 0 0 2%; height:80%;">
 <h2>회원 가입 약관</h2>
 
-<form id="join" method="post" name="contractFrm" style="margin-top:18%; width:95%;">
+<form id="join" method="post" name="contractFrm" style="margin-top:0%; width:95%;">
 
 언제나 새로운 즐거움이 가득한 MealZo 의 회원가입 페이지 입니다. <br>
 MealZo 의 회원가입은 무료이며, 회원님의 개인신상에 관한 정보는 ‘정보통신망이용촉진 

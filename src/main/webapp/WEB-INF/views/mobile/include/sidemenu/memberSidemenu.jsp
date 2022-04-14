@@ -17,10 +17,11 @@
       <li>
 		<c:choose>
 		<c:when test="${empty loginUser }">
-      <a href="mobileUserLogin"><psan id="login3"><ins >로그인</ins></psan></a>해 주세요
+      <a href="mobileLogin"><psan id="login3"><ins >로그인</ins></psan></a>해 주세요
       </c:when>
       <c:otherwise>
-      <span style="font-size:1.3em"><strong>${loginUser.NAME }</strong> 님 반갑습니다</span>
+     <span style="font-size:0.9em"><strong>${loginUser.NAME }</strong> 님 반갑습니다</span>
+      <a href="mobileLogout" style="font-size:0.9em"><ins >로그아웃</ins></a>
       </c:otherwise>
       </c:choose>
       </li>
@@ -31,14 +32,14 @@
       
       <div id="sideicon2">
       <ul>
-	 <li><a href="mobileOrderList"><span class="material-icons" style="font-size:4.0em; ">&nbsp;local_shipping</span><br><span style="font-size:1.5em; font-weight:bold;">주문내역</span></a></li>
-	 <li><a href="mobileMypageForm"><span class="material-icons" style="font-size:4.0em;">&nbsp;&nbsp;account_circle</span><br><span style="font-size:1.5em; font-weight:bold;">&nbsp;마이페이지</span></a></li>
-	 <li><a href="mobileZzimList"><span class="material-icons" style="font-size:4.0em;">&nbsp;volunteer_activism</span><br><span style="font-size:1.5em; font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;찜</span></a></li>
+	 <li><a href="mobileOrderList"><span class="material-icons" style="font-size:2.0em; ">&nbsp;local_shipping</span><br><span style="font-size:0.8em; font-weight:bold;">주문내역</span></a></li>
+	 <li><a href="mobileMypageForm"><span class="material-icons" style="font-size:2.0em;">&nbsp;&nbsp;account_circle</span><br><span style="font-size:0.8em; font-weight:bold;">&nbsp;마이페이지</span></a></li>
+	 <li><a href="mobileZzimList"><span class="material-icons" style="font-size:2.0em;">&nbsp;volunteer_activism</span><br><span style="font-size:0.8em; font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;찜</span></a></li>
      </ul>
     </div>     
 <br>
  <div id="sidelist2">
-      <ul>
+      <ul style="padding: 10 0 0 0;">
       <li><a href="mobileProductAllForm?sort=recently&sub=y&idx=0">전체 보기</a></li>
       <li><a href="mobileProductForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0">베스트 메뉴</a></li>
       <li><a href="mobileProductForm?kind=&bestyn=&newyn=y&sort=recently&sub=y&idx=0">신제품</a></li>
@@ -48,7 +49,7 @@
       <hr><br>
       <li><a href="mobileEventList">이벤트</a></li>
       <li><a href="mbileCompany">밀조 소개</a></li>
-      <li><a href="mobilenmqnaForm">고객센터</a></li>
+      <li><a href="mobileNmqnaForm">고객센터</a></li>
    </ul>
    </div>
    
