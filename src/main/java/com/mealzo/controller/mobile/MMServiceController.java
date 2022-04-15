@@ -30,7 +30,7 @@ public class MMServiceController {
 	public String company() {
 		return "mobile/service/mobileCompany";
 	}
-	
+
 	@RequestMapping("mobileNoticeList")
 	  public ModelAndView noticeList(HttpServletRequest request,
 	          @RequestParam(value = "sub", required = false) String sub,
