@@ -77,9 +77,6 @@ public class MMQnaController {
 			mav.addObject("paging", paging);
 			mav.addObject("mqnaList", list);
 			mav.setViewName("mobile/qna/mobileQnaList");
-			
-			
-					
 		}
 		
 		return mav;
@@ -152,7 +149,7 @@ public class MMQnaController {
 				mav.addObject("message", result.getFieldError("content").getDefaultMessage());
 				mav.setViewName("mobile/qna/mobileQnaWrite");
 				return mav;
-		}
+			}
 
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("content", content);
@@ -166,9 +163,7 @@ public class MMQnaController {
 	}
 	
 	@RequestMapping("/mobileNmqnaForm")
-
 	public ModelAndView mobileNonmemberqnaForm(Model model, HttpServletRequest request,
-
 			@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "key", required = false) String key) {
 		ModelAndView mav = new ModelAndView();
@@ -266,7 +261,7 @@ public class MMQnaController {
 				mav.addObject("message", result.getFieldError("content").getDefaultMessage());
 				mav.setViewName("mobile/qna/mobileNmqnaWrite");
 				return mav;
-		}	
+			}	
 			System.out.println(subject);
 			System.out.println(content);
 			System.out.println(qnavo.getSubject());
@@ -288,9 +283,7 @@ public class MMQnaController {
 	}
 	
 	@RequestMapping("/mobileNmqnaView")
-
 	public ModelAndView mobileNmqnaView(
-
 			@RequestParam(value="nqseq",  required=false) int nqseq ,
 			@RequestParam("pwd") String pwd ,
 			@RequestParam("mvo") String mvo ,
@@ -311,18 +304,16 @@ public class MMQnaController {
 				mav.setViewName("redirect:/mobilePwdcheck");				
 
 			}else{
-			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			
-			paramMap.put("nqseq", nqseq);
-			paramMap.put("ref_cursor", null);
-			qs.getnmQna(paramMap);
-			
-			ArrayList<HashMap<String, Object>> list
-			 =(ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
-			mav.addObject("mqnaVO", list.get(0));
-
-			mav.setViewName("mobile/qna/mobileNmqnaView");
-
+				HashMap<String, Object> paramMap = new HashMap<String, Object>();
+				paramMap.put("nqseq", nqseq);
+				paramMap.put("ref_cursor", null);
+				qs.getnmQna(paramMap);
+				
+				ArrayList<HashMap<String, Object>> list
+				 =(ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+				mav.addObject("mqnaVO", list.get(0));
+	
+				mav.setViewName("mobile/qna/mobileNmqnaView");
 			}
 			mav.addObject("nqseq", nqseq);
 		}
