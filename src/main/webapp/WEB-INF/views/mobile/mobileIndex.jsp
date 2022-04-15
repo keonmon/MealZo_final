@@ -130,7 +130,7 @@
 	
 	<!-- 신메뉴 슬라이더 -->
 	<div id="slide_product" style="margin-top: 100px;">
-		<div id="index_catalog_topper">
+		<div id="index_catalog_topper" style="margin-top: 120px;">
 			<span id="name">
 				<a href="mobileProductForm?kind=&bestyn=&newyn=y&sort=recently&sub=y&idx=0">신상품</a>
 			</span>
