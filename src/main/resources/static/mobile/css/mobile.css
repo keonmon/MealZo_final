@@ -654,7 +654,7 @@ font-weight: bold; font-size:15px; height:60px; border:none; border-radius:2%; c
 #mqnaview td{font-size:2.3em;     height: 160%;
  }
 
- .qnaviewb{border: 1px solid #666; width:47%; height:80px; font-size: 0.8em;  font-weight:bold;
+ .qnaviewb{border: 1px solid #666; width:47%; height:80px; font-size: 0.98em;  font-weight:bold;
  background-repeat: repeat-x; background-position:center; color: #FFFFFF; margin-top: 30px; background-color:#1AB137;}
  #button3{margin:0 auto; }
  
