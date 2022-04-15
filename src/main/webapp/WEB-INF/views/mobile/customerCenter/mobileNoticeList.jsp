@@ -12,10 +12,10 @@
 <th style="width: 60%;" >제목</th><th style="width: 200px;">게시일</th>
 	<c:forEach items="${noticeList }" var="noticeVO">
 	
-<tr style="height: 100px; font-size:1.2em;" ><td >${noticeVO.NSEQ}</td>
-	<td style="text-align:center;"><a href="mobileNoticeDetail?nseq=${noticeVO.NSEQ}" style="color:black; font-weight:bold;">
+<tr style="height: 100px; font-size:2.0em;" ><td >${noticeVO.NSEQ}</td>
+	<td style="text-align:center; font-size:1.5em;" ><a href="mobileNoticeDetail?nseq=${noticeVO.NSEQ}" style="color:black; font-weight:bold;">
 			${noticeVO.SUBJECT}</a></td>
-<td style="font-size:2.0em; font-size: 0.9em;;">
+<td style="font-size:1.4em;">
 		<fmt:formatDate value="${noticeVO.INDATE}" type="date" pattern="YY.MM.dd"/></td></tr>
  
 </c:forEach>
