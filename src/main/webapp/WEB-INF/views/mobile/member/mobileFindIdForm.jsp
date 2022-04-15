@@ -165,4 +165,4 @@ function changeImg() {
 
 
 
-<%@ include file="../include/headerfooter/mobileFooter.jsp" %>
+<%@ include file="../include/headerfooter/mobileMemberFooter.jsp" %>

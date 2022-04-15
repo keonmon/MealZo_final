@@ -78,10 +78,9 @@ public class MMQnaController {
 			mav.addObject("mqnaList", list);
 			mav.setViewName("mobile/qna/mobileQnaList");
 		}
-		
 		return mav;
-			
 	}
+	
 	
 	@RequestMapping("/mobileQnaView")
 

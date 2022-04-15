@@ -647,16 +647,6 @@ BEGIN
     commit;    
 END;
 
--------------->> 멤버-회원탈퇴 <<-------------------
-
-CREATE OR REPLACE PROCEDURE updateUseyn_m(
-    p_id IN mmember.id%TYPE )
-IS
-BEGIN
-    update mmember set useyn='x' where id=p_id;
-    commit;    
-END;
-
 -------------->> 주문-회원탈퇴 <<-------------------
 
 CREATE OR REPLACE PROCEDURE selectOseqOrderAll_m (
@@ -1554,24 +1544,24 @@ end;
 
 ------------------------------------------------------------------------
 -- 즉시구매 
-create or replace procedure nowOrder_m(
-    p_id  IN  MORDERS.ID%TYPE,
-    p_oseq  OUT  MORDERS.OSEQ%TYPE  )
-IS
-     v_oseq MORDERS.OSEQ%TYPE;
-     v_pseq MORDER_DETAIL.PSEQ%TYPE;
-     v_quantity MORDER_DETAIL.QUANTITY%TYPE;
-BEGIN
-    INSERT INTO MORDERS(oseq, id) VALUES( morders_seq.nextVal, p_id);
-    SELECT MAX(oseq) INTO p_oseq FROM MORDERS;
-    INSERT INTO morder_detail( odseq, oseq, pseq, quantity )
-    VALUES( morder_detail_seq.nextVal, v_oseq, v_pseq,  v_quantity );
-    commit;
-    p_oseq := v_oseq;
-END;
+--create or replace procedure nowOrder_m(
+--    p_id  IN  MORDERS.ID%TYPE,
+--    p_oseq  OUT  MORDERS.OSEQ%TYPE  )
+--IS
+--     v_oseq MORDERS.OSEQ%TYPE;
+--     v_pseq MORDER_DETAIL.PSEQ%TYPE;
+--     v_quantity MORDER_DETAIL.QUANTITY%TYPE;
+--BEGIN
+--    INSERT INTO MORDERS(oseq, id) VALUES( morders_seq.nextVal, p_id);
+--    SELECT MAX(oseq) INTO p_oseq FROM MORDERS;
+--    INSERT INTO morder_detail( odseq, oseq, pseq, quantity )
+--    VALUES( morder_detail_seq.nextVal, v_oseq, v_pseq,  v_quantity );
+--    commit;
+--    p_oseq := v_oseq;
+--END;
 
 
-CREATE OR REPLACE PROCEDURE insertOrder_m(
+CREATE OR REPLACE PROCEDURE nowOrder_m(
     p_id  IN  MORDERS.ID%TYPE,
     p_oseq  OUT  MORDERS.OSEQ%TYPE  )
 IS
@@ -1663,9 +1653,20 @@ end;
 
 select * from notice
 
+-------------->> 멤버-회원탈퇴 다시돌려야합니다 <<-------------------
+
+CREATE OR REPLACE PROCEDURE updateUseyn_m(
+    p_id IN mmember.id%TYPE )
+IS
+BEGIN
+    update mmember set useyn='n' where id=p_id;
+    commit;    
+END;
+
 
 ----------------------------------------------------------
 select * from notice;
 select * from morder_detail;
 select * from nmqna;
 select * from mqna;
+select * from mmember;

@@ -30,5 +30,4 @@
 		</c:forEach>
 	</table>
 </div>
-</body>
-</html>
+<%@ include file="../include/headerfooter/mobileMemberFooter.jsp" %>

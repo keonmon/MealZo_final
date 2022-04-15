@@ -28,18 +28,30 @@ $(function(){
 </div>
 <div id="side_buttons" >
  <ul style="margin-top:0; ">
-   <li ><a style="width:60%; font-size:1.2em" href="mobileFindIdForm">아이디/비밀번호 찾기 </a></li>
-   <li ><a style="margin-left:20%; width:30%; font-size:1.2em" href="mobileContract" >회원가입</a></li>
+   <li style="margin-left:-7%; width:65%"><a style="width:90%; font-size:1.2em" href="mobileFindIdForm">아이디/비밀번호 찾기 </a></li>
+   <li style="width:25%"><a style="margin-left:0%; width:90%; font-size:1.2em" href="mobileContract" >회원가입</a></li>
  </ul>
 </div><br><br>
 <%-- <div > &nbsp; &nbsp; ${message}</div> --%>
 
 </fieldset>
 </form>
-<div id="message" style="font-size:1.2em; width:80%; left:10%;"> ${message}</div>
-<div id="msg" style="font-size:1.2em; width:80%; left:30%;"> ${msg}</div>
+
+<c:choose>
+	<c:when test="${useyn2=='n'}">
+		<div id="message" style="font-size:1.2em; width:80%; left:10%;">
+			탈퇴하거나 휴면중인 계정입니다.
+			<a href="mobileNmqnaForm" style="text-decoration: none; color: red;">
+					고객센터(클릭) </a>를 통해 문의주시기 바랍니다
+		</div>
+	</c:when>	
+	<c:otherwise>
+		<div id="message" style="font-size:1.2em; width:80%; left:10%;"> ${message}</div>
+		<div id="msg" style="font-size:1.2em; width:80%; left:30%;"> ${msg}</div>
+	</c:otherwise>
+</c:choose>
 
 </article>
 
 
-<%@ include file="../include/headerfooter/mobileFooter.jsp" %>
+<%@ include file="../include/headerfooter/mobileMemberFooter.jsp" %>
