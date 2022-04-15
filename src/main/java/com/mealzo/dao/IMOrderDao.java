@@ -32,5 +32,7 @@ public interface IMOrderDao {
 
 	void nowOrder(HashMap<String, Object> paramMap);
 
+	void getResultByOdseq(HashMap<String, Object> paramMap);
+
 	
 }
