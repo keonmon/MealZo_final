@@ -27,7 +27,7 @@
       </li>
       </ul>
       </div>
-     <span class="material-icons"  id="homeicon"><a href="/">home</a></span>
+     <span class="material-icons"  id="homeicon"><a href="/" style="font-size:2.3em">home</a></span>
  
       
       <div id="sideicon">

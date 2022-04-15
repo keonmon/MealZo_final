@@ -446,3 +446,4 @@ select * from morders;
 select * from morder_detail
 select *from morder_view;
 select * from mqna;
+select * from mqna_view;
