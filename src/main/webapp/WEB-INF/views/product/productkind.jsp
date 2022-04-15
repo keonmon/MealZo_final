@@ -5,10 +5,10 @@
  <article id="e">
 <c:choose>
 	<c:when test="${bestyn == 'y'}">
-		<div class="kind">베스트 상품</div>
+		<div class="kind">✨●'◡'●베스트 상품✨</div>
 	</c:when>
 	<c:when test="${newyn == 'y'}">
-		<div class="kind">신상품</div>
+		<div class="kind">🙌새로 나왔어요! 🙌</div>
 	</c:when>
 	<c:otherwise>
 		<div class="kind">${kind}</div>

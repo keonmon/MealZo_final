@@ -2,7 +2,6 @@
 <%@ include file ="../include/sidemenu/sidemenu.jsp"%>
 <%@ include file="../include/headerfooter/mobileMainHeader.jsp"%>
 
-
 <div id=subpageContainer>
 <div style="width:95%; height:120px; margin:0 auto;
 	background-color:green; color:white; line-height:120px; 

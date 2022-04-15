@@ -50,7 +50,7 @@
 	<div id="slide_product">
 		<div id="index_catalog_topper">
 			<span id="name">
-				신메뉴!
+				🙌새로 나왔어요! 🙌
 			</span>
 			<a href="productForm?kind=&bestyn=&newyn=y&sort=recently&sub=y&idx=0">전체보기</a>
 		</div>
@@ -85,7 +85,7 @@
 	<div id="slide_product">
 		<div id="index_catalog_topper">
 			<span id="name">
-				베스트
+				✨●'◡'●베스트 상품✨
 			</span>
 			<a href="productForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0">전체보기</a>
 		</div>
