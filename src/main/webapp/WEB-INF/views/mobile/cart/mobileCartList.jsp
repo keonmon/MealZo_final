@@ -11,7 +11,6 @@
 <form name="form4" style="text-align:center;">
 	<c:choose>
 		<c:when test="${cartList.size()==0 }">
-			
 			<div style="width:100%; height:800px;">
 				<h1 style="color:green; text-align:center; line-height:800px;">장바구니가 비었습니다🙊</h1>
 			</div>

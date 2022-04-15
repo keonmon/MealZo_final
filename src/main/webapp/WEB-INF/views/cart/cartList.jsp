@@ -6,7 +6,9 @@
 <form name="form4" method="post">
 	<c:choose>
 		<c:when test="${cartList.size() == 0}">
-			<h3 style="color:green; text-align:center;">장바구니가 비었습니다</h3>
+			<div style="width:100%; height:500px;">
+				<h2 style="color:green; text-align:center; line-height:500px;">장바구니가 비었습니다🙊</h2>
+			</div>
 		</c:when>
 		<c:otherwise>
 		<table id="cartList" style="text-align:center;">
