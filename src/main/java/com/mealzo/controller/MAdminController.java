@@ -1127,7 +1127,7 @@ public class MAdminController {
           paramMap.put("startNum",paging.getStartNum());
           paramMap.put("endNum",paging.getEndNum());
           paramMap.put("ref_cursor", null);
-          ns.getNoticeList(paramMap);
+          ns.getNoticeAll(paramMap);
           
           ArrayList<HashMap<String, Object>> noticeList 
               = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");

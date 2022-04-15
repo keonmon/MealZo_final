@@ -997,9 +997,8 @@ update mqna set reply=p_reply, rep=2 where qseq=p_qseq ;
 end;
 
 -----------------------------------------------------------------------------
---admin 공지리스트 조회 getNoticeList_m
+-- 공지리스트 조회 getNoticeList_m
 create or replace procedure getNoticeList_m(
-    p_key in varchar2,
     p_startNum in number,
     p_endNum in number,
     c_cur out sys_refcursor )
@@ -1009,7 +1008,7 @@ begin
         select * from (
         select * from (
         select rownum as rn, p.* from 
-        ((select * from notice where subject like '%'||p_key||'%') p) 
+        ((select * from notice where useyn='y') p) 
         ) where rn>=p_startNum
         ) where rn<=p_endNum;
 end;
@@ -1630,9 +1629,43 @@ select rownum rn, p.* from (select * from mqna where id=p_id order by qseq desc 
 ) where rn >= p_startNum
 )where rn<= p_endNum;
 end;
+-------------------------------------------------------
+-- user 공지사항 게시판 카운트
+create or replace procedure getAllCountNotice_m(
+    p_cnt out NUMBER )
+is
+    v_cnt number := 0;
+begin
+    select count(*) as cnt
+    into v_cnt 
+    from notice  
+    where useyn='y';
+    
+    p_cnt := v_cnt;
+end;
+
+-----------------------------------------------------------------------------
+-- admin 공지리스트 조회 getNoticeAll_m
+create or replace procedure getNoticeAll_m(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+        select * from (
+        select * from (
+        select rownum as rn, p.* from 
+        ((select * from notice where subject like '%'||p_key||'%') p) 
+        ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+end;
 
 
-select * from morders;
+
+----------------------------------------------------------
+select * from notice;
 select * from morder_detail;
 select * from nmqna;
 select * from mqna;
