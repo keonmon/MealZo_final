@@ -199,18 +199,18 @@ input[id="menuicon"]:checked + label + div{
 
 /*#sideMenu2{margin:60px 0 0 0;}*/
 /*#sidelogin {margin :10 0 0 350px; }*/
-#sidelogin ul {float: right; list-style:none;}
-#sidelogin ul li{display:inline-block; color:black; font-size:1.5em; margin:0 100px 0 0;}
+#sidelogin ul {float: right; list-style:none;    width: 80%;  padding-right: 15%;}
+#sidelogin ul li{display:inline-block; color:black; font-size:1.5em; margin:0; width: 100%; text-align: right;}
 #sidelogin a{text-decoration:none; disply:inline-block; color:black;}
 #login3{font-weight:bold;}
 
 
-#sideicon ul {float:left; list-style:none; }
-#sideicon ul li{display:inline-block; color:black;   margin: 0 60px 0 25px; padding:0 0 0 25px;}
+#sideicon ul {float:left; list-style:none; width:100%; margin-top:50px; padding: 0;}
+#sideicon ul li{display:inline-block; color:black;   margin: 0 30px; padding:0 0 0 25px; width:}
 #sideicon a{text-decoration:none; disply:inline-block; color:black; }
 
 
-#sidelist {margin-top:250px;}
+#sidelist {margin-top:50px;}
 #sidelist ul{list-style:none; }
 #sidelist ul li{ color:black; margin: 0 0 45px 45px; font-size:2.0em; font-weight:bold;  }
 #sidelist a{text-decoration:none; disply:inline-block; color:black; }
