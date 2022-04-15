@@ -987,6 +987,7 @@ public class MAdminController {
 			paramMap.put("useyn", nvo.getUseyn());
 			paramMap.put("content", nvo.getContent());
 			paramMap.put("image1", nvo.getImage1());
+			paramMap.put("result", nvo.getResult());
 			ns.insertNotice(paramMap);
 			
 			mav.setViewName("redirect:/adminNoticeList");
@@ -1022,7 +1023,7 @@ public class MAdminController {
 			nvo.setUseyn((String) resultMap.get("USEYN"));
 			nvo.setContent(resultMap.get("CONTENT").toString());
 			nvo.setImage1((String) resultMap.get("IMAGE1"));
-
+			nvo.setResult((String) resultMap.get("RESULT"));
 			mav.addObject("nvo", nvo);
 			
 			mav.setViewName("admin/customerCenter/adminNoticeDetail");
@@ -1066,6 +1067,8 @@ public class MAdminController {
 			paramMap.put("useyn", nvo.getUseyn());
 			paramMap.put("content", nvo.getContent());
 			paramMap.put("image1", nvo.getImage1());
+			paramMap.put("result", nvo.getResult());
+
 			ns.updateNotice(paramMap);
 			
 			mav.setViewName("redirect:/adminNoticeList");
@@ -1135,6 +1138,10 @@ public class MAdminController {
           mav.addObject("key", key);
           
           System.out.println(noticeList);            // <<< 조회된 게시물리스트
+          
+          
+         
+          
           
           mav.setViewName("admin/customerCenter/adminNoticeList");
       }

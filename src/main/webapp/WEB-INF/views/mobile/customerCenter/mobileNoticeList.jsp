@@ -12,9 +12,17 @@
 <th style="width: 60%;" >제목</th><th style="width: 200px;">게시일</th>
 	<c:forEach items="${noticeList }" var="noticeVO">
 	
-<tr style="height: 100px; font-size:2.0em;" ><td >${noticeVO.NSEQ}</td>
+<tr style="height: 100px; font-size:2.0em;" ><td >
+	<c:choose>
+		<c:when test='${noticeVO.RESULT=="p"}'>
+		   <span style="font-weight:bold; color:red">필독</span>
+		   </c:when>
+		   <c:otherwise>
+		${noticeVO.NSEQ}
+		</c:otherwise></c:choose></td>
+	
 
-	<td style="text-align:center; font-size:1.1em;" ><a href="mobileNoticeDetail?nseq=${noticeVO.NSEQ}" style="color:black; font-weight:bold;">
+	<td style="text-align:center; font-size:0.9em;" ><a href="mobileNoticeDetail?nseq=${noticeVO.NSEQ}" style="color:black; font-weight:bold;">
 			${noticeVO.SUBJECT}</a></td>
 <td style="font-size:1.0em;">
 

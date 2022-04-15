@@ -13,6 +13,7 @@
 			<input class="btn" type="button" name="btn_search" value="검색" onclick="go_search('adminNoticeList');">
 			<input class="btn" type="button" name="btn_total" value="전체보기" onclick="go_total('adminNoticeList');">
 			<input class="btn" type="button" name="btn_write" value="새 공지 등록" onclick="go_wrt_Notice();"></td>
+		
 			<td>
 			<select name="change_Useyn" size="1" id="noticeSelect">
 				<option value="y" selected>공개</option>
@@ -27,8 +28,10 @@
 	<tr><th width="100px">공지번호</th>
 		<th width="220px">제목</th>
 		<th width="130px">게시일</th>
+		<th width="130px">필독사항</th>
 		<th width="130px">게시 상태</th>
 		<th width="50px">선택</th>
+		
 	<c:forEach items="${noticeList }" var="noticeVO">
 		<tr>
 			<td style="text-align:left">
@@ -40,18 +43,27 @@
 				</a>
 			</td>
 			<td><fmt:formatDate value="${noticeVO.INDATE }" type="date"/></td>
+					<td>
+		<c:choose>
+					<c:when test='${noticeVO.RESULT == "p" }'>
+					<span style="font-weight:bold; color:red">필독</span>
+					</c:when>
+				<c:otherwise >
+						<span style="font-weight:bold; color:black">미필독</span>
+				</c:otherwise>	</c:choose>
+			
+			</td>
 			<td>
 				<c:choose>
 					<c:when test='${noticeVO.USEYN == "y" }'>
 						<span style="font-weight:bold; color:blue">공개</span>
-					</c:when>
-					<c:otherwise>
-						<span style="font-weight:bold; color:red">비공개</span>
-					</c:otherwise>
-				</c:choose>
-			</td>
+				</c:when>
+						<c:otherwise >
+						<span style="font-weight:bold; color:black">비공개</span>
+				</c:otherwise>	</c:choose>
+	
 			<td><input type="checkbox" name="checkBox_nseq" value="${noticeVO.NSEQ }"></td>
-			</tr>
+		
 	</c:forEach>
 </table>
 
