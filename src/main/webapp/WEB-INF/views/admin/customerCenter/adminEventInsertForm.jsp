@@ -2,7 +2,6 @@
 <%@ include file="../../include/admin/headerfooter/header.jsp"%>
 <%@ include file="../../include/admin/sideMenu.jsp"%>
 
-
 <script type="text/javascript">
 $(function(){
 	$('#SandImageButton').click(function(){
@@ -41,14 +40,14 @@ $(function(){
 						
 						}
 					}
-					},
-					error:function(){
-						alert("실패");
-					}
+				},
+			error:function(){
+				alert("실패");
+			}
 		
-	});
 		});
-	       });
+	});
+});
 </script>
 
 

@@ -1429,8 +1429,8 @@ public class MAdminController {
         		@RequestParam("endTime") String endTime, 
 				@RequestParam("startdate") String startdate, 
 				@RequestParam("enddate") String enddate,
-        @ModelAttribute("evo") @Valid MEventVO evo, 
-        BindingResult result	) {
+		        @ModelAttribute("evo") @Valid MEventVO evo, 
+		        BindingResult result	) {
         	
         	ModelAndView mav= new ModelAndView();
         	 mav.setViewName("admin/customerCenter/adminEventInsertForm");
@@ -1456,6 +1456,11 @@ public class MAdminController {
        		  mav.addObject("message", result.getFieldError("enddate").getDefaultMessage());
        			 return mav;  */
        	  }
+			String startDate = startdate + " " + startTime + ":00";
+			String endDate = enddate + " " + endTime + ":59";
+			System.out.println(startDate);
+			System.out.println(endDate);
+			
        		HttpSession session = request.getSession();
        		if (session.getAttribute("loginAdmin") == null) {
        			mav.setViewName("redirect:/admin");
@@ -1467,8 +1472,8 @@ public class MAdminController {
     			paramMap.put("image1", evo.getImage1());
     			paramMap.put("image2", evo.getImage2());
     			paramMap.put("subtitle", evo.getSubtitle());
-    			paramMap.put("startdate", startdate);
-    			paramMap.put("enddate", enddate);
+    			paramMap.put("startdate", Timestamp.valueOf(startDate));
+    			paramMap.put("enddate", Timestamp.valueOf(endDate));
     			//paramMap.put("startdate", evo.getStartdate());
     			//paramMap.put("enddate", evo.getEnddate());
     			
