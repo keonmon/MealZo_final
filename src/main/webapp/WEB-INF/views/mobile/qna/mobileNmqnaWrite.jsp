@@ -54,7 +54,7 @@
 		홈으로 이동
 	</div><div id="botBtn"
 	style=" background-color:#6db800; color:white; font-size:3em; font-weight:bold;"
-	onclick="location.href='mobileNmqnaWrite'">
+	onclick="go_mobileNmqnaWrite()'">
 		글쓰기
 	</div>
 </div>
