@@ -64,5 +64,5 @@
 				</ul>
 			</div>
 		</table>
-	</form> --%>
-<%@ include file="../include/headerfooter/mobileFooter.jsp" %>
+	</form> 
+<%@ include file="../include/headerfooter/mobileFooter.jsp" %>--%>
