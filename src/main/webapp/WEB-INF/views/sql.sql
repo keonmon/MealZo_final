@@ -447,3 +447,6 @@ select * from morder_detail
 select *from morder_view;
 select * from mqna;
 select * from mqna_view;
+
+delete from morders;
+delete from morder_detail

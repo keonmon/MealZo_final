@@ -1585,6 +1585,8 @@ BEGIN
     p_oseq := v_oseq;
 END;
 
+
+
 ----------------- Qna List 다시돌려야합니다 --------------------------
 
 create or replace procedure listQna_m(
