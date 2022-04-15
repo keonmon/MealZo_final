@@ -2,7 +2,7 @@
 
     <%@ include file="../include/user/headerfooter/header.jsp" %>
  <article id="e">
-<div class="kind">전체상품</div>
+<div class="kind">전체상품😋</div>
 <div id="top_menu" >
 <script>
 $(document).ready(function (){
