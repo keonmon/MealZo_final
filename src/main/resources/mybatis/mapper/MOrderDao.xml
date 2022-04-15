@@ -4,6 +4,11 @@
 <mapper namespace="com.mealzo.dao.IMOrderDao"> 
 	<resultMap type="java.util.HashMap" id="orderMap"/>
 	
+	<insert id="nowOrder" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{ CALL nowOrder_m( #{id}, #{pseq}, #{quantity}, #{oseq} )}
+	</insert>
+		
+		
 	<select id="listOrder" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{CALL listOrder_m(
 			#{startNum},

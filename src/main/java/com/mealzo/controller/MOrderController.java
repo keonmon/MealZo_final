@@ -2,6 +2,7 @@ package com.mealzo.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mealzo.dto.Paging;
@@ -25,6 +27,45 @@ public class MOrderController {
 	
 	@Autowired
 	MCartService cs;
+	
+	
+	@RequestMapping(value="/orderNow")
+	@ResponseBody
+	public Map<String,Object> orderNow( HttpServletRequest request, Model model,
+			@RequestParam(value="pseq",required = false)String pseq,
+			@RequestParam(value="quantity",required = false)String quantity
+			) {
+		int cnt = 0;
+		System.out.println("pseq:"+pseq+" / quantity:"+quantity);
+		HttpSession session = request.getSession();
+		HashMap<String, Object>loginUser
+			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		
+		HashMap<String, Object>paramMap = new HashMap<String, Object>();
+		if( loginUser == null ) {
+			paramMap.put("STATUS", 0);
+			//return "STATUS : 0";
+			return paramMap;
+			//return "member/login";
+		} else {
+			
+			paramMap.put("id", loginUser.get("ID") );
+			paramMap.put("pseq", pseq);
+			paramMap.put("quantity",quantity);
+			os.nowOrder( paramMap );
+			
+			// 카트 개수 세션에 담기
+			paramMap.put("cnt", 0);	// 카드 개수 담아올 변수
+			cs.getCartCnt(paramMap);
+			System.out.println(paramMap.get("cnt"));
+			cnt = Integer.parseInt(paramMap.get("cnt").toString());
+			session.setAttribute("cartCnt",cnt);
+			
+			paramMap.put("STATUS", 1);
+		}
+		return paramMap;
+		//return "product/productDetail";
+	}
 	
 	@RequestMapping(value="/orderInsert")
 	public String orderInsert( HttpServletRequest request ) {
