@@ -60,7 +60,7 @@ public class MMOrderController {
 			os.insertOrder( paramMap );
 			
 			oseq = Integer.parseInt( paramMap.get("oseq").toString() );
-			System.out.println(oseq);
+			System.out.println("주문번호" + oseq);
 			
 			// 카트 개수 세션에 담기
 			paramMap.put("cnt", 0);	// 카드 개수 담아올 변수

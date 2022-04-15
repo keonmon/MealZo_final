@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file ="../include/sidemenu/sidemenu.jsp"%>
 <%@ include file="../include/headerfooter/mobileMainHeader.jsp"%>
-
+<%@ include file ="../include/sidemenu/sidemenu.jsp"%>
 <div id="mypageArticle2" style="width:100%; margin:150px 0 0 0; ">
 <div style="width:100%; height:120px; margin:0 auto;
 	background-color:green; color:white; line-height:120px; 

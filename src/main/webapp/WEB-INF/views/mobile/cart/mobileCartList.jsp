@@ -24,7 +24,7 @@
 		<th>주문일</th>
 		<th>삭제</th></tr>
 	<c:forEach items="${cartList}" var="mcartVO">
-				<tr><td><a href="productDetail?pseq=${mcartVO.PSEQ}" target="_blank" >
+				<tr><td><a href="mobileProductDetail?pseq=${mcartVO.PSEQ}" target="_blank" >
 							 ${mcartVO.PNAME}</a></td><td> ${mcartVO.QUANTITY} </td>
 						<td><fmt:formatNumber value="${mcartVO.PRICE2*mcartVO.QUANTITY}"	type="currency"/></td>
 						<td><fmt:formatDate value="${mcartVO.INDATE}" type="date" /></td>
