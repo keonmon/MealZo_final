@@ -1664,6 +1664,22 @@ BEGIN
     update mmember set useyn='n' where id=p_id;
     commit;    
 END;
+----------------------------------------------------------
+-- ORDER ODSEQ로 RESULT값 조회 쿼리 getResultByOdseq_m
+CREATE OR REPLACE PROCEDURE getResultByOdseq_m(
+    p_odseq IN morder_detail.odseq%TYPE,
+    p_result out morder_detail.result%type
+)
+IS
+v_result NUMBER := 1;
+BEGIN
+    select result 
+        into v_result 
+        from morder_detail where odseq = p_odseq;
+        
+    p_result := v_result;
+END;
+
 
 
 ----------------------------------------------------------

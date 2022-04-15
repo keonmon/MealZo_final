@@ -176,7 +176,8 @@ public class MOrderController {
 	
 	@RequestMapping(value="/orderDetail")  
 	public ModelAndView orderDetail( HttpServletRequest request, Model model,
-			@RequestParam("oseq") int oseq ) {
+			@RequestParam("oseq") int oseq,
+			@RequestParam(value="message",required = false)String message) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser 
@@ -196,10 +197,11 @@ public class MOrderController {
 			for( HashMap<String, Object> order : orderListByOseq ) 
 				totalPrice += Integer.parseInt( order.get("QUANTITY").toString() )
 									* Integer.parseInt( order.get("PRICE2").toString() ); 
-			mav.addObject("OSEQ",oseq);
+			mav.addObject("message", message);
 			mav.addObject("totalPrice", totalPrice);
 			mav.addObject("orderList", orderListByOseq);
 			mav.addObject("orderDetail", orderListByOseq.get(0));
+			mav.addObject("OSEQ",oseq);
 			mav.setViewName("order/orderDetail");
 		}
 		return mav;
@@ -267,6 +269,8 @@ public class MOrderController {
 		if( loginUser == null) {
 			mav.setViewName("member/login");
 		} else {
+			
+			
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("id", loginUser.get("ID") );
 			paramMap.put("ref_cursor", null);
@@ -317,7 +321,8 @@ public class MOrderController {
 
 
 	@RequestMapping(value="/orderCancelUpdate")
-	public ModelAndView orderCancelUpdate( HttpServletRequest request, Model model) {
+	public ModelAndView orderCancelUpdate( HttpServletRequest request, Model model,
+			@RequestParam("oseq")int oseq) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object>loginUser
@@ -327,6 +332,24 @@ public class MOrderController {
 		} else {
 			String[] odseqArr = request.getParameterValues("orderCancel");
 			HashMap<String, Object>paramMap = new HashMap<String, Object>();
+			
+			mav.setViewName("redirect:/orderDetail");
+			mav.addObject("message", "이미 배송이 시작된 상품은 주문취소가 불가능합니다.😥");
+			mav.addObject("oseq", oseq);
+			
+			//여기서 result값 검사
+			for(String odseq1:odseqArr) {
+				paramMap.put("odseq", Integer.parseInt(odseq1));
+				paramMap.put("result", 0);
+				os.getResultByOdseq(paramMap);
+				
+				if(Integer.parseInt(paramMap.get("result").toString()) >= 2) {
+					System.out.println("odseq="+odseq1 +"/ "
+							+ "result = " + Integer.parseInt(paramMap.get("result").toString()));
+					return mav;
+				}
+			}
+			
 			for(String odseq1:odseqArr) {
 				paramMap.put("odseq", Integer.parseInt(odseq1));
 				os.orderCancelUpdate(paramMap);

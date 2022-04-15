@@ -10,6 +10,7 @@
 	<b style="font-size:3em ">주문/배송 상세내역 - 주문번호 : ${OSEQ}</b>
 </div>
 	<form name="frm" method="post" style="text-align:center;">
+	<input type="hidden" name="oseq" value="${OSEQ }" >
 	<table id="orderTable">
 		<tr><th>상품명</th><th>수량</th><th>가격</th><th>주문일</th><th>상태</th><th>취소</th></tr>
 		<c:forEach items="${orderList}" var="morderVO">
@@ -59,6 +60,24 @@
 	  	</tr>
 	</table>
 	</form>
+<!-- 배송중인 상품 주문 취소시 메시지 표시 -->
+<c:choose>
+	<c:when test="${!empty message}">
+		<div id="message" 
+			style=" 
+			width: 100%;
+		    margin: 0 auto;
+		    text-align: center;
+		    background-color: green;
+		    height: 135px;
+		    color: white;
+		    font-size: 2em;
+		    line-height: 135px;">
+			${message }
+		</div>
+	</c:when>
+</c:choose><!-- 메시지 끝 -->
+
 </div>
 <div id="botFlyingContainer" >
 	<div id="botBtn" style=" 

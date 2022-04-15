@@ -2,37 +2,39 @@
 
 // orderListDetail.jsp에서 주문취소하는 메서드
 function go_cancel(){
-if(document.frm.orderCancel == null){ 
-	alert("주문처리할 항목이 없습니다.") 
-	return; 
-}else{ 
-	var count = 0; 
-	if(document.frm.orderCancel.length == undefined){	// 체크박스가 총 1개인 경우. 
-		if(document.frm.orderCancel.checked == true){ 
-			count++; 
-		} 
-	}else{ // 체크박스가 2개 이상인 경우 
-		for(var i = 0; i<document.frm.orderCancel.length; i++){
-			if(document.frm.orderCancel[i].checked == true){ 
-				count++; 
-			}
-		}
-	} 
-	//if(document.frm.resulted.length==undefined || (document.frm.resulted.length != 0 )) 
-		//alert(count); 
-		
-	// count 값이 0이면, 더 진행하지 않고 orderList.jsp로 되돌아간다. 
-	if( count == 0 ){ 
-		alert("주문취소할 항목을 선택하세요.") 
+	if(document.frm.orderCancel == null){ 
+		alert("주문처리할 항목이 없습니다.") 
 		return; 
 	}else{ 
-	//count 값이 1 이상이면, 현재 폼의 체크박스 value값을 갖고, command = adminOrderSave로 이동 
-		document.frm.action = "orderCancelUpdate"; 
-		document.frm.submit(); 
-	} 
-	// 처리하고(주문의 result값을 '1'->'2'로 변경) orderList.jsp로 되돌아온다. 
+		var count = 0; 
+		if(document.frm.orderCancel.length == undefined){	// 체크박스가 총 1개인 경우. 
+			if(document.frm.orderCancel.checked == true){ 
+				count++; 
+			} 
+		}else{ // 체크박스가 2개 이상인 경우 
+			for(var i = 0; i<document.frm.orderCancel.length; i++){
+				if(document.frm.orderCancel[i].checked == true){ 
+					count++; 
+				}
+			}
+		} 
+		//if(document.frm.resulted.length==undefined || (document.frm.resulted.length != 0 )) 
+			//alert(count); 
+			
+		// count 값이 0이면, 더 진행하지 않고 orderList.jsp로 되돌아간다. 
+		if( count == 0 ){ 
+			alert("주문취소할 항목을 선택하세요.") 
+			return; 
+		}else{ 
+		//count 값이 1 이상이면, 현재 폼의 체크박스 value값을 갖고, command = adminOrderSave로 이동 
+			document.frm.action = "orderCancelUpdate"; 
+			document.frm.submit(); 
+		} 
+		// 처리하고(주문의 result값을 '1'->'2'로 변경) orderList.jsp로 되돌아온다. 
+	}
 }
-}
+
+
 function unsubscribe(siseq){
 	var delete_confirm = confirm("정말로 구독 서비스를 해제하시겠습니까?");
 	if(delete_confirm){
