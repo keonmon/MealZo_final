@@ -347,4 +347,4 @@ MealZo 의 회원가입은 무료이며, 회원님의 개인신상에 관한 정
 </form>
 </article>
 
-<%@ include file="../include/headerfooter/mobileFooter.jsp" %>
+<%@ include file="../include/headerfooter/mobileMemberFooter.jsp" %>

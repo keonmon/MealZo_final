@@ -46,7 +46,7 @@ div#side_buttons .join{font-weight:bold;}
 form fieldset {border:none; margin:0 auto; margin-top:5%; width:97%; height:50%;}
 .text{ outline: none;  margin:5% 0;  height:10%; 	width:90%; font-size:1.0em;}
 div #input1{border-bottom:1px solid #76797D;width:100%; }
-form .submit{margin-top:8%;width:90%; background-color:#1AB137; color:#FFFFFF; 
+form .submit{margin-top:2%;width:90%; background-color:#1AB137; color:#FFFFFF; 
 font-weight: bold; font-size:1.1em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}
 form .submit2{margin-top:8%;width:90%; background-color:#1AB137; color:#FFFFFF; 
 font-weight: bold; font-size:1.1em; height:40px; border:none; border-radius:2%; cursor: pointer; font-family: 'Pretendard-Regular';}

@@ -32,7 +32,21 @@ $(function(){
 
 </fieldset>
 </form>
-<div id="message" style="font-size:1.4em; right:200px;'"> ${msg}</div>
+
+<c:choose>
+	<c:when test="${useyn2=='n'}">
+		<div id="message" style="font-size:1.2em; width:80%; left:10%;">
+			탈퇴하거나 휴면중인 계정입니다.
+			<a href="mobileNmqnaForm" style="text-decoration: none; color: red;">
+					고객센터(클릭) </a>를 통해 문의주시기 바랍니다
+		</div>
+	</c:when>	
+	<c:otherwise>
+		<div id="message" style="font-size:1.2em; width:80%; left:10%;"> ${message}</div>
+		<div id="msg" style="font-size:1.2em; width:80%; left:30%;"> ${msg}</div>
+	</c:otherwise>
+</c:choose>
+
 </article>
 
 

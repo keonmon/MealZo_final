@@ -8,8 +8,8 @@ $(document).ready(function(){
     });
 });
 </script>
-<article>
-<form class="byeform" method="post" style="margin-top:30%;">
+<article style="width:100%;">
+<form class="byeform" method="post" style="margin-top:20%;">
 <center><h2>그동안 이용해 주셔서 감사합니다</h2>
 <input type="button" value="메인으로 이동" class="submit" id="goodbye"
 onClick="location.href='/mobileMain'"/></center>
@@ -17,4 +17,4 @@ onClick="location.href='/mobileMain'"/></center>
 </article>
 	
 
-<%@ include file="../include/headerfooter/mobileFooter.jsp" %>
+<%@ include file="../include/headerfooter/mobileMemberFooter.jsp" %>
