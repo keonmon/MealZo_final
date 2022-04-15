@@ -102,14 +102,15 @@
 			    <h2><fmt:formatNumber value="${mproductVO.PRICE2}"  pattern="###,###,###"/>원</h2>
 			</td></tr>	
 				<tr><td></td></tr><tr><td></td></tr>
-
+<!--수량-->
 			  	<tr style="font-size:20px; width:100px;" >
 				  	<td >   
 					<p> 수량 &nbsp; &nbsp; &nbsp;
-					<input type="button" value=" + " onclick="add();"  style="font-size:20px; background:white;">
+					 <input type="button" value=" - " onclick="del();"  style="font-size:20px; background:white;">
 					<input type="text" id="quantity" name="quantity" id="quantity" onkeyup="printName()" size="2" value="1"  style="font-size:20px ; text-align:center;"> 
                    <input type="hidden" name="pseq" id="pseq" value="${mproductVO.PSEQ}">
-                   <input type="button" value=" - " onclick="del();"  style="font-size:20px; background:white;"><br><br></p>
+                   <input type="button" value=" + " onclick="add();"  style="font-size:20px; background:white;"><br><br></p>
+               
                </td>
             </tr>
               <tr><td><h2>총 상품금액</h2> </td><td><h3><div id="result" name="result" style=" font-size:25px;"></div></h3></td></tr>

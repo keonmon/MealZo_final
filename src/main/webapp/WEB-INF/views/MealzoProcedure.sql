@@ -1076,11 +1076,12 @@ create or replace procedure insertNotice_m(
     p_subject in notice.subject%type,
     p_useyn in notice.useyn%type,
     p_content in notice.content%type,
-    p_image1 in notice.image1%type )
+    p_image1 in notice.image1%type ,
+    p_result in notice.result%type)
 is
 begin
-    insert into notice(nseq, subject,useyn, content, image1 ) 
-        values(NOTICE_SEQ.nextval,p_subject,p_useyn,p_content,p_image1 );
+    insert into notice(nseq, subject,useyn, content, image1, result ) 
+        values(NOTICE_SEQ.nextval,p_subject,p_useyn,p_content,p_image1, p_result );
     commit;
 end;
 
@@ -1092,11 +1093,13 @@ create or replace procedure updateNotice_m(
     p_subject in notice.subject%type,
     p_useyn in notice.useyn%type,
     p_content in notice.content%type,
-    p_image1 in notice.image1%type )
+    p_image1 in notice.image1%type,
+    p_result in notice.result%type
+    )
 is
 begin
     update notice 
-        set subject=p_subject, useyn=p_useyn, content=p_content, image1=p_image1 
+        set subject=p_subject, useyn=p_useyn, content=p_content, image1=p_image1 , result=p_result
         where nseq = p_nseq;
     commit;
 end;
@@ -1632,7 +1635,7 @@ begin
         select * from (
         select * from (
         select rownum as rn, p.* from 
-        ((select * from notice where subject like '%'||p_key||'%') p) 
+        ((select * from notice where subject like '%'||p_key||'%'  order by  result desc, indate desc) p) 
         ) where rn>=p_startNum
         ) where rn<=p_endNum;
 end;
@@ -1648,7 +1651,7 @@ begin
         select * from (
         select * from (
         select rownum as rn, p.* from 
-        ((select * from notice where useyn='y') p) 
+        ((select * from notice where useyn='y' or useyn='p' order by   result desc, indate desc) p) 
         ) where rn>=p_startNum
         ) where rn<=p_endNum;
 end;

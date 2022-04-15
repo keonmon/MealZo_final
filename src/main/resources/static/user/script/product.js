@@ -153,22 +153,23 @@ function printName() {
  	   const name2 = document.getElementById('price2').value;
  	   document.getElementById("result").innerText = (name * name2).toLocaleString('ko-KR')+"원";
     }
-    
+   
+
     
 function add () {
-	hm = document.form1.quantity;
-	hm.value ++ ;
-}
+    hm2 = document.form1.quantity;
+	hm2.value ++ ;
+	printName();
 
-function del () {
-	hm = document.form1.quantity;
-	result = document.form1.result;
-		if (hm.value > 1) {
-			hm.value -- ;
-			result.value = parseInt(hm.value) * pricee2;
-		}
 }
-    
+function del () {
+    hm2 = document.form1.quantity;
+		result = document.form1.result;
+		if (hm2.value > 1) {
+			hm2.value -- ;
+			printName();
+		}
+} 
     
 function go_search( comm ){
 	if( document.formm.key.value == "" ){

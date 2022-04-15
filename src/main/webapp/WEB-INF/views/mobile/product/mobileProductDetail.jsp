@@ -95,7 +95,7 @@
 				</table>
 			</div>
 		</div>
-		
+		<!-- 수량 -->
 		<table >
 			  	<tr style="font-size:2.4em; width:100px;" >
 				  	<td >   

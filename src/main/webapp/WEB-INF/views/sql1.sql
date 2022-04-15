@@ -262,10 +262,10 @@ where qseq=2;
 
 
 -- 공지 데이터 추가
-insert into notice(nseq, subject, content, image1) 
-values(notice_seq.nextVal, '공지게시글 테스트입니다.', 
+insert into notice(nseq, subject, content, image1, result ) 
+values(notice_seq.nextVal, '필독안내문입니다.', 
  '이것은 공지 게시글 테스트입니다. 길이를 무진장 길게 써야 나중에 화면에서 어떻게 보여질지 모르기 때문에 뭐라도 써보려고 하는데 뭐라 써야할지 생각할 시간에 그 생각을 쓰는 방법을 사용하여 작성하는 중이니까 이것을 보는 사람은 이해를 해주길 바라는 마음으로 이 글을 마칩니다. 이상 이건희 올림.', 
- 'banner2.jpg');
+ 'banner2.jpg', 'p');
  
  
 -- 이벤트 데이터 추가
@@ -312,5 +312,4 @@ id varchar2(20) references mmeber(id),
 indate date default sysdate -- 찜한잘짜
 image 
 )
-
 
