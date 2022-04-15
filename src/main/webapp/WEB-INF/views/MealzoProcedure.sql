@@ -1584,3 +1584,52 @@ select count(*) into v_cnt from mzzim where pseq=p_pseq;
 p_cnt := v_cnt;
 end;
 
+
+
+------------------------------------------------------------------------
+-- 즉시구매 
+create or replace procedure nowOrder_m(
+    p_id  IN  MORDERS.ID%TYPE,
+    p_oseq  OUT  MORDERS.OSEQ%TYPE  )
+IS
+     v_oseq MORDERS.OSEQ%TYPE;
+     v_pseq MORDER_DETAIL.PSEQ%TYPE;
+     v_quantity MORDER_DETAIL.QUANTITY%TYPE;
+BEGIN
+    INSERT INTO MORDERS(oseq, id) VALUES( morders_seq.nextVal, p_id);
+    SELECT MAX(oseq) INTO p_oseq FROM MORDERS;
+    INSERT INTO morder_detail( odseq, oseq, pseq, quantity )
+    VALUES( morder_detail_seq.nextVal, v_oseq, v_pseq,  v_quantity );
+    commit;
+    p_oseq := v_oseq;
+END;
+
+
+CREATE OR REPLACE PROCEDURE insertOrder_m(
+    p_id  IN  MORDERS.ID%TYPE,
+    p_oseq  OUT  MORDERS.OSEQ%TYPE  )
+IS
+    v_oseq MORDERS.OSEQ%TYPE;
+    temp_cur SYS_REFCURSOR;
+    v_cseq MCART.CSEQ%TYPE;
+    v_pseq MCART.PSEQ%TYPE;
+    v_quantity MCART.QUANTITY%TYPE;
+BEGIN
+    INSERT INTO MORDERS(oseq, id) VALUES( morders_seq.nextVal, p_id);
+    SELECT MAX(oseq) INTO v_oseq FROM MORDERS;
+    OPEN temp_cur FOR SELECT cseq, pseq, quantity FROM MCART WHERE id=p_id and result='1';
+    LOOP
+        FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;
+        EXIT WHEN temp_cur%NOTFOUND; 
+        INSERT INTO morder_detail( odseq, oseq, pseq, quantity )
+        VALUES( morder_detail_seq.nextVal, v_oseq, v_pseq,  v_quantity ); 
+        DELETE FROM MCART WHERE cseq = v_cseq;
+    END LOOP;
+    COMMIT;
+    p_oseq := v_oseq;
+END;
+
+
+
+select * from morders;
+select * from morder_detail;

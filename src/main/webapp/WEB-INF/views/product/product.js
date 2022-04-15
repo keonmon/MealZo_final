@@ -66,15 +66,33 @@ function go_cart(){
    } else {
    		var goCart = confirm("해당 상품이 장바구니에 추가되었습니다\n장바구니로 이동하시겠습니까?");
    		if(goCart){
-			document.form1.action = "meal.do?command=cartInsert";
+			document.form1.action = "cartInsert";
 			document.form1.submit();
 		}else{
-			document.form1.action = "meal.do?command=cartInsertReturn";
+			document.form1.action = "cartInsertReturn";
 			document.form1.submit();
 		}
    }
 }
 
+function go_order(){
+   if(document.form1.quantity.value =="") {
+      alert("수량을 입력하여 주세요.");
+      documemt.form1.quantity.focus();
+      }else if(document.form1.quantity.value=="0"){
+       alert("수량을 입력해주세요");
+       document.form1.quantity.focus();
+   } else {
+   		var goOrder = confirm("해당 상품이 주문목록에 추가되었습니다\n주문목록으로 이동하시겠습니까?");
+   		if(goOrder){
+			document.form1.action = "orderNow";
+			document.form1.submit();
+		}else{
+			document.form1.action = "orderNowReturn";
+			document.form1.submit();
+		}
+   }
+}
 
 /* productForm.jsp */
 

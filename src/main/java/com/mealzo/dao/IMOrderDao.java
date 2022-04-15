@@ -30,5 +30,7 @@ public interface IMOrderDao {
 
 	void listOrderByIdIng(HashMap<String, Object> paramMap1);
 
+	void nowOrder(HashMap<String, Object> paramMap);
+
 	
 }

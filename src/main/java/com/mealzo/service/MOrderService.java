@@ -63,4 +63,9 @@ public class MOrderService {
 		odao.listOrderByIdIng( paramMap1 );
 	}
 
+	public void nowOrder(HashMap<String, Object> paramMap) {
+		odao.nowOrder( paramMap );
+		
+	}
+
 }
