@@ -2,7 +2,7 @@
 var evennum = 0;
 var space = 400
 totalSlides = $('#sliderWrap ul li').length;	// 이미지 개수
-sliderWidth = $('#sliderWrap').width();
+sliderWidth = $('#sliderWrap ul li').width();
 $(document).ready(function(){
 			// 전체 이미지 너비
 	  
@@ -42,7 +42,7 @@ $(document).ready(function(){
   	);
 });
 	
-	
+
 /*** SLIDE LEFT ***/
 function slideLeft(){
   evennum--;
@@ -259,4 +259,3 @@ function go_order(){
    }
 }
 
-   
