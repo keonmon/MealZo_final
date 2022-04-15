@@ -77,7 +77,7 @@ public class MMMemberController {
 			model.addAttribute("message", "밀조) 비밀번호가 맞지않습니다");
 			return "mobile/member/mobileLogin";
 		}else if( mvo.get("USEYN").equals("n")) {
-			model.addAttribute("message", "밀조) 탈퇴하거나 휴먼중인 계정입니다. 고객센터에서 비회원 문의를 통해 밀조왕에게 문의하세요");
+			//model.addAttribute("message", "밀조) 탈퇴하거나 휴먼중인 계정입니다. 고객센터에서 비회원 문의를 통해 밀조왕에게 문의하세요");
 			model.addAttribute("useyn2", "n");
 			return "mobile/member/mobileLogin";
 		}else if( mvo.get("PWD").equals(membervo.getPwd())) {
