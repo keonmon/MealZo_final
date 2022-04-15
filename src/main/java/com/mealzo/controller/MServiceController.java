@@ -53,7 +53,6 @@ public class MServiceController {
 	              session.removeAttribute("key");
 	          }
 	          page = 1;
-	          key = "";
 	          if (request.getParameter("page") != null) {
 	              page = Integer.parseInt(request.getParameter("page"));
 	              session.setAttribute("page", page);
@@ -64,23 +63,11 @@ public class MServiceController {
 	              session.removeAttribute("page");
 
 	          }
-	          if (request.getParameter("key") != null) {
-	              key = request.getParameter("key");
-	              session.setAttribute("key", key);
-	          } else if (session.getAttribute("key") != null) {
-	              key = (String) session.getAttribute("key");
-	          } else {
-	              session.removeAttribute("key");
-	              key = "";
-	          }
 	          Paging paging = new Paging();
 	          paging.setPage(page);
 	          HashMap<String, Object> paramMap = new HashMap<String, Object>();
-	          paramMap.put("key", key);
-	          paramMap.put("tableName", "notice");
-	          paramMap.put("culumnName", "subject");
 	          paramMap.put("cnt", 0);
-	          as.getAllcountAdmin(paramMap);
+	          ns.getAllCountNotice(paramMap);
 	          
 	          paging.setTotalCount((int) paramMap.get("cnt"));
 	          mav.addObject("paging", paging);

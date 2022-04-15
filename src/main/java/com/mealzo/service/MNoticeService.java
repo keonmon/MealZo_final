@@ -37,4 +37,14 @@ public class MNoticeService {
 		ndao.updateNoticeUseyn(paramMap);
 	}
 
+	public void getAllCountNotice(HashMap<String, Object> paramMap) {
+		ndao.getAllCountNotice(paramMap);
+		
+	}
+
+	public void getNoticeAll(HashMap<String, Object> paramMap) {
+		ndao.getNoticeAll(paramMap);
+		
+	}
+
 }

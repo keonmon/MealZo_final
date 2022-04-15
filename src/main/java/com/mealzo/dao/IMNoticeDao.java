@@ -17,4 +17,8 @@ public interface IMNoticeDao {
 
 	void updateNoticeUseyn(HashMap<String, Object> paramMap);
 
+	void getAllCountNotice(HashMap<String, Object> paramMap);
+
+	void getNoticeAll(HashMap<String, Object> paramMap);
+
 }
