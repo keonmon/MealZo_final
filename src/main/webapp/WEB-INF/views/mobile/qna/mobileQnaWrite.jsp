@@ -9,7 +9,7 @@
 	<b style="font-size:2.5em ">고객님의 질문에 운영자가 답변을 드립니다</b>
 </div>
 
-<form style="margin-top:5%; text-align:center; margin-left:40px; width:90%; height:70%">
+<form action="mobileQnaWrite" name="formm" style="margin-top:5%; text-align:center; margin-left:40px; width:90%; height:70%">
 	<table id="qnaWrite">
         <tr style="hieght:100px; width:90%;">
        	    <td style="font-size:1.5em; width:30% "><h2>제목</h2> </td>
@@ -24,17 +24,33 @@
 	<table style="width:100%">
 		 <tr height="100px;">
             <td style="font-size:1.5em; text-align:center;">
-        		<input style="background:silver; width:100%; height:400px; font-size:1.5em;" type="text" name="content" value="${dto.content}">
+        		<input style="background:silver; width:100%; height:400px; font-size:1.5em;" type="text" name="content" value="${dao.content}">
             </td>
         </tr>
 	</table>
+	
 	<div id="message" style="font-size:1.4em;"> ${message}</div>
+	
+	<div id="botFlyingContainer" style="right:40px;">
+	<div id="botBtn" style="background-color:#434343; color:white; 
+		font-size:3em; font-weight:bold;">
+		<input style="margin-left:20px; width:100%; height:100%; background-color:#434343; color:white; font-size:1.0em; font-weight:bold;" 
+		type="button" value="뒤로가기" onclick="location.href='mobileQnaForm'">
+	</div><div id="botBtn"
+	style=" background-color:#6db800; color:white; 
+	font-size:3em; font-weight:bold;">
+		<input style="width:100%; height:100%; background-color:#6db800; color:white; font-size:1.0em; font-weight:bold;"
+		 type="submit" value="글쓰기">
+	</div>
+	</div>
+
+
+
 </form>
-
-<div class="clear"></div>
-
 </div>
-<div id="botFlyingContainer" >
+
+
+<!-- <div id="botFlyingContainer" >
 	<div id="botBtn" style=" 
 		background-color:#434343; color:white; font-size:3em; font-weight:bold;"
 		onclick="location.href='mobileMain'">
@@ -43,9 +59,7 @@
 	style=" background-color:#6db800; color:white; font-size:3em; font-weight:bold;"
 	onclick="location.href='mobileQnaWrite'">
 		글쓰기
-	</div>
+	</div> -->
 	
-	
-</div>
 <%@ include file="../include/headerfooter/mobileFooter.jsp" %>
 

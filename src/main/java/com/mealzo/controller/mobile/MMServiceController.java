@@ -26,6 +26,11 @@ public class MMServiceController {
 	MAdminService as;
 	
 	
+	@RequestMapping(value = "/mobileCompany")
+	public String company() {
+		return "mobile/service/mobileCompany";
+	}
+	
 	@RequestMapping("mobileNoticeList")
 	  public ModelAndView noticeList(HttpServletRequest request,
 	          @RequestParam(value = "sub", required = false) String sub,

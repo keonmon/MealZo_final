@@ -135,7 +135,8 @@ public class MMQnaController {
 	public ModelAndView mobileQnaWrite(HttpServletRequest request, @ModelAttribute("dto")
 
 	@Valid MQnaVO qnavo, BindingResult result,
-	@RequestParam("subject") String subject, @RequestParam("content") String content) {
+	@RequestParam("subject") String subject, 
+	@RequestParam("content") String content) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser =
@@ -238,7 +239,6 @@ public class MMQnaController {
 		
 	@RequestMapping(value="/mobileNmqnaWrite",  method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView mobileNmqnaWrite(HttpServletRequest request, @ModelAttribute("dto")
-
 	@Valid MQnaVO qnavo, 
 	BindingResult result,
 	@RequestParam("subject") String subject, 
@@ -248,7 +248,6 @@ public class MMQnaController {
 		HashMap<String, Object> loginUser =
 				(HashMap<String, Object> )session.getAttribute("loginUser");
 		if(loginUser!=null) {
-
 			mav.setViewName("redirect:/mobileQnaForm");
 		}else{
 			if(result.getFieldError("id")!=null) {
@@ -270,24 +269,21 @@ public class MMQnaController {
 		}	
 			System.out.println(subject);
 			System.out.println(content);
+			System.out.println(qnavo.getSubject());
+			System.out.println(qnavo.getContent());
 			System.out.println(qnavo.getId());
-			System.out.println(qnavo.getId());
-			
-			
+			System.out.println(qnavo.getPwd());	
 
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("content", content);
 			paramMap.put("subject", subject);
 			paramMap.put("id", qnavo.getId());
-
 			paramMap.put("pwd", qnavo.getPwd());
 			
 			qs.insertnmQna(paramMap);
 			
 			mav.setViewName("redirect:/mobileNmqnaForm");
-
 		}
-
 		return mav;
 	}
 	

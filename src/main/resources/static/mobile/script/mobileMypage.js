@@ -136,7 +136,7 @@ function whyfalse(nqseq3){
 }
 
 
-function go_mobileNmqnaView(){
-	document.formm.action = "mobileNmqnaView";
+function go_mobileNmqnaWrite(){
+	document.formm.action = "mobileNmqnaWrite";
 	document.formm.submit();
 }
