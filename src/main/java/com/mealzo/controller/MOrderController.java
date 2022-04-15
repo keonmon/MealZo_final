@@ -196,6 +196,7 @@ public class MOrderController {
 			for( HashMap<String, Object> order : orderListByOseq ) 
 				totalPrice += Integer.parseInt( order.get("QUANTITY").toString() )
 									* Integer.parseInt( order.get("PRICE2").toString() ); 
+			mav.addObject("OSEQ",oseq);
 			mav.addObject("totalPrice", totalPrice);
 			mav.addObject("orderList", orderListByOseq);
 			mav.addObject("orderDetail", orderListByOseq.get(0));
@@ -314,7 +315,7 @@ public class MOrderController {
 		return mav;
 	}
 
-	
+
 	@RequestMapping(value="/orderCancelUpdate")
 	public ModelAndView orderCancelUpdate( HttpServletRequest request, Model model) {
 		ModelAndView mav = new ModelAndView();
@@ -324,44 +325,18 @@ public class MOrderController {
 		if( loginUser == null ) {
 			mav.setViewName("member/login");
 		} else {
-			String[] odseqArr = request.getParameterValues("ODSEQ");
+			String[] odseqArr = request.getParameterValues("orderCancel");
 			HashMap<String, Object>paramMap = new HashMap<String, Object>();
 			for(String odseq1:odseqArr) {
 				paramMap.put("odseq", Integer.parseInt(odseq1));
 				os.orderCancelUpdate(paramMap);
 				mav.addObject("odseq", odseq1);
-				mav.setViewName("redirect:/orderCancelForm");
 			}
+			mav.setViewName("redirect:/orderCancelForm");
 		}
 		return mav;
 	}
+	
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

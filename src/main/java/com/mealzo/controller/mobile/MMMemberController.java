@@ -353,6 +353,8 @@ public class MMMemberController {
 				//System.out.println(oseq);
 			}			
 			session.removeAttribute("loginUser");
+			// 카트 개수 세션 삭제
+			session.removeAttribute("cartCnt");
 		}
 		return mav;
 	}

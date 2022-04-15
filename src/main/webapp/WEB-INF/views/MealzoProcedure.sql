@@ -986,24 +986,7 @@ begin
 update mqna set reply=p_reply, rep=2 where qseq=p_qseq ;
 end;
 
------------------------------------------------------------------------------
--- 공지리스트 조회 getNoticeList_m
-create or replace procedure getNoticeList_m(
-    p_startNum in number,
-    p_endNum in number,
-    c_cur out sys_refcursor )
-is
-begin
-    open c_cur for
-        select * from (
-        select * from (
-        select rownum as rn, p.* from 
-        ((select * from notice where useyn='y') p) 
-        ) where rn>=p_startNum
-        ) where rn<=p_endNum;
-end;
 
-select * from notice
 -------------------------------------------------------------------------------
 
 --리뷰 delete 
@@ -1620,7 +1603,7 @@ select rownum rn, p.* from (select * from mqna where id=p_id order by qseq desc 
 )where rn<= p_endNum;
 end;
 -------------------------------------------------------
--- user 공지사항 게시판 카운트
+-- user 공지사항 카운트 getAllCountNotice_m
 create or replace procedure getAllCountNotice_m(
     p_cnt out NUMBER )
 is
@@ -1635,7 +1618,7 @@ begin
 end;
 
 -----------------------------------------------------------------------------
--- admin 공지리스트 조회 getNoticeAll_m
+-- admin 공지 조회 getNoticeAll_m
 create or replace procedure getNoticeAll_m(
     p_key in varchar2,
     p_startNum in number,
@@ -1651,7 +1634,24 @@ begin
         ) where rn>=p_startNum
         ) where rn<=p_endNum;
 end;
+-----------------------------------------------------------------------------
+-- user 공지 조회 getNoticeList_m
+create or replace procedure getNoticeList_m(
+    p_startNum in number,
+    p_endNum in number,
+    c_cur out sys_refcursor )
+is
+begin
+    open c_cur for
+        select * from (
+        select * from (
+        select rownum as rn, p.* from 
+        ((select * from notice where useyn='y') p) 
+        ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+end;
 
+select * from notice
 
 -------------->> 멤버-회원탈퇴 다시돌려야합니다 <<-------------------
 

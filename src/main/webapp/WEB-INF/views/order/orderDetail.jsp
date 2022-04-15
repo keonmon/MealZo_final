@@ -40,8 +40,8 @@
       			</c:choose>
       		</td></tr>
 	</c:forEach>
-	<tr><th colspan="2"> 총 액 </th>
-       	<th colspan="2"><fmt:formatNumber value="${TOTALPRICE}" type="currency"/></th>
+	<tr><th colspan="2"> 총 액 ${morderVO.ODSEQ }</th>
+       	<th colspan="2"><fmt:formatNumber value="${totalPrice}" type="currency"/></th>
        	<th></th>
        	<td><input type="button" value="주문취소" onclick="go_cancel()"></td></tr> 	
 </table>
