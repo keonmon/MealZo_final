@@ -647,16 +647,6 @@ BEGIN
     commit;    
 END;
 
--------------->> 멤버-회원탈퇴 <<-------------------
-
-CREATE OR REPLACE PROCEDURE updateUseyn_m(
-    p_id IN mmember.id%TYPE )
-IS
-BEGIN
-    update mmember set useyn='x' where id=p_id;
-    commit;    
-END;
-
 -------------->> 주문-회원탈퇴 <<-------------------
 
 CREATE OR REPLACE PROCEDURE selectOseqOrderAll_m (
@@ -1663,9 +1653,20 @@ begin
 end;
 
 
+-------------->> 멤버-회원탈퇴 다시돌려야합니다 <<-------------------
+
+CREATE OR REPLACE PROCEDURE updateUseyn_m(
+    p_id IN mmember.id%TYPE )
+IS
+BEGIN
+    update mmember set useyn='n' where id=p_id;
+    commit;    
+END;
+
 
 ----------------------------------------------------------
 select * from notice;
 select * from morder_detail;
 select * from nmqna;
 select * from mqna;
+select * from mmember;

@@ -76,15 +76,11 @@ public class MMQnaController {
 			
 			mav.addObject("paging", paging);
 			mav.addObject("mqnaList", list);
-			mav.setViewName("mobile/qna/mobileQnaList");
-			
-			
-					
+			mav.setViewName("mobile/qna/mobileQnaList");			
 		}
-		
 		return mav;
-			
 	}
+	
 	
 	@RequestMapping("/mobileQnaView")
 

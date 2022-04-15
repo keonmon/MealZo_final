@@ -39,7 +39,7 @@
 				</div>
 			</a>
 		</li>
-		<li><a href="withDrawal" onclick="return confirm('<확인>을 누를시 일정기간 후 사용기록이 모두 삭제됩니다, 정말 회원탈퇴 하시겠습니까?')">
+		<li><a href="mobileWithDrawal" onclick="return confirm('<확인>을 누를시 일정기간 후 사용기록이 모두 삭제됩니다, 정말 회원탈퇴 하시겠습니까?')">
 				<div>회원탈퇴하기
 		<span id="mypage_nextIcon" class="material-icons" >arrow_forward_ios</span>
 				</div>
