@@ -91,22 +91,6 @@ begin
         ) where rn<=p_endNum;
 end;
 
-
------------------------------------------------------------------------------------
-
---QnaList
-create or replace procedure listQna_m(
-p_id in mqna.id%type ,
-c_cur out sys_refcursor 
-)
-
-is 
-begin
-open c_cur for 
-  select * from mqna where id=p_id ;
-end;    
-
-
 --------------------------------------------------------------------------------
 
 create or replace procedure insertCart_m(
@@ -1629,7 +1613,26 @@ BEGIN
     p_oseq := v_oseq;
 END;
 
+----------------- Qna List 다시돌려야합니다 --------------------------
+
+create or replace procedure listQna_m(
+p_startNum number,
+p_endNum number,
+p_id in mqna.id%type ,
+c_cur out sys_refcursor 
+)
+is
+begin
+open c_cur for
+select * from (
+select * from (
+select rownum rn, p.* from (select * from mqna where id=p_id order by qseq desc ) p
+) where rn >= p_startNum
+)where rn<= p_endNum;
+end;
 
 
 select * from morders;
 select * from morder_detail;
+select * from nmqna;
+select * from mqna;

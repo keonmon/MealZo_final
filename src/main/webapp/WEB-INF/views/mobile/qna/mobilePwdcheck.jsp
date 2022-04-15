@@ -17,11 +17,24 @@
 	<fieldset style="align:center; height:5%">
 		<input style="margin-left:20%; text-align:center; width:50%; height:60px; font-size:1.5em; border:3px solid green;" type="text" name="checkpwd">
 	</fieldset>
-	<div class="clear"></div>
+	
+	<div id="botFlyingContainer" style="right:40px;">
+	<div id="botBtn" style="background-color:#434343; color:white; 
+		font-size:3em; font-weight:bold;">
+		<input style="margin-left:20px; width:100%; height:100%; background-color:#434343; color:white; font-size:1.0em; font-weight:bold;" 
+		type="button" value="뒤로가기" onclick="location.href='mobileNmQnaForm'">
+	</div><div id="botBtn"
+	style=" background-color:#6db800; color:white; 
+	font-size:3em; font-weight:bold;">
+		<input style="width:100%; height:100%; background-color:#6db800; color:white; font-size:1.0em; font-weight:bold;"
+		 type="submit" value="확 인">
+	</div>
+	</div>
+	<!-- <div class="clear"></div>
 	<div id="buttons" style="margin:center; margin-top:30px;" >
 	    <input type="button" value="뒤로가기" class="cancel4" onClick="location.href='mobileNmqnaForm'" style="margin-left:3%; height:4%;">
 	    <input type="submit" value="확인" class="submit4" style="height:4%;" > 
-	 </div>
+	 </div> -->
 </form>
 
 </div>

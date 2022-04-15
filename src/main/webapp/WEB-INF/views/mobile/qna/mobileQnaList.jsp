@@ -16,9 +16,9 @@
 		<th>답변여부</th></tr>
 	<c:forEach items="${mqnaList}" var="mqnaVO">
 		<tr>
-		<td><b>${mqnaVO.NQSEQ}</b></td>
+		<td><b>${mqnaVO.QSEQ}</b></td>
 		
-		<td><a href="mobilePwdcheck?nqseq=${mqnaVO.NQSEQ}">
+		<td><a href="mobileQnaView?qseq=${mqnaVO.QSEQ}">
 			${mqnaVO.SUBJECT}</a></td> 
        		<td><fmt:formatDate value="${mqnaVO.INDATE}" type="date"/></td>
       		<td> 
@@ -38,7 +38,7 @@
     <jsp:param value="${paging.endPage}" name="endPage"/>
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
-	<jsp:param value="qnaForm" name="command" />
+	<jsp:param value="mobileQnaForm" name="command" />
 </jsp:include>
 </div>
 <div id="botFlyingContainer" >
