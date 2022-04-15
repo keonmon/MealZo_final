@@ -1571,24 +1571,24 @@ end;
 
 ------------------------------------------------------------------------
 -- 즉시구매 
-create or replace procedure nowOrder_m(
-    p_id  IN  MORDERS.ID%TYPE,
-    p_oseq  OUT  MORDERS.OSEQ%TYPE  )
-IS
-     v_oseq MORDERS.OSEQ%TYPE;
-     v_pseq MORDER_DETAIL.PSEQ%TYPE;
-     v_quantity MORDER_DETAIL.QUANTITY%TYPE;
-BEGIN
-    INSERT INTO MORDERS(oseq, id) VALUES( morders_seq.nextVal, p_id);
-    SELECT MAX(oseq) INTO p_oseq FROM MORDERS;
-    INSERT INTO morder_detail( odseq, oseq, pseq, quantity )
-    VALUES( morder_detail_seq.nextVal, v_oseq, v_pseq,  v_quantity );
-    commit;
-    p_oseq := v_oseq;
-END;
+--create or replace procedure nowOrder_m(
+--    p_id  IN  MORDERS.ID%TYPE,
+--    p_oseq  OUT  MORDERS.OSEQ%TYPE  )
+--IS
+--     v_oseq MORDERS.OSEQ%TYPE;
+--     v_pseq MORDER_DETAIL.PSEQ%TYPE;
+--     v_quantity MORDER_DETAIL.QUANTITY%TYPE;
+--BEGIN
+--    INSERT INTO MORDERS(oseq, id) VALUES( morders_seq.nextVal, p_id);
+--    SELECT MAX(oseq) INTO p_oseq FROM MORDERS;
+--    INSERT INTO morder_detail( odseq, oseq, pseq, quantity )
+--    VALUES( morder_detail_seq.nextVal, v_oseq, v_pseq,  v_quantity );
+--    commit;
+--    p_oseq := v_oseq;
+--END;
 
 
-CREATE OR REPLACE PROCEDURE insertOrder_m(
+CREATE OR REPLACE PROCEDURE nowOrder_m(
     p_id  IN  MORDERS.ID%TYPE,
     p_oseq  OUT  MORDERS.OSEQ%TYPE  )
 IS
