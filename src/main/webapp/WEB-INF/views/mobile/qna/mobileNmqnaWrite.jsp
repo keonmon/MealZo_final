@@ -9,7 +9,7 @@
 	<b style="font-size:2.5em ">고객님의 질문에 운영자가 답변을 드립니다</b>
 </div>
 
-<form action="mobileNmqnaWrite" name="formm" style="margin-top:5%; text-align:center; margin-left:40px; width:90%; height:70%" >
+<form action="mobileNmqnaWrite" name="formm" style="margin-top:5%; text-align:center; margin-left:40px; width:90%; height:50%" >
 	<table id="qnaWrite">
         <tr style="hieght:100px; width:90%;">
        	    <td style="font-size:1.5em; width:30% "><h2>임시아이디</h2> </td>

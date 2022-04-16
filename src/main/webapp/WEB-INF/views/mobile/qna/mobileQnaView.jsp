@@ -36,3 +36,4 @@
    </article>
 
 <%@ include file="../include/headerfooter/mobileFooter.jsp"%>
+
