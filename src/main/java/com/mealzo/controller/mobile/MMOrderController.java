@@ -292,7 +292,7 @@ public class MMOrderController {
 	
 	@RequestMapping(value="/mobileOrderCancelUpdate")
 	public ModelAndView orderCancelUpdate( HttpServletRequest request, Model model,
-			@RequestParam("oseq")int oseq) {
+			@RequestParam(value="oseq",required = false)int oseq) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object>loginUser
@@ -307,16 +307,20 @@ public class MMOrderController {
 			mav.addObject("message", "이미 배송이 시작된 상품은 주문취소가 불가능합니다.😥");
 			mav.addObject("oseq", oseq);
 			
-			//여기서 result값 검사
-			for(String odseq1:odseqArr) {
-				paramMap.put("odseq", Integer.parseInt(odseq1));
-				paramMap.put("result", 0);
-				os.getResultByOdseq(paramMap);
-				
-				if(Integer.parseInt(paramMap.get("result").toString()) >= 2) {
-					System.out.println("odseq="+odseq1 +"/ "
-							+ "result = " + Integer.parseInt(paramMap.get("result").toString()));
-					return mav;
+			if(odseqArr==null) {
+				return mav;
+			}else {
+				//여기서 result값 검사
+				for(String odseq1:odseqArr) {
+					paramMap.put("odseq", Integer.parseInt(odseq1));
+					paramMap.put("result", 0);
+					os.getResultByOdseq(paramMap);
+					
+					if(Integer.parseInt(paramMap.get("result").toString()) >= 2) {
+						System.out.println("odseq="+odseq1 +"/ "
+								+ "result = " + Integer.parseInt(paramMap.get("result").toString()));
+						return mav;
+					}
 				}
 			}
 			
