@@ -1076,11 +1076,12 @@ create or replace procedure insertNotice_m(
     p_subject in notice.subject%type,
     p_useyn in notice.useyn%type,
     p_content in notice.content%type,
-    p_image1 in notice.image1%type )
+    p_image1 in notice.image1%type ,
+    p_result in notice.result%type)
 is
 begin
-    insert into notice(nseq, subject,useyn, content, image1 ) 
-        values(NOTICE_SEQ.nextval,p_subject,p_useyn,p_content,p_image1 );
+    insert into notice(nseq, subject,useyn, content, image1, result ) 
+        values(NOTICE_SEQ.nextval,p_subject,p_useyn,p_content,p_image1, p_result );
     commit;
 end;
 
@@ -1092,11 +1093,13 @@ create or replace procedure updateNotice_m(
     p_subject in notice.subject%type,
     p_useyn in notice.useyn%type,
     p_content in notice.content%type,
-    p_image1 in notice.image1%type )
+    p_image1 in notice.image1%type,
+    p_result in notice.result%type
+    )
 is
 begin
     update notice 
-        set subject=p_subject, useyn=p_useyn, content=p_content, image1=p_image1 
+        set subject=p_subject, useyn=p_useyn, content=p_content, image1=p_image1 , result=p_result
         where nseq = p_nseq;
     commit;
 end;
@@ -1543,47 +1546,28 @@ end;
 
 
 ------------------------------------------------------------------------
--- 즉시구매 
---create or replace procedure nowOrder_m(
---    p_id  IN  MORDERS.ID%TYPE,
---    p_oseq  OUT  MORDERS.OSEQ%TYPE  )
---IS
---     v_oseq MORDERS.OSEQ%TYPE;
---     v_pseq MORDER_DETAIL.PSEQ%TYPE;
---     v_quantity MORDER_DETAIL.QUANTITY%TYPE;
---BEGIN
---    INSERT INTO MORDERS(oseq, id) VALUES( morders_seq.nextVal, p_id);
---    SELECT MAX(oseq) INTO p_oseq FROM MORDERS;
---    INSERT INTO morder_detail( odseq, oseq, pseq, quantity )
---    VALUES( morder_detail_seq.nextVal, v_oseq, v_pseq,  v_quantity );
---    commit;
---    p_oseq := v_oseq;
---END;
+--밍디 즉시구매
+create or replace procedure  orderInsertNow(
+p_id in morders.id%type,
+p_pseq in morder_detail.pseq%type,
+p_oseq out morders.oseq%type,
+p_quantity in morder_detail.quantity%type
+)
+
+is
+v_oseq morders.oseq%type;
+begin
+    insert into morders(oseq, id) values(morders_seq.nextVal, p_id);
+    select max(oseq) into v_oseq from morders;
+    insert into morder_detail(odseq, oseq, pseq, quantity) 
+        values(morder_detail_seq.nextVal, v_oseq, p_pseq, p_quantity);
+
+commit;
+p_oseq := v_oseq;
+end;
 
 
-CREATE OR REPLACE PROCEDURE nowOrder_m(
-    p_id  IN  MORDERS.ID%TYPE,
-    p_oseq  OUT  MORDERS.OSEQ%TYPE  )
-IS
-    v_oseq MORDERS.OSEQ%TYPE;
-    temp_cur SYS_REFCURSOR;
-    v_cseq MCART.CSEQ%TYPE;
-    v_pseq MCART.PSEQ%TYPE;
-    v_quantity MCART.QUANTITY%TYPE;
-BEGIN
-    INSERT INTO MORDERS(oseq, id) VALUES( morders_seq.nextVal, p_id);
-    SELECT MAX(oseq) INTO v_oseq FROM MORDERS;
-    OPEN temp_cur FOR SELECT cseq, pseq, quantity FROM MCART WHERE id=p_id and result='1';
-    LOOP
-        FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;
-        EXIT WHEN temp_cur%NOTFOUND; 
-        INSERT INTO morder_detail( odseq, oseq, pseq, quantity )
-        VALUES( morder_detail_seq.nextVal, v_oseq, v_pseq,  v_quantity ); 
-        DELETE FROM MCART WHERE cseq = v_cseq;
-    END LOOP;
-    COMMIT;
-    p_oseq := v_oseq;
-END;
+
 
 ----------------- Qna List 다시돌려야합니다 --------------------------
 
@@ -1630,7 +1614,7 @@ begin
         select * from (
         select * from (
         select rownum as rn, p.* from 
-        ((select * from notice where subject like '%'||p_key||'%') p) 
+        ((select * from notice where subject like '%'||p_key||'%'  order by  result desc, indate desc) p) 
         ) where rn>=p_startNum
         ) where rn<=p_endNum;
 end;
@@ -1646,7 +1630,7 @@ begin
         select * from (
         select * from (
         select rownum as rn, p.* from 
-        ((select * from notice where useyn='y') p) 
+        ((select * from notice where useyn='y' or useyn='p' order by   result desc, indate desc) p) 
         ) where rn>=p_startNum
         ) where rn<=p_endNum;
 end;
@@ -1662,6 +1646,22 @@ BEGIN
     update mmember set useyn='n' where id=p_id;
     commit;    
 END;
+----------------------------------------------------------
+-- ORDER ODSEQ로 RESULT값 조회 쿼리 getResultByOdseq_m
+CREATE OR REPLACE PROCEDURE getResultByOdseq_m(
+    p_odseq IN morder_detail.odseq%TYPE,
+    p_result out morder_detail.result%type
+)
+IS
+v_result NUMBER := 1;
+BEGIN
+    select result 
+        into v_result 
+        from morder_detail where odseq = p_odseq;
+        
+    p_result := v_result;
+END;
+
 
 
 ----------------------------------------------------------

@@ -4,6 +4,7 @@
 <article id="mypageArticle2"  id="mypageArticle2" style="width:900px; max-width:900px;">
 <h2>주문/배송 상세내역 - 주문번호 : ${OSEQ}</h2>
 <form name="frm" method="post" style="text-align:center;">
+<input type="hidden" name="oseq" value="${OSEQ }" >
 <table id="cartList">
 	<tr><th>상품명</th><th>수 량</th><th>가 격</th><th>주문일</th><th>진행상태</th><th>주문취소</th></tr>
 	<c:forEach items="${orderList}" var="morderVO">
@@ -46,6 +47,23 @@
        	<td><input type="button" value="주문취소" onclick="go_cancel()"></td></tr> 	
 </table>
 </form>
+<!-- 배송중인 상품 주문 취소시 메시지 표시 -->
+<c:choose>
+	<c:when test="${!empty message}">
+		<div id="message" 
+			style=" 
+			width: 100%;
+		    margin: 0 auto;
+		    text-align: center;
+		    background-color: green;
+		    height: 50px;
+		    color: white;
+		    font-size: 1.5em;
+		    line-height: 50px;">
+			${message }
+		</div>
+	</c:when>
+</c:choose><!-- 메시지 끝 -->
 
 </article>
 <%@ include file="../include/user/headerfooter/footer.jsp"%>

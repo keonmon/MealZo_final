@@ -59,7 +59,6 @@
 			<th width="70px">게시일시</th>
 				<td width="200px" style="text-align:center;" >
 				<fmt:formatDate value="${nvo.indate }" type="both"/></td>
-			<th width="70px">공개유무</th>
 				<td style="text-align:center;">
 				<c:choose>
 					<c:when test='${nvo.useyn == "y"}'>
@@ -68,7 +67,16 @@
 					<c:otherwise>
 						공개&nbsp;<input type="checkbox" name="useyn" value="y">
 					</c:otherwise>
-				</c:choose></td></tr>
+				</c:choose></td>
+					<td><c:choose>
+						<c:when test='${nvo.result == "p"}'>
+						필독&nbsp;<input type="checkbox" name="result" value="p" checked="checked">
+						</c:when>
+					<c:otherwise>
+						필독&nbsp;<input type="checkbox" name="result" value="p">
+					</c:otherwise>
+					</c:choose>
+					</td></tr>
 		<tr><th>상세설명</th>
 				<td colspan="5">
 					<textarea name="content" rows="8" cols="70" style="width:560px; max-width:560px; min-width:560px; height:250px">${nvo.content }</textarea></td></tr>

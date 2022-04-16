@@ -83,5 +83,22 @@
 			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
 		) }
 	</select>
+	
+	<select id="getResultByOdseq" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{ CALL getResultByOdseq_m(
+			#{odseq},
+			#{result, mode=OUT, jdbcType=INTEGER}
+		) }
+	</select>
+	
+	<insert id="orderInsertNow" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{CALL orderInsertNow(
+		#{id},
+		#{pseq},
+		#{oseq, mode=OUT, jdbcType=INTEGER },
+		#{quantity,  jdbcType=INTEGER}
+		)}
+		</insert>
+			
 			
 </mapper>

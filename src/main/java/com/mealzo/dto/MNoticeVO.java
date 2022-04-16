@@ -21,5 +21,6 @@ public class MNoticeVO {
 	private Timestamp indate;
 	private String image1;
 	private String useyn;
+	private String result;
 	
 }

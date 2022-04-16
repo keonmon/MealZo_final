@@ -66,8 +66,6 @@ public class MMMemberController {
 			return "mobile/member/mobileLogin";
 		}
 		
-		
-		
 		HashMap<String, Object> mvo = list.get(0);
 		
 		if( mvo.get("PWD") == null ) {
@@ -77,11 +75,12 @@ public class MMMemberController {
 			model.addAttribute("message", "밀조) 비밀번호가 맞지않습니다");
 			return "mobile/member/mobileLogin";
 		}else if( mvo.get("USEYN").equals("n")) {
-			model.addAttribute("message", "밀조) 탈퇴하거나 휴먼중인 계정입니다. 고객센터에서 비회원 문의를 통해 밀조왕에게 문의하세요");
+			//model.addAttribute("message", "밀조) 탈퇴하거나 휴먼중인 계정입니다. 고객센터에서 비회원 문의를 통해 밀조왕에게 문의하세요");
 			model.addAttribute("useyn2", "n");
 			return "mobile/member/mobileLogin";
 		}else if( mvo.get("PWD").equals(membervo.getPwd())) {
 			HttpSession session = request.getSession();
+			String redirectUrl = (String)session.getAttribute("redirectUrl");
 			session.setAttribute("loginUser", mvo);
 			
 			// 카트 개수 세션에 담기
@@ -91,8 +90,8 @@ public class MMMemberController {
 			cnt = Integer.parseInt(paramMap.get("cnt").toString());
 			session.setAttribute("cartCnt",cnt);
 			
-			return "redirect:/mobileMain";
-			
+			if(redirectUrl!=null) return "redirect:/"+(String)redirectUrl;
+			else return "redirect:/";
 			
 		}else {
 			model.addAttribute("message", "밀조) 무슨이유인지 모르겠지만 로그인 안돼요");

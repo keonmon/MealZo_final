@@ -29,44 +29,6 @@ public class MOrderController {
 	MCartService cs;
 	
 	
-	@RequestMapping(value="/orderNow")
-	@ResponseBody
-	public Map<String,Object> orderNow( HttpServletRequest request, Model model,
-			@RequestParam(value="pseq",required = false)String pseq,
-			@RequestParam(value="quantity",required = false)String quantity
-			) {
-		int cnt = 0;
-		System.out.println("pseq:"+pseq+" / quantity:"+quantity);
-		HttpSession session = request.getSession();
-		HashMap<String, Object>loginUser
-			= (HashMap<String, Object>)session.getAttribute("loginUser");
-		
-		HashMap<String, Object>paramMap = new HashMap<String, Object>();
-		if( loginUser == null ) {
-			paramMap.put("STATUS", 0);
-			//return "STATUS : 0";
-			return paramMap;
-			//return "member/login";
-		} else {
-			
-			paramMap.put("id", loginUser.get("ID") );
-			paramMap.put("pseq", pseq);
-			paramMap.put("quantity",quantity);
-			os.nowOrder( paramMap );
-			
-			// 카트 개수 세션에 담기
-			paramMap.put("cnt", 0);	// 카드 개수 담아올 변수
-			cs.getCartCnt(paramMap);
-			System.out.println(paramMap.get("cnt"));
-			cnt = Integer.parseInt(paramMap.get("cnt").toString());
-			session.setAttribute("cartCnt",cnt);
-			
-			paramMap.put("STATUS", 1);
-		}
-		return paramMap;
-		//return "product/productDetail";
-	}
-	
 	@RequestMapping(value="/orderInsert")
 	public String orderInsert( HttpServletRequest request ) {
 		
@@ -103,9 +65,11 @@ public class MOrderController {
 	
 	
 	@RequestMapping(value="/orderList")
-		public ModelAndView orderListForm( HttpServletRequest request, Model model ) {
+		public ModelAndView orderListForm( HttpServletRequest request, Model model,  
+				@RequestParam(value="redirectUrl",required=false)String redirectUrl ) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
+		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
 		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
 		if( loginUser == null ) {
 			mav.setViewName("member/login");	
@@ -176,7 +140,8 @@ public class MOrderController {
 	
 	@RequestMapping(value="/orderDetail")  
 	public ModelAndView orderDetail( HttpServletRequest request, Model model,
-			@RequestParam("oseq") int oseq ) {
+			@RequestParam(value="oseq",required = false) int oseq,
+			@RequestParam(value="message",required = false)String message) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser 
@@ -184,23 +149,24 @@ public class MOrderController {
 		if( loginUser == null ) {
 			mav.setViewName("member/login");
 		}else {
-			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("oseq", oseq);
-			paramMap.put("ref_cursor", null);
-			os.listOrderByOseq(paramMap);
-			
-			ArrayList<HashMap<String, Object>> orderListByOseq 
-				= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
-			
-			int totalPrice = 0;
-			for( HashMap<String, Object> order : orderListByOseq ) 
-				totalPrice += Integer.parseInt( order.get("QUANTITY").toString() )
-									* Integer.parseInt( order.get("PRICE2").toString() ); 
-			mav.addObject("OSEQ",oseq);
-			mav.addObject("totalPrice", totalPrice);
-			mav.addObject("orderList", orderListByOseq);
-			mav.addObject("orderDetail", orderListByOseq.get(0));
-			mav.setViewName("order/orderDetail");
+				HashMap<String, Object> paramMap = new HashMap<String, Object>();
+				paramMap.put("oseq", oseq);
+				paramMap.put("ref_cursor", null);
+				os.listOrderByOseq(paramMap);
+				
+				ArrayList<HashMap<String, Object>> orderListByOseq 
+					= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+				
+				int totalPrice = 0;
+				for( HashMap<String, Object> order : orderListByOseq ) 
+					totalPrice += Integer.parseInt( order.get("QUANTITY").toString() )
+										* Integer.parseInt( order.get("PRICE2").toString() ); 
+				mav.addObject("message", message);
+				mav.addObject("totalPrice", totalPrice);
+				mav.addObject("orderList", orderListByOseq);
+				mav.addObject("orderDetail", orderListByOseq.get(0));
+				mav.addObject("OSEQ",oseq);
+				mav.setViewName("order/orderDetail");
 		}
 		return mav;
 	}
@@ -267,6 +233,8 @@ public class MOrderController {
 		if( loginUser == null) {
 			mav.setViewName("member/login");
 		} else {
+			
+			
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("id", loginUser.get("ID") );
 			paramMap.put("ref_cursor", null);
@@ -317,7 +285,8 @@ public class MOrderController {
 
 
 	@RequestMapping(value="/orderCancelUpdate")
-	public ModelAndView orderCancelUpdate( HttpServletRequest request, Model model) {
+	public ModelAndView orderCancelUpdate( HttpServletRequest request, Model model,
+			@RequestParam(value="oseq",required = false)int oseq) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object>loginUser
@@ -327,16 +296,73 @@ public class MOrderController {
 		} else {
 			String[] odseqArr = request.getParameterValues("orderCancel");
 			HashMap<String, Object>paramMap = new HashMap<String, Object>();
-			for(String odseq1:odseqArr) {
-				paramMap.put("odseq", Integer.parseInt(odseq1));
-				os.orderCancelUpdate(paramMap);
-				mav.addObject("odseq", odseq1);
+			
+			mav.setViewName("redirect:/orderDetail");
+			mav.addObject("message", "이미 배송이 시작된 상품은 주문취소가 불가능합니다.😥");
+			mav.addObject("oseq", oseq);
+			
+			if(odseqArr==null) {
+				return mav;
+			}else {
+				//여기서 result값 검사
+				for(String odseq1:odseqArr) {
+					paramMap.put("odseq", Integer.parseInt(odseq1));
+					paramMap.put("result", 0);
+					os.getResultByOdseq(paramMap);
+					
+					if(Integer.parseInt(paramMap.get("result").toString()) >= 2) {
+						System.out.println("odseq="+odseq1 +"/ "
+								+ "result = " + Integer.parseInt(paramMap.get("result").toString()));
+						return mav;
+					}
+				}
+				for(String odseq1:odseqArr) {
+					paramMap.put("odseq", Integer.parseInt(odseq1));
+					os.orderCancelUpdate(paramMap);
+					mav.addObject("odseq", odseq1);
+				}
+				mav.setViewName("redirect:/orderCancelForm");
 			}
-			mav.setViewName("redirect:/orderCancelForm");
 		}
 		return mav;
 	}
 	
+
+	@RequestMapping(value="/orderInsertNow")
+	public ModelAndView orderInsertNow(HttpServletRequest request, @RequestParam(value="pseq",required = false) int pseq,
+			@RequestParam(value="quantity",required = false) int quantity){
+		int oseq=0;
+		ModelAndView mav =  new ModelAndView();
+		 HttpSession session = request.getSession();
+			HashMap<String, Object> loginUser =
+	     	(HashMap<String, Object>)session.getAttribute("loginUser");
+
+			if(loginUser==null) {
+				mav.setViewName("member/login");
+				return mav;
+	
+		}
+			else {
+				HashMap<String, Object> paramMap = new HashMap<String , Object>();
+				paramMap.put("id", loginUser.get("ID"));
+				paramMap.put("pseq", pseq);
+				paramMap.put	("oseq", 0);
+				paramMap.put("quantity", quantity);
+				
+				os.orderInsertNow(paramMap);
+		//	quantity=Integer.parseInt(paramMap.get("quantity").toString());
+
+				oseq=Integer.parseInt(paramMap.get("oseq").toString());
+				System.out.println(oseq);
+				   System.out.println(quantity  + pseq );
+
+				
+				mav.setViewName("redirect:/orderList?oseq=" +oseq);
+			}
+		
+		return mav;
+	}
+		
 	
 }
 

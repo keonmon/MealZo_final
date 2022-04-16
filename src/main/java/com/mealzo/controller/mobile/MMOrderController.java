@@ -28,17 +28,19 @@ public class MMOrderController {
 	
 	
 	@RequestMapping("/mobileMypageForm")
-	public String mypageForm(HttpServletRequest request  ) {
+	public String mypageForm(HttpServletRequest request,  
+			@RequestParam(value="redirectUrl",required=false)String redirectUrl  ) {
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser =
 				(HashMap<String, Object>)session.getAttribute("loginUser");
-
+		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
 		if(loginUser==null) {
 			return "mobile/member/mobileLogin";
 		}else {
 	    }
 		return "mobile/mypage/mobileMypage";
 	}
+	
 	
 	@RequestMapping(value="/mobileOrderInsert")
 	public String orderInsert( HttpServletRequest request ) {
@@ -60,7 +62,7 @@ public class MMOrderController {
 			os.insertOrder( paramMap );
 			
 			oseq = Integer.parseInt( paramMap.get("oseq").toString() );
-			System.out.println(oseq);
+			System.out.println("주문번호" + oseq);
 			
 			// 카트 개수 세션에 담기
 			paramMap.put("cnt", 0);	// 카드 개수 담아올 변수
@@ -74,9 +76,11 @@ public class MMOrderController {
 	}
 	
 	@RequestMapping(value="/mobileOrderList")
-		public ModelAndView orderListForm( HttpServletRequest request, Model model ) {
+		public ModelAndView orderListForm( HttpServletRequest request, Model model,  
+				@RequestParam(value="redirectUrl",required=false)String redirectUrl  ) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
+		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
 		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
 		if( loginUser == null ) {
 			mav.setViewName("mobile/member/mobileLogin");	
@@ -147,7 +151,8 @@ public class MMOrderController {
 	
 	@RequestMapping(value="/mobileOrderDetail")  
 	public ModelAndView orderDetail( HttpServletRequest request, Model model,
-			@RequestParam("oseq") int oseq ) {
+			@RequestParam("oseq") int oseq,
+			@RequestParam(value="message",required = false)String message ) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser 
@@ -167,6 +172,7 @@ public class MMOrderController {
 			for( HashMap<String, Object> order : orderListByOseq ) 
 				totalPrice += Integer.parseInt( order.get("QUANTITY").toString() )
 									* Integer.parseInt( order.get("PRICE2").toString() ); 
+			mav.addObject("message", message);
 			mav.addObject("totalPrice", totalPrice);
 			mav.addObject("orderList", orderListByOseq);
 			mav.addObject("orderDetail", orderListByOseq.get(0));
@@ -289,7 +295,8 @@ public class MMOrderController {
 
 	
 	@RequestMapping(value="/mobileOrderCancelUpdate")
-	public ModelAndView orderCancelUpdate( HttpServletRequest request, Model model) {
+	public ModelAndView orderCancelUpdate( HttpServletRequest request, Model model,
+			@RequestParam(value="oseq",required = false)int oseq) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object>loginUser
@@ -299,6 +306,28 @@ public class MMOrderController {
 		} else {
 			String[] odseqArr = request.getParameterValues("orderCancel");
 			HashMap<String, Object>paramMap = new HashMap<String, Object>();
+			
+			mav.setViewName("redirect:/mobileOrderDetail");
+			mav.addObject("message", "이미 배송이 시작된 상품은 주문취소가 불가능합니다.😥");
+			mav.addObject("oseq", oseq);
+			
+			if(odseqArr==null) {
+				return mav;
+			}else {
+				//여기서 result값 검사
+				for(String odseq1:odseqArr) {
+					paramMap.put("odseq", Integer.parseInt(odseq1));
+					paramMap.put("result", 0);
+					os.getResultByOdseq(paramMap);
+					
+					if(Integer.parseInt(paramMap.get("result").toString()) >= 2) {
+						System.out.println("odseq="+odseq1 +"/ "
+								+ "result = " + Integer.parseInt(paramMap.get("result").toString()));
+						return mav;
+					}
+				}
+			}
+			
 			for(String odseq1:odseqArr) {
 				paramMap.put("odseq", Integer.parseInt(odseq1));
 				os.orderCancelUpdate(paramMap);

@@ -4,7 +4,7 @@
 <%@ include file ="../include/sidemenu/sidemenu.jsp"%>
 <div id="e">
 
-<div class="kind">전체상품</div>
+<div class="kind">전체상품😋</div>
 
 <script>
 $(document).ready(function (){

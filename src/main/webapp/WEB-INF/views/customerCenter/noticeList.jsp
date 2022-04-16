@@ -11,13 +11,22 @@
 	<tr><th>번호</th><th >제목</th><th>게시일</th></tr>
 	<c:forEach items="${noticeList }" var="noticeVO">
 	<tr>
-		<td width="20px">${noticeVO.NSEQ}</td>
+		<td width="20px">
+		<c:choose>
+		<c:when test='${noticeVO.RESULT=="p"}'>
+		   <span style="font-weight:bold; color:red">필독</span>
+		   </c:when>
+		   <c:otherwise>
+		${noticeVO.NSEQ}
+		</c:otherwise></c:choose></td>
 		<td width="500px"><a href="noticeDetail?nseq=${noticeVO.NSEQ}" style="color:black; font-weight:bold;">
 		${noticeVO.SUBJECT}</a></td>
     	<td width="20px"><fmt:formatDate value="${noticeVO.INDATE}" type="date"/></td>
    		</tr>
 	</c:forEach>
 </table>
+
+
 
 
 </form>

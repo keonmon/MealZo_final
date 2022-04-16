@@ -16,7 +16,7 @@
 			//ajax : 웹페이지 새로고침이 필요없는 request(요청)
 			// 문법 : $.ajax({ 객체 });
 			$.ajax({
-				url:"<%=request.getContextPath()%>/cartInsert",	//Controller로 매핑된 메서드를 호출
+				url:"<%=request.getContextPath()%>/cartInsert?redirectUrl=productDetail",	//Controller로 매핑된 메서드를 호출
 				type:"POST",
 				data: {
 					"pseq": $("#pseq").val(),
@@ -45,47 +45,11 @@
 	});
 </script>
     
- <script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready( function () {
 		printName();
 	});
-	
-	// ajax
-	$(function(){
-		$('#goOrder').click(function(){
-			//var formselect = $("#productForm")[0];	//지목된 폼을 변수에 저장
-			//var formData = new FormData(formselect);
-			
-			//ajax : 웹페이지 새로고침이 필요없는 request(요청)
-			// 문법 : $.ajax({ 객체 });
-			$.ajax({
-				url:"<%=request.getContextPath()%>/orderNow",	//Controller로 매핑된 메서드를 호출
-				type:"POST",
-				data: {
-					"pseq": $("#pseq").val(),
-					"quantity": $("#quantity").val()
-				},
-				dataType: "json",
-				
-				success: function(data){
-					// Controller에서 넘어온 data의 'STATUS 데이터가 1이면'
-					if(data.STATUS === 1){
-						//동적으로 div 태그 달아주기.
-						$("#cartCnt").empty();
-						$("#cartCnt").append(data.cnt);
-						if(confirm('해당 상품이 주문목록에 추가되었습니다\n주문목록으로 이동하시겠습니까?')){
-							location.href="orderList";
-						}
-					}else{
-						location.href="userLogin";
-					}
-				},
-				error:function(){
-					alert("실패");
-				}
-			});
-		});
-	});
+
 </script>
  
 <article  id="e1">
@@ -102,14 +66,15 @@
 			    <h2><fmt:formatNumber value="${mproductVO.PRICE2}"  pattern="###,###,###"/>원</h2>
 			</td></tr>	
 				<tr><td></td></tr><tr><td></td></tr>
-
+<!--수량-->
 			  	<tr style="font-size:20px; width:100px;" >
 				  	<td >   
 					<p> 수량 &nbsp; &nbsp; &nbsp;
-					<input type="button" value=" + " onclick="add();"  style="font-size:20px; background:white;">
+					 <input type="button" value=" - " onclick="del();"  style="font-size:20px; background:white;">
 					<input type="text" id="quantity" name="quantity" id="quantity" onkeyup="printName()" size="2" value="1"  style="font-size:20px ; text-align:center;"> 
                    <input type="hidden" name="pseq" id="pseq" value="${mproductVO.PSEQ}">
-                   <input type="button" value=" - " onclick="del();"  style="font-size:20px; background:white;"><br><br></p>
+                   <input type="button" value=" + " onclick="add();"  style="font-size:20px; background:white;"><br><br></p>
+               
                </td>
             </tr>
               <tr><td><h2>총 상품금액</h2> </td><td><h3><div id="result" name="result" style=" font-size:25px;"></div></h3></td></tr>
@@ -117,8 +82,8 @@
 		</table>
 	
 	  <input type="button" value="장바구니" class="submit2" id="goCart" >
-	  <input type="button" value="바로구매" class="submit2" id="goOrder">
-	  	</td></tr>
+	  <input type="button" value="바로구매" class="submit2" id="goOrder" onClick="go_order()">
+	  	</td></tr>  
 	</table>  
 </form>
 
@@ -213,7 +178,7 @@ $(function (){
 	 <form method="post" name="form3">
 
 	    <div id=aks2>
-	    <input type="button" value="문의하기" class="ask" onclick="location.href='askWriteForm?pseq=${pseq}'">
+	    <input type="button" value="문의하기" class="ask" onclick="location.href='askWriteForm?pseq=${pseq}&redirectUrl=askWriteForm'">
 </div>
 
 

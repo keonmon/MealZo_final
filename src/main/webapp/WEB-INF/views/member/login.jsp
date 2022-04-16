@@ -11,7 +11,6 @@ $(function(){
 <br><br><br><br>
 <article>
 <form method="post" action="login" name="loginFrm">
-
  <fieldset>
   <legend></legend>
   
@@ -35,9 +34,9 @@ $(function(){
 
 <c:choose>
 	<c:when test="${useyn2=='n'}">
-		<div id="message" style="font-size:1.2em; width:80%; left:10%;">
-			탈퇴하거나 휴면중인 계정입니다.
-			<a href="mobileNmqnaForm" style="text-decoration: none; color: red;">
+		<div id="message" style="font-size:1.2em; width:80%; margin:0 auto; text-align:center;">
+			탈퇴하거나 휴면중인 계정입니다.<br>
+			<a href="nmqnaForm" style="text-decoration: none; color: red;">
 					고객센터(클릭) </a>를 통해 문의주시기 바랍니다
 		</div>
 	</c:when>	

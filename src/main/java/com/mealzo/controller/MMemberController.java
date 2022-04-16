@@ -35,21 +35,24 @@ public class MMemberController {
 	MCartService cs;
 	
 	@RequestMapping("/userLogin")
-	public String loginForm() {
+	public String loginForm(HttpServletRequest request,  
+		@RequestParam(value="message",required=false)String message) {
+		request.setAttribute("message", message);
 		return "member/login";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login( @ModelAttribute("dto") @Valid MMemberVO membervo , BindingResult result, 
-			HttpServletRequest request, Model model ) {
+			HttpServletRequest request, Model model) {
+		
 		int cnt = 0;	// 카트 개수 초기화
 		// 아이디, 비번 빈칸확인
 		if( result.getFieldError("id") != null ) {
 			model.addAttribute("message", result.getFieldError("id").getDefaultMessage() );
-			return "member/login";
+			return "redirect:/userLogin";
 		}else if( result.getFieldError("pwd")!=null) {
 			model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage() );
-			return "member/login";
+			return "redirect:/userLogin";
 		}
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
@@ -63,7 +66,7 @@ public class MMemberController {
 			= (ArrayList< HashMap<String, Object> >)paramMap.get("ref_cursor");
 		if( list.size() == 0 ) {
 			model.addAttribute("message", "밀조) 아이디가 없습니다");
-			return "member/login";
+			return "redirect:/userLogin";
 		}
 		
 		
@@ -72,16 +75,19 @@ public class MMemberController {
 		
 		if( mvo.get("PWD") == null ) {
 			model.addAttribute("message", "밀조) 비밀번호 오류. 밀조왕에게 문의하세요");
-			return "member/login";
+			return "redirect:/userLogin";
 		}else if( !mvo.get("PWD").equals(membervo.getPwd())) {
 			model.addAttribute("message", "밀조) 비밀번호가 맞지않습니다");
-			return "member/login";
+			return "redirect:/userLogin";
 		}else if( mvo.get("USEYN").equals("n")) {
-			model.addAttribute("message", "밀조) 탈퇴하거나 휴먼중인 계정입니다. 하단 공지에서 비회원 문의를 통해 밀조왕에게 문의하세요");
+			//model.addAttribute("message", "밀조) 탈퇴하거나 휴먼중인 계정입니다. 하단 공지에서 비회원 문의를 통해 밀조왕에게 문의하세요");
 			model.addAttribute("useyn2", "n");
-			return "member/login";
+			return "redirect:/userLogin";
 		}else if( mvo.get("PWD").equals(membervo.getPwd())) {
 			HttpSession session = request.getSession();
+			
+			String redirectUrl = (String)session.getAttribute("redirectUrl");
+			
 			session.setAttribute("loginUser", mvo);
 			
 			// 카트 개수 세션에 담기
@@ -90,13 +96,13 @@ public class MMemberController {
 			System.out.println(paramMap.get("cnt"));
 			cnt = Integer.parseInt(paramMap.get("cnt").toString());
 			session.setAttribute("cartCnt",cnt);
-			
-			return "redirect:/";
+			if(redirectUrl!=null) return "redirect:/"+(String)redirectUrl;
+			else return "redirect:/";
 			
 			
 		}else {
 			model.addAttribute("message", "밀조) 무슨이유인지 모르겠지만 로그인 안돼요");
-			return "member/login";
+			return "redirect:/userLogin";
 		}
 		
 	}

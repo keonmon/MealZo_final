@@ -68,4 +68,14 @@ public class MOrderService {
 		
 	}
 
+	public void getResultByOdseq(HashMap<String, Object> paramMap) {
+		odao.getResultByOdseq( paramMap );
+		
+	}
+
+	public void orderInsertNow(HashMap<String, Object> paramMap) {
+		odao.orderInsertNow(paramMap);
+		
+	}
+
 }

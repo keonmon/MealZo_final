@@ -33,7 +33,8 @@
 			#{subject, jdbcType=VARCHAR},
 			#{useyn, jdbcType=VARCHAR},
 			#{content, jdbcType=VARCHAR},
-			#{image1, jdbcType=VARCHAR}
+			#{image1, jdbcType=VARCHAR},
+				#{result, jdbcType=VARCHAR}
 		)}
 	</insert>
 	
@@ -43,7 +44,8 @@
 			#{subject, jdbcType=VARCHAR},
 			#{useyn, jdbcType=VARCHAR},
 			#{content, jdbcType=VARCHAR},
-			#{image1, jdbcType=VARCHAR}
+			#{image1, jdbcType=VARCHAR},
+			#{result, jdbcType=VARCHAR}
 		)}
 	</update>
 	

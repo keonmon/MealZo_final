@@ -49,7 +49,7 @@
 		<%-- <input type="hidden" name="nseq" value="${nseq }"> --%>
 		<table id="tableContainer">
 			<tr><th width="100px" style="background-color:lightgrey">공지 제목</th>
-	            <td width="400px" colspan="1">
+	            <td width="350px" colspan="1">
 	            <input width="500px" type="text" name="subject" value="${nvo.subject}" size="47" maxlength="100">
 			</td>
 			<th width="70px">공개유무</th>
@@ -62,7 +62,18 @@
 							<input type="checkbox" name="useyn" value="y" >
 						</c:otherwise>
 					</c:choose>
-			</td></tr>
+			</td>
+			<th width="70px">필독사항</th>
+			<td><c:choose>
+						<c:when test='${nvo.result == "p"}'>
+						&nbsp;<input type="checkbox" name="result" value="p" checked="checked">
+						</c:when>
+					<c:otherwise>
+						&nbsp;<input type="checkbox" name="result" value="p">
+					</c:otherwise>
+					</c:choose>
+					</td>
+			</tr>
 			<tr><th>상세설명</th>
 					<td colspan="5">
 						<textarea name="content" rows="8" cols="70" style="max-height:220px;min-height:220px; max-width:560px; min-width:560px; height:250px">${nvo.content}</textarea></td>

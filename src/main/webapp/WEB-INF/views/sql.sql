@@ -188,6 +188,8 @@ select * from notice;
 
 select distinct oseq from morder_view where (result='1' or result='2' or result='3' ) and id='kim' order by oseq desc; 
 
+alter table notice add result char(1) default 'n';	
+alter table notice drop column result;	
 
 -- 민지
  select * from 
@@ -447,3 +449,6 @@ select * from morder_detail
 select *from morder_view;
 select * from mqna;
 select * from mqna_view;
+
+delete from morders;
+delete from morder_detail

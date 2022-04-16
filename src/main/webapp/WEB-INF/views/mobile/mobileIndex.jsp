@@ -130,9 +130,9 @@
 	
 	<!-- 신메뉴 슬라이더 -->
 	<div id="slide_product" style="margin-top: 100px;">
-		<div id="index_catalog_topper">
+		<div id="index_catalog_topper" style="margin-top: 120px;">
 			<span id="name">
-				<a href="mobileProductForm?kind=&bestyn=&newyn=y&sort=recently&sub=y&idx=0">신상품</a>
+				<a href="mobileProductForm?kind=&bestyn=&newyn=y&sort=recently&sub=y&idx=0">🙌새로 나왔어요! 🙌</a>
 			</span>
 		</div>
 		<div>
@@ -166,7 +166,7 @@
 	<div id="slide_product">
 		<div id="index_catalog_topper">
 			<span id="name">
-				<a href="mobileProductForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0">베스트 상품</a>
+				<a href="mobileProductForm?kind=&bestyn=y&newyn=&sort=recently&sub=y&idx=0">✨●'◡'●베스트 상품✨</a>
 			</span>
 		</div>
 		<div>

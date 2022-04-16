@@ -3,14 +3,14 @@
 <%@ include file="../include/headerfooter/mobileMainHeader.jsp"%>
 <%@ include file ="../include/sidemenu/sidemenu.jsp"%>
 
-<article id="zzim2" style="width:900px; max-width:900px;">
-
-    <div class="kind">나의 상품후기</div>
-
-<br><br><br><br>
+<article id="zzim2" style="width:900px; max-width:900px; margin-top: 219px; margin-bottom: 60%";>
+<div style="width:888px; height:120px; margin:0 auto;
+	background-color:green; color:white; line-height:120px; 
+	padding:10px 30px; box-sizing: border-box;" >
+	<b style="font-size:3em ">나의 상품후기</b></div>
 <form>
 <table id="zzimtable" style="text-align:center;" >
-<tr    style="font-size:2.3em; height:140px; background-color:#ededed;"><th width="160px">등록일</th><th >상품명</th>
+<tr    style="font-size:2.3em; height:140px; background-color:#ededed;"><th width="160px">등록일</th><th width="270px" >상품명</th>
 <th colspan="2" style="  width: 500px;">후기 내용</th>
 	<c:forEach items="${myReviewList }" var="reviewVO">
 			<input type="hidden" value="${mrivewVO.ZSEQ}">

@@ -29,10 +29,12 @@ public class MMCartController {
 	@ResponseBody
 	public Map<String,Object> cartInsert( HttpServletRequest request, Model model,
 			@RequestParam(value="pseq", required = false)String pseq,
-			@RequestParam(value="quantity", required = false)String quantity) {
+			@RequestParam(value="quantity", required = false)String quantity,  
+			@RequestParam(value="redirectUrl",required=false)String redirectUrl) {
 		int cnt = 0;
 		System.out.println("pseq:"+pseq+" / quantity:"+quantity);
 		HttpSession session = request.getSession();
+		session.setAttribute("redirectUrl", redirectUrl+"?pseq="+pseq);		//url 세션에 담기
 		HashMap<String, Object>loginUser
 		= (HashMap<String, Object>)session.getAttribute("loginUser");
 		
@@ -61,9 +63,11 @@ public class MMCartController {
 	}
 	
 	@RequestMapping(value="/mobileCartList")
-	public ModelAndView cartList( HttpServletRequest request, Model model) {
+	public ModelAndView cartList( HttpServletRequest request, Model model,  
+			@RequestParam(value="redirectUrl",required=false)String redirectUrl) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
+		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
 		HashMap<String, Object> loginUser
 			= (HashMap<String, Object>)session.getAttribute("loginUser");
 		

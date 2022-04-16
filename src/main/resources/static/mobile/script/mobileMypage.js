@@ -73,9 +73,9 @@ document.form.submit();
 function zzim(pseq){
 var gozzim = confirm("찜  추가되었습니다 \n 찜리스트로 이동하시겠습니까?♥😊❤️");
    		if(gozzim){
-			location.href= "mobileZzimInsert?pseq=" + pseq;
+			location.href= "mobileZzimInsert?pseq=" + pseq+"&redirectUrl=mobileProductDetail";
 		}else{
-		location.href= "mobileZzim?pseq=" + pseq;
+			location.href= "mobileZzim?pseq=" + pseq + "&redirectUrl=mobileProductDetail";
 		}
    }
 
