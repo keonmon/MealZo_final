@@ -200,14 +200,8 @@ function go_order(){
        alert("수량을 입력해주세요");
        document.form1.quantity.focus();
      } else {
-        var goOrder = confirm("해당 상품이 바로결제되었습니다\n나의쇼핑으로 이동하시겠습니까?");
-        if(goOrder){
-        document.form1.action = "orderInsert";
-        document.form1.submit();
-      }else{
-        document.form1.action = "orderInsertReturn";
+        document.form1.action = "orderInsertNow";
         document.form1.submit();
       }
-   }
 }
 

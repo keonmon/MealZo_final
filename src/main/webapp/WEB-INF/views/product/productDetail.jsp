@@ -49,43 +49,7 @@
 	$(document).ready( function () {
 		printName();
 	});
-	
-	// ajax
-	$(function(){
-		$('#goOrder').click(function(){
-			//var formselect = $("#productForm")[0];	//지목된 폼을 변수에 저장
-			//var formData = new FormData(formselect);
-			
-			//ajax : 웹페이지 새로고침이 필요없는 request(요청)
-			// 문법 : $.ajax({ 객체 });
-			$.ajax({
-				url:"<%=request.getContextPath()%>/orderNow?redirectUrl=productDetail",	//Controller로 매핑된 메서드를 호출
-				type:"POST",
-				data: {
-					"pseq": $("#pseq").val(),
-					"quantity": $("#quantity").val()
-				},
-				dataType: "json",
-				
-				success: function(data){
-					// Controller에서 넘어온 data의 'STATUS 데이터가 1이면'
-					if(data.STATUS === 1){
-						//동적으로 div 태그 달아주기.
-						$("#cartCnt").empty();
-						$("#cartCnt").append(data.cnt);
-						if(confirm('해당 상품이 주문목록에 추가되었습니다\n주문목록으로 이동하시겠습니까?')){
-							location.href="orderList";
-						}
-					}else{
-						location.href="userLogin";
-					}
-				},
-				error:function(){
-					alert("실패");
-				}
-			});
-		});
-	});
+
 </script>
  
 <article  id="e1">
@@ -118,8 +82,8 @@
 		</table>
 	
 	  <input type="button" value="장바구니" class="submit2" id="goCart" >
-	  <input type="button" value="바로구매" class="submit2" id="goOrder">
-	  	</td></tr>
+	  <input type="button" value="바로구매" class="submit2" id="goOrder" onClick="go_order()">
+	  	</td></tr>  
 	</table>  
 </form>
 
