@@ -73,4 +73,9 @@ public class MOrderService {
 		
 	}
 
+	public void orderInsertNow(HashMap<String, Object> paramMap) {
+		odao.orderInsertNow(paramMap);
+		
+	}
+
 }

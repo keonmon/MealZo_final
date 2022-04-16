@@ -34,5 +34,7 @@ public interface IMOrderDao {
 
 	void getResultByOdseq(HashMap<String, Object> paramMap);
 
+	void orderInsertNow(HashMap<String, Object> paramMap);
+
 	
 }
