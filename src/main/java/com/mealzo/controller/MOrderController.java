@@ -329,11 +329,14 @@ public class MOrderController {
 	
 
 	@RequestMapping(value="/orderInsertNow")
-	public ModelAndView orderInsertNow(HttpServletRequest request, @RequestParam(value="pseq",required = false) int pseq,
-			@RequestParam(value="quantity",required = false) int quantity){
+	public ModelAndView orderInsertNow(HttpServletRequest request, 
+			@RequestParam(value="pseq",required = false) int pseq,
+			@RequestParam(value="quantity",required = false) int quantity,  
+			@RequestParam(value="redirectUrl",required=false)String redirectUrl){
 		int oseq=0;
 		ModelAndView mav =  new ModelAndView();
 		 HttpSession session = request.getSession();
+		 session.setAttribute("redirectUrl", redirectUrl+"?pseq="+pseq);		//url 세션에 담기
 			HashMap<String, Object> loginUser =
 	     	(HashMap<String, Object>)session.getAttribute("loginUser");
 

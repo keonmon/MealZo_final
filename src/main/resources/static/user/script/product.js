@@ -200,7 +200,8 @@ function go_order(){
        alert("수량을 입력해주세요");
        document.form1.quantity.focus();
      } else {
-        document.form1.action = "orderInsertNow";
+     	
+        document.form1.action = "orderInsertNow?redirectUrl=productDetail";
         document.form1.submit();
       }
 }
