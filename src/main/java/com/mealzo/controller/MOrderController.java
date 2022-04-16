@@ -29,43 +29,6 @@ public class MOrderController {
 	MCartService cs;
 	
 	
-	@RequestMapping(value="/orderNow")
-	@ResponseBody
-	public Map<String,Object> orderNow( HttpServletRequest request, Model model,
-			@RequestParam(value="pseq",required = false)String pseq,
-			@RequestParam(value="quantity",required = false)String quantity
-			) {
-		int cnt = 0;
-		System.out.println("pseq:"+pseq+" / quantity:"+quantity);
-		HttpSession session = request.getSession();
-		HashMap<String, Object>loginUser
-			= (HashMap<String, Object>)session.getAttribute("loginUser");
-		
-		HashMap<String, Object>paramMap = new HashMap<String, Object>();
-		if( loginUser == null ) {
-			paramMap.put("STATUS", 0);
-			//return "STATUS : 0";
-			return paramMap;
-			//return "member/login";
-		} else {
-			
-			paramMap.put("id", loginUser.get("ID") );
-			paramMap.put("pseq", pseq);
-			paramMap.put("quantity",quantity);
-			os.nowOrder( paramMap );
-			
-			// 카트 개수 세션에 담기
-			paramMap.put("cnt", 0);	// 카드 개수 담아올 변수
-			cs.getCartCnt(paramMap);
-			System.out.println(paramMap.get("cnt"));
-			cnt = Integer.parseInt(paramMap.get("cnt").toString());
-			session.setAttribute("cartCnt",cnt);
-			
-			paramMap.put("STATUS", 1);
-		}
-		return paramMap;
-		//return "product/productDetail";
-	}
 	
 	@RequestMapping(value="/orderInsert")
 	public String orderInsert( HttpServletRequest request ) {
@@ -363,6 +326,42 @@ public class MOrderController {
 		return mav;
 	}
 	
+
+	@RequestMapping(value="/orderInsertNow")
+	public ModelAndView orderInsertNow(HttpServletRequest request, @RequestParam(value="pseq",required = false) int pseq,
+			@RequestParam(value="quantity",required = false) int quantity){
+		int oseq=0;
+		ModelAndView mav =  new ModelAndView();
+		 HttpSession session = request.getSession();
+			HashMap<String, Object> loginUser =
+	     	(HashMap<String, Object>)session.getAttribute("loginUser");
+
+			if(loginUser==null) {
+				mav.setViewName("member/login");
+				return mav;
+	
+		}
+			else {
+				HashMap<String, Object> paramMap = new HashMap<String , Object>();
+				paramMap.put("id", loginUser.get("ID"));
+				paramMap.put("pseq", pseq);
+				paramMap.put	("oseq", 0);
+				paramMap.put("quantity", quantity);
+				
+				os.orderInsertNow(paramMap);
+		//	quantity=Integer.parseInt(paramMap.get("quantity").toString());
+
+				oseq=Integer.parseInt(paramMap.get("oseq").toString());
+				System.out.println(oseq);
+				   System.out.println(quantity  + pseq );
+
+				
+				mav.setViewName("redirect:/orderList?oseq=" +oseq);
+			}
+		
+		return mav;
+	}
+		
 	
 }
 

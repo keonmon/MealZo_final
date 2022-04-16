@@ -1546,47 +1546,26 @@ end;
 
 
 ------------------------------------------------------------------------
--- 즉시구매 
---create or replace procedure nowOrder_m(
---    p_id  IN  MORDERS.ID%TYPE,
---    p_oseq  OUT  MORDERS.OSEQ%TYPE  )
---IS
---     v_oseq MORDERS.OSEQ%TYPE;
---     v_pseq MORDER_DETAIL.PSEQ%TYPE;
---     v_quantity MORDER_DETAIL.QUANTITY%TYPE;
---BEGIN
---    INSERT INTO MORDERS(oseq, id) VALUES( morders_seq.nextVal, p_id);
---    SELECT MAX(oseq) INTO p_oseq FROM MORDERS;
---    INSERT INTO morder_detail( odseq, oseq, pseq, quantity )
---    VALUES( morder_detail_seq.nextVal, v_oseq, v_pseq,  v_quantity );
---    commit;
---    p_oseq := v_oseq;
---END;
+--밍디 즉시구매
+create or replace procedure  orderInsertNow(
+p_id in morders.id%type,
+p_pseq in morder_detail.pseq%type,
+p_oseq out morders.oseq%type,
+p_quantity in morder_detail.quantity%type
+)
 
+is
+v_oseq morders.oseq%type;
+begin
+    insert into morders(oseq, id) values(morders_seq.nextVal, p_id);
+    select max(oseq) into v_oseq from morders;
+    insert into morder_detail(odseq, oseq, pseq, quantity) 
+        values(morder_detail_seq.nextVal, v_oseq, p_pseq, p_quantity);
 
-CREATE OR REPLACE PROCEDURE nowOrder_m(
-    p_id  IN  MORDERS.ID%TYPE,
-    p_oseq  OUT  MORDERS.OSEQ%TYPE  )
-IS
-    v_oseq MORDERS.OSEQ%TYPE;
-    temp_cur SYS_REFCURSOR;
-    v_cseq MCART.CSEQ%TYPE;
-    v_pseq MCART.PSEQ%TYPE;
-    v_quantity MCART.QUANTITY%TYPE;
-BEGIN
-    INSERT INTO MORDERS(oseq, id) VALUES( morders_seq.nextVal, p_id);
-    SELECT MAX(oseq) INTO v_oseq FROM MORDERS;
-    OPEN temp_cur FOR SELECT cseq, pseq, quantity FROM MCART WHERE id=p_id and result='1';
-    LOOP
-        FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;
-        EXIT WHEN temp_cur%NOTFOUND; 
-        INSERT INTO morder_detail( odseq, oseq, pseq, quantity )
-        VALUES( morder_detail_seq.nextVal, v_oseq, v_pseq,  v_quantity ); 
-        DELETE FROM MCART WHERE cseq = v_cseq;
-    END LOOP;
-    COMMIT;
-    p_oseq := v_oseq;
-END;
+commit;
+p_oseq := v_oseq;
+end;
+
 
 
 
