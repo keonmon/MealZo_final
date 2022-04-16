@@ -84,11 +84,11 @@ document.form.submit();
 
 
 function zzim(pseq){
-var gozzim = confirm("찜  추가되었습니다 \n 찜리스트로 이동하시겠습니까?♥😊❤️");
+	var gozzim = confirm("찜  추가되었습니다 \n 찜리스트로 이동하시겠습니까?♥😊❤️");
    		if(gozzim){
-			location.href= "zzimInsert?pseq=" + pseq;
+			location.href= "zzimInsert?pseq=" + pseq+"&redirectUrl=productDetail";
 		}else{
-		location.href= "zzim?pseq=" + pseq;
+			location.href= "zzim?pseq=" + pseq + "&redirectUrl=productDetail";
 		}
    }
 

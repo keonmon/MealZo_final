@@ -32,9 +32,9 @@
       
       <div id="sideicon">
       <ul>
-	 <li><a href="mobileOrderList"><span class="material-icons" style="font-size:5em; ">&nbsp;local_shipping</span><br><span style="font-size:2em; font-weight:bold;">주문내역</span></a></li>
-	 <li><a href="mobileMypageForm"><span class="material-icons" style="font-size:5em;">&nbsp;&nbsp;account_circle</span><br><span style="font-size:2em; font-weight:bold;">&nbsp;마이페이지</span></a></li>
-	 <li><a href="mobileZzimList"><span class="material-icons" style="font-size:5em;">&nbsp;volunteer_activism</span><br><span style="font-size:2em; font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;찜</span></a></li>
+	 <li><a href="mobileOrderList?redirectUrl=mobileOrderList"><span class="material-icons" style="font-size:5em; ">&nbsp;local_shipping</span><br><span style="font-size:2em; font-weight:bold;">주문내역</span></a></li>
+	 <li><a href="mobileMypageForm?redirectUrl=mobileMypageForm"><span class="material-icons" style="font-size:5em;">&nbsp;&nbsp;account_circle</span><br><span style="font-size:2em; font-weight:bold;">&nbsp;마이페이지</span></a></li>
+	 <li><a href="mobileZzimList?redirectUrl=mobileZzimList"><span class="material-icons" style="font-size:5em;">&nbsp;volunteer_activism</span><br><span style="font-size:2em; font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;찜</span></a></li>
      </ul>
      <div class="clear"></div>
     </div>     

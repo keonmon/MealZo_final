@@ -29,27 +29,30 @@ public class MQnaController {
 	MQnaService qs;
 	
 	@RequestMapping("/mypageForm")
-	public String mypageForm(HttpServletRequest request  ) {
+	public String mypageForm(HttpServletRequest request,  
+			@RequestParam(value="redirectUrl",required=false)String redirectUrl) {
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser =
 				(HashMap<String, Object>)session.getAttribute("loginUser");
-
+		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
 		if(loginUser==null) {
-			return "member/login";
-		}else
-			
+			return "redirect:/userLogin";
+		}else {
 		
-		return "mypage/mypage";
+			return "mypage/mypage";
+		}
 	}
 	
 	@RequestMapping("/qnaForm")
-	public ModelAndView qnaForm(Model model, HttpServletRequest request) {
+	public ModelAndView qnaForm(Model model, HttpServletRequest request,  
+			@RequestParam(value="redirectUrl",required=false)String redirectUrl) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser =
 				(HashMap<String, Object> )session.getAttribute("loginUser");
+		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
 		if(loginUser ==null) {
-			mav.setViewName("member/login");
+			mav.setViewName("redirect:/userLogin");
 		}else {
 			
 			int page=1;
@@ -89,8 +92,6 @@ public class MQnaController {
 			mav.addObject("paging", paging);
 			mav.addObject("mqnaList", list);
 			mav.setViewName("qna/qnaList");
-			
-			
 					
 		}
 		
@@ -107,7 +108,7 @@ public class MQnaController {
 		HashMap<String, Object> loginUser =
 				(HashMap<String, Object> )session.getAttribute("loginUser");
 		if(loginUser ==null) {
-			mav.setViewName("member/login");
+			mav.setViewName("redirect:/userLogin");
 		}else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			
@@ -132,7 +133,7 @@ public class MQnaController {
 			= (HashMap<String, Object>)session.getAttribute("loginUser");
 		
 		if( loginUser == null) {
-		 return "member/login";
+		 return "redirect:/userLogin";
 		}else
 			
 		return "qna/qnaWrite";
@@ -147,7 +148,7 @@ public class MQnaController {
 		HashMap<String, Object> loginUser =
 				(HashMap<String, Object> )session.getAttribute("loginUser");
 		if(loginUser ==null) 
-			mav.setViewName("member/login");
+			mav.setViewName("redirect:/userLogin");
 		else {
 			if(result.getFieldError("subject")!=null) {
 				mav.addObject("message", result.getFieldError("subject").getDefaultMessage());
