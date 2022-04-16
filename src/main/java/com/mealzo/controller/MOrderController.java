@@ -29,7 +29,6 @@ public class MOrderController {
 	MCartService cs;
 	
 	
-	
 	@RequestMapping(value="/orderInsert")
 	public String orderInsert( HttpServletRequest request ) {
 		
@@ -66,9 +65,11 @@ public class MOrderController {
 	
 	
 	@RequestMapping(value="/orderList")
-		public ModelAndView orderListForm( HttpServletRequest request, Model model ) {
+		public ModelAndView orderListForm( HttpServletRequest request, Model model,  
+				@RequestParam(value="redirectUrl",required=false)String redirectUrl ) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
+		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
 		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
 		if( loginUser == null ) {
 			mav.setViewName("member/login");	

@@ -547,14 +547,16 @@ public class MProductController {
 	
 	@RequestMapping("/zzim")
 	public ModelAndView zzim(HttpServletRequest request,
-@RequestParam(value="pseq", required=false)Integer pseq
-		//	@RequestParam("pseq") Integer pseq
+			@RequestParam(value="pseq", required=false)Integer pseq,
+		//	@RequestParam("pseq") Integer pseq,  
+			@RequestParam(value="redirectUrl",required=false)String redirectUrl
 			) {
 		ModelAndView mav = new  ModelAndView();
-		
+		redirectUrl = redirectUrl+"?pseq="+pseq;
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser 
 		  = (HashMap<String, Object>)session.getAttribute("loginUser");
+		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
 		if(loginUser==null)  {
 			mav.addObject("msg" , "로그인 후 사용하시기바랍니다");
 			mav.setViewName("member/login");
@@ -570,7 +572,7 @@ public class MProductController {
 		System.out.println("pseq" + pseq);
 		mav.setViewName("redirect:/productDetail");
 		//mav.setViewName("redirect:/zzimList");
-	//		mav.setViewName("/");
+		//mav.setViewName("/");
 		}
 		return  mav;
 	}
@@ -598,12 +600,14 @@ public class MProductController {
 	
 	@RequestMapping("/zzimInsert")
 	public ModelAndView zzimInsert(HttpServletRequest request,
-@RequestParam(value="pseq", required=false)Integer pseq
-		//	@RequestParam("pseq") Integer pseq
+			@RequestParam(value="pseq", required=false)Integer pseq,
+		//	@RequestParam("pseq") Integer pseq 
+			@RequestParam(value="redirectUrl",required=false)String redirectUrl
 			) {
 		ModelAndView mav = new  ModelAndView();
-		
+		redirectUrl = redirectUrl+"?pseq="+pseq;
 		HttpSession session = request.getSession();
+		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
 		HashMap<String, Object> loginUser 
 		  = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(loginUser==null)  {

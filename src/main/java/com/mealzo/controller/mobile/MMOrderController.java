@@ -28,17 +28,19 @@ public class MMOrderController {
 	
 	
 	@RequestMapping("/mobileMypageForm")
-	public String mypageForm(HttpServletRequest request  ) {
+	public String mypageForm(HttpServletRequest request,  
+			@RequestParam(value="redirectUrl",required=false)String redirectUrl  ) {
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser =
 				(HashMap<String, Object>)session.getAttribute("loginUser");
-
+		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
 		if(loginUser==null) {
 			return "mobile/member/mobileLogin";
 		}else {
 	    }
 		return "mobile/mypage/mobileMypage";
 	}
+	
 	
 	@RequestMapping(value="/mobileOrderInsert")
 	public String orderInsert( HttpServletRequest request ) {
@@ -74,9 +76,11 @@ public class MMOrderController {
 	}
 	
 	@RequestMapping(value="/mobileOrderList")
-		public ModelAndView orderListForm( HttpServletRequest request, Model model ) {
+		public ModelAndView orderListForm( HttpServletRequest request, Model model,  
+				@RequestParam(value="redirectUrl",required=false)String redirectUrl  ) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
+		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
 		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
 		if( loginUser == null ) {
 			mav.setViewName("mobile/member/mobileLogin");	

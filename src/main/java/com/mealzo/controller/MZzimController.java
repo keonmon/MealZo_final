@@ -23,9 +23,11 @@ public class MZzimController {
 
 	
 	@RequestMapping("/zzimList")
-	  public ModelAndView zzimlist(HttpServletRequest request) {
+	  public ModelAndView zzimlist(HttpServletRequest request,  
+				@RequestParam(value="redirectUrl",required=false)String redirectUrl) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
+		session.setAttribute("redirectUrl", redirectUrl);	//url 세션에 담기
 		HashMap<String, Object> loginUser 
 		  = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(loginUser==null) {

@@ -17,7 +17,7 @@
 			//ajax : 웹페이지 새로고침이 필요없는 request(요청)
 			// 문법 : $.ajax({ 객체 });
 			$.ajax({
-				url:"<%=request.getContextPath()%>/mobileCartInsert",	//Controller로 매핑된 메서드를 호출
+				url:"<%=request.getContextPath()%>/mobileCartInsert?redirectUrl=mobileProductDetail",	//Controller로 매핑된 메서드를 호출
 				type:"POST",
 				data: {
 					"pseq": $("#pseq").val(),
@@ -86,7 +86,7 @@
 									style="font-size: 1.5em; text-align: center; font-weight: bold; top: -37px;">
 									<br>찜하기
 									<c:if test="${zzimcount>0}">   
- 							${zzimcount}
+ 										${zzimcount}
   										 </c:if>
 								</div>
 							</c:if></td>
@@ -97,7 +97,7 @@
 		</div>
 		<!-- 수량 -->
 		<table >
-			  	<tr style="font-size:2.4em; width:100px;" >
+			<tr style="font-size:2.4em; width:100px;" >
 				  	<td >   
 					<p style="font-size:1.0em"> 수량 </p></td><td style= width:413px;>
 					<input type="button" value=" - " onclick="del();"  style="font-size:1.3em; background:white;">
@@ -105,7 +105,7 @@
                    <input type="hidden" name="pseq" id="pseq" value="${mproductVO.PSEQ}">
                    <input type="button" value=" + " onclick="add();"  style="font-size:1.3em; background:white;">
                </td> </tr>
-              <tr height="100px;"><td style="font-size:1.5em;"><h2>총 상품금액</h2> </td><td style=" font-size:1.8em; text-align:center"><h2><div id="result" name="result" ></div></h2></td></tr>
+ 			<tr height="100px;"><td style="font-size:1.5em;"><h2>총 상품금액</h2> </td><td style=" font-size:1.8em; text-align:center"><h2><div id="result" name="result" ></div></h2></td></tr>
 
 		</table>
 		</div>

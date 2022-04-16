@@ -11,7 +11,6 @@ $(function(){
 <br><br><br><br>
 <article>
 <form method="post" action="login" name="loginFrm">
-
  <fieldset>
   <legend></legend>
   
