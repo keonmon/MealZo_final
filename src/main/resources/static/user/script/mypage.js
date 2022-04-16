@@ -1,9 +1,9 @@
 
 
-// orderListDetail.jsp에서 주문취소하는 메서드
+	// orderListDetail.jsp에서 주문취소하는 메서드
 function go_cancel(){
 	if(document.frm.orderCancel == null){ 
-		alert("주문처리할 항목이 없습니다.") 
+		alert("주문처리할 항목이 없습니다.");
 		return; 
 	}else{ 
 		var count = 0; 
