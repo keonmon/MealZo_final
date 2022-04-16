@@ -24,8 +24,8 @@ $(function(){
 </div>
 <div id="side_buttons" style="margin:0;">
  <ul style="margin-top:0;">
-   <li ><a style="width:120px; font-size:1.2em" href="findIdForm">아이디/비밀번호 찾기 </a></li>
-   <li ><a style="width:120px; font-size:1.2em" href="contract" >회원가입</a></li>
+   <li ><a style="width:140px; font-size:1.2em; margin-left:-10px;" href="findIdForm">아이디/비밀번호 찾기 </a></li>
+   <li ><a style="width:80px; font-size:1.2em" href="contract" >회원가입</a></li>
  </ul>
 </div><br><br>
 <div> &nbsp; &nbsp; ${message}</div>
