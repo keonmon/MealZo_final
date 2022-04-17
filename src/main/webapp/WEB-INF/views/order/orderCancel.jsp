@@ -30,7 +30,7 @@
     <jsp:param value="${paging.endPage}" name="endPage"/>
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
-	<jsp:param name="command" value="orderListForm" />
+	<jsp:param name="command" value="orderCancelForm" />
 </jsp:include>
 </article>
 <%@ include file="../include/user/headerfooter/footer.jsp" %>

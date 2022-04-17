@@ -234,28 +234,51 @@ public class MOrderController {
 			mav.setViewName("member/login");
 		} else {
 			
+			ArrayList<HashMap<String, Object>> finalList 
+			= new ArrayList<HashMap<String, Object>>();
 			
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("id", loginUser.get("ID") );
 			paramMap.put("ref_cursor", null);
 			os.orderCancelForm( paramMap );
+			
 			ArrayList<HashMap<String, Object>> list 
 				= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
-			mav.addObject("cancelList", list);
-		int totalPrice =0;
-			for( HashMap<String, Object> ovo : list ) {
-				totalPrice += Integer.parseInt( ovo.get("QUANTITY").toString() )
-						* Integer.parseInt( ovo.get("PRICE2").toString() ); 
+			
+			for( HashMap<String, Object> result : list ) {
+				int oseq = Integer.parseInt( result.get("OSEQ").toString() );   // 주문번호 1개 추출
+				HashMap<String, Object> paramMap2 = new HashMap<String, Object>();
+				paramMap2.put("oseq", oseq);
+				paramMap2.put("reg_cursor", null);
+				os.listOrderByOseq(paramMap2);  // 추출할 주문번호를 이용하여 주문 내역(상품들) 조회
+				ArrayList<HashMap<String, Object>> orderListByOseq 
+				= (ArrayList<HashMap<String, Object>>)paramMap2.get("ref_cursor");
+			
+				HashMap<String, Object> orderFirst = orderListByOseq.get(0);  // 주문 상품들중 첫번째 주문 추출
+				orderFirst.put("PNAME" , (String)orderFirst.get("PNAME") + "포함 " + orderListByOseq.size() + "건" );
+				// 추출한 첫번째 상품의 상품명을   "XXX 포함 X건" 이라고 수정
+				
+				//ovo.setPname(ovo.getPname() + " 포함 " + list2.size()+"건");
+				
+				int totalPrice = 0;
+				for( HashMap<String, Object> ovo : orderListByOseq ) {
+					totalPrice += Integer.parseInt( ovo.get("QUANTITY").toString() )
+							* Integer.parseInt( ovo.get("PRICE2").toString() ); 
+				}
+				mav.addObject("totalPrice", totalPrice); 
+				finalList.add(orderFirst);
 			}
-			mav.addObject("totalPrice", totalPrice); 
+			mav.addObject("cancelList", finalList);
 			mav.setViewName("order/orderCancel");
 		}
 		return mav;
 	}
+	
+	
 
 	@RequestMapping(value="/orderCancelDetail")
 	public ModelAndView orderCancelDetail( HttpServletRequest request, Model model,
-			@RequestParam(value="odseq", required=false) int odseq) {
+			@RequestParam(value="oseq", required=false) int oseq) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser
@@ -264,7 +287,7 @@ public class MOrderController {
 			mav.setViewName("member/login");
 		} else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("odseq", odseq);
+			paramMap.put("oseq", oseq);
 			paramMap.put("ref_cursor", null);
 			os.listOrderByOseq(paramMap);
 			
@@ -275,10 +298,12 @@ public class MOrderController {
 			for( HashMap<String, Object> order : orderListByOseq ) 
 				totalPrice += Integer.parseInt( order.get("QUANTITY").toString() )
 									* Integer.parseInt( order.get("PRICE2").toString() ); 
-			mav.addObject("totalPrice", totalPrice);
+			mav.addObject("TOTALPRICE", totalPrice);
 			mav.addObject("orderList", orderListByOseq);
+			mav.addObject("OSEQ", oseq);
 			mav.addObject("orderDetail", orderListByOseq.get(0));
 			mav.setViewName("order/orderCancelDetail");
+			
 		}
 		return mav;
 	}

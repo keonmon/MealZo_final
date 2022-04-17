@@ -169,7 +169,7 @@ CREATE OR REPLACE PROCEDURE listOrderByOseq_m(
     p_cur OUT SYS_REFCURSOR   )
 IS
 BEGIN
-    OPEN p_cur FOR SELECT * FROM morder_view where oseq=p_oseq;
+    OPEN p_cur FOR SELECT * FROM morder_view where oseq=p_oseq order by oseq desc;
 END;
 
 ------------------------------------오더리스트------------------------------------------
@@ -180,7 +180,7 @@ CREATE OR REPLACE PROCEDURE listOrderByIdAll_m (
 IS
 BEGIN
     OPEN p_rc FOR
-        SELECT DISTINCT oseq FROM (SELECT oseq, id FROM MORDER_VIEW ORDER BY result, oseq desc) WHERE id=p_id;
+        SELECT DISTINCT oseq FROM (SELECT oseq, id FROM MORDER_VIEW ) WHERE id=p_id ORDER BY oseq desc;
 END;
 
 
@@ -940,7 +940,8 @@ CREATE OR REPLACE PROCEDURE orderCancelForm_m(
     p_cur OUT SYS_REFCURSOR   )
 IS
 BEGIN
-    OPEN p_cur FOR  SELECT * FROM mordercancel_view;
+    OPEN p_cur FOR  
+        SELECT DISTINCT oseq from(SELECT oseq,id FROM mordercancel_view) where id=p_id ORDER BY oseq desc;
 END;
 
 
