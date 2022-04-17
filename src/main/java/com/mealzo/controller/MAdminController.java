@@ -1203,10 +1203,10 @@ public class MAdminController {
   public ModelAndView admineventupdate(HttpServletRequest request,
 		  @RequestParam("eseq") int eseq,
 	//	  @RequestParam("writedate") String writedate,
-		  @RequestParam("startTime") String startTime,
-  		  @RequestParam("endTime") String endTime, 
 		  @RequestParam("startdate") String startdate, 
+		  @RequestParam("startTime") String startTime,
 		  @RequestParam("enddate") String enddate,
+  		  @RequestParam("endTime") String endTime, 
 		  @ModelAttribute("evo") @Valid MEventVO evo, BindingResult result) {
 	  ModelAndView mav = new ModelAndView();
 	  
@@ -1214,9 +1214,9 @@ public class MAdminController {
 	/*  mav.addObject("estartDate", startDate + " " + startTime + ":00");
 	  mav.addObject("eendDate", endDate + " " + endTime + ":59");
 	*/
-	  //String startDate = request.getParameter("startDate") + " " + request.getParameter("startTime")+":00";
-	  //String endDate = request.getParameter("endDate") + " " + request.getParameter("endTime")+":59";
-	  //System.out.println(startDate +"~"+ endDate);
+	  String startDate = startdate + " " + startTime+":00";
+	  String endDate = enddate + " " + endTime+":59";
+	  System.out.println(startDate +"~"+ endDate);
 	  
 	//String estartDate = evo.getStartdate() + "~" + getParameter("startTime");
 	//String eendDate = evo.getEnddate() + "~" + getParameter("endTime");
@@ -1257,8 +1257,8 @@ public class MAdminController {
 			paramMap.put("image1", evo.getImage1());
 			paramMap.put("image2", evo.getImage2());
 			paramMap.put("subtitle", evo.getSubtitle());
-			paramMap.put("startdate", startdate);
-			paramMap.put("enddate", enddate);
+			paramMap.put("startdate", Timestamp.valueOf(startDate));
+			paramMap.put("enddate", Timestamp.valueOf(endDate));
 			//paramMap.put("startdate", evo.getStartdate());
 			//paramMap.put("enddate", evo.getEnddate());
 		//	paramMap.put("writedate" ,evo.getWritedate());

@@ -18,6 +18,9 @@
 **/images/*
 !**/images/.gitkeep
 
+# ERMaster (ERD) 
+*.erm
+
 # Package Files #
 *.jar
 !**/libs/*.jar
