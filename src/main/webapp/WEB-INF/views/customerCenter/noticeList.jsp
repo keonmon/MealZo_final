@@ -19,8 +19,19 @@
 		   <c:otherwise>
 		${noticeVO.NSEQ}
 		</c:otherwise></c:choose></td>
-		<td width="500px"><a href="noticeDetail?nseq=${noticeVO.NSEQ}" style="color:black; font-weight:bold;">
-		${noticeVO.SUBJECT}</a></td>
+		<td width="500px">
+		<c:choose>
+		<c:when test='${noticeVO.RESULT=="p"}'>
+		<a href="noticeDetail?nseq=${noticeVO.NSEQ}" style="color:blue; font-weight:bold;">
+		${noticeVO.SUBJECT}</a>
+		</c:when>
+		 <c:otherwise>
+		<a href="noticeDetail?nseq=${noticeVO.NSEQ}" style="color:black; font-weight:bold;">
+		${noticeVO.SUBJECT}</a>
+		
+		 </c:otherwise></c:choose>
+		 </td>
+    	
     	<td width="20px"><fmt:formatDate value="${noticeVO.INDATE}" type="date"/></td>
    		</tr>
 	</c:forEach>
