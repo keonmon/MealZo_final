@@ -12,9 +12,9 @@ $(document).ready(function (){
 	}	);
 </script>
 <ul>
-	<li><a href="productAllForm?sort=recently&sub=y&idx=0">최근등록순</a></li>
-	<li><a href="productAllForm?sort=low_price&sub=y&idx=1">가격낮은순</a></li>
-	<li><a href="productAllForm?sort=high_price&sub=y&idx=2">가격높은순</a></li>
+	<li><a href="productAllForm?sort=recently&sub=y&idx=0&key=${key }">최근등록순</a></li>
+	<li><a href="productAllForm?sort=low_price&sub=y&idx=1&key=${key }">가격낮은순</a></li>
+	<li><a href="productAllForm?sort=high_price&sub=y&idx=2&key=${key }">가격높은순</a></li>
 </ul>
 </div>
 
