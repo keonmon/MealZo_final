@@ -200,9 +200,13 @@ function go_order(){
        alert("수량을 입력해주세요");
        document.form1.quantity.focus();
      } else {
-     	
-        document.form1.action = "orderInsertNow";
-        document.form1.submit();
-      }
+     var buyNow = confirm("상품을 바로 구매하시겠습니까?");
+     	if(buyNow){
+	        document.form1.action = "orderInsertNow";
+        	document.form1.submit();
+     	}else{
+     		return false;
+     	}
+ 	}
 }
 

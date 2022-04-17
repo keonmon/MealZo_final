@@ -17,7 +17,7 @@
       <li>
 		<c:choose>
 		<c:when test="${empty loginUser }">
-      <a href="mobileLogin"><psan id="login3"><ins >로그인</ins></psan></a>해 주세요
+      <a href="mobileLoginForm"><psan id="login3"><ins >로그인</ins></psan></a>해 주세요
       </c:when>
       <c:otherwise>
      <span style="font-size:0.9em"><strong>${loginUser.NAME }</strong> 님 반갑습니다</span>

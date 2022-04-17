@@ -34,10 +34,10 @@ public class MMMemberController {
 	@Autowired
 	MCartService cs;
 	
-	//@RequestMapping("/mobileLogin")
-	//public String mobileLoginForm() {
-	//	return "mobile/member/mobileLogin";
-	//}
+	@RequestMapping("/mobileLoginForm")
+	public String mobileLoginForm() {
+		return "mobile/member/mobileLogin";
+	}
 	
 	@RequestMapping(value="/mobileLogin",method= {RequestMethod.GET, RequestMethod.POST} )  // method= {RequestMethod.GET, RequestMethod.POST}
 	public String mobileLogin( @ModelAttribute("dto") @Valid MMemberVO membervo , BindingResult result, 
