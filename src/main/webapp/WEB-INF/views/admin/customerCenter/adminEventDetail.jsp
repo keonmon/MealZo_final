@@ -56,8 +56,8 @@ $(function(){
 
 <fmt:formatDate value="${evo.startdate}" pattern="yyyy-MM-dd" var="startdate" />
 <fmt:formatDate value="${evo.enddate}" pattern="yyyy-MM-dd" var="enddate" />
-<fmt:formatDate value="${evo.startdate}" pattern="HH:mm:ss" var="startTime" />
-<fmt:formatDate value="${evo.enddate}" pattern="HH:mm:ss" var="endTime" />
+<fmt:formatDate value="${evo.startdate}" pattern="HH:mm" var="startTime" />
+<fmt:formatDate value="${evo.enddate}" pattern="HH:mm" var="endTime" />
 
 <article id="mypageArticle2" style="width:900px; max-width:900px;">
 	<h2>이벤트 관리</h2>
