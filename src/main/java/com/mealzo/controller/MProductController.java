@@ -598,14 +598,12 @@ public class MProductController {
 	
 	@RequestMapping("/zzimInsert")
 	public ModelAndView zzimInsert(HttpServletRequest request,
-			@RequestParam(value="pseq", required=false)Integer pseq,
+			@RequestParam(value="pseq", required=false)Integer pseq
 		//	@RequestParam("pseq") Integer pseq 
-			@RequestParam(value="redirectUrl",required=false)String redirectUrl
 			) {
 		ModelAndView mav = new  ModelAndView();
-		redirectUrl = redirectUrl+"?pseq="+pseq;
 		HttpSession session = request.getSession();
-		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
+		session.setAttribute("redirectUrl", "productDetail?pseq="+pseq);		//url 세션에 담기
 		HashMap<String, Object> loginUser 
 		  = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(loginUser==null)  {
