@@ -27,7 +27,7 @@ $(function(){
    <li ><a style="width:80px; font-size:1.2em" href="contract" >회원가입</a></li>
  </ul>
 </div><br><br>
-<div> &nbsp; &nbsp; ${message}</div>
+<%-- <div> &nbsp; &nbsp; ${message}</div> --%>
 
 </fieldset>
 </form>

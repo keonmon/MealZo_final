@@ -3,9 +3,26 @@
     <%@ include file="../include/user/headerfooter/header.jsp" %>
     
 <script type="text/javascript">
+	/* window.onload = function () {window.location.reload()} */
+	
 	$(document).ready( function () {
+		// 찜하기 뒤로가기 버튼 누르면 페이지 새로고침되도록
+		 if (self.name != 'reload') {
+	         self.name = 'reload';
+	         self.location.reload(true);
+	     }
+	     else self.name = ''; 
+		 
 		printName();
 	});
+	
+	/* var refresh = $window.localStorage.getItem('refresh');
+	console.log(refresh);
+	if (refresh===null){
+	    window.location.reload();
+	    $window.localStorage.setItem('refresh', "1");
+	} */
+	
 	
 	// ajax
 	$(function(){
