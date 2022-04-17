@@ -29,12 +29,11 @@ public class MQnaController {
 	MQnaService qs;
 	
 	@RequestMapping("/mypageForm")
-	public String mypageForm(HttpServletRequest request,  
-			@RequestParam(value="redirectUrl",required=false)String redirectUrl) {
+	public String mypageForm(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser =
 				(HashMap<String, Object>)session.getAttribute("loginUser");
-		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
+		session.setAttribute("redirectUrl", "mypageForm");		//url 세션에 담기
 		if(loginUser==null) {
 			return "redirect:/userLogin";
 		}else {
@@ -44,13 +43,12 @@ public class MQnaController {
 	}
 	
 	@RequestMapping("/qnaForm")
-	public ModelAndView qnaForm(Model model, HttpServletRequest request,  
-			@RequestParam(value="redirectUrl",required=false)String redirectUrl) {
+	public ModelAndView qnaForm(Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser =
 				(HashMap<String, Object> )session.getAttribute("loginUser");
-		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
+		session.setAttribute("redirectUrl", "qnaForm");		//url 세션에 담기
 		if(loginUser ==null) {
 			mav.setViewName("redirect:/userLogin");
 		}else {

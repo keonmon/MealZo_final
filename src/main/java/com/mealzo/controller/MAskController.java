@@ -115,6 +115,7 @@ public class MAskController {
   public String askWriteForm(HttpServletRequest request,
 		  @RequestParam("pseq") int pseq) {
 		HttpSession session = request.getSession();
+		session.setAttribute("redirectUrl", "askWriteForm?pseq="+pseq);
 		HashMap<String, Object> loginUser
 			= (HashMap<String, Object>)session.getAttribute("loginUser");
 		

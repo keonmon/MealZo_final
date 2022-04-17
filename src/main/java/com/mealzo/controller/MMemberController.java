@@ -49,10 +49,10 @@ public class MMemberController {
 		// 아이디, 비번 빈칸확인
 		if( result.getFieldError("id") != null ) {
 			model.addAttribute("message", result.getFieldError("id").getDefaultMessage() );
-			return "redirect:/userLogin";
+			return "member/login";
 		}else if( result.getFieldError("pwd")!=null) {
 			model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage() );
-			return "redirect:/userLogin";
+			return "member/login";
 		}
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
@@ -66,7 +66,7 @@ public class MMemberController {
 			= (ArrayList< HashMap<String, Object> >)paramMap.get("ref_cursor");
 		if( list.size() == 0 ) {
 			model.addAttribute("message", "밀조) 아이디가 없습니다");
-			return "redirect:/userLogin";
+			return "member/login";
 		}
 		
 		
@@ -75,14 +75,14 @@ public class MMemberController {
 		
 		if( mvo.get("PWD") == null ) {
 			model.addAttribute("message", "밀조) 비밀번호 오류. 밀조왕에게 문의하세요");
-			return "redirect:/userLogin";
+			return "member/login";
 		}else if( !mvo.get("PWD").equals(membervo.getPwd())) {
 			model.addAttribute("message", "밀조) 비밀번호가 맞지않습니다");
-			return "redirect:/userLogin";
+			return "member/login";
 		}else if( mvo.get("USEYN").equals("n")) {
 			//model.addAttribute("message", "밀조) 탈퇴하거나 휴먼중인 계정입니다. 하단 공지에서 비회원 문의를 통해 밀조왕에게 문의하세요");
 			model.addAttribute("useyn2", "n");
-			return "redirect:/userLogin";
+			return "member/login";
 		}else if( mvo.get("PWD").equals(membervo.getPwd())) {
 			HttpSession session = request.getSession();
 			
@@ -102,7 +102,7 @@ public class MMemberController {
 			
 		}else {
 			model.addAttribute("message", "밀조) 무슨이유인지 모르겠지만 로그인 안돼요");
-			return "redirect:/userLogin";
+			return "member/login";
 		}
 		
 	}

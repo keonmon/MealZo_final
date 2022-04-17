@@ -33,7 +33,7 @@
 			//ajax : 웹페이지 새로고침이 필요없는 request(요청)
 			// 문법 : $.ajax({ 객체 });
 			$.ajax({
-				url:"<%=request.getContextPath()%>/cartInsert?redirectUrl=productDetail",	//Controller로 매핑된 메서드를 호출
+				url:"<%=request.getContextPath()%>/cartInsert",	//Controller로 매핑된 메서드를 호출
 				type:"POST",
 				data: {
 					"pseq": $("#pseq").val(),

@@ -467,7 +467,7 @@ input[id="menuicon"]:checked + label + div{
 #serch2 form{ height:40px;}
 #search2 input{height:20; width:auto; font-size:0.5em; line-height:5%; flex: 1;  outline:none; width:100%; border:none; padding:5%; margin-left:-12px; font-family:'Pretendard-Regular';font-weight:bold;}
 #productSearchIcon2 { position:absolute; font-size:2.0em; top:5%; right:1%; cursor: pointer; float:right; }
-.header2_2st #cartIcon2{position:absolute; font-size:3.0em; right:5%; top:10%; z-index:100}
+.header2_2st #cartIcon2{position:absolute; font-size:2.5em; right:5%; top:13%; z-index:100}
 .header2_2st #cartCnt{position:absolute; font-size:1.3em; right:15px; top:29px; width:30px; background-color:green; border-radius:17px 17px 17px 17px; color:white; z-index:101;}
 
 

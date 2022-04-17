@@ -541,16 +541,14 @@ public class MMProductController {
 	
 	@RequestMapping("/mobileZzim")
 	public ModelAndView zzim(HttpServletRequest request,
-			@RequestParam(value="pseq", required=false)Integer pseq,
+			@RequestParam(value="pseq", required=false)Integer pseq
 		//	@RequestParam("pseq") Integer pseq
-			@RequestParam(value="redirectUrl",required=false)String redirectUrl
 			) {
 		ModelAndView mav = new  ModelAndView();
 		HttpSession session = request.getSession();
-		redirectUrl = redirectUrl+"?pseq="+pseq;
 		HashMap<String, Object> loginUser 
 		  = (HashMap<String, Object>)session.getAttribute("loginUser");
-		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
+		session.setAttribute("redirectUrl", "mobileProductDetail?pseq="+pseq);		//url 세션에 담기
 		if(loginUser==null)  {
 			mav.addObject("msg" , "로그인 후 사용하시기바랍니다");
 			mav.setViewName("mobile/member/mobileLogin");
@@ -594,14 +592,12 @@ public class MMProductController {
 	
 	@RequestMapping("/mobileZzimInsert")
 	public ModelAndView zzimInsert(HttpServletRequest request,
-			@RequestParam(value="pseq", required=false)Integer pseq,  
+			@RequestParam(value="pseq", required=false)Integer pseq
 		//	@RequestParam("pseq") Integer pseq
-			@RequestParam(value="redirectUrl",required=false)String redirectUrl
 			) {
 		ModelAndView mav = new  ModelAndView();
-		redirectUrl = redirectUrl+"?pseq="+pseq;
 		HttpSession session = request.getSession();
-		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
+		session.setAttribute("redirectUrl", "mobileProductDetail?pseq="+pseq);		//url 세션에 담기
 		HashMap<String, Object> loginUser 
 		  = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(loginUser==null)  {

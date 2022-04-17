@@ -201,7 +201,7 @@ function go_order(){
        document.form1.quantity.focus();
      } else {
      	
-        document.form1.action = "orderInsertNow?redirectUrl=productDetail";
+        document.form1.action = "orderInsertNow";
         document.form1.submit();
       }
 }
