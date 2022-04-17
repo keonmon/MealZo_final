@@ -51,7 +51,7 @@
 					</form>
 				</div>
 				<div id="cart">
-					<a href="mobileCartList?redirectUrl=mobileCartList"><span class="material-icons" id="cartIcon" name="cart" >shopping_cart</span>
+					<a href="mobileCartList"><span class="material-icons" id="cartIcon" name="cart" >shopping_cart</span>
 						<b id="cartCnt" >${cartCnt }</b></a>
 				</div>
 				

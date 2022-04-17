@@ -65,17 +65,17 @@
 							</c:choose>
 						</li>
 						<li>
-							<a href="mypageForm?redirectUrl=mypageForm">마이페이지 </a>|
+							<a href="mypageForm">마이페이지 </a>|
 						</li>
 						<li>
-							<a href="orderList?redirectUrl=orderList">주문조회 </a>|
+							<a href="orderList">주문조회 </a>|
 						</li>
 						<li>
-							<a href="cartList?redirectUrl=cartList">장바구니&nbsp;
+							<a href="cartList">장바구니&nbsp;
 								<b id="cartCnt" style="color:black">${cartCnt }</b></a> |
 						</li>
 						<li>
-							<a href="zzimList?redirectUrl=zzimList">찜한 상품</a>
+							<a href="zzimList">찜한 상품</a>
 						</li>
 					</ul>
 			<div class="clear"></div>	

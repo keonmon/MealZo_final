@@ -65,11 +65,10 @@ public class MOrderController {
 	
 	
 	@RequestMapping(value="/orderList")
-		public ModelAndView orderListForm( HttpServletRequest request, Model model,  
-				@RequestParam(value="redirectUrl",required=false)String redirectUrl ) {
+		public ModelAndView orderListForm( HttpServletRequest request, Model model ) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		session.setAttribute("redirectUrl", redirectUrl);		//url 세션에 담기
+		session.setAttribute("redirectUrl", "orderList");		//url 세션에 담기
 		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
 		if( loginUser == null ) {
 			mav.setViewName("member/login");	
@@ -356,12 +355,11 @@ public class MOrderController {
 	@RequestMapping(value="/orderInsertNow")
 	public ModelAndView orderInsertNow(HttpServletRequest request, 
 			@RequestParam(value="pseq",required = false) int pseq,
-			@RequestParam(value="quantity",required = false) int quantity,  
-			@RequestParam(value="redirectUrl",required=false)String redirectUrl){
+			@RequestParam(value="quantity",required = false) int quantity){
 		int oseq=0;
 		ModelAndView mav =  new ModelAndView();
 		 HttpSession session = request.getSession();
-		 session.setAttribute("redirectUrl", redirectUrl+"?pseq="+pseq);		//url 세션에 담기
+		 session.setAttribute("redirectUrl", "productDetail?pseq="+pseq);		//url 세션에 담기
 			HashMap<String, Object> loginUser =
 	     	(HashMap<String, Object>)session.getAttribute("loginUser");
 

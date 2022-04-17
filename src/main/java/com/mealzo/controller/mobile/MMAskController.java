@@ -114,6 +114,7 @@ public class MMAskController {
   public String askWriteForm(HttpServletRequest request,
 		  @RequestParam("pseq") int pseq) {
 		HttpSession session = request.getSession();
+		session.setAttribute("redirectUrl", "mobileAskWriteForm?pseq="+pseq);
 		HashMap<String, Object> loginUser
 			= (HashMap<String, Object>)session.getAttribute("loginUser");
 		
@@ -138,6 +139,7 @@ public class MMAskController {
 	  
 	  ModelAndView mav = new ModelAndView();
 	  HttpSession session = request.getSession();
+	 
 		HashMap<String, Object> loginUser =
 				(HashMap<String, Object>)session.getAttribute("loginUser");
 
