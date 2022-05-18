@@ -1615,7 +1615,7 @@ begin
         select * from (
         select * from (
         select rownum as rn, p.* from  
-        ((select * from notice where subject like '%'||p_key||'%'  order by  indate desc,  useyn desc result desc ) p) 
+        ((select * from notice where subject like '%'||p_key||'%'  order by  indate desc ,result desc ) p) 
         ) where rn>=p_startNum
         ) where rn<=p_endNum;
 end;
